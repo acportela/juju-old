@@ -30,14 +30,29 @@ PODS:
   - GoogleUtilities/Reachability (6.2.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
+  - iOSSnapshotTestCase (6.0.3):
+    - iOSSnapshotTestCase/SwiftSupport (= 6.0.3)
+  - iOSSnapshotTestCase/Core (6.0.3)
+  - iOSSnapshotTestCase/SwiftSupport (6.0.3):
+    - iOSSnapshotTestCase/Core
+  - Nimble (8.0.2)
+  - Nimble-Snapshots (7.1.0):
+    - Nimble-Snapshots/Core (= 7.1.0)
+  - Nimble-Snapshots/Core (7.1.0):
+    - iOSSnapshotTestCase (~> 6.0)
+    - Nimble (~> 8.0)
+  - Quick (2.1.0)
   - SnapKit (5.0.0)
   - SwiftLint (0.33.0)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 4.8.2)
   - Firebase/Auth
-  - SnapKit
-  - SwiftLint
+  - Nimble (~> 8.0.2)
+  - Nimble-Snapshots (~> 7.1.0)
+  - Quick (~> 2.1.0)
+  - SnapKit (~> 5.0.0)
+  - SwiftLint (~> 0.33.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -48,6 +63,10 @@ SPEC REPOS:
     - FirebaseCore
     - GoogleUtilities
     - GTMSessionFetcher
+    - iOSSnapshotTestCase
+    - Nimble
+    - Nimble-Snapshots
+    - Quick
     - SnapKit
     - SwiftLint
 
@@ -59,9 +78,13 @@ SPEC CHECKSUMS:
   FirebaseCore: 68f8a7f50cdae542715d4e86afa37c4067217dcb
   GoogleUtilities: c7a0b08bda3bf808be823ed151f0e28ac6866e71
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  iOSSnapshotTestCase: 944a73f6d9676302811a86c0cf35f0e6ef5ab2a0
+  Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
+  Nimble-Snapshots: 2ec985281eef0eb9fc69a469deee851363a50d0e
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: fbcb29d61d221ab565c7561922ffec5f7a0db88c
+PODFILE CHECKSUM: 65af1aaf56453d5c613952b9aa0ee7ac3a7fabe0
 
 COCOAPODS: 1.7.3

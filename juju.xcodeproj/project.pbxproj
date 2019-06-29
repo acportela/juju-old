@@ -8,13 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
+		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
 		D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5022C79EF500BA16E5 /* Assets.xcassets */; };
 		D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */; };
+		D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB8E22C7DF9C001C94A5 /* Resources.swift */; };
+		D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB9122C7E329001C94A5 /* UIColor.swift */; };
+		D68ACBA222C7E7D4001C94A5 /* Gilroy-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */; };
+		D68ACBA322C7E7D4001C94A5 /* Gilroy-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9A22C7E7D4001C94A5 /* Gilroy-Medium.otf */; };
+		D68ACBA422C7E7D4001C94A5 /* Gilroy-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9B22C7E7D4001C94A5 /* Gilroy-Bold.otf */; };
+		D68ACBA522C7E7D4001C94A5 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9C22C7E7D4001C94A5 /* Gilroy-ExtraBold.otf */; };
+		D68ACBA622C7E7D4001C94A5 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9E22C7E7D4001C94A5 /* Montserrat-Medium.ttf */; };
+		D68ACBA722C7E7D4001C94A5 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */; };
+		D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */; };
+		D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */; };
+		D68ACBB122C7F763001C94A5 /* jujuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB022C7F763001C94A5 /* jujuTests.swift */; };
+		D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */; };
+		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
+		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
+		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D68ACBB322C7F763001C94A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D65FCC3E22C79EF400BA16E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D65FCC4522C79EF400BA16E5;
+			remoteInfo = juju;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		056D944913A4FA78B9ACA0E2 /* Pods-jujuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.release.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.release.xcconfig"; sourceTree = "<group>"; };
 		141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.debug.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.debug.xcconfig"; sourceTree = "<group>"; };
+		1B3AD8AF7EE33C59F99BDC09 /* Pods-jujuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.debug.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.debug.xcconfig"; sourceTree = "<group>"; };
+		520468F01B60305E7F01B021 /* Pods_jujuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jujuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_juju.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B963747690D2B138C0423C /* Pods-juju.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.release.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.release.xcconfig"; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +51,23 @@
 		D65FCC5022C79EF500BA16E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D65FCC5322C79EF500BA16E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D65FCC5522C79EF500BA16E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68ACB8E22C7DF9C001C94A5 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		D68ACB9122C7E329001C94A5 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.otf"; sourceTree = "<group>"; };
+		D68ACB9A22C7E7D4001C94A5 /* Gilroy-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.otf"; sourceTree = "<group>"; };
+		D68ACB9B22C7E7D4001C94A5 /* Gilroy-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.otf"; sourceTree = "<group>"; };
+		D68ACB9C22C7E7D4001C94A5 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
+		D68ACB9E22C7E7D4001C94A5 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		D68ACBAE22C7F763001C94A5 /* jujuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jujuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68ACBB022C7F763001C94A5 /* jujuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jujuTests.swift; sourceTree = "<group>"; };
+		D68ACBB222C7F763001C94A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputFieldSpec.swift; sourceTree = "<group>"; };
+		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
+		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
+		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +79,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D68ACBAB22C7F763001C94A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -40,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */,
+				520468F01B60305E7F01B021 /* Pods_jujuTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -48,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D65FCC4822C79EF400BA16E5 /* juju */,
+				D68ACBAF22C7F763001C94A5 /* jujuTests */,
 				D65FCC4722C79EF400BA16E5 /* Products */,
 				E256A409059955029F46A8AB /* Pods */,
 				4008D6DB513CD81095C2E1DD /* Frameworks */,
@@ -58,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				D65FCC4622C79EF400BA16E5 /* juju.app */,
+				D68ACBAE22C7F763001C94A5 /* jujuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,16 +122,85 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
+				D68ACB9022C7E315001C94A5 /* Extensions */,
+				D68ACB8D22C7DF76001C94A5 /* Resources */,
+				D695890D22C7AC71009A356C /* Components */,
 				D695890922C7AAF5009A356C /* App */,
 				D695890722C7AAD1009A356C /* Supporting Files */,
 			);
 			path = juju;
 			sourceTree = "<group>";
 		};
+		D68ACB8D22C7DF76001C94A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9322C7E76D001C94A5 /* Fonts */,
+				D65FCC5022C79EF500BA16E5 /* Assets.xcassets */,
+				D68ACB8E22C7DF9C001C94A5 /* Resources.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D68ACB9022C7E315001C94A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D68ACB9322C7E76D001C94A5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9822C7E7D4001C94A5 /* Gilroy */,
+				D68ACB9D22C7E7D4001C94A5 /* Montserrat */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D68ACB9822C7E7D4001C94A5 /* Gilroy */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */,
+				D68ACB9A22C7E7D4001C94A5 /* Gilroy-Medium.otf */,
+				D68ACB9B22C7E7D4001C94A5 /* Gilroy-Bold.otf */,
+				D68ACB9C22C7E7D4001C94A5 /* Gilroy-ExtraBold.otf */,
+			);
+			path = Gilroy;
+			sourceTree = "<group>";
+		};
+		D68ACB9D22C7E7D4001C94A5 /* Montserrat */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9E22C7E7D4001C94A5 /* Montserrat-Medium.ttf */,
+				D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */,
+				D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */,
+				D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */,
+			);
+			path = Montserrat;
+			sourceTree = "<group>";
+		};
+		D68ACBAF22C7F763001C94A5 /* jujuTests */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACBB822C7F783001C94A5 /* Components */,
+				D68ACBB022C7F763001C94A5 /* jujuTests.swift */,
+				D68ACBB222C7F763001C94A5 /* Info.plist */,
+			);
+			path = jujuTests;
+			sourceTree = "<group>";
+		};
+		D68ACBB822C7F783001C94A5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		D695890722C7AAD1009A356C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D65FCC5022C79EF500BA16E5 /* Assets.xcassets */,
 				D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */,
 				D65FCC5522C79EF500BA16E5 /* Info.plist */,
 			);
@@ -89,11 +215,23 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		D695890D22C7AC71009A356C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D695890E22C7AD16009A356C /* JujuInputField.swift */,
+				D695891022C7AD6E009A356C /* ViewCoding.swift */,
+				D695891222C7AF98009A356C /* ViewConfiguration.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		E256A409059955029F46A8AB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */,
 				C8B963747690D2B138C0423C /* Pods-juju.release.xcconfig */,
+				1B3AD8AF7EE33C59F99BDC09 /* Pods-jujuTests.debug.xcconfig */,
+				056D944913A4FA78B9ACA0E2 /* Pods-jujuTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -110,6 +248,7 @@
 				D65FCC4322C79EF400BA16E5 /* Frameworks */,
 				D65FCC4422C79EF400BA16E5 /* Resources */,
 				979C1C728500E337F04870EB /* [CP] Embed Pods Frameworks */,
+				D695891422C7B4A1009A356C /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -119,6 +258,26 @@
 			productName = juju;
 			productReference = D65FCC4622C79EF400BA16E5 /* juju.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D68ACBAD22C7F763001C94A5 /* jujuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D68ACBB522C7F763001C94A5 /* Build configuration list for PBXNativeTarget "jujuTests" */;
+			buildPhases = (
+				361C67D71A6805E7589A6F1F /* [CP] Check Pods Manifest.lock */,
+				D68ACBAA22C7F763001C94A5 /* Sources */,
+				D68ACBAB22C7F763001C94A5 /* Frameworks */,
+				D68ACBAC22C7F763001C94A5 /* Resources */,
+				57C5A5AA071789AF4EFBABF7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D68ACBB422C7F763001C94A5 /* PBXTargetDependency */,
+			);
+			name = jujuTests;
+			productName = jujuTests;
+			productReference = D68ACBAE22C7F763001C94A5 /* jujuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -132,6 +291,10 @@
 				TargetAttributes = {
 					D65FCC4522C79EF400BA16E5 = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					D68ACBAD22C7F763001C94A5 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = D65FCC4522C79EF400BA16E5;
 					};
 				};
 			};
@@ -149,6 +312,7 @@
 			projectRoot = "";
 			targets = (
 				D65FCC4522C79EF400BA16E5 /* juju */,
+				D68ACBAD22C7F763001C94A5 /* jujuTests */,
 			);
 		};
 /* End PBXProject section */
@@ -158,8 +322,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68ACBA322C7E7D4001C94A5 /* Gilroy-Medium.otf in Resources */,
+				D68ACBA222C7E7D4001C94A5 /* Gilroy-Regular.otf in Resources */,
+				D68ACBA422C7E7D4001C94A5 /* Gilroy-Bold.otf in Resources */,
+				D68ACBA622C7E7D4001C94A5 /* Montserrat-Medium.ttf in Resources */,
+				D68ACBA722C7E7D4001C94A5 /* Montserrat-Bold.ttf in Resources */,
 				D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */,
 				D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */,
+				D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */,
+				D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */,
+				D68ACBA522C7E7D4001C94A5 /* Gilroy-ExtraBold.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D68ACBAC22C7F763001C94A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +367,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		361C67D71A6805E7589A6F1F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jujuTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57C5A5AA071789AF4EFBABF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-jujuTests/Pods-jujuTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-jujuTests/Pods-jujuTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-jujuTests/Pods-jujuTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		979C1C728500E337F04870EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,6 +423,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-juju/Pods-juju-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D695891422C7B4A1009A356C /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -212,11 +448,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
+				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
+				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
+				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
+				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D68ACBAA22C7F763001C94A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68ACBB122C7F763001C94A5 /* jujuTests.swift in Sources */,
+				D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D68ACBB422C7F763001C94A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D65FCC4522C79EF400BA16E5 /* juju */;
+			targetProxy = D68ACBB322C7F763001C94A5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */ = {
@@ -384,6 +642,48 @@
 			};
 			name = Release;
 		};
+		D68ACBB622C7F763001C94A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B3AD8AF7EE33C59F99BDC09 /* Pods-jujuTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4KYD88NNTV;
+				INFOPLIST_FILE = jujuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.acportela.jujuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/juju.app/juju";
+			};
+			name = Debug;
+		};
+		D68ACBB722C7F763001C94A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 056D944913A4FA78B9ACA0E2 /* Pods-jujuTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4KYD88NNTV;
+				INFOPLIST_FILE = jujuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.acportela.jujuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/juju.app/juju";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -401,6 +701,15 @@
 			buildConfigurations = (
 				D65FCC5922C79EF500BA16E5 /* Debug */,
 				D65FCC5A22C79EF500BA16E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D68ACBB522C7F763001C94A5 /* Build configuration list for PBXNativeTarget "jujuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68ACBB622C7F763001C94A5 /* Debug */,
+				D68ACBB722C7F763001C94A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
