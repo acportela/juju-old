@@ -10,5 +10,5 @@ import Foundation
 
 protocol ViewConfiguration {
     associatedtype States
-    func configure(with: States)
+    func configure(with state: States)
 }

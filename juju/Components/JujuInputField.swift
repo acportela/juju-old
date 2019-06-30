@@ -15,11 +15,17 @@ final class JujuInputField: UIView {
         let field = UITextField()
         field.text = ""
         field.font = Resources.Fonts.Montserrat.regular(ofSize: 16)
+        field.textColor = Resources.Colors.white
+        field.textAlignment = .left
         return field
     }()
     
-    private let hint: UILabel = {
+    private lazy var hint: UILabel = {
         let label = UILabel()
+        label.text = self.inputKind.hint
+        label.font = Resources.Fonts.Montserrat.regular(ofSize: 14)
+        label.textAlignment = .left
+        label.textColor = Resources.Colors.white
         return label
     }()
     
@@ -33,6 +39,18 @@ final class JujuInputField: UIView {
         let stack = UIStackView()
         return stack
     }()
+    
+    let inputKind: InputKind
+    
+    init(frame: CGRect = .zero, inputKind: InputKind, initialState: States) {
+        self.inputKind = inputKind
+        super.init(frame: frame)
+        configure(with: initialState)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Initialize with view code")
+    }
     
 }
 
@@ -65,19 +83,54 @@ extension JujuInputField: ViewCoding {
 extension JujuInputField: ViewConfiguration {
     
     enum States {
+        
         case focused
         case unfocused
+        
+        var stateColor: UIColor {
+            switch self {
+            case .focused:
+                return Resources.Colors.white
+            case .unfocused:
+                return Resources.Colors.pink
+            }
+        }
+        
     }
     
-    func configure(with: JujuInputField.States) {
-        
+    func configure(with state: JujuInputField.States) {
+        switch state {
+        case .focused:
+            self.selectedIndicator.backgroundColor = Resources.Colors.white
+        case .unfocused:
+            self.selectedIndicator.backgroundColor = Resources.Colors.pink
+        }
     }
 
 }
 
 extension JujuInputField {
     
-    enum FocusState {
+    enum InputKind {
         
+        case name
+        case age
+        case email
+        case password
+        
+        //TODO: Localization
+        var hint: String {
+            switch self {
+            case .name:
+                return "Nome"
+            case .age:
+                return "Idade"
+            case .email:
+                return "Email"
+            case .password:
+                return "Senha"
+            }
+        }
     }
+    
 }
