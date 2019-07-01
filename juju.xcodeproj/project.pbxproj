@@ -12,6 +12,9 @@
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
 		D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5022C79EF500BA16E5 /* Assets.xcassets */; };
 		D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */; };
+		D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */; };
+		D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */; };
+		D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845E22CA299200C5ECDE /* TestHelpers.swift */; };
 		D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB8E22C7DF9C001C94A5 /* Resources.swift */; };
 		D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB9122C7E329001C94A5 /* UIColor.swift */; };
 		D68ACBA222C7E7D4001C94A5 /* Gilroy-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */; };
@@ -51,6 +54,9 @@
 		D65FCC5022C79EF500BA16E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D65FCC5322C79EF500BA16E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D65FCC5522C79EF500BA16E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUtils.swift; sourceTree = "<group>"; };
+		D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		D67F845E22CA299200C5ECDE /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		D68ACB8E22C7DF9C001C94A5 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		D68ACB9122C7E329001C94A5 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.otf"; sourceTree = "<group>"; };
@@ -131,6 +137,16 @@
 			path = juju;
 			sourceTree = "<group>";
 		};
+		D67F845922CA25AF00C5ECDE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */,
+				D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */,
+				D67F845E22CA299200C5ECDE /* TestHelpers.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		D68ACB8D22C7DF76001C94A5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +199,7 @@
 		D68ACBAF22C7F763001C94A5 /* jujuTests */ = {
 			isa = PBXGroup;
 			children = (
+				D67F845922CA25AF00C5ECDE /* Utils */,
 				D68ACBB822C7F783001C94A5 /* Components */,
 				D68ACBB022C7F763001C94A5 /* jujuTests.swift */,
 				D68ACBB222C7F763001C94A5 /* Info.plist */,
@@ -461,7 +478,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */,
+				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,
 				D68ACBB122C7F763001C94A5 /* jujuTests.swift in Sources */,
+				D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */,
 				D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

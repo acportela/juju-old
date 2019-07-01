@@ -13,16 +13,14 @@ final class JujuInputField: UIView {
     
     private let input: UITextField = {
         let field = UITextField()
-        field.text = ""
         field.font = Resources.Fonts.Montserrat.regular(ofSize: 16)
         field.textColor = Resources.Colors.white
         field.textAlignment = .left
         return field
     }()
     
-    private lazy var hint: UILabel = {
+    private var title: UILabel = {
         let label = UILabel()
-        label.text = self.inputKind.hint
         label.font = Resources.Fonts.Montserrat.regular(ofSize: 14)
         label.textAlignment = .left
         label.textColor = Resources.Colors.white
@@ -37,15 +35,19 @@ final class JujuInputField: UIView {
     
     private let containerStack: UIStackView = {
         let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+        stack.alignment = .leading
+        stack.spacing = 4
         return stack
     }()
     
     let inputKind: InputKind
     
-    init(frame: CGRect = .zero, inputKind: InputKind, initialState: States) {
+    init(frame: CGRect = .zero, inputKind: InputKind) {
         self.inputKind = inputKind
         super.init(frame: frame)
-        configure(with: initialState)
+        setupViewConfiguration()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,7 +59,7 @@ final class JujuInputField: UIView {
 extension JujuInputField: ViewCoding {
     
     func addSubViews() {
-        containerStack.addArrangedSubview(hint)
+        containerStack.addArrangedSubview(title)
         containerStack.addArrangedSubview(input)
         containerStack.addArrangedSubview(selectedIndicator)
         addSubview(containerStack)
@@ -66,16 +68,21 @@ extension JujuInputField: ViewCoding {
     func setupConstraints() {
         
         containerStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         
         selectedIndicator.snp.makeConstraints { make in
             make.height.equalTo(2)
+            make.width.equalToSuperview()
         }
     }
     
     func configureViews() {
-        
+        self.title.text = self.inputKind.title
+        self.input.text = self.inputKind.hint
+        self.input.keyboardType = self.inputKind.keyboard
+        self.input.returnKeyType = .done
     }
     
 }
@@ -83,19 +90,8 @@ extension JujuInputField: ViewCoding {
 extension JujuInputField: ViewConfiguration {
     
     enum States {
-        
         case focused
         case unfocused
-        
-        var stateColor: UIColor {
-            switch self {
-            case .focused:
-                return Resources.Colors.white
-            case .unfocused:
-                return Resources.Colors.pink
-            }
-        }
-        
     }
     
     func configure(with state: JujuInputField.States) {
@@ -119,7 +115,7 @@ extension JujuInputField {
         case password
         
         //TODO: Localization
-        var hint: String {
+        var title: String {
             switch self {
             case .name:
                 return "Nome"
@@ -129,6 +125,32 @@ extension JujuInputField {
                 return "Email"
             case .password:
                 return "Senha"
+            }
+        }
+        
+        var hint: String {
+            switch self {
+            case .name:
+                return "Qual seu nome?"
+            case .age:
+                return "Quantos anos você tem?"
+            case .email:
+                return "Qual seu email?"
+            case .password:
+                return "Digite uma nova senha"
+            }
+        }
+        
+        var keyboard: UIKeyboardType {
+            switch self {
+            case .name:
+                return .namePhonePad
+            case .age:
+                return .numberPad
+            case .email:
+                return .emailAddress
+            case .password:
+                return .default
             }
         }
     }
