@@ -21,12 +21,7 @@ class JujuInputFieldSpec: QuickSpec {
             
             context("when showing on screen") {
                 
-                //case name
-                //case age
-                //case email
-                //case password
-                
-                context("with name input kind") {
+                context("a name input") {
                     
                     beforeEach {
                         let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
@@ -35,11 +30,52 @@ class JujuInputFieldSpec: QuickSpec {
                     }
                     
                     it("must render properly") {
-                        expect(sut).to(matchSnapshot(named: "JujuInputFieldName", record: true))
+                        expect(sut).to(matchSnapshot(named: "JujuInputFieldName"))
                     }
                     
                 }
                 
+                context("an age input") {
+                    
+                    beforeEach {
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        sut = JujuInputField(frame: frame, inputKind: .age)
+                        sut.outlineRecursively()
+                    }
+                    
+                    it("must render properly") {
+                        expect(sut).to(matchSnapshot(named: "JujuInputFieldAge"))
+                    }
+                    
+                }
+                
+                context("an email input") {
+                    
+                    beforeEach {
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        sut = JujuInputField(frame: frame, inputKind: .email)
+                        sut.outlineRecursively()
+                    }
+                    
+                    it("must render properly") {
+                        expect(sut).to(matchSnapshot(named: "JujuInputFieldEmail"))
+                    }
+                    
+                }
+                
+                context("a password input") {
+                    
+                    beforeEach {
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        sut = JujuInputField(frame: frame, inputKind: .password)
+                        sut.outlineRecursively()
+                    }
+                    
+                    it("must render properly") {
+                        expect(sut).to(matchSnapshot(named: "JujuInputFieldPassword"))
+                    }
+                    
+                }
             }
         }
     }

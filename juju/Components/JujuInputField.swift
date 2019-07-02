@@ -15,6 +15,8 @@ final class JujuInputField: UIView {
         let field = UITextField()
         field.font = Resources.Fonts.Montserrat.regular(ofSize: 16)
         field.textColor = Resources.Colors.white
+        field.adjustsFontSizeToFitWidth = true
+        field.minimumFontSize = 12
         field.textAlignment = .left
         return field
     }()
@@ -80,7 +82,7 @@ extension JujuInputField: ViewCoding {
     
     func configureViews() {
         self.title.text = self.inputKind.title
-        self.input.text = self.inputKind.hint
+        self.input.placeholder = self.inputKind.hint
         self.input.keyboardType = self.inputKind.keyboard
         self.input.returnKeyType = .done
     }
@@ -137,7 +139,7 @@ extension JujuInputField {
             case .email:
                 return "Qual seu email?"
             case .password:
-                return "Digite uma nova senha"
+                return "Digite um senha com no mínimo 6 caracteres"
             }
         }
         

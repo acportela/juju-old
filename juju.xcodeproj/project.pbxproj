@@ -15,6 +15,8 @@
 		D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */; };
 		D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */; };
 		D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845E22CA299200C5ECDE /* TestHelpers.swift */; };
+		D682062822CADE9B006D4937 /* JujuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D682062722CADE9B006D4937 /* JujuButton.swift */; };
+		D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */; };
 		D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB8E22C7DF9C001C94A5 /* Resources.swift */; };
 		D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB9122C7E329001C94A5 /* UIColor.swift */; };
 		D68ACBA222C7E7D4001C94A5 /* Gilroy-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */; };
@@ -25,7 +27,6 @@
 		D68ACBA722C7E7D4001C94A5 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */; };
 		D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */; };
 		D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */; };
-		D68ACBB122C7F763001C94A5 /* jujuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB022C7F763001C94A5 /* jujuTests.swift */; };
 		D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */; };
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
@@ -57,6 +58,8 @@
 		D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUtils.swift; sourceTree = "<group>"; };
 		D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		D67F845E22CA299200C5ECDE /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		D682062722CADE9B006D4937 /* JujuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuButton.swift; sourceTree = "<group>"; };
+		D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuButtonSpec.swift; sourceTree = "<group>"; };
 		D68ACB8E22C7DF9C001C94A5 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		D68ACB9122C7E329001C94A5 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.otf"; sourceTree = "<group>"; };
@@ -68,7 +71,6 @@
 		D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		D68ACBAE22C7F763001C94A5 /* jujuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jujuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D68ACBB022C7F763001C94A5 /* jujuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jujuTests.swift; sourceTree = "<group>"; };
 		D68ACBB222C7F763001C94A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputFieldSpec.swift; sourceTree = "<group>"; };
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
@@ -201,7 +203,6 @@
 			children = (
 				D67F845922CA25AF00C5ECDE /* Utils */,
 				D68ACBB822C7F783001C94A5 /* Components */,
-				D68ACBB022C7F763001C94A5 /* jujuTests.swift */,
 				D68ACBB222C7F763001C94A5 /* Info.plist */,
 			);
 			path = jujuTests;
@@ -211,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */,
+				D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -238,6 +240,7 @@
 				D695890E22C7AD16009A356C /* JujuInputField.swift */,
 				D695891022C7AD6E009A356C /* ViewCoding.swift */,
 				D695891222C7AF98009A356C /* ViewConfiguration.swift */,
+				D682062722CADE9B006D4937 /* JujuButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
+				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
@@ -479,8 +483,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */,
+				D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */,
 				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,
-				D68ACBB122C7F763001C94A5 /* jujuTests.swift in Sources */,
 				D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */,
 				D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */,
 			);

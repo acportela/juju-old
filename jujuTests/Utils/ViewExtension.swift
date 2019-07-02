@@ -18,9 +18,6 @@ extension UIView {
         for view in subviews {
             
             view.outlineRecursively(color: color, width: width)
-            
         }
-
     }
-        
 }
