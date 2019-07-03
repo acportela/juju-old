@@ -20,7 +20,7 @@ class JujuButtonSpec: QuickSpec {
 
         describe("JujuButton") {
             
-            context("when showing on screen") {
+            context("when presenting on screen") {
                 
                 beforeEach {
                     sut = JujuButton(title: "Entrar")

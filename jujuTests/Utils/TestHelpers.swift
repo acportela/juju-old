@@ -19,15 +19,15 @@ struct TestHelpers {
     static let iphoneXSMaxWidth = 414
     static let iphoneXSMaxHeight = 896
     
-    var iphone8Frame: CGRect {
+    static var iphone8Frame: CGRect {
         return CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: TestHelpers.iphone8Height)
     }
     
-    var iphoneXFrame: CGRect {
+    static var iphoneXFrame: CGRect {
         return CGRect(x: 0, y: 0, width: TestHelpers.iphoneXwidth, height: TestHelpers.iphoneXHeight)
     }
     
-    var iphoneXSMaxFrame: CGRect {
+    static var iphoneXSMaxFrame: CGRect {
         return CGRect(x: 0, y: 0, width: TestHelpers.iphoneXSMaxWidth, height: TestHelpers.iphoneXSMaxHeight)
     }
     

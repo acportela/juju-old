@@ -23,6 +23,8 @@ final class JujuButton: UIView {
     
     var onTapAction: (() -> Void)?
     
+    //TODO: Make width dynamic: change title with configuration
+    
     init(title: String) {
         let frame = CGRect(x: 0, y: 0, width: 155, height: 42)
         super.init(frame: frame)

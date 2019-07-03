@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
 		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
+		D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0EF22CCC39800FAB219 /* SignUpView.swift */; };
+		D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
 		D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5022C79EF500BA16E5 /* Assets.xcassets */; };
 		D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */; };
@@ -50,6 +52,8 @@
 		520468F01B60305E7F01B021 /* Pods_jujuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jujuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_juju.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B963747690D2B138C0423C /* Pods-juju.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.release.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.release.xcconfig"; sourceTree = "<group>"; };
+		D645C0EF22CCC39800FAB219 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewSpec.swift; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D65FCC5022C79EF500BA16E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +111,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D645C0EE22CCC33C00FAB219 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D645C0EF22CCC39800FAB219 /* SignUpView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D645C0F122CCCBF900FAB219 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		D65FCC3D22C79EF400BA16E5 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +150,7 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
+				D645C0EE22CCC33C00FAB219 /* SignUp */,
 				D68ACB9022C7E315001C94A5 /* Extensions */,
 				D68ACB8D22C7DF76001C94A5 /* Resources */,
 				D695890D22C7AC71009A356C /* Components */,
@@ -201,6 +222,7 @@
 		D68ACBAF22C7F763001C94A5 /* jujuTests */ = {
 			isa = PBXGroup;
 			children = (
+				D645C0F122CCCBF900FAB219 /* SignUp */,
 				D67F845922CA25AF00C5ECDE /* Utils */,
 				D68ACBB822C7F783001C94A5 /* Components */,
 				D68ACBB222C7F763001C94A5 /* Info.plist */,
@@ -472,6 +494,7 @@
 				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
+				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
@@ -485,6 +508,7 @@
 				D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */,
 				D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */,
 				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,
+				D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */,
 				D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */,
 				D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */,
 			);

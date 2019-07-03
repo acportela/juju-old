@@ -19,7 +19,7 @@ class JujuInputFieldSpec: QuickSpec {
         
         describe("JujuInputField") {
             
-            context("when showing on screen") {
+            context("when presenting on screen") {
                 
                 context("a name input") {
                     
