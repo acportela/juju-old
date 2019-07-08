@@ -15,7 +15,7 @@ final class JujuButton: UIView {
         let button = UIButton()
         button.backgroundColor = Resources.Colors.white
         button.setTitleColor(Resources.Colors.pink, for: .normal)
-        button.titleLabel?.font = Resources.Fonts.Montserrat.medium(ofSize: 16)
+        button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: 16)
         button.layer.cornerRadius = 20
         button.layer.masksToBounds = true
         return button
@@ -23,11 +23,8 @@ final class JujuButton: UIView {
     
     var onTapAction: (() -> Void)?
     
-    //TODO: Make width dynamic: change title with configuration
-    
     init(title: String) {
-        let frame = CGRect(x: 0, y: 0, width: 155, height: 42)
-        super.init(frame: frame)
+        super.init(frame: .zero)
         button.setTitle(title.uppercased(), for: .normal)
         setupViewConfiguration()
     }
@@ -56,6 +53,7 @@ extension JujuButton: ViewCoding {
     
     func configureViews() {
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 48, bottom: 12, right: 48)
     }
     
 }

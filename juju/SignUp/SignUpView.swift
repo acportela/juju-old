@@ -15,7 +15,7 @@ final class SignUpView: UIView {
         label.textAlignment = .center
         label.text = "JUJU"
         label.textColor = Resources.Colors.pink
-        label.font = Resources.Fonts.Montserrat.bold(ofSize: 24)
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: 32)
         return label
     }()
     
@@ -26,27 +26,26 @@ final class SignUpView: UIView {
     }()
     
     private let ageInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .name)
+        let nameInput = JujuInputField(inputKind: .age)
         return nameInput
     }()
     
     private let emailInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .name)
-        nameInput.configure(with: .focused)
+        let nameInput = JujuInputField(inputKind: .email)
         return nameInput
     }()
     
     private let passwordInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .name)
-        nameInput.configure(with: .focused)
+        let nameInput = JujuInputField(inputKind: .password)
         return nameInput
     }()
     
     private let inputStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.alignment = .leading
-        stack.distribution = .fillEqually
+        stack.alignment = .fill
+        stack.distribution = .fillProportionally
+        stack.spacing = 32
         return stack
     }()
     
@@ -79,13 +78,13 @@ extension SignUpView: ViewCoding {
         
         inputStack.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().inset(16)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().inset(32)
         }
         
         logoLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(inputStack.snp.top).inset(48)
+            make.bottom.equalTo(inputStack.snp.top).offset(-48)
         }
         
         enterButton.snp.makeConstraints { make in
@@ -100,4 +99,3 @@ extension SignUpView: ViewCoding {
     }
     
 }
-

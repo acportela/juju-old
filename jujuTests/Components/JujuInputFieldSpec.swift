@@ -24,7 +24,7 @@ class JujuInputFieldSpec: QuickSpec {
                 context("a name input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
                         sut = JujuInputField(frame: frame, inputKind: .name)
                         sut.outlineRecursively()
                     }
@@ -38,7 +38,7 @@ class JujuInputFieldSpec: QuickSpec {
                 context("an age input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
                         sut = JujuInputField(frame: frame, inputKind: .age)
                         sut.outlineRecursively()
                     }
@@ -52,7 +52,7 @@ class JujuInputFieldSpec: QuickSpec {
                 context("an email input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
                         sut = JujuInputField(frame: frame, inputKind: .email)
                         sut.outlineRecursively()
                     }
@@ -66,7 +66,7 @@ class JujuInputFieldSpec: QuickSpec {
                 context("a password input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 60)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
                         sut = JujuInputField(frame: frame, inputKind: .password)
                         sut.outlineRecursively()
                     }

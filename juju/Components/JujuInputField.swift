@@ -13,7 +13,7 @@ final class JujuInputField: UIView {
     
     private let input: UITextField = {
         let field = UITextField()
-        field.font = Resources.Fonts.Montserrat.regular(ofSize: 16)
+        field.font = Resources.Fonts.Gilroy.regular(ofSize: 16)
         field.textColor = Resources.Colors.white
         field.adjustsFontSizeToFitWidth = true
         field.minimumFontSize = 12
@@ -23,7 +23,7 @@ final class JujuInputField: UIView {
     
     private var title: UILabel = {
         let label = UILabel()
-        label.font = Resources.Fonts.Montserrat.regular(ofSize: 14)
+        label.font = Resources.Fonts.Gilroy.regular(ofSize: 14)
         label.textAlignment = .left
         label.textColor = Resources.Colors.white
         return label
@@ -70,8 +70,7 @@ extension JujuInputField: ViewCoding {
     func setupConstraints() {
         
         containerStack.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         selectedIndicator.snp.makeConstraints { make in
@@ -139,7 +138,7 @@ extension JujuInputField {
             case .email:
                 return "Qual seu email?"
             case .password:
-                return "Digite um senha com no mínimo 6 caracteres"
+                return "Crie um senha"
             }
         }
         
