@@ -20,6 +20,7 @@ class AppCoordinator: Coordinator {
     
     func start() {
         
+        navigation.pushViewController(SignUpViewController(), animated: true)
     }
     
 }

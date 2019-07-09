@@ -11,13 +11,14 @@ import SnapKit
 
 final class JujuInputField: UIView {
     
-    private let input: UITextField = {
+    private lazy var input: UITextField = {
         let field = UITextField()
         field.font = Resources.Fonts.Gilroy.regular(ofSize: 16)
         field.textColor = Resources.Colors.white
         field.adjustsFontSizeToFitWidth = true
         field.minimumFontSize = 12
         field.textAlignment = .left
+        field.delegate = self
         return field
     }()
     
@@ -44,7 +45,9 @@ final class JujuInputField: UIView {
         return stack
     }()
     
-    let inputKind: InputKind
+    private let inputKind: InputKind
+    
+    var toolbarButtonAction: (() -> Void)?
     
     init(frame: CGRect = .zero, inputKind: InputKind) {
         self.inputKind = inputKind
@@ -84,6 +87,8 @@ extension JujuInputField: ViewCoding {
         self.input.placeholder = self.inputKind.hint
         self.input.keyboardType = self.inputKind.keyboard
         self.input.returnKeyType = .done
+        self.input.addTarget(self, action: #selector(didBeginEditing), for: .editingDidBegin)
+        self.input.addTarget(self, action: #selector(didEndEditing), for: .editingDidEnd)
     }
     
 }
@@ -104,6 +109,60 @@ extension JujuInputField: ViewConfiguration {
         }
     }
 
+}
+
+extension JujuInputField {
+    
+    public func addToolbar(withButton title: String, andAction action: @escaping (() -> Void)) {
+        
+        self.toolbarButtonAction = action
+        
+        let toolbar = UIToolbar()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let button = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(toolbarAction))
+        toolbar.items = [space, button]
+        
+        toolbar.sizeToFit()
+        self.input.inputAccessoryView = toolbar
+    }
+    
+    @objc
+    func toolbarAction() {
+        
+        self.toolbarButtonAction?()
+    }
+    
+}
+
+extension JujuInputField {
+    
+    override func becomeFirstResponder() -> Bool {
+        input.becomeFirstResponder()
+        return false
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        return input.resignFirstResponder()
+    }
+    
+    @objc
+    func didBeginEditing() {
+        self.configure(with: .focused)
+    }
+    
+    @objc
+    func didEndEditing() {
+        self.configure(with: .unfocused)
+    }
+    
+}
+
+extension JujuInputField: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
 }
 
 extension JujuInputField {

@@ -40,6 +40,14 @@ final class SignUpView: UIView {
         return nameInput
     }()
     
+    var onSignUpTap: (() -> Void)? {
+        didSet {
+            enterButton.onTapAction = onSignUpTap
+        }
+    }
+    
+    var inputs: [JujuInputField] = []
+    
     private let inputStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -95,7 +103,35 @@ extension SignUpView: ViewCoding {
     }
     
     func configureViews() {
+        
         self.backgroundColor = Resources.Colors.lightPink
+        inputs = [nameInput, ageInput, emailInput, passwordInput]
+        setupToolbarActions()
+    }
+    
+    func setupToolbarActions() {
+        
+        for (index, input) in inputs.enumerated() {
+            
+            let lastIndex = inputs.count - 1
+            let isLastElement = index == lastIndex
+            
+            //TODO: Localize it
+            let title = isLastElement ? "Entrar" : "Próximo"
+            let action: (() -> Void) = { [weak self] in
+                
+                if isLastElement {
+                    self?.onSignUpTap?()
+                    _ = input.resignFirstResponder()
+                    return
+                }
+                
+                _ = self?.inputs[index + 1].becomeFirstResponder()
+            }
+            
+            input.addToolbar(withButton: title, andAction: action)
+        }
+        
     }
     
 }
