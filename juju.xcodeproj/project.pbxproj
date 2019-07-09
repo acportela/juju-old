@@ -33,6 +33,8 @@
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
+		D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653922D4D94E0062C97A /* Coordinator.swift */; };
+		D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653B22D4D9830062C97A /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		D6F2653922D4D94E0062C97A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		D6F2653B22D4D9830062C97A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */,
+				D6F2653922D4D94E0062C97A /* Coordinator.swift */,
+				D6F2653B22D4D9830062C97A /* AppCoordinator.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -492,12 +498,14 @@
 			files = (
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
 				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
+				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
+				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
