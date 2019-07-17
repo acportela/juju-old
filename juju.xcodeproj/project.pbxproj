@@ -33,6 +33,14 @@
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
+		D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */; };
+		D6ABED2022DF2C9B0022CF0A /* UserAuthenticationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED1F22DF2C9B0022CF0A /* UserAuthenticationProtocol.swift */; };
+		D6ABED2422DF30690022CF0A /* UserAuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2322DF30690022CF0A /* UserAuthenticationError.swift */; };
+		D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */; };
+		D6ABED2822DF31A00022CF0A /* FirebaseErrorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2722DF31A00022CF0A /* FirebaseErrorAdapter.swift */; };
+		D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2A22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift */; };
+		D6EA765722DDEEAD00E87D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6EA765622DDEEAC00E87D00 /* GoogleService-Info.plist */; };
+		D6EA765A22DDF47200E87D00 /* ContentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* ContentResult.swift */; };
 		D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653922D4D94E0062C97A /* Coordinator.swift */; };
 		D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653B22D4D9830062C97A /* AppCoordinator.swift */; };
 		D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653D22D4DC840062C97A /* SignUpViewController.swift */; };
@@ -83,6 +91,14 @@
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUser.swift; sourceTree = "<group>"; };
+		D6ABED1F22DF2C9B0022CF0A /* UserAuthenticationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationProtocol.swift; sourceTree = "<group>"; };
+		D6ABED2322DF30690022CF0A /* UserAuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationError.swift; sourceTree = "<group>"; };
+		D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringErrorConstants.swift; sourceTree = "<group>"; };
+		D6ABED2722DF31A00022CF0A /* FirebaseErrorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseErrorAdapter.swift; sourceTree = "<group>"; };
+		D6ABED2A22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEmailPasswordAuthentication.swift; sourceTree = "<group>"; };
+		D6EA765622DDEEAC00E87D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6EA765922DDF47200E87D00 /* ContentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResult.swift; sourceTree = "<group>"; };
 		D6F2653922D4D94E0062C97A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D6F2653B22D4D9830062C97A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D6F2653D22D4DC840062C97A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +173,8 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
+				D6ABED1C22DF2C020022CF0A /* Models */,
+				D6EA765822DDF44C00E87D00 /* Repository */,
 				D645C0EE22CCC33C00FAB219 /* SignUp */,
 				D68ACB9022C7E315001C94A5 /* Extensions */,
 				D68ACB8D22C7DF76001C94A5 /* Resources */,
@@ -249,6 +267,7 @@
 		D695890722C7AAD1009A356C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D6EA765622DDEEAC00E87D00 /* GoogleService-Info.plist */,
 				D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */,
 				D65FCC5522C79EF500BA16E5 /* Info.plist */,
 			);
@@ -274,6 +293,35 @@
 				D682062722CADE9B006D4937 /* JujuButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		D6ABED1C22DF2C020022CF0A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */,
+				D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6ABED2922DF34C10022CF0A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				D6ABED2722DF31A00022CF0A /* FirebaseErrorAdapter.swift */,
+				D6ABED2A22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		D6EA765822DDF44C00E87D00 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D6ABED2922DF34C10022CF0A /* Firebase */,
+				D6EA765922DDF47200E87D00 /* ContentResult.swift */,
+				D6ABED1F22DF2C9B0022CF0A /* UserAuthenticationProtocol.swift */,
+				D6ABED2322DF30690022CF0A /* UserAuthenticationError.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		E256A409059955029F46A8AB /* Pods */ = {
@@ -381,6 +429,7 @@
 				D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */,
 				D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */,
 				D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */,
+				D6EA765722DDEEAD00E87D00 /* GoogleService-Info.plist in Resources */,
 				D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */,
 				D68ACBA522C7E7D4001C94A5 /* Gilroy-ExtraBold.otf in Resources */,
 			);
@@ -499,15 +548,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
+				D6EA765A22DDF47200E87D00 /* ContentResult.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
+				D6ABED2422DF30690022CF0A /* UserAuthenticationError.swift in Sources */,
 				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
+				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
+				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
+				D6ABED2822DF31A00022CF0A /* FirebaseErrorAdapter.swift in Sources */,
+				D6ABED2022DF2C9B0022CF0A /* UserAuthenticationProtocol.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);
