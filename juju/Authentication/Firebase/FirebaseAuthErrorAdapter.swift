@@ -1,5 +1,5 @@
 //
-//  FirebaseErrorAdapter.swift
+//  FirebaseAuthErrorAdapter.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 17/07/19.
@@ -12,9 +12,7 @@ import FirebaseAuth
 struct FirebaseAuthErrorAdapter {
     
     static func getErrorFrom(code errorCode: AuthErrorCode) -> UserAuthenticationError {
-        
         switch errorCode {
-            
         case .networkError:
             return UserAuthenticationError.network
         case .wrongPassword, .invalidEmail:
