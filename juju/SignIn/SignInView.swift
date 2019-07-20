@@ -1,14 +1,14 @@
 //
-//  SignUpView.swift
+//  SignInView.swift
 //  juju
 //
-//  Created by Antonio Rodrigues on 03/07/19.
+//  Created by Antonio Rodrigues on 20/07/19.
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
 import UIKit
 
-final class SignUpView: UIView {
+final class SignInView: UIView {
     
     private let logoLabel: UILabel = {
         let label = UILabel()
@@ -17,17 +17,6 @@ final class SignUpView: UIView {
         label.textColor = Resources.Colors.pink
         label.font = Resources.Fonts.Gilroy.bold(ofSize: 44)
         return label
-    }()
-    
-    private let nameInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .name)
-        nameInput.configure(with: .focused)
-        return nameInput
-    }()
-    
-    private let ageInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .dateOfBirth)
-        return nameInput
     }()
     
     private let emailInput: JujuInputField = {
@@ -53,9 +42,9 @@ final class SignUpView: UIView {
     
     private let enterButton = JujuButton(title: "entrar")
     
-    var onSignUpTap: (() -> Void)? {
+    var onSignInTap: (() -> Void)? {
         didSet {
-            enterButton.onTapAction = onSignUpTap
+            enterButton.onTapAction = onSignInTap
         }
     }
 
@@ -70,12 +59,10 @@ final class SignUpView: UIView {
     
 }
 
-extension SignUpView: ViewCoding {
+extension SignInView: ViewCoding {
     
     func addSubViews() {
         addSubview(logoLabel)
-        inputStack.addArrangedSubview(nameInput)
-        inputStack.addArrangedSubview(ageInput)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
         addSubview(inputStack)
@@ -105,32 +92,7 @@ extension SignUpView: ViewCoding {
     func configureViews() {
         
         self.backgroundColor = Resources.Colors.lightPink
-        inputs = [nameInput, ageInput, emailInput, passwordInput]
-        setupToolbarActions()
-    }
-    
-    func setupToolbarActions() {
-        
-        for (index, input) in inputs.enumerated() {
-            
-            let lastIndex = inputs.count - 1
-            let isLastElement = index == lastIndex
-            
-            let title = isLastElement ? "Entrar" : "Próximo"
-            let action: (() -> Void) = { [weak self] in
-                
-                if isLastElement {
-                    self?.onSignUpTap?()
-                    input.resignFirstResponder()
-                    return
-                }
-                
-                self?.inputs[index + 1].becomeFirstResponder()
-            }
-            
-            input.addToolbar(withButton: title, andAction: action)
-        }
-        
+        inputs = [emailInput, passwordInput]
     }
     
 }

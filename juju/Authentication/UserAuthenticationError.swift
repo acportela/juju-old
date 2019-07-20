@@ -10,7 +10,18 @@ import Foundation
 
 enum UserAuthenticationError: Error {
     
-    case invalidEmailFormat, invalidPasswordFormat, weakPasswork, emailInUse, wrongCredentials, tokenExpired, couldntLogout, noUserSignedIn, network, missingInfo, unknown, customError(String)
+    case invalidEmailFormat
+    case invalidPasswordFormat
+    case weakPasswork
+    case emailInUse
+    case wrongCredentials
+    case tokenExpired
+    case couldntLogout
+    case noUserSignedIn
+    case network
+    case missingInfo
+    case unknown
+    case customError(String)
     
     var errorMessage: String {
         

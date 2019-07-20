@@ -39,7 +39,7 @@ class JujuInputFieldSpec: QuickSpec {
                     
                     beforeEach {
                         let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
-                        sut = JujuInputField(frame: frame, inputKind: .age)
+                        sut = JujuInputField(frame: frame, inputKind: .dateOfBirth)
                         sut.outlineRecursively()
                     }
                     

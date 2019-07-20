@@ -50,6 +50,14 @@
 		D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653922D4D94E0062C97A /* Coordinator.swift */; };
 		D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653B22D4D9830062C97A /* AppCoordinator.swift */; };
 		D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653D22D4DC840062C97A /* SignUpViewController.swift */; };
+		D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */; };
+		D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A722E34BE800D8B2CB /* IntroView.swift */; };
+		D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */; };
+		D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00AE22E3550B00D8B2CB /* IntroViewController.swift */; };
+		D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00B122E39ED200D8B2CB /* SignInView.swift */; };
+		D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00B722E3BD7E00D8B2CB /* SignedOutThemeViewController.swift */; };
+		D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00BE22E3CC5600D8B2CB /* Notification.swift */; };
+		D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +122,14 @@
 		D6F2653922D4D94E0062C97A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D6F2653B22D4D9830062C97A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D6F2653D22D4DC840062C97A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutCoordinator.swift; sourceTree = "<group>"; };
+		D6FF00A722E34BE800D8B2CB /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewSpec.swift; sourceTree = "<group>"; };
+		D6FF00AE22E3550B00D8B2CB /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		D6FF00B122E39ED200D8B2CB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		D6FF00B722E3BD7E00D8B2CB /* SignedOutThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutThemeViewController.swift; sourceTree = "<group>"; };
+		D6FF00BE22E3CC5600D8B2CB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +166,8 @@
 			children = (
 				D645C0EF22CCC39800FAB219 /* SignUpView.swift */,
 				D6F2653D22D4DC840062C97A /* SignUpViewController.swift */,
+				D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */,
+				D6FF00B722E3BD7E00D8B2CB /* SignedOutThemeViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -185,6 +203,9 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
+				D6FF00C022E3CC7900D8B2CB /* Utils */,
+				D6FF00B022E39EBF00D8B2CB /* SignIn */,
+				D6FF00A622E34BCE00D8B2CB /* Intro */,
 				D6B99CAD22E173EB005996B1 /* Authentication */,
 				D6ABED1C22DF2C020022CF0A /* Models */,
 				D6EA765822DDF44C00E87D00 /* Repository */,
@@ -222,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
+				D6FF00BE22E3CC5600D8B2CB /* Notification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,6 +282,7 @@
 		D68ACBAF22C7F763001C94A5 /* jujuTests */ = {
 			isa = PBXGroup;
 			children = (
+				D6FF00AD22E3511300D8B2CB /* Intro */,
 				D645C0F122CCCBF900FAB219 /* SignUp */,
 				D67F845922CA25AF00C5ECDE /* Utils */,
 				D68ACBB822C7F783001C94A5 /* Components */,
@@ -356,6 +379,39 @@
 				D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		D6FF00A622E34BCE00D8B2CB /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00A722E34BE800D8B2CB /* IntroView.swift */,
+				D6FF00AE22E3550B00D8B2CB /* IntroViewController.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		D6FF00AD22E3511300D8B2CB /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		D6FF00B022E39EBF00D8B2CB /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00B122E39ED200D8B2CB /* SignInView.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		D6FF00C022E3CC7900D8B2CB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		E256A409059955029F46A8AB /* Pods */ = {
@@ -582,9 +638,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */,
 				D6A3FD2622E0190500CE41FF /* FirebaseRepository.swift in Sources */,
 				D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
+				D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* ContentResult.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
@@ -594,15 +652,20 @@
 				D6B02A4422E0070100818C17 /* RepositoryProtocol.swift in Sources */,
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
+				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
+				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
+				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
+				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
 				D6ABED2022DF2C9B0022CF0A /* UserAuthenticationProtocol.swift in Sources */,
+				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D6A3FD2422E00E4D00CE41FF /* Result.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
@@ -615,6 +678,7 @@
 			files = (
 				D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */,
 				D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */,
+				D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */,
 				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,
 				D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */,
 				D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */,

@@ -8,9 +8,15 @@
 
 import UIKit
 
-final class SignUpViewController: UIViewController {
+protocol SignUpViewControllerDelegate: AnyObject {
+    
+    func signUpViewController(_ viewController: IntroViewController, didSignInWithUser user: ClientUser)
+}
+
+final class SignUpViewController: SignedOutThemeViewController {
     
     private let signUpView = SignUpView()
+    weak var delegate: SignUpViewControllerDelegate?
     
     override func loadView() {
         

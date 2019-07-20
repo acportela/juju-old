@@ -10,33 +10,42 @@ import UIKit
 
 class AppCoordinator: Coordinator {
 
-    private let childCoordinators: [Coordinator] = []
+    private var childCoordinators: [Coordinator] = []
     private let navigation: UINavigationController
     
-    //TODO: Testing. Remove after signup coordinator is ready
-    let userAuth: UserAuthenticationProtocol
-    let persistence = FirebaseRepository<FirebaseFirestoreUser>()
+    private var isUserSignedIn: Bool {
+        //TODO Implement check
+        return false
+    }
     
     init(rootNavigation: UINavigationController) {
         
         self.navigation = rootNavigation
-        let testUser = ClientUser(email: "testapp@gmail.com", name: "TestUserApp", dob: Date())
-        self.userAuth = FirebaseEmailPasswordAuthentication(contextUser: testUser, password: "123456")
     }
     
     func start() {
         
-        navigation.pushViewController(SignUpViewController(), animated: true)
-//        userAuth.create { resutn in
-//            switch resutn {
-//            case .success(let client):
-//                print(client.email)
-//            case .error(let error):
-//                print(error.errorMessage)
-//            }
-//        }
-        let newUser = FirebaseFirestoreUser(name: "Antonio", email: "acportela@gmail.com", dateOfBirth: Date())
-        //persistence.save(entity: newUser) { result in print(result) }
+        self.isUserSignedIn ? startSignedInFlow() : startSignedOutFlow()
     }
     
+    //TODO Add ClientUser argument
+    private func startSignedInFlow() {
+        
+    }
+    
+    private func startSignedOutFlow() {
+        
+        let signedOutCoordinator = SignedOutCoordinator(rootNavigation: navigation)
+        signedOutCoordinator.delegate = self
+        
+        childCoordinators.append(signedOutCoordinator)
+        signedOutCoordinator.start()
+    }
+}
+
+extension AppCoordinator: SignedOutCoordinatorDelegate {
+    
+    func signedOutCoordinator(_ coordinator: SignedOutCoordinator, didSignInWithUser user: ClientUser) {
+        
+    }
 }

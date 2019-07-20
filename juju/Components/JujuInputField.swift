@@ -45,6 +45,8 @@ final class JujuInputField: UIView {
         return stack
     }()
     
+    var datePicker: UIDatePicker?
+
     private let inputKind: InputKind
     
     var toolbarButtonAction: (() -> Void)?
@@ -83,12 +85,14 @@ extension JujuInputField: ViewCoding {
     }
     
     func configureViews() {
-        self.title.text = self.inputKind.title
-        self.input.placeholder = self.inputKind.hint
-        self.input.keyboardType = self.inputKind.keyboard
-        self.input.returnKeyType = .done
-        self.input.addTarget(self, action: #selector(didBeginEditing), for: .editingDidBegin)
-        self.input.addTarget(self, action: #selector(didEndEditing), for: .editingDidEnd)
+        title.text = inputKind.title
+        input.placeholder = inputKind.hint
+        input.keyboardType = inputKind.keyboard
+        input.returnKeyType = .done
+        input.addTarget(self, action: #selector(didBeginEditing), for: .editingDidBegin)
+        input.addTarget(self, action: #selector(didEndEditing), for: .editingDidEnd)
+        
+        if inputKind == .dateOfBirth { configureDatePicker() }
     }
     
 }
@@ -103,9 +107,9 @@ extension JujuInputField: ViewConfiguration {
     func configure(with state: JujuInputField.States) {
         switch state {
         case .focused:
-            self.selectedIndicator.backgroundColor = Resources.Colors.white
+            selectedIndicator.backgroundColor = Resources.Colors.white
         case .unfocused:
-            self.selectedIndicator.backgroundColor = Resources.Colors.pink
+            selectedIndicator.backgroundColor = Resources.Colors.pink
         }
     }
 
@@ -115,46 +119,76 @@ extension JujuInputField {
     
     public func addToolbar(withButton title: String, andAction action: @escaping (() -> Void)) {
         
-        self.toolbarButtonAction = action
+        toolbarButtonAction = action
         
         let toolbar = UIToolbar()
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancelar",
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(toolbarCancelAction))
         let button = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(toolbarAction))
         toolbar.items = [space, button]
         
+        if inputKind == .dateOfBirth { toolbar.items?.insert(cancelButton, at: 0) }
+        
         toolbar.sizeToFit()
-        self.input.inputAccessoryView = toolbar
+        input.inputAccessoryView = toolbar
     }
     
     @objc
     func toolbarAction() {
         
-        self.toolbarButtonAction?()
+        if inputKind == .dateOfBirth {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            if let datepicker = self.datePicker {
+                input.text = formatter.string(from: datepicker.date)
+            }
+        }
+        
+        toolbarButtonAction?()
     }
     
+    @objc
+    func toolbarCancelAction() {
+        
+        resignFirstResponder()
+    }
+    
+    private func configureDatePicker() {
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        
+        self.datePicker = datePicker
+        input.inputView = datePicker
+    }
 }
 
 extension JujuInputField {
     
+    @discardableResult
     override func becomeFirstResponder() -> Bool {
         input.becomeFirstResponder()
         return false
     }
     
+    @discardableResult
     override func resignFirstResponder() -> Bool {
         return input.resignFirstResponder()
     }
     
     @objc
     func didBeginEditing() {
-        self.configure(with: .focused)
+        configure(with: .focused)
     }
     
     @objc
     func didEndEditing() {
-        self.configure(with: .unfocused)
+        configure(with: .unfocused)
     }
-    
 }
 
 extension JujuInputField: UITextFieldDelegate {
@@ -170,7 +204,7 @@ extension JujuInputField {
     enum InputKind {
         
         case name
-        case age
+        case dateOfBirth
         case email
         case password
         
@@ -179,8 +213,8 @@ extension JujuInputField {
             switch self {
             case .name:
                 return "Nome"
-            case .age:
-                return "Idade"
+            case .dateOfBirth:
+                return "Data de Nascimento"
             case .email:
                 return "Email"
             case .password:
@@ -192,8 +226,8 @@ extension JujuInputField {
             switch self {
             case .name:
                 return "Qual seu nome?"
-            case .age:
-                return "Quantos anos você tem?"
+            case .dateOfBirth:
+                return "Quando você nasceu?"
             case .email:
                 return "Qual seu email?"
             case .password:
@@ -205,7 +239,7 @@ extension JujuInputField {
             switch self {
             case .name:
                 return .namePhonePad
-            case .age:
+            case .dateOfBirth:
                 return .numberPad
             case .email:
                 return .emailAddress
