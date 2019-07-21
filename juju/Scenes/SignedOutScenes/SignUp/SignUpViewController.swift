@@ -57,4 +57,14 @@ final class SignUpViewController: SignedOutThemeViewController {
     func enableErrorState() {
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        KeyboardListener.shared.register(signUpView)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        KeyboardListener.shared.remove(signUpView)
+    }
 }

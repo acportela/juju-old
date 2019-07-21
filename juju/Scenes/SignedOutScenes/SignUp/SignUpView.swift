@@ -119,3 +119,14 @@ extension SignUpView: ViewCoding {
     }
     
 }
+
+extension SignUpView: KeyboardListenerDelegate {
+    
+    func keyboardWillAppear(_ notification: Notification) {
+
+    }
+    
+    func keyboardWillDisappear(_ notification: Notification) {
+        
+    }
+}
