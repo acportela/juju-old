@@ -8,26 +8,19 @@
 
 import UIKit
 
-final class SignInView: UIView {
+final class SignInView: UIView, JujuFormProtocol {
     
     private let logoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
         label.textColor = Resources.Colors.pink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: 44)
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: 48)
         return label
     }()
     
-    private let emailInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .email)
-        return nameInput
-    }()
-    
-    private let passwordInput: JujuInputField = {
-        let nameInput = JujuInputField(inputKind: .password)
-        return nameInput
-    }()
+    private let emailInput = JujuInputField(inputKind: .email)
+    private let passwordInput = JujuInputField(inputKind: .password)
     
     var inputs: [JujuInputField] = []
     
@@ -41,10 +34,17 @@ final class SignInView: UIView {
     }()
     
     private let enterButton = JujuButton(title: "entrar")
+    private let backButton = JujuUnderlinedButton(title: "voltar")
     
-    var onSignInTap: (() -> Void)? {
+    var onDoneAction: (() -> Void)? {
         didSet {
-            enterButton.onTapAction = onSignInTap
+            enterButton.onTapAction = onDoneAction
+        }
+    }
+    
+    var onBackTap: (() -> Void)? {
+        didSet {
+            backButton.onTapAction = onBackTap
         }
     }
 
@@ -67,6 +67,7 @@ extension SignInView: ViewCoding {
         inputStack.addArrangedSubview(passwordInput)
         addSubview(inputStack)
         addSubview(enterButton)
+        addSubview(backButton)
     }
     
     func setupConstraints() {
@@ -79,20 +80,24 @@ extension SignInView: ViewCoding {
         
         logoLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(inputStack.snp.top).offset(-48)
+            make.bottom.equalTo(inputStack.snp.top).offset(-56)
         }
         
         enterButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(inputStack.snp.bottom).offset(48)
+            make.top.equalTo(inputStack.snp.bottom).offset(56)
         }
         
+        backButton.snp.makeConstraints { make in
+            make.centerX.equalTo(enterButton.snp.centerX)
+            make.top.equalTo(enterButton.snp.bottom).offset(24)
+        }
     }
     
     func configureViews() {
         
         self.backgroundColor = Resources.Colors.lightPink
         inputs = [emailInput, passwordInput]
+        setupToolbar()
     }
-    
 }

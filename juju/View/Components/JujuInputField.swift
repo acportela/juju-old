@@ -13,7 +13,7 @@ final class JujuInputField: UIView {
     
     private lazy var input: UITextField = {
         let field = UITextField()
-        field.font = Resources.Fonts.Gilroy.regular(ofSize: 16)
+        field.font = Resources.Fonts.Gilroy.medium(ofSize: 16)
         field.textColor = Resources.Colors.white
         field.adjustsFontSizeToFitWidth = true
         field.minimumFontSize = 12
@@ -24,7 +24,7 @@ final class JujuInputField: UIView {
     
     private var title: UILabel = {
         let label = UILabel()
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: 14)
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: 16)
         label.textAlignment = .left
         label.textColor = Resources.Colors.white
         return label
@@ -41,7 +41,7 @@ final class JujuInputField: UIView {
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .leading
-        stack.spacing = 4
+        stack.spacing = 6
         return stack
     }()
     
@@ -205,6 +205,8 @@ extension JujuInputField {
         
         case name
         case dateOfBirth
+        case newEmail
+        case newPassword
         case email
         case password
         
@@ -215,6 +217,10 @@ extension JujuInputField {
                 return "Nome"
             case .dateOfBirth:
                 return "Data de Nascimento"
+            case .newEmail:
+                return "Email"
+            case .newPassword:
+                return "Senha"
             case .email:
                 return "Email"
             case .password:
@@ -228,10 +234,14 @@ extension JujuInputField {
                 return "Qual seu nome?"
             case .dateOfBirth:
                 return "Quando você nasceu?"
-            case .email:
+            case .newEmail:
                 return "Qual seu email?"
-            case .password:
+            case .newPassword:
                 return "Crie um senha"
+            case .email:
+                return "Digite o email cadastrado"
+            case .password:
+                return "Digite sua senha"
             }
         }
         
@@ -241,6 +251,10 @@ extension JujuInputField {
                 return .namePhonePad
             case .dateOfBirth:
                 return .numberPad
+            case .newEmail:
+                return .emailAddress
+            case .newPassword:
+                return .default
             case .email:
                 return .emailAddress
             case .password:

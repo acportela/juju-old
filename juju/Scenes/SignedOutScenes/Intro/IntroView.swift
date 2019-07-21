@@ -27,9 +27,9 @@ final class IntroView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "Bem-vinda a Juju :)\nEscolher um texto bonitinho"
+        label.text = "Bem-vinda a Juju. Escolher um texto bonitinho pra colocar aqui"
         label.textColor = Resources.Colors.white
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: 16)
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: 18)
         return label
     }()
     
@@ -89,9 +89,10 @@ extension IntroView: ViewCoding {
         }
         
         welcomeLabel.snp.makeConstraints { make in
+            
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().inset(32)
+            make.left.equalToSuperview().offset(48)
+            make.right.equalToSuperview().inset(48)
         }
         
         signIn.snp.makeConstraints { make in

@@ -51,6 +51,9 @@ class SignedOutCoordinator: Coordinator {
     
     private func startSignIn() {
         
+        let signInViewController = SignInViewController()
+        signInViewController.delegate = self
+        navigation.pushViewController(signInViewController, animated: true)
     }
 }
 
@@ -69,7 +72,26 @@ extension SignedOutCoordinator: IntroViewControllerDelegate {
 
 extension SignedOutCoordinator: SignUpViewControllerDelegate {
     
-    func signUpViewController(_ viewController: IntroViewController, didSignInWithUser user: ClientUser) {
+    func signUpViewController(_ viewController: SignUpViewController,
+                              didSignInWithUser user: ClientUser) {
         
     }
+    
+    func signUpViewControllerDidTapBack(_ viewController: SignUpViewController) {
+        navigation.popViewController(animated: true)
+    }
+    
+}
+
+extension SignedOutCoordinator: SignInViewControllerDelegate {
+    
+    func signInViewController(_ viewController: SignInViewController,
+                              didSignInWithUser user: ClientUser) {
+        
+    }
+    
+    func signInViewControllerDidTapBack(_ viewController: SignInViewController) {
+        navigation.popViewController(animated: true)
+    }
+    
 }

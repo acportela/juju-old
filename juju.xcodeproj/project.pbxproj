@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
 		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
+		D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */; };
+		D61E0C3622E491B1003700EA /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3522E491B1003700EA /* UIButton.swift */; };
+		D61E0C3822E4930D003700EA /* JujuUnderlinedButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */; };
+		D61E0C3A22E4A5B7003700EA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3922E4A5B7003700EA /* String.swift */; };
+		D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3B22E4D41D003700EA /* JujuFormProtocol.swift */; };
+		D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3D22E4D62D003700EA /* SignInViewController.swift */; };
 		D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0EF22CCC39800FAB219 /* SignUpView.swift */; };
 		D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
@@ -43,6 +49,7 @@
 		D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2722DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift */; };
 		D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2A22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift */; };
 		D6B02A4422E0070100818C17 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B02A4322E0070100818C17 /* RepositoryProtocol.swift */; };
+		D6B1207522E4E6F3005180D5 /* SignInViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */; };
 		D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */; };
 		D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */; };
 		D6EA765722DDEEAD00E87D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6EA765622DDEEAC00E87D00 /* GoogleService-Info.plist */; };
@@ -77,6 +84,12 @@
 		520468F01B60305E7F01B021 /* Pods_jujuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jujuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_juju.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B963747690D2B138C0423C /* Pods-juju.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.release.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.release.xcconfig"; sourceTree = "<group>"; };
+		D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuUnderlinedButton.swift; sourceTree = "<group>"; };
+		D61E0C3522E491B1003700EA /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuUnderlinedButtonSpec.swift; sourceTree = "<group>"; };
+		D61E0C3922E4A5B7003700EA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D61E0C3B22E4D41D003700EA /* JujuFormProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuFormProtocol.swift; sourceTree = "<group>"; };
+		D61E0C3D22E4D62D003700EA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D645C0EF22CCC39800FAB219 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewSpec.swift; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +128,7 @@
 		D6ABED2722DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthErrorAdapter.swift; sourceTree = "<group>"; };
 		D6ABED2A22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEmailPasswordAuthentication.swift; sourceTree = "<group>"; };
 		D6B02A4322E0070100818C17 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewSpec.swift; sourceTree = "<group>"; };
 		D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePersistable.swift; sourceTree = "<group>"; };
 		D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreUser.swift; sourceTree = "<group>"; };
 		D6EA765622DDEEAC00E87D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -161,6 +175,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D61E0C3F22E4D6CF003700EA /* SignedOutScenes */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00A622E34BCE00D8B2CB /* Intro */,
+				D645C0EE22CCC33C00FAB219 /* SignUp */,
+				D6FF00B022E39EBF00D8B2CB /* SignIn */,
+			);
+			path = SignedOutScenes;
+			sourceTree = "<group>";
+		};
+		D61E0C4022E4D706003700EA /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D61E0C3F22E4D6CF003700EA /* SignedOutScenes */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		D645C0EE22CCC33C00FAB219 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,16 +235,12 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
-				D6FF00C022E3CC7900D8B2CB /* Utils */,
-				D6FF00B022E39EBF00D8B2CB /* SignIn */,
-				D6FF00A622E34BCE00D8B2CB /* Intro */,
+				D61E0C4022E4D706003700EA /* Scenes */,
 				D6B99CAD22E173EB005996B1 /* Authentication */,
 				D6ABED1C22DF2C020022CF0A /* Models */,
 				D6EA765822DDF44C00E87D00 /* Repository */,
-				D645C0EE22CCC33C00FAB219 /* SignUp */,
 				D68ACB9022C7E315001C94A5 /* Extensions */,
-				D68ACB8D22C7DF76001C94A5 /* Resources */,
-				D695890D22C7AC71009A356C /* Components */,
+				D695890D22C7AC71009A356C /* View */,
 				D695890922C7AAF5009A356C /* App */,
 				D695890722C7AAD1009A356C /* Supporting Files */,
 			);
@@ -229,21 +257,11 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		D68ACB8D22C7DF76001C94A5 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D68ACB9322C7E76D001C94A5 /* Fonts */,
-				D65FCC5022C79EF500BA16E5 /* Assets.xcassets */,
-				D68ACB8E22C7DF9C001C94A5 /* Resources.swift */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		D68ACB9022C7E315001C94A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
 				D6FF00BE22E3CC5600D8B2CB /* Notification.swift */,
+				D61E0C3922E4A5B7003700EA /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -282,6 +300,7 @@
 		D68ACBAF22C7F763001C94A5 /* jujuTests */ = {
 			isa = PBXGroup;
 			children = (
+				D6B1207622E4E6FA005180D5 /* SignIn */,
 				D6FF00AD22E3511300D8B2CB /* Intro */,
 				D645C0F122CCCBF900FAB219 /* SignUp */,
 				D67F845922CA25AF00C5ECDE /* Utils */,
@@ -296,6 +315,7 @@
 			children = (
 				D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */,
 				D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */,
+				D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -320,15 +340,15 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		D695890D22C7AC71009A356C /* Components */ = {
+		D695890D22C7AC71009A356C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D695890E22C7AD16009A356C /* JujuInputField.swift */,
-				D695891022C7AD6E009A356C /* ViewCoding.swift */,
-				D695891222C7AF98009A356C /* ViewConfiguration.swift */,
-				D682062722CADE9B006D4937 /* JujuButton.swift */,
+				D6B1207B22E4EC2D005180D5 /* Extensions */,
+				D6B1207A22E4EBF1005180D5 /* Resources */,
+				D6B1207822E4EB93005180D5 /* Components */,
+				D6B1207722E4EB78005180D5 /* Protocols */,
 			);
-			path = Components;
+			path = View;
 			sourceTree = "<group>";
 		};
 		D6ABED1C22DF2C020022CF0A /* Models */ = {
@@ -350,6 +370,54 @@
 				D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		D6B1207622E4E6FA005180D5 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		D6B1207722E4EB78005180D5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */,
+				D61E0C3B22E4D41D003700EA /* JujuFormProtocol.swift */,
+				D695891222C7AF98009A356C /* ViewConfiguration.swift */,
+				D695891022C7AD6E009A356C /* ViewCoding.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D6B1207822E4EB93005180D5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */,
+				D695890E22C7AD16009A356C /* JujuInputField.swift */,
+				D682062722CADE9B006D4937 /* JujuButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D6B1207A22E4EBF1005180D5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9322C7E76D001C94A5 /* Fonts */,
+				D65FCC5022C79EF500BA16E5 /* Assets.xcassets */,
+				D68ACB8E22C7DF9C001C94A5 /* Resources.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D6B1207B22E4EC2D005180D5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
+				D61E0C3522E491B1003700EA /* UIButton.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D6B99CAD22E173EB005996B1 /* Authentication */ = {
@@ -402,16 +470,9 @@
 			isa = PBXGroup;
 			children = (
 				D6FF00B122E39ED200D8B2CB /* SignInView.swift */,
+				D61E0C3D22E4D62D003700EA /* SignInViewController.swift */,
 			);
 			path = SignIn;
-			sourceTree = "<group>";
-		};
-		D6FF00C022E3CC7900D8B2CB /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		E256A409059955029F46A8AB /* Pods */ = {
@@ -644,13 +705,16 @@
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* ContentResult.swift in Sources */,
+				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
+				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
 				D6ABED2422DF30690022CF0A /* UserAuthenticationError.swift in Sources */,
 				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
 				D6B02A4422E0070100818C17 /* RepositoryProtocol.swift in Sources */,
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
+				D61E0C3A22E4A5B7003700EA /* String.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
@@ -663,9 +727,11 @@
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
+				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
 				D6ABED2022DF2C9B0022CF0A /* UserAuthenticationProtocol.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
+				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,
 				D6A3FD2422E00E4D00CE41FF /* Result.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
@@ -676,7 +742,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61E0C3822E4930D003700EA /* JujuUnderlinedButtonSpec.swift in Sources */,
 				D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */,
+				D6B1207522E4E6F3005180D5 /* SignInViewSpec.swift in Sources */,
 				D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */,
 				D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */,
 				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,

@@ -10,6 +10,5 @@ import Foundation
 
 enum RepositoryError: Error {
     
-    case integrityViolation
     case generalError
 }

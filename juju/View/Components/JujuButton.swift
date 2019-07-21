@@ -11,31 +11,33 @@ import SnapKit
 
 final class JujuButton: UIView {
     
-    private let button: UIButton = {
+    private lazy var button: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: 16)
+        button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: 18)
         button.layer.cornerRadius = 20
         button.layer.masksToBounds = true
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 48, bottom: 12, right: 48)
+        button.backgroundColor = theme.backgroundColor
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
     
     var onTapAction: (() -> Void)?
     
-    var theme: Theme
+    private let theme: Theme
     
-    init(title: String, theme: Theme = .primary) {
-        
+    init(title: String, theme: Theme = .primary, frame: CGRect = .zero) {
         self.theme = theme
-        super.init(frame: .zero)
-        
-        button.setTitle(title.uppercased(), for: .normal)
+        super.init(frame: frame)
+        button.setTitle(title.uppercasedFirst,
+                        withColor: theme.textColor,
+                        andFont: Resources.Fonts.Gilroy.bold(ofSize: 16))
         setupViewConfiguration()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("Initialize with view code")
     }
-    
 }
 
 extension JujuButton: ViewCoding {
@@ -50,13 +52,7 @@ extension JujuButton: ViewCoding {
         }
     }
     
-    func configureViews() {
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 48, bottom: 12, right: 48)
-        
-        button.backgroundColor = theme.backgroundColor
-        button.setTitleColor(theme.textColor, for: .normal)
-    }
+    func configureViews() { }
     
 }
 
@@ -91,6 +87,22 @@ extension JujuButton {
             case .secondary:
                 return Resources.Colors.pink
             }
+        }
+    }
+}
+
+extension JujuButton: ViewConfiguration {
+    
+    enum Configuration {
+        case toggleState(enabled: Bool)
+    }
+    
+    func configure(with state: Configuration) {
+        switch state {
+        case .toggleState(let enabled):
+            button.isEnabled = enabled
+            let background = theme.backgroundColor
+            button.backgroundColor = enabled ? background : background.withAlphaComponent(0.3)
         }
     }
 }

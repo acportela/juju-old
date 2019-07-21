@@ -17,19 +17,53 @@ class JujuButtonSpec: QuickSpec {
     override func spec() {
         
         var sut: JujuButton!
-
+        
         describe("JujuButton") {
             
             context("when presenting on screen") {
                 
-                beforeEach {
-                    sut = JujuButton(title: "Entrar")
+                context("with primary theme") {
+                    
+                    beforeEach {
+                        
+                        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+                        sut = JujuButton(title: "entrar", theme: .primary, frame: frame)
+                    }
+                    
+                    it("must render properly") {
+                        expect(sut).to(matchSnapshot(named: "JujuButtonPrimary"))
+                    }
+                    
                 }
                 
-                it("must render properly") {
-                    expect(sut).to(matchSnapshot(named: "JujuButton"))
+                context("with secondary theme") {
+                    
+                    beforeEach {
+                        
+                        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+                        sut = JujuButton(title: "entrar", theme: .secondary, frame: frame)
+                    }
+                    
+                    it("must render properly") {
+                        expect(sut).to(matchSnapshot(named: "JujuButtonSecondary"))
+                    }
+                    
                 }
                 
+                context("at a disabled state") {
+                    
+                    beforeEach {
+                        
+                        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+                        sut = JujuButton(title: "entrar", theme: .primary, frame: frame)
+                        sut.configure(with: .toggleState(enabled: false))
+                    }
+                    
+                    it("must render properly") {
+                        expect(sut).to(matchSnapshot(named: "JujuButtonDisabled"))
+                    }
+                    
+                }
             }
         
         }
