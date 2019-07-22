@@ -51,6 +51,11 @@ final class JujuInputField: UIView {
     
     var toolbarButtonAction: (() -> Void)?
     
+    var toolbarHeight: CGFloat {
+        
+        return input.inputAccessoryView?.frame.height ?? 0
+    }
+    
     init(frame: CGRect = .zero, inputKind: InputKind) {
         self.inputKind = inputKind
         super.init(frame: frame)
@@ -178,6 +183,10 @@ extension JujuInputField {
     @discardableResult
     override func resignFirstResponder() -> Bool {
         return input.resignFirstResponder()
+    }
+    
+    override var isFirstResponder: Bool {
+        return input.isFirstResponder
     }
     
     @objc

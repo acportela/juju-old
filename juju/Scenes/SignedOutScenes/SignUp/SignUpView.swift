@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SignUpView: UIView, JujuFormProtocol {
     
@@ -27,7 +28,7 @@ final class SignUpView: UIView, JujuFormProtocol {
     
     var inputs: [JujuInputField] = []
     
-    private let inputStack: UIStackView = {
+    let inputStack: UIStackView = {
         
         let stack = UIStackView()
         stack.axis = .vertical
@@ -36,6 +37,13 @@ final class SignUpView: UIView, JujuFormProtocol {
         stack.spacing = 32
         return stack
     }()
+    
+    var inputStackCenterY: SnapKit.Constraint?
+    var inputStackCurrentOffset: CGFloat = 0 {
+        didSet {
+            inputStackCenterY?.update(offset: -inputStackCurrentOffset)
+        }
+    }
     
     private let enterButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "voltar")
@@ -87,7 +95,8 @@ extension SignUpView: ViewCoding {
         
         inputStack.snp.makeConstraints { make in
             
-            make.centerY.equalToSuperview()
+            inputStackCenterY = make.centerY.equalToSuperview().constraint
+            inputStackCenterY?.activate()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().inset(32)
         }
@@ -118,15 +127,4 @@ extension SignUpView: ViewCoding {
         setupToolbar()
     }
     
-}
-
-extension SignUpView: KeyboardListenerDelegate {
-    
-    func keyboardWillAppear(_ notification: Notification) {
-
-    }
-    
-    func keyboardWillDisappear(_ notification: Notification) {
-        
-    }
 }

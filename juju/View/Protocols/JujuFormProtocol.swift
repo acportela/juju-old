@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import SnapKit
 
-protocol JujuFormProtocol where Self: UIView {
+protocol JujuFormProtocol: KeyboardListenerDelegate where Self: UIView {
     
     var inputs: [JujuInputField] { get }
+    var firstResponder: JujuInputField? { get }
+    
+    var inputStack: UIStackView { get }
+    var inputStackCenterY: SnapKit.Constraint? { get set }
+    var inputStackCurrentOffset: CGFloat { get set }
+    
     var onDoneAction: (() -> Void)? { get set }
+    
     func setupToolbar()
 }
 
@@ -38,5 +46,41 @@ extension JujuFormProtocol {
             
             input.addToolbar(withButton: title, andAction: action)
         }
+    }
+    
+    var firstResponder: JujuInputField? {
+        
+        for input in inputs where input.isFirstResponder {
+            
+            return input
+        }
+        
+        return nil
+    }
+    
+    func keyboardWillAppear(_ notification: Notification) {
+        
+        if let firstResponder = firstResponder {
+            
+            let keyboardMinY = self.frame.maxY - (notification.keyboardHeight + 8)
+            
+            let keyboardMinYInStacksCoordinate = keyboardMinY - inputStack.frame.minY
+            let responderMaxYInStacksCoordinate = firstResponder.frame.maxY
+            
+            let difference = responderMaxYInStacksCoordinate - keyboardMinYInStacksCoordinate
+            
+            if difference > 0 {
+                
+                inputStackCurrentOffset += difference
+            } else {
+                
+                inputStackCurrentOffset = 0
+            }
+        }
+    }
+    
+    func keyboardWillDisappear(_ notification: Notification) {
+        
+        inputStackCurrentOffset = 0
     }
 }

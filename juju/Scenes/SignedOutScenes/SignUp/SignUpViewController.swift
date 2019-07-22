@@ -30,6 +30,16 @@ final class SignUpViewController: SignedOutThemeViewController {
         setupCallbacks()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        KeyboardListener.shared.register(signUpView)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        KeyboardListener.shared.remove(signUpView)
+    }
+    
     func setupCallbacks() {
         
         signUpView.onBackTap = { [weak self] in
@@ -56,15 +66,5 @@ final class SignUpViewController: SignedOutThemeViewController {
     
     func enableErrorState() {
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        KeyboardListener.shared.register(signUpView)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        KeyboardListener.shared.remove(signUpView)
     }
 }

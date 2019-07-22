@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SignInView: UIView, JujuFormProtocol {
     
@@ -24,7 +25,7 @@ final class SignInView: UIView, JujuFormProtocol {
     
     var inputs: [JujuInputField] = []
     
-    private let inputStack: UIStackView = {
+    let inputStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .fill
@@ -35,6 +36,13 @@ final class SignInView: UIView, JujuFormProtocol {
     
     private let enterButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "voltar")
+    
+    var inputStackCenterY: SnapKit.Constraint?
+    var inputStackCurrentOffset: CGFloat = 0 {
+        didSet {
+            inputStackCenterY?.update(offset: -inputStackCurrentOffset)
+        }
+    }
     
     var onDoneAction: (() -> Void)? {
         didSet {
@@ -73,7 +81,8 @@ extension SignInView: ViewCoding {
     func setupConstraints() {
         
         inputStack.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            inputStackCenterY = make.centerY.equalToSuperview().constraint
+            inputStackCenterY?.activate()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().inset(32)
         }

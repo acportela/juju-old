@@ -30,6 +30,16 @@ final class SignInViewController: SignedOutThemeViewController {
         setupCallbacks()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        KeyboardListener.shared.register(signInView)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        KeyboardListener.shared.remove(signInView)
+    }
+    
     func setupCallbacks() {
         
         signInView.onBackTap = { [weak self] in
