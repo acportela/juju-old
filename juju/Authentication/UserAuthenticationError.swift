@@ -11,13 +11,11 @@ import Foundation
 enum UserAuthenticationError: Error {
     
     case invalidEmailFormat
-    case invalidPasswordFormat
     case weakPasswork
     case emailInUse
     case wrongCredentials
     case tokenExpired
     case couldntLogout
-    case noUserSignedIn
     case network
     case missingInfo
     case unknown
@@ -43,7 +41,9 @@ enum UserAuthenticationError: Error {
             return StringErrorConstants.errorAltertMissingInfo
         case .customError(let message):
             return message
-        default:
+        case .couldntLogout:
+            return StringErrorConstants.errorLoggingOut
+        case .unknown:
             return StringErrorConstants.unknownErrorMessage
         }
     }

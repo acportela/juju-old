@@ -17,7 +17,17 @@ protocol SignInViewControllerDelegate: AnyObject {
 final class SignInViewController: SignedOutThemeViewController {
     
     private let signInView = SignInView()
+    private let userService: UserService
     weak var delegate: SignInViewControllerDelegate?
+    
+    init(userService: UserService) {
+        self.userService = userService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         

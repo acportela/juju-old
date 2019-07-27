@@ -11,6 +11,8 @@ import Foundation
 protocol FirebasePersistable {
     
     var pathToCollection: String { get }
+    var uniqueField: String { get }
+    var uniqueValue: String { get }
     
     func toDictionary() -> [String: Any]
 }

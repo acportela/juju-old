@@ -12,15 +12,17 @@ class AppCoordinator: Coordinator {
 
     private var childCoordinators: [Coordinator] = []
     private let navigation: UINavigationController
+    private let userService: UserService
     
     private var isUserSignedIn: Bool {
         //TODO Implement check
         return false
     }
     
-    init(rootNavigation: UINavigationController) {
+    init(rootNavigation: UINavigationController, userService: UserService) {
         
         self.navigation = rootNavigation
+        self.userService = userService
     }
     
     func start() {
@@ -34,8 +36,7 @@ class AppCoordinator: Coordinator {
     }
     
     private func startSignedOutFlow() {
-        
-        let signedOutCoordinator = SignedOutCoordinator(rootNavigation: navigation)
+        let signedOutCoordinator = SignedOutCoordinator(rootNavigation: navigation, userService: self.userService)
         signedOutCoordinator.delegate = self
         
         childCoordinators.append(signedOutCoordinator)

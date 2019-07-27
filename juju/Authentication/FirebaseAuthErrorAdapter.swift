@@ -24,7 +24,7 @@ struct FirebaseAuthErrorAdapter {
         case .userTokenExpired, .invalidUserToken:
             return UserAuthenticationError.tokenExpired
         default:
-            return UserAuthenticationError.unknown
+            return UserAuthenticationError.customError(StringErrorConstants.unknownErrorMessage)
         }
     }
 }

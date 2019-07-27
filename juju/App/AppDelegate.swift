@@ -23,9 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootController = UINavigationController()
         self.window?.rootViewController = rootController
         self.window?.makeKeyAndVisible()
-        self.appCoordinator = AppCoordinator(rootNavigation: rootController)
-        
+    
         FirebaseApp.configure()
+
+        let userService = UserService(userAuth: FirebaseEmailPasswordAuthentication(),
+                                      userRepo: FirebaseRepository<FirebaseFirestoreUser>())
+        self.appCoordinator = AppCoordinator(rootNavigation: rootController, userService: userService)
+        
         self.appCoordinator?.start()
         return true
     }

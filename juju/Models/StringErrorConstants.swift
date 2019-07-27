@@ -19,6 +19,7 @@ struct StringErrorConstants {
     static let errorAltertWeakPasswork = "Escolha uma senha com comprimento mínimo de seis caracteres"
     static let errorAltertInvalidEmail = "Insira um email válido"
     static let errorAltertExpiredSession = "Sessão expirada! Faça o login novamente"
+    static let errorLoggingOut = "Por favor, tente sair novamente"
     
     //Sign Up
     static let errorAltertEmailInUse = "O email inserido já foi cadastrado"

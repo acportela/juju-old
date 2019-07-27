@@ -10,14 +10,24 @@ import UIKit
 
 protocol SignUpViewControllerDelegate: AnyObject {
     
-    func signUpViewController(_ viewController: SignUpViewController, didSignInWithUser user: ClientUser)
+    func signUpViewController(_ viewController: SignUpViewController, didSignUpWithUser user: ClientUser)
     func signUpViewControllerDidTapBack(_ viewController: SignUpViewController)
 }
 
 final class SignUpViewController: SignedOutThemeViewController {
     
     private let signUpView = SignUpView()
+    private let userService: UserService
     weak var delegate: SignUpViewControllerDelegate?
+    
+    init(userService: UserService) {
+        self.userService = userService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         
@@ -57,10 +67,22 @@ final class SignUpViewController: SignedOutThemeViewController {
     
     func fieldsAreValid() -> Bool {
         
-        return false
+        return true
     }
     
     func proceedWithSignUp() {
+        
+        let testUser = ClientUser(email: "testapp1@gmail.com", name: "TestUserApp", dob: Date())
+        
+        userService.userWantsToSignUp(clientUser: testUser, password: "123456") { result in
+            switch result {
+            case .success:
+                self.delegate?.signUpViewController(self, didSignUpWithUser: testUser)
+            case .error:
+                //TODO Add treatment
+                break
+            }
+        }
         
     }
     

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>228149970989-sr6i3i9lqjniq5dr4mlugnmaj7rl2cl7.apps.googleusercontent.com</string>
+	<string>228149970989-kdu0vfp1bjm0csq1e7hn0fspadm13t20.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.228149970989-sr6i3i9lqjniq5dr4mlugnmaj7rl2cl7</string>
+	<string>com.googleusercontent.apps.228149970989-kdu0vfp1bjm0csq1e7hn0fspadm13t20</string>
 	<key>API_KEY</key>
 	<string>AIzaSyATnTI3S-jWprrWMrLjk_KjHZNy3WyRxms</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.acportela.juju</string>
+	<string>br.com.jujuhealth.juju</string>
 	<key>PROJECT_ID</key>
 	<string>juju-235900</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:228149970989:ios:9a135acdb769379f</string>
+	<string>1:228149970989:ios:384647c734bbea4b</string>
 	<key>DATABASE_URL</key>
 	<string>https://juju-235900.firebaseio.com</string>
 </dict>

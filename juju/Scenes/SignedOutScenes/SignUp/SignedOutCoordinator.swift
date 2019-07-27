@@ -15,18 +15,14 @@ protocol SignedOutCoordinatorDelegate: AnyObject {
 
 class SignedOutCoordinator: Coordinator {
     
+    private let userService: UserService
     private let navigation: UINavigationController
     weak var delegate: SignedOutCoordinatorDelegate?
-    
-    //TODO: Testing. Remove after signup coordinator is ready
-    let userAuth: UserAuthenticationProtocol
-    let persistence = FirebaseRepository<FirebaseFirestoreUser>()
-    
-    init(rootNavigation: UINavigationController) {
+
+    init(rootNavigation: UINavigationController, userService: UserService) {
         
         self.navigation = rootNavigation
-        let testUser = ClientUser(email: "testapp@gmail.com", name: "TestUserApp", dob: Date())
-        self.userAuth = FirebaseEmailPasswordAuthentication(contextUser: testUser, password: "123456")
+        self.userService = userService
     }
     
     func start() {
@@ -44,14 +40,14 @@ class SignedOutCoordinator: Coordinator {
     
     private func startSignUp() {
         
-        let signUpViewController = SignUpViewController()
+        let signUpViewController = SignUpViewController(userService: self.userService)
         signUpViewController.delegate = self
         navigation.pushViewController(signUpViewController, animated: true)
     }
     
     private func startSignIn() {
         
-        let signInViewController = SignInViewController()
+        let signInViewController = SignInViewController(userService: self.userService)
         signInViewController.delegate = self
         navigation.pushViewController(signInViewController, animated: true)
     }
@@ -73,7 +69,7 @@ extension SignedOutCoordinator: IntroViewControllerDelegate {
 extension SignedOutCoordinator: SignUpViewControllerDelegate {
     
     func signUpViewController(_ viewController: SignUpViewController,
-                              didSignInWithUser user: ClientUser) {
+                              didSignUpWithUser user: ClientUser) {
         
     }
     
