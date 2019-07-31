@@ -15,7 +15,7 @@ final class SignInView: UIView, JujuFormProtocol {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
-        label.textColor = Resources.Colors.pink
+        label.textColor = Resources.Colors.rosyPink
         label.font = Resources.Fonts.Gilroy.bold(ofSize: 48)
         return label
     }()
@@ -105,7 +105,7 @@ extension SignInView: ViewCoding {
     
     func configureViews() {
         
-        self.backgroundColor = Resources.Colors.lightPink
+        self.backgroundColor = Resources.Colors.softPink
         inputs = [emailInput, passwordInput]
         setupToolbar()
     }

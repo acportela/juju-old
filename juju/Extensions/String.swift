@@ -10,19 +10,9 @@ import Foundation
 
 extension String {
     
-    public var isBlank: Bool {
-        
-        return trimmingCharacters(in: .whitespaces).isEmpty
-    }
-    
     public var first: String {
         
         return String(self.prefix(1))
-    }
-    
-    public var last: String {
-        
-        return String(self.suffix(1))
     }
     
     public var uppercasedFirst: String {
@@ -30,16 +20,7 @@ extension String {
         return first.uppercased() + String(self.dropFirst())
     }
     
-    public func toNSNumber() -> NSNumber? {
-        
-        if let number = Int(self) {
-            
-            return NSNumber(value: number)
-            
-        } else {
-            
-            return nil
-        }
+    func trimmed() -> String {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    
 }

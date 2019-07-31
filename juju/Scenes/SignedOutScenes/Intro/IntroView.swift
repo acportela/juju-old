@@ -17,7 +17,7 @@ final class IntroView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
-        label.textColor = Resources.Colors.pink
+        label.textColor = Resources.Colors.rosyPink
         label.font = Resources.Fonts.Gilroy.bold(ofSize: 44)
         return label
     }()
@@ -104,7 +104,7 @@ extension IntroView: ViewCoding {
     
     func configureViews() {
         
-        self.backgroundColor = Resources.Colors.lightPink
+        self.backgroundColor = Resources.Colors.softPink
         self.signIn.onTapAction = { self.onSignInTap?() }
         self.signUp.onTapAction = { self.onSignUpTap?() }
     }

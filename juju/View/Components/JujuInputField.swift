@@ -32,8 +32,17 @@ final class JujuInputField: UIView {
     
     private let selectedIndicator: UIView = {
         let view = UIView()
-        view.backgroundColor = Resources.Colors.pink
+        view.backgroundColor = Resources.Colors.rosyPink
         return view
+    }()
+    
+    private var feedback: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: 14)
+        label.textAlignment = .left
+        label.textColor = Resources.Colors.rosyPink
+        return label
     }()
     
     private let containerStack: UIStackView = {
@@ -45,12 +54,15 @@ final class JujuInputField: UIView {
         return stack
     }()
     
+    var isValid: Bool {
+        
+    }
+    
     var datePicker: UIDatePicker?
 
     private let inputKind: InputKind
     
     var toolbarButtonAction: (() -> Void)?
-    
     var toolbarHeight: CGFloat {
         
         return input.inputAccessoryView?.frame.height ?? 0
@@ -74,6 +86,7 @@ extension JujuInputField: ViewCoding {
         containerStack.addArrangedSubview(title)
         containerStack.addArrangedSubview(input)
         containerStack.addArrangedSubview(selectedIndicator)
+        containerStack.addArrangedSubview(feedback)
         addSubview(containerStack)
     }
     
@@ -110,11 +123,17 @@ extension JujuInputField: ViewConfiguration {
     }
     
     func configure(with state: JujuInputField.States) {
+        
         switch state {
+        
         case .focused:
+            
             selectedIndicator.backgroundColor = Resources.Colors.white
         case .unfocused:
-            selectedIndicator.backgroundColor = Resources.Colors.pink
+        
+            selectedIndicator.backgroundColor = Resources.Colors.rosyPink
+            guard let currentText = input.text else { return }
+            feedback.text = validate(currentText).message
         }
     }
 
@@ -145,7 +164,7 @@ extension JujuInputField {
     func toolbarAction() {
         
         if inputKind == .dateOfBirth {
-            let formatter = DateFormatter()
+            let formatter = DateFormatters.dateFormatter(withFormat: .iso8601UTC)
             formatter.dateStyle = .short
             if let datepicker = self.datePicker {
                 input.text = formatter.string(from: datepicker.date)
@@ -198,78 +217,55 @@ extension JujuInputField {
     func didEndEditing() {
         configure(with: .unfocused)
     }
+    
+}
+
+extension JujuInputField {
+    
+    func validate(_ value: String) -> InputValidationResult {
+        
+        let validator = Validators()
+        
+        switch self.inputKind {
+        case .name:
+            return validator.validate(name: value)
+        case .email, .newEmail:
+            return validator.validate(email: value)
+        case .newPassword:
+            return validator.validate(password: value)
+        default:
+            return .valid
+        }
+    }
 }
 
 extension JujuInputField: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        var isValid = true
+        
+        switch inputKind {
+        case .password:
+            isValid = TextFieldValidators.lenghtHandler(textField: textField,
+                                                        shouldChangeCharactersInRange: range,
+                                                        replacementString: string,
+                                                        maxLength: 30)
+        case .email, .newEmail, .name:
+            isValid = TextFieldValidators.lenghtHandler(textField: textField,
+                                                        shouldChangeCharactersInRange: range,
+                                                        replacementString: string,
+                                                        maxLength: 100)
+            
+        default:
+            break
+        }
+        
+        return isValid
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
-}
-
-extension JujuInputField {
-    
-    enum InputKind {
-        
-        case name
-        case dateOfBirth
-        case newEmail
-        case newPassword
-        case email
-        case password
-        
-        //TODO: Localization
-        var title: String {
-            switch self {
-            case .name:
-                return "Nome"
-            case .dateOfBirth:
-                return "Data de Nascimento"
-            case .newEmail:
-                return "Email"
-            case .newPassword:
-                return "Senha"
-            case .email:
-                return "Email"
-            case .password:
-                return "Senha"
-            }
-        }
-        
-        var hint: String {
-            switch self {
-            case .name:
-                return "Qual seu nome?"
-            case .dateOfBirth:
-                return "Quando você nasceu?"
-            case .newEmail:
-                return "Qual seu email?"
-            case .newPassword:
-                return "Crie um senha"
-            case .email:
-                return "Digite o email cadastrado"
-            case .password:
-                return "Digite sua senha"
-            }
-        }
-        
-        var keyboard: UIKeyboardType {
-            switch self {
-            case .name:
-                return .namePhonePad
-            case .dateOfBirth:
-                return .numberPad
-            case .newEmail:
-                return .emailAddress
-            case .newPassword:
-                return .default
-            case .email:
-                return .emailAddress
-            case .password:
-                return .default
-            }
-        }
-    }
-    
 }

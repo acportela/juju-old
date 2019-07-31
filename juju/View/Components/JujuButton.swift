@@ -74,7 +74,7 @@ extension JujuButton {
         var textColor: UIColor {
             switch self {
             case .primary:
-                return Resources.Colors.pink
+                return Resources.Colors.rosyPink
             case .secondary:
                 return Resources.Colors.white
             }
@@ -85,7 +85,7 @@ extension JujuButton {
             case .primary:
                 return Resources.Colors.white
             case .secondary:
-                return Resources.Colors.pink
+                return Resources.Colors.rosyPink
             }
         }
     }
