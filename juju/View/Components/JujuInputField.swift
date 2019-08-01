@@ -54,10 +54,6 @@ final class JujuInputField: UIView {
         return stack
     }()
     
-    var isValid: Bool {
-        
-    }
-    
     var datePicker: UIDatePicker?
 
     private let inputKind: InputKind
@@ -241,7 +237,9 @@ extension JujuInputField {
 
 extension JujuInputField: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         
         var isValid = true
         
@@ -265,6 +263,7 @@ extension JujuInputField: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         textField.resignFirstResponder()
         return false
     }

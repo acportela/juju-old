@@ -39,7 +39,10 @@ struct UserService: UserServiceProtocol {
                            password: String,
                            callback: @escaping (Result<UserAuthenticationError>) -> Void) {
         
-        let firebaseUser = FirebaseFirestoreUser(name: clientUser.name, email: clientUser.email, dateOfBirth: clientUser.dob)
+        let firebaseUser = FirebaseFirestoreUser(name: clientUser.name,
+                                                 email: clientUser.email,
+                                                 dateOfBirth: clientUser.dob)
+        
         self.userRepo.delete(firebaseUser, callback: {_ in })
         
 //        self.userAuth.create(email: clientUser.email, password: password) { result in

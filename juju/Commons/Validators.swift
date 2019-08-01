@@ -40,8 +40,12 @@ struct Validators {
             return .missingNumeric
         }
         
-        if password.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil {
-            return .missingLowercaseLetter
+        if password.rangeOfCharacter(from: CharacterSet.letters) == nil {
+            return .missingLetters
+        }
+        
+        if password.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
+            return .containsWhiteSpace
         }
         
         return .valid
@@ -57,17 +61,27 @@ struct Validators {
             return .tooLong(maximum: 100)
         }
         
+        if name.rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil {
+            return .containsSpecialCharacters
+        }
+        
+        if name.rangeOfCharacter(from: CharacterSet.decimalDigits) != nil {
+            return .containsSpecialCharacters
+        }
+        
         return .valid
     }
 }
 
-enum InputValidationResult {
+enum InputValidationResult: Equatable {
     
     case tooShort(minimum: Int)
     case tooLong(maximum: Int)
-    case missingLowercaseLetter
+    case missingLetters
     case missingNumeric
     case wrongEmailFormat
+    case containsSpecialCharacters
+    case containsWhiteSpace
     case valid
     
     var message: String {
@@ -79,10 +93,14 @@ enum InputValidationResult {
             return "Ops, é preciso ter no mínimo \(lenght) caracteres"
         case .missingNumeric:
             return "Ops, é preciso conter algum caracter numérico"
-        case .missingLowercaseLetter:
+        case .missingLetters:
             return "Ops, é preciso conter alguma letra"
         case .wrongEmailFormat:
             return "Ops, verifique o formato do email"
+        case .containsSpecialCharacters:
+            return "Ops, caracteres especiais não são permitidos"
+        case .containsWhiteSpace:
+            return "Ops, espaços não são permitidos"
         case .valid:
             return ""
         }
