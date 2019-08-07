@@ -13,11 +13,10 @@ protocol JujuFormProtocol: KeyboardListenerDelegate where Self: UIView {
     
     var inputs: [JujuInputField] { get }
     var firstResponder: JujuInputField? { get }
-    
+    var fieldsAreValid: Bool { get }
     var inputStack: UIStackView { get }
     var inputStackCenterY: SnapKit.Constraint? { get set }
     var inputStackCurrentOffset: CGFloat { get set }
-    
     var onDoneAction: (() -> Void)? { get set }
     
     func setupToolbar()
@@ -56,6 +55,16 @@ extension JujuFormProtocol {
         }
         
         return nil
+    }
+    
+    var fieldsAreValid: Bool {
+        
+        for input in self.inputs where !input.isValid {
+            
+            return false
+        }
+        
+        return true
     }
     
     func keyboardWillAppear(_ notification: Notification) {

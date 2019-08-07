@@ -79,3 +79,16 @@ extension Resources.Fonts {
         return font
     }
 }
+
+extension Resources.Images {
+    
+    static let signedOutBG = image(named: "SignedOutBG")
+    
+    private static func image(named name: String) -> UIImage {
+        guard let image = UIImage(named: name) else {
+            fatalError("There is no '\(name)' image on assets")
+        }
+        
+        return image
+    }
+}

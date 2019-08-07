@@ -21,10 +21,10 @@ final class SignUpView: UIView, JujuFormProtocol {
         return label
     }()
     
-    private let nameInput = JujuInputField(inputKind: .name)
-    private let dateOfBirth = JujuInputField(inputKind: .dateOfBirth)
-    private let emailInput = JujuInputField(inputKind: .newEmail)
-    private let passwordInput = JujuInputField(inputKind: .newPassword)
+    let nameInput = JujuInputField(inputKind: .name)
+    let dateOfBirth = JujuInputField(inputKind: .dateOfBirth)
+    let emailInput = JujuInputField(inputKind: .newEmail)
+    let passwordInput = JujuInputField(inputKind: .newPassword)
     
     var inputs: [JujuInputField] = []
     
@@ -123,16 +123,8 @@ extension SignUpView: ViewCoding {
     func configureViews() {
         
         self.backgroundColor = Resources.Colors.softPink
-        inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
+        self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
         setupToolbar()
     }
     
-}
-
-extension SignUpView {
-    
-    func validadeFields() -> Bool {
-        //TODO: Change to Result
-        return true
-    }
 }

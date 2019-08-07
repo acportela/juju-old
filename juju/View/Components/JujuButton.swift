@@ -43,11 +43,14 @@ final class JujuButton: UIView {
 extension JujuButton: ViewCoding {
     
     func addSubViews() {
+        
         addSubview(button)
     }
     
     func setupConstraints() {
+        
         button.snp.makeConstraints { make in
+            
             make.edges.equalToSuperview()
         }
     }
@@ -60,7 +63,8 @@ extension JujuButton {
     
     @objc
     private func buttonAction() {
-        onTapAction?()
+        
+        self.onTapAction?()
     }
 }
 
@@ -94,12 +98,16 @@ extension JujuButton {
 extension JujuButton: ViewConfiguration {
     
     enum Configuration {
+        
         case toggleState(enabled: Bool)
     }
     
     func configure(with state: Configuration) {
+        
         switch state {
+            
         case .toggleState(let enabled):
+            
             button.isEnabled = enabled
             let background = theme.backgroundColor
             button.backgroundColor = enabled ? background : background.withAlphaComponent(0.3)

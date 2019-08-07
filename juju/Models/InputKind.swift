@@ -22,13 +22,13 @@ enum InputKind {
     var title: String {
         switch self {
         case .name:
-            return "nome"
+            return "Nome"
         case .dateOfBirth:
-            return "data de nascimento"
+            return "Data de nascimento"
         case .email, .newEmail:
-            return "email"
+            return "Email"
         case .password, .newPassword:
-            return "senha"
+            return "Senha"
         }
     }
     
@@ -51,14 +51,31 @@ enum InputKind {
     
     var keyboard: UIKeyboardType {
         switch self {
-        case .name:
-            return .namePhonePad
-        case .dateOfBirth:
-            return .numberPad
         case .email, .newEmail:
             return .emailAddress
-        case .password, .newPassword:
+        default:
             return .default
         }
     }
+    
+    var isSecureEntry: Bool {
+        
+        switch self {
+            
+        case .newPassword, .password:
+            
+            return true
+            
+        default:
+            
+            return false
+        }
+    }
+    
+    var isRequired: Bool {
+        
+        return true
+    }
+    
+    //TODO: Add UITextContentType ?
 }

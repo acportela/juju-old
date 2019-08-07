@@ -10,7 +10,6 @@ import Foundation
 
 public enum DateFormatters { }
 
-// MARK: - Network encoding/decoding date formats
 extension DateFormatters {
     
     public enum Format: String {
@@ -27,7 +26,8 @@ extension DateFormatters {
         
         switch format {
         case .iso8601UTC, .iso8601LocalTime:
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            //formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            formatter.dateFormat = "yyyy-MM-dd"
             formatter.calendar = Calendar(identifier: .iso8601)
             formatter.locale = Locale(identifier: "en_US_POSIX")
         case .yyyyMMddHHmmss:

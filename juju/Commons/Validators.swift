@@ -12,6 +12,11 @@ struct Validators {
     
     func validate(email: String) -> InputValidationResult {
         
+        if email.count < 6 {
+            
+            return .tooShort(minimum: 6)
+        }
+        
         let lowerCasedEmail = email.lowercased()
         
         let regex = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
@@ -71,10 +76,22 @@ struct Validators {
         
         return .valid
     }
+    
+    func validate(date: Date) -> InputValidationResult {
+        
+        let components = DateUtils().calculateDateFrom(date, to: Date())
+        
+        guard let year = components.year, year >= AppPrefs.minimumAge else {
+            
+            return .minimumAge(AppPrefs.minimumAge)
+        }
+        return .valid
+    }
 }
 
 enum InputValidationResult: Equatable {
     
+    case required(fieldName: String)
     case tooShort(minimum: Int)
     case tooLong(maximum: Int)
     case missingLetters
@@ -82,11 +99,14 @@ enum InputValidationResult: Equatable {
     case wrongEmailFormat
     case containsSpecialCharacters
     case containsWhiteSpace
+    case minimumAge(Int)
     case valid
     
     var message: String {
         
         switch self {
+        case .required(let fieldName):
+            return "\(fieldName.uppercasedFirst) é um campo obrigatório"
         case .tooLong(let lenght):
             return "Ops, são permitidos no máximo \(lenght) caracteres"
         case .tooShort(let lenght):
@@ -101,6 +121,8 @@ enum InputValidationResult: Equatable {
             return "Ops, caracteres especiais não são permitidos"
         case .containsWhiteSpace:
             return "Ops, espaços não são permitidos"
+        case .minimumAge(let age):
+            return "Ops, é preciso ter ao menos \(age) anos"
         case .valid:
             return ""
         }

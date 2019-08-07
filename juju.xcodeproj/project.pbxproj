@@ -16,6 +16,8 @@
 		D61E0C3A22E4A5B7003700EA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3922E4A5B7003700EA /* String.swift */; };
 		D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3B22E4D41D003700EA /* JujuFormProtocol.swift */; };
 		D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3D22E4D62D003700EA /* SignInViewController.swift */; };
+		D622755722FA4527004992E5 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755622FA4527004992E5 /* DateUtils.swift */; };
+		D622755922FA4913004992E5 /* AppPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755822FA4913004992E5 /* AppPrefs.swift */; };
 		D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0EF22CCC39800FAB219 /* SignUpView.swift */; };
 		D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
@@ -44,7 +46,6 @@
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
 		D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */; };
-		D6A3FD2422E00E4D00CE41FF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3FD2322E00E4D00CE41FF /* Result.swift */; };
 		D6A3FD2622E0190500CE41FF /* FirebaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */; };
 		D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */; };
 		D6ABED2422DF30690022CF0A /* UserAuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED2322DF30690022CF0A /* UserAuthenticationError.swift */; };
@@ -58,10 +59,11 @@
 		D6E1187022F2848C00F01899 /* ValidatorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1186F22F2848C00F01899 /* ValidatorsSpec.swift */; };
 		D6E3C6AA22EC74C800627CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E3C6A922EC74C800627CE6 /* GoogleService-Info.plist */; };
 		D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */; };
-		D6EA765A22DDF47200E87D00 /* ContentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* ContentResult.swift */; };
+		D6EA765A22DDF47200E87D00 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* Results.swift */; };
 		D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653922D4D94E0062C97A /* Coordinator.swift */; };
 		D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653B22D4D9830062C97A /* AppCoordinator.swift */; };
 		D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653D22D4DC840062C97A /* SignUpViewController.swift */; };
+		D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F3202922F5D35300950325 /* UIAlertController.swift */; };
 		D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */; };
 		D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A722E34BE800D8B2CB /* IntroView.swift */; };
 		D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */; };
@@ -96,6 +98,8 @@
 		D61E0C3922E4A5B7003700EA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D61E0C3B22E4D41D003700EA /* JujuFormProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuFormProtocol.swift; sourceTree = "<group>"; };
 		D61E0C3D22E4D62D003700EA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D622755622FA4527004992E5 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		D622755822FA4913004992E5 /* AppPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrefs.swift; sourceTree = "<group>"; };
 		D645C0EF22CCC39800FAB219 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewSpec.swift; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +132,6 @@
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
 		D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
-		D6A3FD2322E00E4D00CE41FF /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRepository.swift; sourceTree = "<group>"; };
 		D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUser.swift; sourceTree = "<group>"; };
 		D6ABED2322DF30690022CF0A /* UserAuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationError.swift; sourceTree = "<group>"; };
@@ -142,10 +145,11 @@
 		D6E1186F22F2848C00F01899 /* ValidatorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsSpec.swift; sourceTree = "<group>"; };
 		D6E3C6A922EC74C800627CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		D6EA765922DDF47200E87D00 /* ContentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResult.swift; sourceTree = "<group>"; };
+		D6EA765922DDF47200E87D00 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		D6F2653922D4D94E0062C97A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D6F2653B22D4D9830062C97A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D6F2653D22D4DC840062C97A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D6F3202922F5D35300950325 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutCoordinator.swift; sourceTree = "<group>"; };
 		D6FF00A722E34BE800D8B2CB /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewSpec.swift; sourceTree = "<group>"; };
@@ -274,6 +278,9 @@
 			children = (
 				D681E49222F12DF4003754F4 /* Validators.swift */,
 				D681E49422F1331A003754F4 /* TextFieldValidators.swift */,
+				D6046F3822EF1444002FB78B /* DateFormatters.swift */,
+				D622755622FA4527004992E5 /* DateUtils.swift */,
+				D622755822FA4913004992E5 /* AppPrefs.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -283,7 +290,6 @@
 			children = (
 				D6FF00BE22E3CC5600D8B2CB /* Notification.swift */,
 				D61E0C3922E4A5B7003700EA /* String.swift */,
-				D6046F3822EF1444002FB78B /* DateFormatters.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,10 +379,9 @@
 		D6ABED1C22DF2C020022CF0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D6EA765922DDF47200E87D00 /* ContentResult.swift */,
+				D6EA765922DDF47200E87D00 /* Results.swift */,
 				D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */,
 				D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */,
-				D6A3FD2322E00E4D00CE41FF /* Result.swift */,
 				D681E48F22F128B3003754F4 /* InputKind.swift */,
 			);
 			path = Models;
@@ -436,6 +441,7 @@
 			children = (
 				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
 				D61E0C3522E491B1003700EA /* UIButton.swift */,
+				D6F3202922F5D35300950325 /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -743,8 +749,9 @@
 				D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */,
-				D6EA765A22DDF47200E87D00 /* ContentResult.swift in Sources */,
+				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
+				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
 				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
@@ -763,7 +770,9 @@
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
+				D622755722FA4527004992E5 /* DateUtils.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
+				D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */,
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
@@ -775,7 +784,6 @@
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,
 				D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */,
-				D6A3FD2422E00E4D00CE41FF /* Result.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);

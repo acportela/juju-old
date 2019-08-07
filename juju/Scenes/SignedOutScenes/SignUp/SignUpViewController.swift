@@ -50,7 +50,7 @@ final class SignUpViewController: SignedOutThemeViewController {
         KeyboardListener.shared.remove(signUpView)
     }
     
-    func setupCallbacks() {
+    private func setupCallbacks() {
         
         signUpView.onBackTap = { [weak self] in
             
@@ -60,33 +60,51 @@ final class SignUpViewController: SignedOutThemeViewController {
         
         signUpView.onDoneAction = { [weak self] in
             
-            guard let sSelf = self else { return }
-            sSelf.fieldsAreValid() ? sSelf.proceedWithSignUp() : sSelf.enableErrorState()
+            guard let sSelf = self else {
+                return
+            }
+            
+            guard sSelf.signUpView.fieldsAreValid, let user = sSelf.userFromForm() else {
+                
+                sSelf.enableErrorState("Verifique os campos e tente novamente")
+                return
+            }
+            
+            sSelf.proceedWithSignUp(user: user.user, password: user.pass)
         }
     }
     
-    func fieldsAreValid() -> Bool {
+    private func proceedWithSignUp(user: ClientUser, password: String) {
         
-        return true
-    }
-    
-    func proceedWithSignUp() {
-        
-        let testUser = ClientUser(email: "testapp1@gmail.com", name: "TestUserApp", dob: Date())
-        
-        userService.userWantsToSignUp(clientUser: testUser, password: "123456") { result in
+        userService.userWantsToSignUp(clientUser: user, password: password) { result in
             switch result {
             case .success:
-                self.delegate?.signUpViewController(self, didSignUpWithUser: testUser)
+                self.delegate?.signUpViewController(self, didSignUpWithUser: user)
             case .error:
                 //TODO Add treatment
                 break
             }
         }
-        
     }
     
-    func enableErrorState() {
+    private func userFromForm() -> (user: ClientUser, pass: String)? {
         
+        guard let name = signUpView.nameInput.currentValue,
+              let email = signUpView.emailInput.currentValue,
+              let pass = signUpView.passwordInput.currentValue,
+              let dateString = signUpView.dateOfBirth.currentValue,
+              let date = DateUtils().dateFromString(dateString) else {
+                
+            return nil
+        }
+        
+        let user = ClientUser(email: email, name: name.uppercased(), dob: date)
+        return (user: user, pass: pass)
+    }
+    
+    //TODO Remove once error interface is refined
+    private func enableErrorState(_ message: String) {
+        let alert = UIAlertController(title: "Atenção", message: message, primaryActionTitle: "OK")
+        self.present(alert, animated: true)
     }
 }

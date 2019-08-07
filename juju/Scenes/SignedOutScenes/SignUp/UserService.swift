@@ -39,37 +39,31 @@ struct UserService: UserServiceProtocol {
                            password: String,
                            callback: @escaping (Result<UserAuthenticationError>) -> Void) {
         
-        let firebaseUser = FirebaseFirestoreUser(name: clientUser.name,
-                                                 email: clientUser.email,
-                                                 dateOfBirth: clientUser.dob)
-        
-        self.userRepo.delete(firebaseUser, callback: {_ in })
-        
-//        self.userAuth.create(email: clientUser.email, password: password) { result in
-//
-//            switch result {
-//
-//            case .success:
-//
-//                let firebaseUser = FirebaseFirestoreUser(name: clientUser.name,
-//                                                         email: clientUser.email,
-//                                                         dateOfBirth: clientUser.dob)
-//
-//                self.userRepo.save(firebaseUser) { result in
-//
-//                    switch result {
-//
-//                    case .success:
-//                        callback(.success)
-//                    case .error:
-//                        callback(.error(.unknown))
-//                       self.userRepo.delete(firebaseUser, callback: {_ in })
-//                    }
-//                }
-//            case .error:
-//
-//                callback(.error(.unknown))
-//            }
-//        }
+        self.userAuth.create(email: clientUser.email, password: password) { result in
+
+            switch result {
+
+            case .success:
+
+                let firebaseUser = FirebaseFirestoreUser(name: clientUser.name,
+                                                         email: clientUser.email,
+                                                         dateOfBirth: clientUser.dob)
+
+                self.userRepo.save(firebaseUser) { result in
+
+                    switch result {
+
+                    case .success:
+                        callback(.success)
+                    case .error:
+                        callback(.error(.unknown))
+                       self.userRepo.delete(firebaseUser, callback: {_ in })
+                    }
+                }
+            case .error:
+
+                callback(.error(.unknown))
+            }
+        }
     }
 }
