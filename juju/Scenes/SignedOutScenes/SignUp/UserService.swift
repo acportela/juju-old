@@ -33,6 +33,28 @@ struct UserService: UserServiceProtocol {
                            password: String,
                            callback: @escaping (ContentResult<ClientUser, UserAuthenticationError>) -> Void) {
         
+        self.userAuth.authenticate(email: email, password: password) { result in
+            
+            switch result {
+                
+            case .success:
+                
+                self.userRepo.get(unique: "") { result in
+                    
+                    switch result {
+                        
+                    case .success(let fireUser):
+                        break
+                    case .error:
+                        callback(.error(.unknown))
+                    }
+                }
+                
+            case .error:
+                
+                callback(.error(.unknown))
+            }
+        }
     }
     
     func userWantsToSignUp(clientUser: ClientUser,

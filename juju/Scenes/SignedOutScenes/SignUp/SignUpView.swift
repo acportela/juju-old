@@ -38,6 +38,12 @@ final class SignUpView: UIView, JujuFormProtocol {
         return stack
     }()
     
+    let background: UIImageView = {
+        let image = UIImageView(image: Resources.Images.signedOutBG)
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     var inputStackCenterY: SnapKit.Constraint?
     var inputStackCurrentOffset: CGFloat = 0 {
         didSet {
@@ -46,7 +52,7 @@ final class SignUpView: UIView, JujuFormProtocol {
     }
     
     private let enterButton = JujuButton(title: "entrar")
-    private let backButton = JujuUnderlinedButton(title: "voltar")
+    private let backButton = JujuUnderlinedButton(title: "Voltar")
     
     var onDoneAction: (() -> Void)? {
         
@@ -81,6 +87,7 @@ extension SignUpView: ViewCoding {
     
     func addSubViews() {
         
+        addSubview(background)
         addSubview(logoLabel)
         inputStack.addArrangedSubview(nameInput)
         inputStack.addArrangedSubview(dateOfBirth)
@@ -117,6 +124,11 @@ extension SignUpView: ViewCoding {
             
             make.centerX.equalTo(enterButton.snp.centerX)
             make.top.equalTo(enterButton.snp.bottom).offset(8)
+        }
+        
+        background.snp.makeConstraints { make in
+            
+            make.edges.equalToSuperview()
         }
     }
     

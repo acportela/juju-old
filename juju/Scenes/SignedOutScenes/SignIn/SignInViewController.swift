@@ -53,25 +53,52 @@ final class SignInViewController: SignedOutThemeViewController {
     func setupCallbacks() {
         
         signInView.onBackTap = { [weak self] in
+            
             guard let sSelf = self else { return }
             sSelf.delegate?.signInViewControllerDidTapBack(sSelf)
         }
         
         signInView.onDoneAction = { [weak self] in
+            
             guard let sSelf = self else { return }
-            sSelf.fieldsAreValid() ? sSelf.proceedWithSignIn() : sSelf.enableErrorState()
+            
+            guard sSelf.signInView.fieldsAreValid, let credentials = sSelf.credentials() else {
+                
+                sSelf.enableErrorState("Verifique os campos e tente novamente")
+                return
+            }
+            
+            sSelf.proceedWithSignIn(email: credentials.email, pass: credentials.pass)
+        }
+    }
+
+    private func credentials() -> (email: String, pass: String)? {
+        
+        guard let email = signInView.emailInput.currentValue,
+              let pass = signInView.passwordInput.currentValue else {
+                return nil
+        }
+        
+        return (email: email, pass: pass)
+    }
+    
+    func proceedWithSignIn(email: String, pass: String) {
+        
+        self.userService.userWantsToSignIn(email: email, password: pass) { result in
+            switch result {
+            case .success(let user):
+                self.delegate?.signInViewController(self, didSignInWithUser: user)
+            case .error:
+                //TODO Add treatment
+                break
+            }
         }
     }
     
-    func fieldsAreValid() -> Bool {
-        return false
-    }
-    
-    func proceedWithSignIn() {
+    //TODO Remove once error interface is refined
+    private func enableErrorState(_ message: String) {
         
-    }
-    
-    func enableErrorState() {
-        
+        let alert = UIAlertController(title: "Atenção", message: message, primaryActionTitle: "OK")
+        self.present(alert, animated: true)
     }
 }

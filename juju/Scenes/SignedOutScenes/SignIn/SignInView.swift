@@ -20,8 +20,8 @@ final class SignInView: UIView, JujuFormProtocol {
         return label
     }()
     
-    private let emailInput = JujuInputField(inputKind: .email)
-    private let passwordInput = JujuInputField(inputKind: .password)
+    let emailInput = JujuInputField(inputKind: .email)
+    let passwordInput = JujuInputField(inputKind: .password)
     
     var inputs: [JujuInputField] = []
     
@@ -35,7 +35,13 @@ final class SignInView: UIView, JujuFormProtocol {
     }()
     
     private let enterButton = JujuButton(title: "entrar")
-    private let backButton = JujuUnderlinedButton(title: "voltar")
+    private let backButton = JujuUnderlinedButton(title: "Voltar")
+    
+    let background: UIImageView = {
+        let image = UIImageView(image: Resources.Images.signedOutBG)
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
     
     var inputStackCenterY: SnapKit.Constraint?
     var inputStackCurrentOffset: CGFloat = 0 {
@@ -70,6 +76,8 @@ final class SignInView: UIView, JujuFormProtocol {
 extension SignInView: ViewCoding {
     
     func addSubViews() {
+        
+        addSubview(background)
         addSubview(logoLabel)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
@@ -100,6 +108,11 @@ extension SignInView: ViewCoding {
         backButton.snp.makeConstraints { make in
             make.centerX.equalTo(enterButton.snp.centerX)
             make.top.equalTo(enterButton.snp.bottom).offset(24)
+        }
+        
+        background.snp.makeConstraints { make in
+            
+            make.edges.equalToSuperview()
         }
     }
     

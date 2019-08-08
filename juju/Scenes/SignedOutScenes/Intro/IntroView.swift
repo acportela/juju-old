@@ -46,6 +46,12 @@ final class IntroView: UIView {
     private let signIn = JujuButton(title: "entrar")
     private let signUp = JujuButton(title: "cadastrar", theme: .secondary)
     
+    let background: UIImageView = {
+        let image = UIImageView(image: Resources.Images.signedOutBG)
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     var onSignUpTap: (() -> Void)?
     var onSignInTap: (() -> Void)?
     
@@ -66,6 +72,7 @@ extension IntroView: ViewCoding {
     
     func addSubViews() {
         
+        addSubview(background)
         addSubview(logoLabel)
         addSubview(welcomeLabel)
         buttonStack.addArrangedSubview(signIn)
@@ -100,6 +107,10 @@ extension IntroView: ViewCoding {
             make.width.equalTo(signUp.snp.width)
         }
         
+        background.snp.makeConstraints { make in
+            
+            make.edges.equalToSuperview()
+        }
     }
     
     func configureViews() {
