@@ -10,11 +10,12 @@ import Foundation
 
 protocol Repository {
     
-    associatedtype Entity
+    associatedtype Content
+    associatedtype FetchObject
     
-    func save(_ entity: Entity, callback: @escaping (Result<RepositoryError>) -> Void)
+    func save(_ entity: Content, callback: @escaping (Result<RepositoryError>) -> Void)
     
-    func get(unique: String, callback: @escaping (ContentResult<Entity, RepositoryError>) -> Void)
+    func get(_ fetchObject: FetchObject, callback: @escaping (ContentResult<Content, RepositoryError>) -> Void)
     
-    func delete(_ entity: Entity, callback: @escaping (Result<RepositoryError>) -> Void)
+    func delete(_ entity: Content, callback: @escaping (Result<RepositoryError>) -> Void)
 }

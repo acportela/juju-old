@@ -22,9 +22,9 @@ protocol UserServiceProtocol {
 struct UserService: UserServiceProtocol {
     
     let userAuth: UserAuthenticationProtocol
-    let userRepo: FirebaseRepository<FirebaseFirestoreUser>
+    let userRepo: FirebaseRepository<FirebaseFirestoreUser, FirebaseFetchUser>
     
-    init(userAuth: UserAuthenticationProtocol, userRepo: FirebaseRepository<FirebaseFirestoreUser>) {
+    init(userAuth: UserAuthenticationProtocol, userRepo: FirebaseRepository<FirebaseFirestoreUser, FirebaseFetchUser>) {
         self.userAuth = userAuth
         self.userRepo = userRepo
     }
@@ -39,13 +39,18 @@ struct UserService: UserServiceProtocol {
                 
             case .success:
                 
-                self.userRepo.get(unique: "") { result in
+                let fetchObject = FirebaseFetchUser(email: email)
+                
+                self.userRepo.get(fetchObject) { result in
                     
                     switch result {
                         
                     case .success(let fireUser):
-                        break
+                        
+                        let user = ClientUser(email: fireUser.email, name: fireUser.name, dob: fireUser.dateOfBirth)
+                        callback(.success(user))
                     case .error:
+                        
                         callback(.error(.unknown))
                     }
                 }

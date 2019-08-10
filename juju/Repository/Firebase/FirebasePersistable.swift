@@ -15,4 +15,16 @@ protocol FirebasePersistable {
     var uniqueValue: String { get }
     
     func toDictionary() -> [String: Any]
+    init?(fromData data: [String: Any])
+}
+
+extension FirebasePersistable {
+    
+    func toDictionary() -> [String: Any] {
+        return ["": ""]
+    }
+    
+    init?(fromData data: [String: Any]) {
+        return nil
+    }
 }
