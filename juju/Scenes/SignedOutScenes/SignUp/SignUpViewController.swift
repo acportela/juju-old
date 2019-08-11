@@ -60,12 +60,8 @@ final class SignUpViewController: SignedOutThemeViewController {
         
         signUpView.onDoneAction = { [weak self] in
             
-            guard let sSelf = self else {
-                return
-            }
-            
+            guard let sSelf = self else { return }
             guard sSelf.signUpView.fieldsAreValid, let user = sSelf.userFromForm() else {
-                
                 sSelf.enableErrorState("Verifique os campos e tente novamente")
                 return
             }
@@ -76,13 +72,16 @@ final class SignUpViewController: SignedOutThemeViewController {
     
     private func proceedWithSignUp(user: ClientUser, password: String) {
         
-        userService.userWantsToSignUp(clientUser: user, password: password) { result in
+        userService.userWantsToSignUp(clientUser: user, password: password) { [weak self] result in
+            
+            guard let sSelf = self else { return }
             switch result {
             case .success:
-                self.delegate?.signUpViewController(self, didSignUpWithUser: user)
+                sSelf.delegate?.signUpViewController(sSelf, didSignUpWithUser: user)
+                //TODO Remove later
+                sSelf.enableErrorState("Usuário cadastrado!")
             case .error:
-                //TODO Add treatment
-                break
+                sSelf.enableErrorState("Ocorreu um erro inesperado. Por favor, tente novamente")
             }
         }
     }
@@ -104,7 +103,7 @@ final class SignUpViewController: SignedOutThemeViewController {
     
     //TODO Remove once error interface is refined
     private func enableErrorState(_ message: String) {
-        let alert = UIAlertController(title: "Atenção", message: message, primaryActionTitle: "OK")
+        let alert = UIAlertController(title: "Juju", message: message, primaryActionTitle: "OK")
         self.present(alert, animated: true)
     }
 }

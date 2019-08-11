@@ -53,7 +53,6 @@ final class SignInViewController: SignedOutThemeViewController {
     func setupCallbacks() {
         
         signInView.onBackTap = { [weak self] in
-            
             guard let sSelf = self else { return }
             sSelf.delegate?.signInViewControllerDidTapBack(sSelf)
         }
@@ -61,10 +60,9 @@ final class SignInViewController: SignedOutThemeViewController {
         signInView.onDoneAction = { [weak self] in
             
             guard let sSelf = self else { return }
-            
             guard sSelf.signInView.fieldsAreValid, let credentials = sSelf.credentials() else {
                 
-                sSelf.enableErrorState("Verifique os campos e tente novamente")
+                sSelf.enableAlertState("Verifique os campos e tente novamente")
                 return
             }
             
@@ -75,30 +73,30 @@ final class SignInViewController: SignedOutThemeViewController {
     private func credentials() -> (email: String, pass: String)? {
         
         guard let email = signInView.emailInput.currentValue,
-              let pass = signInView.passwordInput.currentValue else {
-                return nil
-        }
+              let pass = signInView.passwordInput.currentValue else { return nil }
         
         return (email: email, pass: pass)
     }
     
     func proceedWithSignIn(email: String, pass: String) {
         
-        self.userService.userWantsToSignIn(email: email, password: pass) { result in
+        self.userService.userWantsToSignIn(email: email, password: pass) { [weak self] result in
+            guard let sSelf = self else { return }
             switch result {
             case .success(let user):
-                self.delegate?.signInViewController(self, didSignInWithUser: user)
+                sSelf.delegate?.signInViewController(sSelf, didSignInWithUser: user)
+                //TODO Remove later
+                sSelf.enableAlertState("Usuário logado!")
             case .error:
-                //TODO Add treatment
-                break
+                sSelf.enableAlertState("Ocorreu um erro inesperado. Por favor, tente novamente")
             }
         }
     }
     
     //TODO Remove once error interface is refined
-    private func enableErrorState(_ message: String) {
+    private func enableAlertState(_ message: String) {
         
-        let alert = UIAlertController(title: "Atenção", message: message, primaryActionTitle: "OK")
+        let alert = UIAlertController(title: "Juju", message: message, primaryActionTitle: "OK")
         self.present(alert, animated: true)
     }
 }

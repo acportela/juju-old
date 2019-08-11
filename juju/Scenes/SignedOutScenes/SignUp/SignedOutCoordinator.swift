@@ -70,7 +70,7 @@ extension SignedOutCoordinator: SignUpViewControllerDelegate {
     
     func signUpViewController(_ viewController: SignUpViewController,
                               didSignUpWithUser user: ClientUser) {
-        
+        self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }
     
     func signUpViewControllerDidTapBack(_ viewController: SignUpViewController) {
@@ -83,7 +83,7 @@ extension SignedOutCoordinator: SignInViewControllerDelegate {
     
     func signInViewController(_ viewController: SignInViewController,
                               didSignInWithUser user: ClientUser) {
-        
+        self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }
     
     func signInViewControllerDidTapBack(_ viewController: SignInViewController) {

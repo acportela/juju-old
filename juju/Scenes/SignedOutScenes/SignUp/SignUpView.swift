@@ -55,17 +55,13 @@ final class SignUpView: UIView, JujuFormProtocol {
     private let backButton = JujuUnderlinedButton(title: "Voltar")
     
     var onDoneAction: (() -> Void)? {
-        
         didSet {
-            
             enterButton.onTapAction = onDoneAction
         }
     }
     
     var onBackTap: (() -> Void)? {
-        
         didSet {
-            
             backButton.onTapAction = onBackTap
         }
     }

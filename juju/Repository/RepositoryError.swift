@@ -10,10 +10,11 @@ import Foundation
 
 enum RepositoryError: Error {
     
-    case generalError
+    case unknown
     case noResults
     case unauthorized
     case resourceExausted
     case cancelled
-    case badRequest
+    case malformedQuery
+    case corruptedData
 }

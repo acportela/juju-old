@@ -8,7 +8,6 @@
 
 import FirebaseFirestore
 
-//TODO Improve error handling (there's currently only 1 error type)
 struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository {
     
     typealias Entity = T
@@ -26,20 +25,20 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
         
         fireQuery.getDocuments(source: .cache) { (maybeSnapshot, maybeError) in
             
+            //TODO firebase error code handling
             if maybeError != nil {
-                callback(.error(.generalError))
+                callback(.error(.unknown))
                 return
             }
             
-            //TODO add no data error
             guard let snapshot = maybeSnapshot,
             let data = snapshot.documents.first?.data() else {
-                callback(.error(.generalError))
+                callback(.error(.noResults))
                 return
             }
             
             guard let content = Entity(fromData: data) else {
-                callback(.error(.generalError))
+                callback(.error(.corruptedData))
                 return
             }
             
@@ -53,7 +52,8 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
             .collection(entity.path)
             .addDocument(data: entity.toDictionary()) { error in
             
-            error == nil ? callback(.success) : callback(.error(.generalError))
+            //TODO firebase error code handling
+            error == nil ? callback(.success) : callback(.error(.unknown))
         }
     }
 
@@ -63,26 +63,34 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
                                 .collection(query.path)
                                 .whereField(query.uniqueField, isEqualTo: query.uniqueValue)
         
-        returnQuery.getDocuments { (query, error) in
+        returnQuery.getDocuments { (maybeSnapshot, maybeError) in
             
-            if error != nil {
-                callback(.error(.generalError))
+            //TODO firebase error code handling
+            if maybeError != nil {
+                callback(.error(.unknown))
                 return
             }
             
-            guard let results = query else {
-                callback(.error(.generalError))
+            guard let snapshot = maybeSnapshot else {
+                callback(.error(.corruptedData))
                 return
             }
             
-            results.documents.forEach { $0.reference.delete { error in
+            if snapshot.documents.count == 0 {
+                callback(.error(.noResults))
+                return
+            }
+            
+            snapshot.documents.forEach { $0.reference.delete { error in
                     if error != nil {
-                        callback(.error(.generalError))
+                        callback(.error(.unknown))
                         return
                     }
                 }
             }
+            
         }
+        
         callback(.success)
     }
 }
