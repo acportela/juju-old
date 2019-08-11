@@ -10,21 +10,7 @@ import Foundation
 
 protocol FirebasePersistable {
     
-    var pathToCollection: String { get }
-    var uniqueField: String { get }
-    var uniqueValue: String { get }
-    
-    func toDictionary() -> [String: Any]
+    var path: String { get }
     init?(fromData data: [String: Any])
-}
-
-extension FirebasePersistable {
-    
-    func toDictionary() -> [String: Any] {
-        return ["": ""]
-    }
-    
-    init?(fromData data: [String: Any]) {
-        return nil
-    }
+    func toDictionary() -> [String: Any]
 }

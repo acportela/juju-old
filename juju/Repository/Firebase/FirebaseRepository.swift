@@ -9,22 +9,22 @@
 import FirebaseFirestore
 
 //TODO Improve error handling (there's currently only 1 error type)
-struct FirebaseRepository<T: FirebasePersistable, V: FirebasePersistable>: Repository {
+struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository {
     
-    typealias Content = T
-    typealias FetchObject = V
+    typealias Entity = T
+    typealias Query = V
     
     let firestore = Firestore.firestore()
-
-    func get(_ fetchObject: FetchObject, callback: @escaping (ContentResult<Content, RepositoryError>) -> Void) {
+    
+    func get(query: Query, callback: @escaping (ContentResult<Entity, RepositoryError>) -> Void) {
         
-        let query = self.firestore
-                        .collection(fetchObject.pathToCollection)
-                        .whereField(fetchObject.uniqueField,
-                                    isEqualTo: fetchObject.uniqueValue)
-                        .limit(to: 1)
+        let fireQuery = self.firestore
+                            .collection(query.path)
+                            .whereField(query.uniqueField,
+                                        isEqualTo: query.uniqueValue)
+                            .limit(to: 1)
         
-        query.getDocuments(source: .cache) { (maybeSnapshot, maybeError) in
+        fireQuery.getDocuments(source: .cache) { (maybeSnapshot, maybeError) in
             
             if maybeError != nil {
                 callback(.error(.generalError))
@@ -38,7 +38,7 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebasePersistable>: Repos
                 return
             }
             
-            guard let content = Content(fromData: data) else {
+            guard let content = Entity(fromData: data) else {
                 callback(.error(.generalError))
                 return
             }
@@ -47,23 +47,23 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebasePersistable>: Repos
         }
     }
 
-    func save(_ entity: Content, callback: @escaping (Result<RepositoryError>) -> Void) {
+    func save(entity: Entity, callback: @escaping (Result<RepositoryError>) -> Void) {
         
         self.firestore
-            .collection(entity.pathToCollection)
+            .collection(entity.path)
             .addDocument(data: entity.toDictionary()) { error in
             
             error == nil ? callback(.success) : callback(.error(.generalError))
         }
     }
 
-    func delete(_ entity: Content, callback: @escaping (Result<RepositoryError>) -> Void) {
+    func delete(query: Query, callback: @escaping (Result<RepositoryError>) -> Void) {
 
-        let query = self.firestore
-                        .collection(entity.pathToCollection)
-                        .whereField(entity.uniqueField, isEqualTo: entity.uniqueValue)
+        let returnQuery = self.firestore
+                                .collection(query.path)
+                                .whereField(query.uniqueField, isEqualTo: query.uniqueValue)
         
-        query.getDocuments { (query, error) in
+        returnQuery.getDocuments { (query, error) in
             
             if error != nil {
                 callback(.error(.generalError))

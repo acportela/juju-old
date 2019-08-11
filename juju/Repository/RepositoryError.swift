@@ -11,4 +11,9 @@ import Foundation
 enum RepositoryError: Error {
     
     case generalError
+    case noResults
+    case unauthorized
+    case resourceExausted
+    case cancelled
+    case badRequest
 }

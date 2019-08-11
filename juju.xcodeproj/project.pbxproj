@@ -18,6 +18,9 @@
 		D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3D22E4D62D003700EA /* SignInViewController.swift */; };
 		D622755722FA4527004992E5 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755622FA4527004992E5 /* DateUtils.swift */; };
 		D622755922FA4913004992E5 /* AppPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755822FA4913004992E5 /* AppPrefs.swift */; };
+		D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6414003230028C0005BD008 /* FirebaseConstants.swift */; };
+		D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400523002A87005BD008 /* FirebaseQuery.swift */; };
+		D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400723002AB9005BD008 /* FirebaseUserQuery.swift */; };
 		D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0EF22CCC39800FAB219 /* SignUpView.swift */; };
 		D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
@@ -100,6 +103,9 @@
 		D61E0C3D22E4D62D003700EA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D622755622FA4527004992E5 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		D622755822FA4913004992E5 /* AppPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrefs.swift; sourceTree = "<group>"; };
+		D6414003230028C0005BD008 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		D641400523002A87005BD008 /* FirebaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuery.swift; sourceTree = "<group>"; };
+		D641400723002AB9005BD008 /* FirebaseUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserQuery.swift; sourceTree = "<group>"; };
 		D645C0EF22CCC39800FAB219 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewSpec.swift; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +211,15 @@
 				D61E0C3F22E4D6CF003700EA /* SignedOutScenes */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D641400923002ACB005BD008 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */,
+				D641400723002AB9005BD008 /* FirebaseUserQuery.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		D645C0EE22CCC33C00FAB219 /* SignUp */ = {
@@ -390,9 +405,11 @@
 		D6ABED2922DF34C10022CF0A /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				D641400923002ACB005BD008 /* User */,
 				D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */,
 				D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */,
-				D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */,
+				D6414003230028C0005BD008 /* FirebaseConstants.swift */,
+				D641400523002A87005BD008 /* FirebaseQuery.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -749,6 +766,7 @@
 				D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */,
+				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
@@ -769,6 +787,7 @@
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
+				D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D622755722FA4527004992E5 /* DateUtils.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
@@ -776,6 +795,7 @@
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
+				D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */,
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
