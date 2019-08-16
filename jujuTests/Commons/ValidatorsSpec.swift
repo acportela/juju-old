@@ -44,8 +44,17 @@ class ValidatorsSpec: QuickSpec {
                     
                     it("should return wrong format") {
                         
-                        let restult = sut.validate(email: "asd@")
+                        let restult = sut.validate(email: "asd@aa")
                         expect(restult).to(equal(.wrongEmailFormat))
+                    }
+                }
+                
+                context("too short") {
+                    
+                    it("should return too short") {
+                        
+                        let restult = sut.validate(email: "asd@")
+                        expect(restult).to(equal(.tooShort(minimum: 6)))
                     }
                 }
                 

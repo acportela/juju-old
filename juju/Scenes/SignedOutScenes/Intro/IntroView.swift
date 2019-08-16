@@ -27,7 +27,7 @@ final class IntroView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "Bem-vinda a Juju. Escolher um texto bonitinho pra colocar aqui"
+        label.text = "Bem-vinda a Juju!"
         label.textColor = Resources.Colors.white
         label.font = Resources.Fonts.Gilroy.medium(ofSize: 18)
         return label
@@ -39,7 +39,7 @@ final class IntroView: UIView {
         stack.axis = .vertical
         stack.alignment = .center
         stack.distribution = .fillProportionally
-        stack.spacing = 24
+        stack.spacing = 16
         return stack
     }()
     

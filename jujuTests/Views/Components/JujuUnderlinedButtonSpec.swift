@@ -28,7 +28,7 @@ class JujuUnderlinedButtonSpec: QuickSpec {
                 }
                 
                 it("must render properly") {
-                    expect(sut).to(matchSnapshot(named: "JujuUnderlinedButton", record: true))
+                    expect(sut).to(matchSnapshot(named: "JujuUnderlinedButton"))
                 }
                 
             }

@@ -106,7 +106,7 @@ enum InputValidationResult: Equatable {
         
         switch self {
         case .required(let fieldName):
-            return "\(fieldName.uppercasedFirst) é um campo obrigatório"
+            return "\(fieldName) é obrigatório!"
         case .tooLong(let lenght):
             return "Ops, são permitidos no máximo \(lenght) caracteres"
         case .tooShort(let lenght):

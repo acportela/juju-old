@@ -28,7 +28,7 @@ class SignUpViewSpec: QuickSpec {
                     }
                     
                     it("must render properly") {
-                        expect(sut).to(matchSnapshot(named: "SignUpViewIphone8", record: true))
+                        expect(sut).to(matchSnapshot(named: "SignUpViewIphone8"))
                     }
                     
                 }

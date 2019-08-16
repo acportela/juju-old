@@ -15,10 +15,8 @@ protocol JujuFormProtocol: KeyboardListenerDelegate where Self: UIView {
     var firstResponder: JujuInputField? { get }
     var fieldsAreValid: Bool { get }
     var inputStack: UIStackView { get }
-    var inputStackCenterY: SnapKit.Constraint? { get set }
-    var inputStackCurrentOffset: CGFloat { get set }
+    var scrollInputStack: UIScrollView { get }
     var onDoneAction: (() -> Void)? { get set }
-    
     func setupToolbar()
 }
 
@@ -69,27 +67,34 @@ extension JujuFormProtocol {
     
     func keyboardWillAppear(_ notification: Notification) {
         
-        if let firstResponder = firstResponder {
+        if let validFirstResponder = firstResponder {
             
-            let keyboardMinY = self.frame.maxY - (notification.keyboardHeight + 8)
+            let keyboardHeight = notification.keyboardHeight + 24
             
-            let keyboardMinYInStacksCoordinate = keyboardMinY - inputStack.frame.minY
-            let responderMaxYInStacksCoordinate = firstResponder.frame.maxY
+            self.scrollInputStack.isScrollEnabled = true
+            let scrollInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
+            self.scrollInputStack.contentInset = scrollInsets
+            self.scrollInputStack.scrollIndicatorInsets = scrollInsets
             
-            let difference = responderMaxYInStacksCoordinate - keyboardMinYInStacksCoordinate
+            var containingRect = self.frame
+            containingRect.size.height -= keyboardHeight
             
-            if difference > 0 {
-                
-                inputStackCurrentOffset += difference
-            } else {
-                
-                inputStackCurrentOffset = 0
+            let endPoint = CGPoint(x: validFirstResponder.frame.maxX, y: validFirstResponder.frame.maxY)
+            if !containingRect.contains(endPoint) {
+                self.scrollInputStack.scrollRectToVisible(validFirstResponder.frame, animated: true)
             }
         }
     }
     
     func keyboardWillDisappear(_ notification: Notification) {
         
-        inputStackCurrentOffset = 0
+        let keyboardHeight = notification.keyboardHeight + 24
+        self.scrollInputStack.isScrollEnabled = false
+        let scrollInsets = UIEdgeInsets(top: 0, left: 0, bottom: -keyboardHeight, right: 0)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.scrollInputStack.contentInset = scrollInsets
+            self.scrollInputStack.scrollIndicatorInsets = scrollInsets
+        }
     }
 }

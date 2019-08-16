@@ -56,7 +56,7 @@ public class KeyboardListener: NSObject {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillAppear(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
+                                               name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,

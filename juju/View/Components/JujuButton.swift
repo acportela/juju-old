@@ -16,7 +16,7 @@ final class JujuButton: UIView {
         button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: 18)
         button.layer.cornerRadius = 20
         button.layer.masksToBounds = true
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 48, bottom: 12, right: 48)
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 42, bottom: 12, right: 42)
         button.backgroundColor = theme.backgroundColor
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button

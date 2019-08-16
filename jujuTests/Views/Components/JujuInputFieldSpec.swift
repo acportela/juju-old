@@ -24,9 +24,9 @@ class JujuInputFieldSpec: QuickSpec {
                 context("a name input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 66)
                         sut = JujuInputField(frame: frame, inputKind: .name)
-                        sut.outlineRecursively()
+                        sut.setFeedback("feedback test")
                     }
                     
                     it("must render properly") {
@@ -38,9 +38,8 @@ class JujuInputFieldSpec: QuickSpec {
                 context("an age input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 66)
                         sut = JujuInputField(frame: frame, inputKind: .dateOfBirth)
-                        sut.outlineRecursively()
                     }
                     
                     it("must render properly") {
@@ -52,9 +51,8 @@ class JujuInputFieldSpec: QuickSpec {
                 context("an email input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 66)
                         sut = JujuInputField(frame: frame, inputKind: .newEmail)
-                        sut.outlineRecursively()
                     }
                     
                     it("must render properly") {
@@ -66,9 +64,8 @@ class JujuInputFieldSpec: QuickSpec {
                 context("a password input") {
                     
                     beforeEach {
-                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 50)
+                        let frame = CGRect(x: 0, y: 0, width: TestHelpers.iphone8width, height: 66)
                         sut = JujuInputField(frame: frame, inputKind: .newPassword)
-                        sut.outlineRecursively()
                     }
                     
                     it("must render properly") {

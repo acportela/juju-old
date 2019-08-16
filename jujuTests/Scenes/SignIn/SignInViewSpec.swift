@@ -28,24 +28,11 @@ class SignInViewSpec: QuickSpec {
                     }
                     
                     it("must render properly") {
-                        expect(sut).to(matchSnapshot(named: "SignInViewiPhone8", record: true))
-                    }
-                    
-                }
-                
-                context("with an iPhone X form factor") {
-                    
-                    beforeEach {
-                        sut = SignInView(frame: TestHelpers.iphoneXFrame)
-                    }
-                    
-                    it("must render properly") {
-                        expect(sut).to(matchSnapshot(named: "SignInViewiPhoneX", record: true))
+                        expect(sut).to(matchSnapshot(named: "SignInViewiPhone8"))
                     }
                     
                 }
             }
-            
         }
     }
 }

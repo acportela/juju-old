@@ -32,7 +32,7 @@ final class JujuInputField: UIView {
     private lazy var title: UILabel = {
         
         let label = UILabel()
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: 16)
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: 14)
         label.textAlignment = .left
         label.textColor = Resources.Colors.white
         label.text = self.inputKind.title
@@ -51,6 +51,8 @@ final class JujuInputField: UIView {
         let label = UILabel()
         label.text = ""
         label.font = Resources.Fonts.Gilroy.medium(ofSize: 14)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.8
         label.textAlignment = .left
         label.textColor = Resources.Colors.white
         return label
@@ -62,7 +64,7 @@ final class JujuInputField: UIView {
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .leading
-        stack.spacing = 6
+        stack.spacing = 4
         return stack
     }()
     
@@ -73,7 +75,6 @@ final class JujuInputField: UIView {
     var currentValue: String? { return self.input.text }
     
     var toolbarButtonAction: (() -> Void)?
-    var toolbarHeight: CGFloat { return input.inputAccessoryView?.frame.height ?? 0 }
     
     // MARK: Lifecycle
     init(frame: CGRect = .zero, inputKind: InputKind) {
@@ -119,12 +120,18 @@ extension JujuInputField: ViewCoding {
     
     func configureViews() {
         
+        input.setContentCompressionResistancePriority(.required, for: .vertical)
+        
         if self.inputKind == .dateOfBirth {
             self.input.tintColor = .clear
             self.configureDatePicker()
         }
         if self.inputKind == .email || self.inputKind == .newEmail { self.input.autocapitalizationType = .none }
         if self.inputKind.isSecureEntry { self.configure(with: .secure(true))}
+    }
+    
+    public func setFeedback(_ text: String) {
+        self.feedback.text = text
     }
 }
 

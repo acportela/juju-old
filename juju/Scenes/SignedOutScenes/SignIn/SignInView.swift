@@ -16,7 +16,7 @@ final class SignInView: UIView, JujuFormProtocol {
         label.textAlignment = .center
         label.text = "Juju"
         label.textColor = Resources.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: 48)
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: 42)
         return label
     }()
     
@@ -30,25 +30,30 @@ final class SignInView: UIView, JujuFormProtocol {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.spacing = 32
+        stack.spacing = 20
         return stack
     }()
     
     private let enterButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "Voltar")
     
+    var scrollInputStack: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
+        scroll.showsHorizontalScrollIndicator = false
+        scroll.alwaysBounceVertical = false
+        scroll.bounces = false
+        scroll.isScrollEnabled = false
+        scroll.contentInsetAdjustmentBehavior = .never
+        scroll.backgroundColor = .clear
+        return scroll
+    }()
+    
     let background: UIImageView = {
         let image = UIImageView(image: Resources.Images.signedOutBG)
         image.contentMode = .scaleAspectFill
         return image
     }()
-    
-    var inputStackCenterY: SnapKit.Constraint?
-    var inputStackCurrentOffset: CGFloat = 0 {
-        didSet {
-            inputStackCenterY?.update(offset: -inputStackCurrentOffset)
-        }
-    }
     
     var onDoneAction: (() -> Void)? {
         didSet {
@@ -77,47 +82,53 @@ extension SignInView: ViewCoding {
     
     func addSubViews() {
         
-        addSubview(background)
-        addSubview(logoLabel)
+        scrollInputStack.addSubview(background)
+        scrollInputStack.addSubview(logoLabel)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
-        addSubview(inputStack)
-        addSubview(enterButton)
-        addSubview(backButton)
+        scrollInputStack.addSubview(inputStack)
+        scrollInputStack.addSubview(enterButton)
+        scrollInputStack.addSubview(backButton)
+        addSubview(scrollInputStack)
     }
     
     func setupConstraints() {
         
+        scrollInputStack.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+        }
+        
         inputStack.snp.makeConstraints { make in
-            inputStackCenterY = make.centerY.equalToSuperview().constraint
-            inputStackCenterY?.activate()
+            make.center.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().inset(32)
         }
         
         logoLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(inputStack.snp.top).offset(-56)
+            make.top.equalToSuperview()
+            make.bottom.equalTo(inputStack.snp.top)
         }
         
         enterButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(inputStack.snp.bottom).offset(56)
+            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(56)
         }
         
         backButton.snp.makeConstraints { make in
             make.centerX.equalTo(enterButton.snp.centerX)
-            make.top.equalTo(enterButton.snp.bottom).offset(24)
+            make.top.equalTo(enterButton.snp.bottom).offset(8)
         }
         
         background.snp.makeConstraints { make in
-            
             make.edges.equalToSuperview()
         }
+        
     }
     
     func configureViews() {
         
+        self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Resources.Colors.softPink
         inputs = [emailInput, passwordInput]
         setupToolbar()

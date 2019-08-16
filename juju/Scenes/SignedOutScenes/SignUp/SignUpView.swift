@@ -12,12 +12,11 @@ import SnapKit
 final class SignUpView: UIView, JujuFormProtocol {
     
     private let logoLabel: UILabel = {
-        
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
         label.textColor = Resources.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: 48)
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: 42)
         return label
     }()
     
@@ -34,7 +33,7 @@ final class SignUpView: UIView, JujuFormProtocol {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.spacing = 32
+        stack.spacing = 20
         return stack
     }()
     
@@ -44,15 +43,20 @@ final class SignUpView: UIView, JujuFormProtocol {
         return image
     }()
     
-    var inputStackCenterY: SnapKit.Constraint?
-    var inputStackCurrentOffset: CGFloat = 0 {
-        didSet {
-            inputStackCenterY?.update(offset: -inputStackCurrentOffset)
-        }
-    }
-    
     private let enterButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "Voltar")
+    
+    var scrollInputStack: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
+        scroll.showsHorizontalScrollIndicator = false
+        scroll.alwaysBounceVertical = false
+        scroll.bounces = false
+        scroll.isScrollEnabled = false
+        scroll.contentInsetAdjustmentBehavior = .never
+        scroll.backgroundColor = .clear
+        return scroll
+    }()
     
     var onDoneAction: (() -> Void)? {
         didSet {
@@ -83,23 +87,27 @@ extension SignUpView: ViewCoding {
     
     func addSubViews() {
         
-        addSubview(background)
-        addSubview(logoLabel)
+        scrollInputStack.addSubview(background)
+        scrollInputStack.addSubview(logoLabel)
         inputStack.addArrangedSubview(nameInput)
         inputStack.addArrangedSubview(dateOfBirth)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
-        addSubview(inputStack)
-        addSubview(enterButton)
-        addSubview(backButton)
+        scrollInputStack.addSubview(inputStack)
+        scrollInputStack.addSubview(enterButton)
+        scrollInputStack.addSubview(backButton)
+        addSubview(scrollInputStack)
     }
     
     func setupConstraints() {
         
+        scrollInputStack.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+        }
+        
         inputStack.snp.makeConstraints { make in
             
-            inputStackCenterY = make.centerY.equalToSuperview().constraint
-            inputStackCenterY?.activate()
+            make.center.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().inset(32)
         }
@@ -107,13 +115,14 @@ extension SignUpView: ViewCoding {
         logoLabel.snp.makeConstraints { make in
             
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(inputStack.snp.top).offset(-48)
+            make.top.equalToSuperview()
+            make.bottom.equalTo(inputStack.snp.top)
         }
         
         enterButton.snp.makeConstraints { make in
             
             make.centerX.equalToSuperview()
-            make.top.equalTo(inputStack.snp.bottom).offset(48)
+            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(32)
         }
         
         backButton.snp.makeConstraints { make in
@@ -130,7 +139,9 @@ extension SignUpView: ViewCoding {
     
     func configureViews() {
         
+        self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Resources.Colors.softPink
+
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
         setupToolbar()
     }
