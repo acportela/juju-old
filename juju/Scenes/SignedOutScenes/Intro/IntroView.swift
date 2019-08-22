@@ -109,7 +109,7 @@ extension IntroView: ViewCoding {
         
         background.snp.makeConstraints { make in
             
-            make.edges.equalToSuperview()
+            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         }
     }
     

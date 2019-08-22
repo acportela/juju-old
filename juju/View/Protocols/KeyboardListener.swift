@@ -29,16 +29,13 @@ public class KeyboardListener: NSObject {
     }
     
     public func remove(_ delegate: KeyboardListenerDelegate) {
-        
         if let i = delegates.firstIndex(where: { $0 === delegate }) {
             delegates.remove(at: i)
         }
-        
     }
     
     @objc
-    private func keyboardWillAppear(notification: Notification) {
-        
+    private func keyboardDidAppear(notification: Notification) {
         for delegate in delegates {
             delegate.keyboardWillAppear(notification)
         }
@@ -46,7 +43,6 @@ public class KeyboardListener: NSObject {
     
     @objc
     private func keyboardWillDisappear(notification: Notification) {
-        
         for delegate in delegates {
             delegate.keyboardWillDisappear(notification)
         }
@@ -55,7 +51,7 @@ public class KeyboardListener: NSObject {
     private func prepare() {
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillAppear(notification:)),
+                                               selector: #selector(keyboardDidAppear(notification:)),
                                                name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
         

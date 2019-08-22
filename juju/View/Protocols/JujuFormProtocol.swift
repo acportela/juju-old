@@ -69,7 +69,7 @@ extension JujuFormProtocol {
         
         if let validFirstResponder = firstResponder {
             
-            let keyboardHeight = notification.keyboardHeight + 24
+            let keyboardHeight = notification.keyboardHeight
             
             self.scrollInputStack.isScrollEnabled = true
             let scrollInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
@@ -78,9 +78,8 @@ extension JujuFormProtocol {
             
             var containingRect = self.frame
             containingRect.size.height -= keyboardHeight
-            
-            let endPoint = CGPoint(x: validFirstResponder.frame.maxX, y: validFirstResponder.frame.maxY)
-            if !containingRect.contains(endPoint) {
+
+            if !containingRect.contains(validFirstResponder.frame.origin) {
                 self.scrollInputStack.scrollRectToVisible(validFirstResponder.frame, animated: true)
             }
         }
@@ -88,13 +87,9 @@ extension JujuFormProtocol {
     
     func keyboardWillDisappear(_ notification: Notification) {
         
-        let keyboardHeight = notification.keyboardHeight + 24
-        self.scrollInputStack.isScrollEnabled = false
-        let scrollInsets = UIEdgeInsets(top: 0, left: 0, bottom: -keyboardHeight, right: 0)
-        
         UIView.animate(withDuration: 0.2) {
-            self.scrollInputStack.contentInset = scrollInsets
-            self.scrollInputStack.scrollIndicatorInsets = scrollInsets
+            self.scrollInputStack.contentInset = .zero
+            self.scrollInputStack.scrollIndicatorInsets = .zero
         }
     }
 }

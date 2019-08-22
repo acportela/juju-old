@@ -87,7 +87,7 @@ extension SignUpView: ViewCoding {
     
     func addSubViews() {
         
-        scrollInputStack.addSubview(background)
+        addSubview(background)
         scrollInputStack.addSubview(logoLabel)
         inputStack.addArrangedSubview(nameInput)
         inputStack.addArrangedSubview(dateOfBirth)
@@ -102,7 +102,7 @@ extension SignUpView: ViewCoding {
     func setupConstraints() {
         
         scrollInputStack.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+            make.edges.equalToSuperview()
         }
         
         inputStack.snp.makeConstraints { make in
@@ -132,8 +132,7 @@ extension SignUpView: ViewCoding {
         }
         
         background.snp.makeConstraints { make in
-            
-            make.edges.equalToSuperview()
+            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         }
     }
     
@@ -141,7 +140,7 @@ extension SignUpView: ViewCoding {
         
         self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Resources.Colors.softPink
-
+        self.scrollInputStack.backgroundColor = .clear
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
         setupToolbar()
     }

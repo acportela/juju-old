@@ -75,14 +75,13 @@ final class SignInView: UIView, JujuFormProtocol {
     required init?(coder aDecoder: NSCoder) {
         fatalError("Initialize with view code")
     }
-    
 }
 
 extension SignInView: ViewCoding {
     
     func addSubViews() {
         
-        scrollInputStack.addSubview(background)
+        addSubview(background)
         scrollInputStack.addSubview(logoLabel)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
@@ -95,7 +94,7 @@ extension SignInView: ViewCoding {
     func setupConstraints() {
         
         scrollInputStack.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+            make.edges.equalToSuperview()
         }
         
         inputStack.snp.makeConstraints { make in
@@ -121,13 +120,12 @@ extension SignInView: ViewCoding {
         }
         
         background.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         }
-        
     }
     
     func configureViews() {
-        
+        self.scrollInputStack.backgroundColor = .clear
         self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Resources.Colors.softPink
         inputs = [emailInput, passwordInput]
