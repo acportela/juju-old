@@ -561,6 +561,7 @@
 				D65FCC4422C79EF400BA16E5 /* Resources */,
 				979C1C728500E337F04870EB /* [CP] Embed Pods Frameworks */,
 				D695891422C7B4A1009A356C /* SwiftLint */,
+				BE9F0D562310212D001A4CF4 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -735,6 +736,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-juju/Pods-juju-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BE9F0D562310212D001A4CF4 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Fabric;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3301cd4e6350684335a4aaf1e91a9e64967585e1 f41c01ec57690e1b0db0a39310c20f6521cdcb6d5a17abab0d97986d8eacd1bf\n";
 		};
 		D695891422C7B4A1009A356C /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

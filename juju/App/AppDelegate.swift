@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     
         FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
 
         let userService = UserService(userAuth: FirebaseEmailPasswordAuthentication(),
                                       userRepo: FirebaseRepository<FirebaseFirestoreUser, FirebaseUserQuery>())
