@@ -13,7 +13,11 @@ final class JujuUnderlinedButton: UIView {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
+        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.twelve,
+                                                left: Styling.Spacing.eight,
+                                                bottom: Styling.Spacing.twelve,
+                                                right: Styling.Spacing.eight)
+        
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
@@ -25,8 +29,8 @@ final class JujuUnderlinedButton: UIView {
         super.init(frame: frame)
         
         button.setTitle(title.lowercased(),
-                        withColor: Resources.Colors.white,
-                        andFont: Resources.Fonts.Gilroy.bold(ofSize: 18),
+                        withColor: Styling.Colors.veryLightPink,
+                        andFont: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty),
                         underlined: true)
         
         setupViewConfiguration()

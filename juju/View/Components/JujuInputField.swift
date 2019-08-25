@@ -15,15 +15,16 @@ final class JujuInputField: UIView {
     private lazy var input: UITextField = {
         
         let field = UITextField()
-        field.font = Resources.Fonts.Gilroy.medium(ofSize: 16)
-        field.textColor = Resources.Colors.white
+        field.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.sixteen)
+        field.textColor = Styling.Colors.duskyRose
         field.textAlignment = .left
-        field.delegate = self
-        field.placeholder = self.inputKind.hint
+        field.configurePlaceholderWith(title: self.inputKind.hint,
+                                       color: Styling.Colors.duskyPink)
         field.keyboardType = self.inputKind.keyboard
         field.autocorrectionType = .no
         field.spellCheckingType = .no
         field.returnKeyType = .done
+        field.delegate = self
         field.addTarget(self, action: #selector(didBeginEditing), for: .editingDidBegin)
         field.addTarget(self, action: #selector(didEndEditing), for: .editingDidEnd)
         return field
@@ -32,9 +33,9 @@ final class JujuInputField: UIView {
     private lazy var title: UILabel = {
         
         let label = UILabel()
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: 14)
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twelve)
         label.textAlignment = .left
-        label.textColor = Resources.Colors.white
+        label.textColor = Styling.Colors.veryLightPink
         label.text = self.inputKind.title
         return label
     }()
@@ -42,7 +43,7 @@ final class JujuInputField: UIView {
     private let selectedIndicator: UIView = {
         
         let view = UIView()
-        view.backgroundColor = Resources.Colors.rosyPink
+        view.backgroundColor = Styling.Colors.rosyPink
         return view
     }()
     
@@ -50,11 +51,11 @@ final class JujuInputField: UIView {
         
         let label = UILabel()
         label.text = ""
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: 14)
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twelve)
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.8
+        label.minimumScaleFactor = Constants.feedbackScaleFactor
         label.textAlignment = .left
-        label.textColor = Resources.Colors.white
+        label.textColor = Styling.Colors.veryLightPink
         return label
     }()
     
@@ -64,7 +65,7 @@ final class JujuInputField: UIView {
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .leading
-        stack.spacing = 4
+        stack.spacing = Styling.Spacing.four
         return stack
     }()
     
@@ -113,7 +114,7 @@ extension JujuInputField: ViewCoding {
         
         selectedIndicator.snp.makeConstraints { make in
             
-            make.height.equalTo(2)
+            make.height.equalTo(Constants.selectedLineHeight)
             make.width.equalToSuperview()
         }
     }
@@ -151,11 +152,11 @@ extension JujuInputField: ViewConfiguration {
         case .focused:
             
             self.feedback.text = ""
-            self.selectedIndicator.backgroundColor = Resources.Colors.white
+            self.selectedIndicator.backgroundColor = Styling.Colors.veryLightPink
             
         case .unfocused:
         
-            self.selectedIndicator.backgroundColor = Resources.Colors.rosyPink
+            self.selectedIndicator.backgroundColor = Styling.Colors.rosyPink
             self.feedback.text = validateCurrentInput().message
             
         case .secure(let secure):
@@ -239,21 +240,12 @@ extension JujuInputField: UITextFieldDelegate {
         
         var isValid = true
         
-        switch inputKind {
+        if let maxLength = self.inputKind.maxLength {
             
-        case .password:
             isValid = TextFieldValidators.lenghtHandler(textField: textField,
                                                         shouldChangeCharactersInRange: range,
                                                         replacementString: string,
-                                                        maxLength: 30)
-        case .email, .newEmail, .name:
-            isValid = TextFieldValidators.lenghtHandler(textField: textField,
-                                                        shouldChangeCharactersInRange: range,
-                                                        replacementString: string,
-                                                        maxLength: 100)
-            
-        default:
-            break
+                                                        maxLength: maxLength)
         }
         
         return isValid
@@ -313,5 +305,14 @@ extension JujuInputField {
         
         self.datePicker = datePicker
         input.inputView = datePicker
+    }
+}
+
+extension JujuInputField {
+    
+    struct Constants {
+        
+        static let selectedLineHeight = 2
+        static let feedbackScaleFactor: CGFloat = 0.8
     }
 }

@@ -15,8 +15,8 @@ final class SignInView: UIView, JujuFormProtocol {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
-        label.textColor = Resources.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: 42)
+        label.textColor = Styling.Colors.rosyPink
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.thirtysix)
         return label
     }()
     
@@ -30,7 +30,7 @@ final class SignInView: UIView, JujuFormProtocol {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.spacing = 20
+        stack.spacing = Styling.Spacing.twentyfour
         return stack
     }()
     
@@ -99,8 +99,8 @@ extension SignInView: ViewCoding {
         
         inputStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().inset(32)
+            make.left.equalToSuperview().offset(Styling.Spacing.twentyEight)
+            make.right.equalToSuperview().inset(Styling.Spacing.twentyEight)
         }
         
         logoLabel.snp.makeConstraints { make in
@@ -111,12 +111,14 @@ extension SignInView: ViewCoding {
         
         enterButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(56)
+            make.width.equalTo(Constants.enterButtonWidth)
+            make.height.equalTo(Constants.enterButtonHeight)
+            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(Styling.Spacing.fourtyeight)
         }
         
         backButton.snp.makeConstraints { make in
             make.centerX.equalTo(enterButton.snp.centerX)
-            make.top.equalTo(enterButton.snp.bottom).offset(8)
+            make.top.equalTo(enterButton.snp.bottom).offset(Styling.Spacing.eight)
         }
         
         background.snp.makeConstraints { make in
@@ -127,8 +129,17 @@ extension SignInView: ViewCoding {
     func configureViews() {
         self.scrollInputStack.backgroundColor = .clear
         self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        self.backgroundColor = Resources.Colors.softPink
+        self.backgroundColor = Styling.Colors.softPink
         inputs = [emailInput, passwordInput]
         setupToolbar()
+    }
+}
+
+extension SignInView {
+    
+    struct Constants {
+        
+        static let enterButtonWidth = 141
+        static let enterButtonHeight = 48
     }
 }

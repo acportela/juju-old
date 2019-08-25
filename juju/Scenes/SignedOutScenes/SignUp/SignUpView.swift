@@ -15,8 +15,8 @@ final class SignUpView: UIView, JujuFormProtocol {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
-        label.textColor = Resources.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: 42)
+        label.textColor = Styling.Colors.rosyPink
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.thirtysix)
         return label
     }()
     
@@ -33,7 +33,7 @@ final class SignUpView: UIView, JujuFormProtocol {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.spacing = 20
+        stack.spacing = Styling.Spacing.twentyfour
         return stack
     }()
     
@@ -43,7 +43,7 @@ final class SignUpView: UIView, JujuFormProtocol {
         return image
     }()
     
-    private let enterButton = JujuButton(title: "entrar")
+    private let signUpButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "Voltar")
     
     var scrollInputStack: UIScrollView = {
@@ -60,7 +60,7 @@ final class SignUpView: UIView, JujuFormProtocol {
     
     var onDoneAction: (() -> Void)? {
         didSet {
-            enterButton.onTapAction = onDoneAction
+            signUpButton.onTapAction = onDoneAction
         }
     }
     
@@ -94,7 +94,7 @@ extension SignUpView: ViewCoding {
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
         scrollInputStack.addSubview(inputStack)
-        scrollInputStack.addSubview(enterButton)
+        scrollInputStack.addSubview(signUpButton)
         scrollInputStack.addSubview(backButton)
         addSubview(scrollInputStack)
     }
@@ -108,8 +108,8 @@ extension SignUpView: ViewCoding {
         inputStack.snp.makeConstraints { make in
             
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().inset(32)
+            make.left.equalToSuperview().offset(Styling.Spacing.twentyEight)
+            make.right.equalToSuperview().inset(Styling.Spacing.twentyEight)
         }
         
         logoLabel.snp.makeConstraints { make in
@@ -119,16 +119,18 @@ extension SignUpView: ViewCoding {
             make.bottom.equalTo(inputStack.snp.top)
         }
         
-        enterButton.snp.makeConstraints { make in
+        signUpButton.snp.makeConstraints { make in
             
             make.centerX.equalToSuperview()
-            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(32)
+            make.width.equalTo(Constants.signUpButtonWidth)
+            make.height.equalTo(Constants.signUpButtonHeight)
+            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(Styling.Spacing.thirtyTwo)
         }
         
         backButton.snp.makeConstraints { make in
             
-            make.centerX.equalTo(enterButton.snp.centerX)
-            make.top.equalTo(enterButton.snp.bottom).offset(8)
+            make.centerX.equalTo(signUpButton.snp.centerX)
+            make.top.equalTo(signUpButton.snp.bottom).offset(Styling.Spacing.eight)
         }
         
         background.snp.makeConstraints { make in
@@ -139,10 +141,19 @@ extension SignUpView: ViewCoding {
     func configureViews() {
         
         self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        self.backgroundColor = Resources.Colors.softPink
+        self.backgroundColor = Styling.Colors.softPink
         self.scrollInputStack.backgroundColor = .clear
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
         setupToolbar()
     }
     
+}
+
+extension SignUpView {
+    
+    struct Constants {
+        
+        static let signUpButtonWidth = 141
+        static let signUpButtonHeight = 48
+    }
 }

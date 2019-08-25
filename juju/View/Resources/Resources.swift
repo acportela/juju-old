@@ -10,21 +10,9 @@ import UIKit
 
 enum Resources {
     
-    enum Colors {}
-    
     enum Fonts {}
     
     enum Images {}
-    
-}
-
-extension Resources.Colors {
-    
-    static let softPink = UIColor(red: 255, green: 161, blue: 172)
-
-    static let rosyPink = UIColor(red: 242, green: 118, blue: 133)
-    
-    static let white = UIColor(red: 241, green: 241, blue: 241)
     
 }
 
@@ -83,6 +71,8 @@ extension Resources.Fonts {
 extension Resources.Images {
     
     static let signedOutBG = image(named: "SignedOutBG")
+    
+    static let bottomBG = image(named: "bottom-bg")
     
     private static func image(named name: String) -> UIImage {
         guard let image = UIImage(named: name) else {

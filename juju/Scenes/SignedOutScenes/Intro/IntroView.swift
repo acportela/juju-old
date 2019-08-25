@@ -17,8 +17,8 @@ final class IntroView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Juju"
-        label.textColor = Resources.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: 44)
+        label.textColor = Styling.Colors.rosyPink
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.thirtysix)
         return label
     }()
     
@@ -26,10 +26,10 @@ final class IntroView: UIView {
         
         let label = UILabel()
         label.textAlignment = .center
-        label.numberOfLines = 0
-        label.text = "Bem-vinda a Juju!"
-        label.textColor = Resources.Colors.white
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: 18)
+        label.numberOfLines = Constants.numberOfLines
+        label.text = "Bem-vinda a Juju!\n\nSou um aplicativo que vai ajudar você a realizar exercícios pélvicos."
+        label.textColor = Styling.Colors.veryLightPink
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.eighteen)
         return label
     }()
     
@@ -37,9 +37,9 @@ final class IntroView: UIView {
         
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .fillProportionally
-        stack.spacing = 16
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.spacing = Styling.Spacing.eight
         return stack
     }()
     
@@ -47,7 +47,7 @@ final class IntroView: UIView {
     private let signUp = JujuButton(title: "cadastrar", theme: .secondary)
     
     let background: UIImageView = {
-        let image = UIImageView(image: Resources.Images.signedOutBG)
+        let image = UIImageView(image: Resources.Images.bottomBG)
         image.contentMode = .scaleAspectFill
         return image
     }()
@@ -84,22 +84,24 @@ extension IntroView: ViewCoding {
         
         buttonStack.snp.makeConstraints { make in
             
-            make.centerY.equalToSuperview().multipliedBy(1.5)
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().inset(32)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(Constants.stackHeight)
+            make.width.equalTo(Constants.stackWidth)
+            make.top.equalTo(self.welcomeLabel.snp.centerY).multipliedBy(1.3)
         }
         
         logoLabel.snp.makeConstraints { make in
             
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.snp.centerY).multipliedBy(0.5)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(self.welcomeLabel.snp.top)
         }
         
         welcomeLabel.snp.makeConstraints { make in
             
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(48)
-            make.right.equalToSuperview().inset(48)
+            make.left.equalToSuperview().offset(Styling.Spacing.twentyEight)
+            make.right.equalToSuperview().inset(Styling.Spacing.twentyEight)
         }
         
         signIn.snp.makeConstraints { make in
@@ -109,15 +111,25 @@ extension IntroView: ViewCoding {
         
         background.snp.makeConstraints { make in
             
-            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+            make.left.bottom.right.equalToSuperview()
         }
     }
     
     func configureViews() {
         
-        self.backgroundColor = Resources.Colors.softPink
+        self.backgroundColor = Styling.Colors.softPink
         self.signIn.onTapAction = { self.onSignInTap?() }
         self.signUp.onTapAction = { self.onSignUpTap?() }
     }
     
+}
+
+extension IntroView {
+    
+    struct Constants {
+        
+        static let numberOfLines = 0
+        static let stackHeight = 104
+        static let stackWidth = 145
+    }
 }

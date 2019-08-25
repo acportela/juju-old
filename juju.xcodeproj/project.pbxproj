@@ -26,6 +26,8 @@
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
 		D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5022C79EF500BA16E5 /* Assets.xcassets */; };
 		D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */; };
+		D66D5AD92312C56700F0A944 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D5AD82312C56700F0A944 /* Styling.swift */; };
+		D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D5ADA2312CF8200F0A944 /* UITextField.swift */; };
 		D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */; };
 		D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */; };
 		D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F845E22CA299200C5ECDE /* TestHelpers.swift */; };
@@ -113,6 +115,8 @@
 		D65FCC5022C79EF500BA16E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D65FCC5322C79EF500BA16E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D65FCC5522C79EF500BA16E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D66D5AD82312C56700F0A944 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
+		D66D5ADA2312CF8200F0A944 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		D67F845A22CA25DA00C5ECDE /* SnapshotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUtils.swift; sourceTree = "<group>"; };
 		D67F845C22CA27AD00C5ECDE /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		D67F845E22CA299200C5ECDE /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -449,6 +453,7 @@
 				D68ACB9322C7E76D001C94A5 /* Fonts */,
 				D65FCC5022C79EF500BA16E5 /* Assets.xcassets */,
 				D68ACB8E22C7DF9C001C94A5 /* Resources.swift */,
+				D66D5AD82312C56700F0A944 /* Styling.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
 				D61E0C3522E491B1003700EA /* UIButton.swift */,
 				D6F3202922F5D35300950325 /* UIAlertController.swift */,
+				D66D5ADA2312CF8200F0A944 /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -803,6 +809,7 @@
 				D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */,
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
 				D61E0C3A22E4A5B7003700EA /* String.swift in Sources */,
+				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
@@ -819,6 +826,7 @@
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
+				D66D5AD92312C56700F0A944 /* Styling.swift in Sources */,
 				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,

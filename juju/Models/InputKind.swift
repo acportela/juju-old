@@ -77,5 +77,22 @@ enum InputKind {
         return true
     }
     
+    var maxLength: Int? {
+        
+        switch self {
+            
+        case .newEmail, .name:
+            
+            return 100
+            
+        case .newPassword:
+            
+            return 20
+        
+        default:
+            
+            return nil
+        }
+    }
     //TODO: Add UITextContentType ?
 }

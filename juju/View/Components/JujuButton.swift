@@ -13,10 +13,9 @@ final class JujuButton: UIView {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: 18)
-        button.layer.cornerRadius = 20
+        //button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty)
+        button.layer.cornerRadius = Constants.buttonCornerRadius
         button.layer.masksToBounds = true
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 42, bottom: 12, right: 42)
         button.backgroundColor = theme.backgroundColor
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
@@ -29,9 +28,9 @@ final class JujuButton: UIView {
     init(title: String, theme: Theme = .primary, frame: CGRect = .zero) {
         self.theme = theme
         super.init(frame: frame)
-        button.setTitle(title.uppercasedFirst,
-                        withColor: theme.textColor,
-                        andFont: Resources.Fonts.Gilroy.bold(ofSize: 16))
+        self.button.setTitle(title.uppercasedFirst,
+                             withColor: theme.textColor,
+                             andFont: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty))
         setupViewConfiguration()
     }
 
@@ -78,18 +77,18 @@ extension JujuButton {
         var textColor: UIColor {
             switch self {
             case .primary:
-                return Resources.Colors.rosyPink
+                return Styling.Colors.rosyPink
             case .secondary:
-                return Resources.Colors.white
+                return Styling.Colors.veryLightPink
             }
         }
         
         var backgroundColor: UIColor {
             switch self {
             case .primary:
-                return Resources.Colors.white
+                return Styling.Colors.veryLightPink
             case .secondary:
-                return Resources.Colors.rosyPink
+                return Styling.Colors.rosyPink
             }
         }
     }
@@ -110,7 +109,16 @@ extension JujuButton: ViewConfiguration {
             
             button.isEnabled = enabled
             let background = theme.backgroundColor
-            button.backgroundColor = enabled ? background : background.withAlphaComponent(0.3)
+            button.backgroundColor = enabled ? background : background.withAlphaComponent(Constants.buttonAlpha)
         }
+    }
+}
+
+extension JujuButton {
+    
+    struct Constants {
+        
+        static let buttonCornerRadius: CGFloat = 25
+        static let buttonAlpha: CGFloat = 0.3
     }
 }
