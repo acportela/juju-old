@@ -12,6 +12,7 @@ protocol SignInViewControllerDelegate: AnyObject {
     
     func signInViewController(_ viewController: SignInViewController, didSignInWithUser user: ClientUser)
     func signInViewControllerDidTapBack(_ viewController: SignInViewController)
+    func signInViewControllerDidCreateAccount(_ viewController: SignInViewController)
 }
 
 final class SignInViewController: SignedOutThemeViewController {
@@ -67,6 +68,12 @@ final class SignInViewController: SignedOutThemeViewController {
             }
             
             sSelf.proceedWithSignIn(email: credentials.email, pass: credentials.pass)
+        }
+        
+        signInView.onCreateTap = { [weak self] in
+            
+            guard let sSelf = self else { return }
+            sSelf.delegate?.signInViewControllerDidCreateAccount(sSelf)
         }
     }
 

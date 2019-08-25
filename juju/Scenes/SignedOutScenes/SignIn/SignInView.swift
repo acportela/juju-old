@@ -55,6 +55,25 @@ final class SignInView: UIView, JujuFormProtocol {
         return image
     }()
     
+    private let createAccountButton: UIButton = {
+        
+        let button = UIButton()
+        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.twelve,
+                                                left: 0,
+                                                bottom: Styling.Spacing.twelve,
+                                                right: 0)
+        button.addTarget(self, action: #selector(createAccountWasPressed), for: .touchUpInside)
+        button.setPartuallyUnderlined(title: "Ainda não possui uma conta? Criar agora",
+                                      term: "Criar agora",
+                                      color: Styling.Colors.veryLightPink,
+                                      regularFont: Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.sixteen),
+                                      underlinedFont: Resources.Fonts.Gilroy
+                                                                     .extraBold(ofSize: Styling.FontSize.sixteen))
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.minimumScaleFactor = 0.8
+        return button
+    }()
+    
     var onDoneAction: (() -> Void)? {
         didSet {
             enterButton.onTapAction = onDoneAction
@@ -66,6 +85,8 @@ final class SignInView: UIView, JujuFormProtocol {
             backButton.onTapAction = onBackTap
         }
     }
+    
+    var onCreateTap: (() -> Void)?
 
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -88,6 +109,7 @@ extension SignInView: ViewCoding {
         scrollInputStack.addSubview(inputStack)
         scrollInputStack.addSubview(enterButton)
         scrollInputStack.addSubview(backButton)
+        scrollInputStack.addSubview(createAccountButton)
         addSubview(scrollInputStack)
     }
     
@@ -121,6 +143,12 @@ extension SignInView: ViewCoding {
             make.top.equalTo(enterButton.snp.bottom).offset(Styling.Spacing.eight)
         }
         
+        createAccountButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
+            make.right.equalToSuperview().inset(Styling.Spacing.sixteen)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(Styling.Spacing.twentyfour)
+        }
+        
         background.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         }
@@ -132,6 +160,14 @@ extension SignInView: ViewCoding {
         self.backgroundColor = Styling.Colors.softPink
         inputs = [emailInput, passwordInput]
         setupToolbar()
+    }
+}
+
+extension SignInView {
+    
+    @objc
+    private func createAccountWasPressed() {
+        self.onCreateTap?()
     }
 }
 

@@ -80,7 +80,7 @@ extension SignedOutCoordinator: SignUpViewControllerDelegate {
 }
 
 extension SignedOutCoordinator: SignInViewControllerDelegate {
-    
+
     func signInViewController(_ viewController: SignInViewController,
                               didSignInWithUser user: ClientUser) {
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
@@ -90,4 +90,7 @@ extension SignedOutCoordinator: SignInViewControllerDelegate {
         navigation.popViewController(animated: true)
     }
     
+    func signInViewControllerDidCreateAccount(_ viewController: SignInViewController) {
+        
+    }
 }

@@ -13,9 +13,9 @@ final class JujuUnderlinedButton: UIView {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.twelve,
+        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.eight,
                                                 left: Styling.Spacing.eight,
-                                                bottom: Styling.Spacing.twelve,
+                                                bottom: Styling.Spacing.eight,
                                                 right: Styling.Spacing.eight)
         
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
