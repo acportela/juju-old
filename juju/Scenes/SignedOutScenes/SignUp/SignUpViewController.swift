@@ -14,10 +14,12 @@ protocol SignUpViewControllerDelegate: AnyObject {
     func signUpViewControllerDidTapBack(_ viewController: SignUpViewController)
 }
 
-final class SignUpViewController: UIViewController {
+final class SignUpViewController: UIViewController, Loadable {
     
     private let signUpView = SignUpView()
     private let userService: UserService
+    let loadingController = LoadingViewController()
+    
     weak var delegate: SignUpViewControllerDelegate?
     
     init(userService: UserService) {
@@ -72,14 +74,16 @@ final class SignUpViewController: UIViewController {
     
     private func proceedWithSignUp(user: ClientUser, password: String) {
         
-        userService.userWantsToSignUp(clientUser: user, password: password) { [weak self] result in
+        self.startLoading()
+        self.userService.userWantsToSignUp(clientUser: user, password: password) { [weak self] result in
             
             guard let sSelf = self else { return }
+            sSelf.stopLoading()
+            
             switch result {
+                
             case .success:
                 sSelf.delegate?.signUpViewController(sSelf, didSignUpWithUser: user)
-                //TODO Remove later
-                sSelf.enableErrorState("Usuário cadastrado!")
             case .error:
                 sSelf.enableErrorState("Ocorreu um erro inesperado. Por favor, tente novamente")
             }
@@ -101,7 +105,6 @@ final class SignUpViewController: UIViewController {
         return (user: user, pass: pass)
     }
     
-    //TODO Remove once error interface is refined
     private func enableErrorState(_ message: String) {
         let alert = UIAlertController(title: "Juju", message: message, primaryActionTitle: "OK")
         self.present(alert, animated: true)

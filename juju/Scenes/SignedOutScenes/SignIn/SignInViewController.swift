@@ -14,10 +14,11 @@ protocol SignInViewControllerDelegate: AnyObject {
     func signInViewControllerDidCreateAccount(_ viewController: SignInViewController)
 }
 
-final class SignInViewController: UIViewController {
+final class SignInViewController: UIViewController, Loadable {
     
     private let signInView = SignInView()
     private let userService: UserService
+    let loadingController = LoadingViewController()
     weak var delegate: SignInViewControllerDelegate?
     
     init(userService: UserService) {
@@ -81,20 +82,22 @@ final class SignInViewController: UIViewController {
     
     func proceedWithSignIn(email: String, pass: String) {
         
+        self.startLoading()
         self.userService.userWantsToSignIn(email: email, password: pass) { [weak self] result in
+            
             guard let sSelf = self else { return }
+            sSelf.stopLoading()
+            
             switch result {
+            
             case .success(let user):
                 sSelf.delegate?.signInViewController(sSelf, didSignInWithUser: user)
-                //TODO Remove later
-                sSelf.enableAlertState("Usuário logado!")
             case .error:
                 sSelf.enableAlertState("Ocorreu um erro inesperado. Por favor, tente novamente")
             }
         }
     }
-    
-    //TODO Remove once error interface is refined
+
     private func enableAlertState(_ message: String) {
         
         let alert = UIAlertController(title: "Juju", message: message, primaryActionTitle: "OK")

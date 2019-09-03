@@ -50,6 +50,9 @@
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
+		D69B923D231DF9D6009207B1 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B923C231DF9D6009207B1 /* LoadingViewController.swift */; };
+		D69B923F231E048E009207B1 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B923E231E048E009207B1 /* UIViewController.swift */; };
+		D69B9241231E0503009207B1 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B9240231E0503009207B1 /* Loadable.swift */; };
 		D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */; };
 		D6A3FD2622E0190500CE41FF /* FirebaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */; };
 		D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */; };
@@ -140,6 +143,9 @@
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		D69B923C231DF9D6009207B1 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		D69B923E231E048E009207B1 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		D69B9240231E0503009207B1 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRepository.swift; sourceTree = "<group>"; };
 		D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUser.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		D681E49122F12DC9003754F4 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				D69B923C231DF9D6009207B1 /* LoadingViewController.swift */,
 				D681E49222F12DF4003754F4 /* Validators.swift */,
 				D681E49422F1331A003754F4 /* TextFieldValidators.swift */,
 				D6046F3822EF1444002FB78B /* DateFormatters.swift */,
@@ -430,6 +437,7 @@
 				D61E0C3B22E4D41D003700EA /* JujuFormProtocol.swift */,
 				D695891222C7AF98009A356C /* ViewConfiguration.swift */,
 				D695891022C7AD6E009A356C /* ViewCoding.swift */,
+				D69B9240231E0503009207B1 /* Loadable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -462,6 +470,7 @@
 				D61E0C3522E491B1003700EA /* UIButton.swift */,
 				D6F3202922F5D35300950325 /* UIAlertController.swift */,
 				D66D5ADA2312CF8200F0A944 /* UITextField.swift */,
+				D69B923E231E048E009207B1 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -799,6 +808,7 @@
 				D6ABED2422DF30690022CF0A /* UserAuthenticationError.swift in Sources */,
 				D681E49322F12DF4003754F4 /* Validators.swift in Sources */,
 				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
+				D69B9241231E0503009207B1 /* Loadable.swift in Sources */,
 				D681E49022F128B3003754F4 /* InputKind.swift in Sources */,
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
 				D6B02A4422E0070100818C17 /* Repository.swift in Sources */,
@@ -818,6 +828,7 @@
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
+				D69B923D231DF9D6009207B1 /* LoadingViewController.swift in Sources */,
 				D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */,
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
@@ -828,6 +839,7 @@
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,
 				D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */,
+				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);
