@@ -23,19 +23,12 @@ class SignedOutCoordinator: Coordinator {
         
         self.navigation = rootNavigation
         self.userService = userService
+        self.navigation.setNavigationBarHidden(true, animated: false)
     }
     
     func start() {
         
-        self.startIntro()
-    }
-    
-    private func startIntro() {
-        
-        let introViewController = IntroViewController()
-        introViewController.delegate = self
-        
-        navigation.pushViewController(introViewController, animated: true)
+        self.startSignIn()
     }
     
     private func startSignUp() {
@@ -50,19 +43,6 @@ class SignedOutCoordinator: Coordinator {
         let signInViewController = SignInViewController(userService: self.userService)
         signInViewController.delegate = self
         navigation.pushViewController(signInViewController, animated: true)
-    }
-}
-
-extension SignedOutCoordinator: IntroViewControllerDelegate {
-    
-    func introViewControllerDidTapSignIn(_ viewController: IntroViewController) {
-        
-        startSignIn()
-    }
-    
-    func introViewControllerDidTapSignUp(_ viewController: IntroViewController) {
-        
-        startSignUp()
     }
 }
 
@@ -83,14 +63,12 @@ extension SignedOutCoordinator: SignInViewControllerDelegate {
 
     func signInViewController(_ viewController: SignInViewController,
                               didSignInWithUser user: ClientUser) {
+        
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
-    }
-    
-    func signInViewControllerDidTapBack(_ viewController: SignInViewController) {
-        navigation.popViewController(animated: true)
     }
     
     func signInViewControllerDidCreateAccount(_ viewController: SignInViewController) {
         
+        self.startSignUp()
     }
 }

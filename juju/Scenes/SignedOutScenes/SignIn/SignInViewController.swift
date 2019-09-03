@@ -11,11 +11,10 @@ import UIKit
 protocol SignInViewControllerDelegate: AnyObject {
     
     func signInViewController(_ viewController: SignInViewController, didSignInWithUser user: ClientUser)
-    func signInViewControllerDidTapBack(_ viewController: SignInViewController)
     func signInViewControllerDidCreateAccount(_ viewController: SignInViewController)
 }
 
-final class SignInViewController: SignedOutThemeViewController {
+final class SignInViewController: UIViewController {
     
     private let signInView = SignInView()
     private let userService: UserService
@@ -47,16 +46,11 @@ final class SignInViewController: SignedOutThemeViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         KeyboardListener.shared.remove(signInView)
+        super.viewWillDisappear(animated)
     }
     
     func setupCallbacks() {
-        
-        signInView.onBackTap = { [weak self] in
-            guard let sSelf = self else { return }
-            sSelf.delegate?.signInViewControllerDidTapBack(sSelf)
-        }
         
         signInView.onDoneAction = { [weak self] in
             

@@ -74,7 +74,6 @@
 		D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */; };
 		D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00AE22E3550B00D8B2CB /* IntroViewController.swift */; };
 		D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00B122E39ED200D8B2CB /* SignInView.swift */; };
-		D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00B722E3BD7E00D8B2CB /* SignedOutThemeViewController.swift */; };
 		D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00BE22E3CC5600D8B2CB /* Notification.swift */; };
 		D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */; };
 /* End PBXBuildFile section */
@@ -165,7 +164,6 @@
 		D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewSpec.swift; sourceTree = "<group>"; };
 		D6FF00AE22E3550B00D8B2CB /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		D6FF00B122E39ED200D8B2CB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		D6FF00B722E3BD7E00D8B2CB /* SignedOutThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutThemeViewController.swift; sourceTree = "<group>"; };
 		D6FF00BE22E3CC5600D8B2CB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +200,7 @@
 		D61E0C3F22E4D6CF003700EA /* SignedOutScenes */ = {
 			isa = PBXGroup;
 			children = (
+				D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */,
 				D6FF00A622E34BCE00D8B2CB /* Intro */,
 				D645C0EE22CCC33C00FAB219 /* SignUp */,
 				D6FF00B022E39EBF00D8B2CB /* SignIn */,
@@ -231,8 +230,6 @@
 			children = (
 				D645C0EF22CCC39800FAB219 /* SignUpView.swift */,
 				D6F2653D22D4DC840062C97A /* SignUpViewController.swift */,
-				D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */,
-				D6FF00B722E3BD7E00D8B2CB /* SignedOutThemeViewController.swift */,
 				D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */,
 			);
 			path = SignUp;
@@ -275,6 +272,7 @@
 				D6EA765822DDF44C00E87D00 /* Repository */,
 				D6ABED1C22DF2C020022CF0A /* Models */,
 				D68ACB9022C7E315001C94A5 /* Extensions */,
+				D6B1207A22E4EBF1005180D5 /* Resources */,
 				D695890D22C7AC71009A356C /* View */,
 				D695890922C7AAF5009A356C /* App */,
 				D695890722C7AAD1009A356C /* Supporting Files */,
@@ -388,7 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				D6B1207B22E4EC2D005180D5 /* Extensions */,
-				D6B1207A22E4EBF1005180D5 /* Resources */,
 				D6B1207822E4EB93005180D5 /* Components */,
 				D6B1207722E4EB78005180D5 /* Protocols */,
 			);
@@ -791,7 +788,6 @@
 				D6A3FD2622E0190500CE41FF /* FirebaseRepository.swift in Sources */,
 				D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
-				D6FF00B822E3BD7E00D8B2CB /* SignedOutThemeViewController.swift in Sources */,
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,

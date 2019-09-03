@@ -14,7 +14,7 @@ protocol SignUpViewControllerDelegate: AnyObject {
     func signUpViewControllerDidTapBack(_ viewController: SignUpViewController)
 }
 
-final class SignUpViewController: SignedOutThemeViewController {
+final class SignUpViewController: UIViewController {
     
     private let signUpView = SignUpView()
     private let userService: UserService
@@ -46,8 +46,8 @@ final class SignUpViewController: SignedOutThemeViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         KeyboardListener.shared.remove(signUpView)
+        super.viewWillDisappear(animated)
     }
     
     private func setupCallbacks() {

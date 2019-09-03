@@ -35,7 +35,6 @@ final class SignInView: UIView, JujuFormProtocol {
     }()
     
     private let enterButton = JujuButton(title: "entrar")
-    private let backButton = JujuUnderlinedButton(title: "Voltar")
     
     var scrollInputStack: UIScrollView = {
         let scroll = UIScrollView()
@@ -49,11 +48,7 @@ final class SignInView: UIView, JujuFormProtocol {
         return scroll
     }()
     
-    let background: UIImageView = {
-        let image = UIImageView(image: Resources.Images.signedOutBG)
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+    private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
     private let createAccountButton: UIButton = {
         
@@ -80,12 +75,6 @@ final class SignInView: UIView, JujuFormProtocol {
         }
     }
     
-    var onBackTap: (() -> Void)? {
-        didSet {
-            backButton.onTapAction = onBackTap
-        }
-    }
-    
     var onCreateTap: (() -> Void)?
 
     override init(frame: CGRect = .zero) {
@@ -102,13 +91,12 @@ extension SignInView: ViewCoding {
     
     func addSubViews() {
         
-        addSubview(background)
+        addSubview(bottomBG)
         scrollInputStack.addSubview(logoLabel)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
         scrollInputStack.addSubview(inputStack)
         scrollInputStack.addSubview(enterButton)
-        scrollInputStack.addSubview(backButton)
         scrollInputStack.addSubview(createAccountButton)
         addSubview(scrollInputStack)
     }
@@ -116,7 +104,9 @@ extension SignInView: ViewCoding {
     func setupConstraints() {
         
         scrollInputStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
         
         inputStack.snp.makeConstraints { make in
@@ -138,19 +128,14 @@ extension SignInView: ViewCoding {
             make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(Styling.Spacing.fourtyeight)
         }
         
-        backButton.snp.makeConstraints { make in
-            make.centerX.equalTo(enterButton.snp.centerX)
-            make.top.equalTo(enterButton.snp.bottom).offset(Styling.Spacing.eight)
-        }
-        
         createAccountButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
             make.right.equalToSuperview().inset(Styling.Spacing.sixteen)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(Styling.Spacing.twentyfour)
         }
         
-        background.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+        bottomBG.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
         }
     }
     

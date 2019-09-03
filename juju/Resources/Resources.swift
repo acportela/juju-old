@@ -72,7 +72,7 @@ extension Resources.Images {
     
     static let signedOutBG = image(named: "SignedOutBG")
     
-    static let bottomBG = image(named: "bottom-bg")
+    static let bottomBG = image(named: "bg-bottom")
     
     private static func image(named name: String) -> UIImage {
         guard let image = UIImage(named: name) else {

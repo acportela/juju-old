@@ -37,11 +37,7 @@ final class SignUpView: UIView, JujuFormProtocol {
         return stack
     }()
     
-    let background: UIImageView = {
-        let image = UIImageView(image: Resources.Images.signedOutBG)
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+    private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
     private let signUpButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "Voltar")
@@ -87,7 +83,7 @@ extension SignUpView: ViewCoding {
     
     func addSubViews() {
         
-        addSubview(background)
+        addSubview(bottomBG)
         scrollInputStack.addSubview(logoLabel)
         inputStack.addArrangedSubview(nameInput)
         inputStack.addArrangedSubview(dateOfBirth)
@@ -102,7 +98,9 @@ extension SignUpView: ViewCoding {
     func setupConstraints() {
         
         scrollInputStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
         
         inputStack.snp.makeConstraints { make in
@@ -133,8 +131,8 @@ extension SignUpView: ViewCoding {
             make.top.equalTo(signUpButton.snp.bottom).offset(Styling.Spacing.eight)
         }
         
-        background.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+        bottomBG.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
         }
     }
     

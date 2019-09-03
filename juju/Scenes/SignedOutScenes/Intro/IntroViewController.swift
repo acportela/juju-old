@@ -14,7 +14,7 @@ protocol IntroViewControllerDelegate: AnyObject {
     func introViewControllerDidTapSignUp(_ viewController: IntroViewController)
 }
 
-final class IntroViewController: SignedOutThemeViewController {
+final class IntroViewController: UIViewController {
     
     private let introView = IntroView()
     
