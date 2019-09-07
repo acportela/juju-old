@@ -1,0 +1,41 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Run tests"
+  lane :tests do
+    run_tests(workspace: "juju.xcworkspace",
+            devices: ["iPhone X"],
+            scheme: "jujuTests")
+  end
+
+  desc "Upload do Fabric"
+  lane :beta do
+
+    build_app(
+      # scheme: "juju",
+      export_method: "ad-hoc"
+    )
+
+    crashlytics(
+      api_token: "3301cd4e6350684335a4aaf1e91a9e64967585e1",
+      build_secret: "f41c01ec57690e1b0db0a39310c20f6521cdcb6d5a17abab0d97986d8eacd1bf"
+    )
+  end
+
+end

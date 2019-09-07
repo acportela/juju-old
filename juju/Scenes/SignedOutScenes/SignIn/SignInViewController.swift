@@ -11,7 +11,7 @@ import UIKit
 protocol SignInViewControllerDelegate: AnyObject {
     
     func signInViewController(_ viewController: SignInViewController, didSignInWithUser user: ClientUser)
-    func signInViewControllerDidCreateAccount(_ viewController: SignInViewController)
+    func signInViewControllerWantsToCreateAccount(_ viewController: SignInViewController)
 }
 
 final class SignInViewController: UIViewController, Loadable {
@@ -68,7 +68,7 @@ final class SignInViewController: UIViewController, Loadable {
         signInView.onCreateTap = { [weak self] in
             
             guard let sSelf = self else { return }
-            sSelf.delegate?.signInViewControllerDidCreateAccount(sSelf)
+            sSelf.delegate?.signInViewControllerWantsToCreateAccount(sSelf)
         }
     }
 

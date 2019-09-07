@@ -25,6 +25,8 @@ extension Styling.Colors {
     
     static let veryLightPink = UIColor(red: 241, green: 241, blue: 241)
     
+    static let white = UIColor(red: 255, green: 255, blue: 255)
+    
     static let duskyPink = UIColor(red: 208, green: 120, blue: 132)
     
     static let duskyRose = UIColor(red: 189, green: 97, blue: 109)

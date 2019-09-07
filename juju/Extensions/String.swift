@@ -10,6 +10,8 @@ import Foundation
 
 extension String {
     
+    public static let empty = ""
+    
     public var first: String {
         
         return String(self.prefix(1))

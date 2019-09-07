@@ -74,11 +74,19 @@ extension Resources.Images {
     
     static let bottomBG = image(named: "bg-bottom")
     
-    private static func image(named name: String) -> UIImage {
+    static let tabCalendar = image(named: "tab-calendar", template: true)
+    
+    static let tabExercise = image(named: "tab-exercise", template: true)
+    
+    static let tabProfile = image(named: "tab-profile", template: true)
+    
+    static let tabVideo = image(named: "tab-video", template: true)
+    
+    private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")
         }
         
-        return image
+        return template ? image.withRenderingMode(.alwaysTemplate) : image
     }
 }

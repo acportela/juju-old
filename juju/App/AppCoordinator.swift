@@ -14,9 +14,9 @@ class AppCoordinator: Coordinator {
     private let navigation: UINavigationController
     private let userService: UserService
     
-    private var isUserSignedIn: Bool {
-        //TODO Implement check
-        return false
+    private var signedInUser: ClientUser? {
+        set { self.updateUserLocally(signedInUser) }
+        get { return getUserLocally() }
     }
     
     init(rootNavigation: UINavigationController, userService: UserService) {
@@ -27,11 +27,28 @@ class AppCoordinator: Coordinator {
     
     func start() {
         
-        self.isUserSignedIn ? startSignedInFlow() : startSignedOutFlow()
+        guard let user = self.signedInUser else {
+            self.startSignedOutFlow()
+            return
+        }
+        
+        self.startSignedInFlow(withUser: user)
     }
     
-    //TODO Add ClientUser argument
-    private func startSignedInFlow() {
+    private func updateUserLocally(_ user: ClientUser?) {
+        
+    }
+    
+    private func getUserLocally() -> ClientUser? {
+        return nil
+    }
+    private func startSignedInFlow(withUser user: ClientUser) {
+        
+        let signedInCoordinator = SignedInCoordinator(rootController: self.navigation, user: user)
+        signedInCoordinator.delegate = self
+        
+        self.childCoordinators.append(signedInCoordinator)
+        signedInCoordinator.start()
         
     }
     
@@ -48,5 +65,21 @@ extension AppCoordinator: SignedOutCoordinatorDelegate {
     
     func signedOutCoordinator(_ coordinator: SignedOutCoordinator, didSignInWithUser user: ClientUser) {
         
+        _ = self.childCoordinators.popLast()
+        self.signedInUser = user
+        
+        //TODO: Change this to self.start() once user is stored locally!!!
+        //so that there's only one source of truth
+        self.startSignedInFlow(withUser: user)
+    }
+}
+
+extension AppCoordinator: SignedInCoordinatorDelegate {
+    
+    func signedInCoordinatorDidLogout(_ coordinator: SignedInCoordinator) {
+        
+        _ = self.childCoordinators.popLast()
+        self.signedInUser = nil
+        self.start()
     }
 }

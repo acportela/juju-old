@@ -18,6 +18,7 @@
 		D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3D22E4D62D003700EA /* SignInViewController.swift */; };
 		D622755722FA4527004992E5 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755622FA4527004992E5 /* DateUtils.swift */; };
 		D622755922FA4913004992E5 /* AppPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755822FA4913004992E5 /* AppPrefs.swift */; };
+		D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */; };
 		D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6414003230028C0005BD008 /* FirebaseConstants.swift */; };
 		D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400523002A87005BD008 /* FirebaseQuery.swift */; };
 		D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400723002AB9005BD008 /* FirebaseUserQuery.swift */; };
@@ -107,6 +108,7 @@
 		D61E0C3D22E4D62D003700EA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D622755622FA4527004992E5 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		D622755822FA4913004992E5 /* AppPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrefs.swift; sourceTree = "<group>"; };
+		D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInCoordinator.swift; sourceTree = "<group>"; };
 		D6414003230028C0005BD008 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		D641400523002A87005BD008 /* FirebaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuery.swift; sourceTree = "<group>"; };
 		D641400723002AB9005BD008 /* FirebaseUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserQuery.swift; sourceTree = "<group>"; };
@@ -217,9 +219,18 @@
 		D61E0C4022E4D706003700EA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D635DDCF2320899C00E36431 /* SignedInScenes */,
 				D61E0C3F22E4D6CF003700EA /* SignedOutScenes */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
+			isa = PBXGroup;
+			children = (
+				D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */,
+			);
+			path = SignedInScenes;
 			sourceTree = "<group>";
 		};
 		D641400923002ACB005BD008 /* User */ = {
@@ -798,6 +809,7 @@
 				D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
+				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,

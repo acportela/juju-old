@@ -50,11 +50,14 @@ extension SignedOutCoordinator: SignUpViewControllerDelegate {
     
     func signUpViewController(_ viewController: SignUpViewController,
                               didSignUpWithUser user: ClientUser) {
+        
+        self.navigation.popToRootViewController(animated: false)
+        self.navigation.popViewController(animated: true)
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }
     
     func signUpViewControllerDidTapBack(_ viewController: SignUpViewController) {
-        navigation.popViewController(animated: true)
+        self.navigation.popViewController(animated: true)
     }
     
 }
@@ -64,10 +67,11 @@ extension SignedOutCoordinator: SignInViewControllerDelegate {
     func signInViewController(_ viewController: SignInViewController,
                               didSignInWithUser user: ClientUser) {
         
+        self.navigation.popViewController(animated: true)
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }
     
-    func signInViewControllerDidCreateAccount(_ viewController: SignInViewController) {
+    func signInViewControllerWantsToCreateAccount(_ viewController: SignInViewController) {
         
         self.startSignUp()
     }
