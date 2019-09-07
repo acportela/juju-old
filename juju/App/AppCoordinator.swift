@@ -40,7 +40,9 @@ class AppCoordinator: Coordinator {
     }
     
     private func getUserLocally() -> ClientUser? {
-        return nil
+        
+        //TODO: Remove. Test puposes
+        return ClientUser(email: "acarlosportela@gmail.com", name: "Antonio Rodrigues", dob: Date())
     }
     private func startSignedInFlow(withUser user: ClientUser) {
         

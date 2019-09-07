@@ -106,8 +106,8 @@ extension SignUpView: ViewCoding {
         inputStack.snp.makeConstraints { make in
             
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(Styling.Spacing.twentyEight)
-            make.right.equalToSuperview().inset(Styling.Spacing.twentyEight)
+            make.left.equalToSuperview().offset(Styling.Spacing.twentyeight)
+            make.right.equalToSuperview().inset(Styling.Spacing.twentyeight)
         }
         
         logoLabel.snp.makeConstraints { make in
@@ -122,7 +122,7 @@ extension SignUpView: ViewCoding {
             make.centerX.equalToSuperview()
             make.width.equalTo(Constants.signUpButtonWidth)
             make.height.equalTo(Constants.signUpButtonHeight)
-            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(Styling.Spacing.thirtyTwo)
+            make.top.lessThanOrEqualTo(inputStack.snp.bottom).offset(Styling.Spacing.thirtytwo)
         }
         
         backButton.snp.makeConstraints { make in

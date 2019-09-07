@@ -30,5 +30,4 @@ struct TestHelpers {
     static var iphoneXSMaxFrame: CGRect {
         return CGRect(x: 0, y: 0, width: TestHelpers.iphoneXSMaxWidth, height: TestHelpers.iphoneXSMaxHeight)
     }
-    
 }

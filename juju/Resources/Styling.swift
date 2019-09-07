@@ -42,13 +42,15 @@ extension Styling.Spacing {
     
     static let twelve: CGFloat =  12
     
+    static let fourteen: CGFloat =  14
+    
     static let sixteen: CGFloat =  16
     
     static let twentyfour: CGFloat =  24
     
-    static let twentyEight: CGFloat =  28
+    static let twentyeight: CGFloat =  28
     
-    static let thirtyTwo: CGFloat = 32
+    static let thirtytwo: CGFloat = 32
     
     static let fourtyeight: CGFloat = 48
 }

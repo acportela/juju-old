@@ -6,8 +6,6 @@
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
 final class IntroView: UIView {
@@ -100,8 +98,8 @@ extension IntroView: ViewCoding {
         welcomeLabel.snp.makeConstraints { make in
             
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(Styling.Spacing.twentyEight)
-            make.right.equalToSuperview().inset(Styling.Spacing.twentyEight)
+            make.left.equalToSuperview().offset(Styling.Spacing.twentyeight)
+            make.right.equalToSuperview().inset(Styling.Spacing.twentyeight)
         }
         
         signIn.snp.makeConstraints { make in

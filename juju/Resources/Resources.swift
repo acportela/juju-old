@@ -82,6 +82,14 @@ extension Resources.Images {
     
     static let tabVideo = image(named: "tab-video", template: true)
     
+    static let playIndicator = image(named: "play-indicator")
+    
+    static let playButton = image(named: "icn-play")
+    
+    static let pauseButton = image(named: "icn-pause")
+    
+    static let replayButton = image(named: "icn-replay")
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

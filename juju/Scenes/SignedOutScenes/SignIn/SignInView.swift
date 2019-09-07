@@ -111,8 +111,8 @@ extension SignInView: ViewCoding {
         
         inputStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.left.equalToSuperview().offset(Styling.Spacing.twentyEight)
-            make.right.equalToSuperview().inset(Styling.Spacing.twentyEight)
+            make.left.equalToSuperview().offset(Styling.Spacing.twentyeight)
+            make.right.equalToSuperview().inset(Styling.Spacing.twentyeight)
         }
         
         logoLabel.snp.makeConstraints { make in

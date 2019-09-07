@@ -13,34 +13,46 @@ protocol SignedInCoordinatorDelegate: AnyObject {
     func signedInCoordinatorDidLogout(_ coordinator: SignedInCoordinator)
 }
 
-class SignedInCoordinator: Coordinator {
+class SignedInCoordinator: NSObject, Coordinator {
     
-    private let tabBarController =  UITabBarController()
-    private var rootController: UINavigationController
+    private var rootNavigation: UINavigationController
     private let user: ClientUser
+    
+    private lazy var tabBarController: JujuTabBarController  = {
+        
+        let controllers = self.setupTabControllers()
+        return JujuTabBarController(viewControllers: controllers, initialIndex: 1)
+    }()
+    
+    private let trainingViewController: TrainingViewController = {
+        
+        let controller = TrainingViewController()
+        controller.tabBarItem = UITabBarItem(title: .empty,
+                                             image: Resources.Images.tabExercise,
+                                             selectedImage: nil)
+        return controller
+    }()
+    
     weak var delegate: SignedInCoordinatorDelegate?
-    
-    let exercise = UIViewController()
-    
+
     init(rootController: UINavigationController, user: ClientUser) {
         
         self.user = user
-        self.rootController = rootController
+        self.rootNavigation = rootController
     }
     
     func start() {
         
-        self.setupTabBar()
+        self.setupNavigationBar()
+        self.rootNavigation.pushViewController(self.tabBarController, animated: true)
     }
     
-    private func setupTabBar() {
-    
-        self.tabBarController.tabBar.backgroundColor = Styling.Colors.white
-        self.tabBarController.tabBar.tintColor = Styling.Colors.rosyPink
-        self.tabBarController.tabBar.unselectedItemTintColor = Styling.Colors.rosyPink.withAlphaComponent(0.32)
+    private func setupNavigationBar() {
         
-        self.exercise.tabBarItem = UITabBarItem(title: .empty,
-                                                image: Resources.Images.tabExercise, selectedImage: nil)
+        self.rootNavigation.configureOpaqueStyle()
+    }
+    
+    private func setupTabControllers() -> [UIViewController] {
         
         let video = UIViewController()
         video.tabBarItem = UITabBarItem(title: .empty,
@@ -54,8 +66,6 @@ class SignedInCoordinator: Coordinator {
         calendar.tabBarItem = UITabBarItem(title: .empty,
                                            image: Resources.Images.tabCalendar, selectedImage: nil)
         
-        tabBarController.viewControllers = [calendar, exercise, video, profile]
-        
-        self.rootController.viewControllers = [tabBarController]
+        return [calendar, trainingViewController, video, profile]
     }
 }
