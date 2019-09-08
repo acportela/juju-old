@@ -21,10 +21,17 @@ final class TrainingViewController: UIViewController {
         
         super.viewDidLoad()
         self.configureNavigation()
+        self.configureView()
     }
     
     private func configureNavigation() {
 
         self.title = "Exercício"
+    }
+    
+    private func configureView() {
+        
+        let temporaryConfig = TrainingConfiguration(level: "fácil", convergingDuration: 5)
+        self.trainingView.configure(with: .initial(temporaryConfig))
     }
 }
