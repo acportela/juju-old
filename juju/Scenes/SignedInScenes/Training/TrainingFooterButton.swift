@@ -38,6 +38,9 @@ final class TrainingFooterButton: UIView {
         return imageView
     }()
     
+    // MARK: Properties
+    public var wasTappedCallback: (() -> Void)?
+    
     // MARK: Lifecycle
     
     override init(frame: CGRect = .zero) {
@@ -49,6 +52,18 @@ final class TrainingFooterButton: UIView {
     required init?(coder aDecoder: NSCoder) {
         
         fatalError("Initialize with view code")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.alpha = Constants.backgroundAlpha
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.alpha = Constants.defaultAlpha
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.alpha = Constants.defaultAlpha
     }
 }
 
@@ -84,6 +99,17 @@ extension TrainingFooterButton: ViewCoding {
         
         self.backgroundColor = Styling.Colors.rosyPink
         self.layer.cornerRadius = Constants.buttonCornerRadius
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewWasTapped))
+        self.addGestureRecognizer(tapGesture)
+    }
+}
+
+extension TrainingFooterButton {
+    
+    @objc
+    private func viewWasTapped() {
+        self.wasTappedCallback?()
     }
 }
 
@@ -111,5 +137,7 @@ extension TrainingFooterButton {
         
         static let playIndicatorSide = 24
         static let buttonCornerRadius: CGFloat = 25
+        static let backgroundAlpha: CGFloat = 0.3
+        static let defaultAlpha: CGFloat = 1
     }
 }

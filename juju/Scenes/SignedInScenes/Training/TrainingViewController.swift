@@ -12,6 +12,10 @@ final class TrainingViewController: UIViewController {
     
     private let trainingView = TrainingView()
     
+    //REMOVE
+    let trainingConfig = TrainingConfiguration(level: "fácil", convergingDuration: 5)
+    let dailyGoal = DailyGoal(goalSteps: 10)!
+    
     override func loadView() {
         
         self.view = trainingView
@@ -20,18 +24,45 @@ final class TrainingViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.trainingView.delegate = self
         self.configureNavigation()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         self.configureView()
     }
     
     private func configureNavigation() {
 
-        self.title = "Exercício"
+        self.title = "Exercícios"
     }
     
     private func configureView() {
         
-        let temporaryConfig = TrainingConfiguration(level: "fácil", convergingDuration: 5)
-        self.trainingView.configure(with: .initial(temporaryConfig))
+        self.trainingView.configure(with: .initial(trainingConfig))
+    }
+}
+
+extension TrainingViewController: TrainingViewDelegate {
+    
+    func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
+        
+        self.trainingView.configure(with: .start(self.dailyGoal))
+    }
+    
+    func trainingViewWantsToResumeTrain(_ trainingView: TrainingView) {
+        
+        self.trainingView.configure(with: .resume)
+    }
+    
+    func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
+        
+        self.trainingView.configure(with: .stop)
+    }
+    
+    func trainingViewWantsToRestartTrain(_ trainingView: TrainingView) {
+        
+        self.trainingView.configure(with: .restart)
     }
 }

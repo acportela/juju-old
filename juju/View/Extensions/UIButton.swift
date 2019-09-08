@@ -30,7 +30,11 @@ extension UIButton {
         self.setAttributedTitle(disabledTitle, for: .disabled)
     }
     
-    func setPartuallyUnderlined(title: String, term: String, color: UIColor, regularFont: UIFont, underlinedFont: UIFont) {
+    func setPartuallyUnderlined(title: String,
+                                term: String,
+                                color: UIColor,
+                                regularFont: UIFont,
+                                underlinedFont: UIFont) {
         
         let attributedTitle = NSMutableAttributedString(string: title, attributes: [.font: regularFont])
         

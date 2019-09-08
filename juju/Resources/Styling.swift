@@ -32,6 +32,8 @@ extension Styling.Colors {
     static let duskyRose = UIColor(red: 189, green: 97, blue: 109)
     
     static let softPinkTwo = UIColor(red: 255, green: 175, blue: 186)
+    
+    static let lightPeriwinkle = UIColor(red: 226, green: 228, blue: 233)
 }
 
 extension Styling.Spacing {

@@ -6,9 +6,10 @@
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol ViewCoding: class {
+protocol ViewCoding: UIView {
+    
     func addSubViews()
     func setupConstraints()
     func configureViews()
@@ -16,9 +17,12 @@ protocol ViewCoding: class {
 }
 
 extension ViewCoding {
+    
     func setupViewConfiguration() {
         addSubViews()
         setupConstraints()
         configureViews()
     }
+    
+    func configureViews() { }
 }

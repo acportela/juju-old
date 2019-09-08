@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol TrainingViewDelegate: AnyObject {
+    
+    func trainingViewWantsToStartTrain(_ trainingView: TrainingView)
+    func trainingViewWantsToResumeTrain(_ trainingView: TrainingView)
+    func trainingViewWantsToStopTrain(_ trainingView: TrainingView)
+    func trainingViewWantsToRestartTrain(_ trainingView: TrainingView)
+}
+
 final class TrainingView: UIView {
 
     // MARK: Views
@@ -16,56 +24,62 @@ final class TrainingView: UIView {
         
         let label = UILabel()
         label.textAlignment = .center
-        label.numberOfLines = Constants.numberOfLines
+        label.numberOfLines = Constants.instructionsLines
         label.text = "Aqui é onde você pratica o exercício\nde relaxamento e contração do períneo"
         label.textColor = Styling.Colors.rosyPink
         label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     
-    private let initialFooter = TrainingFooterButton()
-    
-    private let playPauseContainer = UIView()
-    
-    private let playButton: UIButton = {
+    private let contractRelax: UILabel = {
         
-        let button = UIButton()
-        button.setImage(Resources.Images.playButton, for: .normal)
-        return button
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = Styling.Colors.rosyPink
+        label.text = .empty
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twenty)
+        return label
     }()
     
-    private let pauseButton: UIButton = {
+    private lazy var initialFooter: TrainingFooterButton = {
         
-        let button = UIButton()
-        button.setImage(Resources.Images.pauseButton, for: .normal)
-        return button
-    }()
-    
-    private let restartButton: UIButton = {
-        
-        let button = UIButton()
-        button.setImage(Resources.Images.replayButton, for: .normal)
-        return button
-    }()
-    
-    private let animationRect: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
+        let view = TrainingFooterButton()
+        view.wasTappedCallback = {
+            
+            self.delegate?.trainingViewWantsToStartTrain(self)
+        }
         return view
     }()
     
-    private let circularLayer: CAShapeLayer  = {
-        let layer = CAShapeLayer()
-        layer.fillColor = self.backgroundColor?.cgColor
-        layer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
-        layer.frame = self.bounds
-        layer.cornerRadius = self.bounds.height/2
-        layer.masksToBounds = true
-        layer.addSublayer(self.animatableLayer!)
-        return layer
-    }
+    private lazy var playPauseComponent: PlayPauseRestartComponent = {
+        
+        let view = PlayPauseRestartComponent()
+        view.delegate = self
+        return view
+    }()
+    
+    private let dailyProgressComponent: DailyGoalComponent = {
+        
+        let view = DailyGoalComponent()
+        view.isHidden = true
+        return view
+    }()
+    
+    private let innerCircle = NumberedCircle(radius: 51.5)
+    private let circlesComponent = CirclesComponent(time: 5)
     
     // MARK: Properties
+    private lazy var timer: TrainingTimer = {
+        
+        let timer = TrainingTimer()
+        timer.timerWasUpdated = { currentTime in
+            
+            self.handleTimeUpdate(currentTime)
+        }
+        return timer
+    }()
+    
+    public weak var delegate: TrainingViewDelegate?
     
     // MARK: Lifecycle
     
@@ -85,13 +99,13 @@ extension TrainingView: ViewCoding {
     
     func addSubViews() {
         
-        self.addSubview(instructions)
-        self.addSubview(animationRect)
-        self.addSubview(initialFooter)
-        self.playPauseContainer.addSubview(playButton)
-        self.playPauseContainer.addSubview(pauseButton)
-        self.addSubview(playPauseContainer)
-        self.addSubview(restartButton)
+        self.addSubview(self.instructions)
+        self.addSubview(self.contractRelax)
+        self.addSubview(self.innerCircle)
+        self.addSubview(self.circlesComponent)
+        self.addSubview(self.initialFooter)
+        self.addSubview(self.playPauseComponent)
+        self.addSubview(self.dailyProgressComponent)
     }
     
     func setupConstraints() {
@@ -110,103 +124,161 @@ extension TrainingView: ViewCoding {
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Styling.Spacing.twentyfour)
         }
         
-        self.restartButton.snp.makeConstraints { make in
-            make.height.width.equalTo(Constants.repeatSides)
-            make.centerY.equalTo(playPauseContainer.snp.centerY)
-            make.left.equalTo(playPauseContainer.snp.right).offset(Styling.Spacing.thirtytwo)
+        self.innerCircle.snp.makeConstraints { make in
+            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
+            make.centerY.equalTo(self.safeAreaLayoutGuide.snp.centerY)
+            make.width.height.equalTo(Constants.innerCircleSide)
         }
         
-        self.playButton.snp.makeConstraints { make in
-            make.height.width.equalTo(Constants.playPauseSides)
-            make.edges.equalToSuperview()
+        self.circlesComponent.snp.makeConstraints { make in
+            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
+            make.centerY.equalTo(self.safeAreaLayoutGuide.snp.centerY)
+            make.width.height.equalToSuperview().multipliedBy(Constants.animationRectWidthRatio)
         }
         
-        self.pauseButton.snp.makeConstraints { make in
-            make.height.width.equalTo(Constants.playPauseSides)
-            make.edges.equalToSuperview()
-        }
-        
-        self.playPauseContainer.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+        self.playPauseComponent.snp.makeConstraints { make in
+            make.width.equalTo(Constants.playPauseRestartWidth)
+            make.height.equalTo(Constants.playPauseRestartHeight)
+            make.left.equalTo(self.snp.centerX).offset(Constants.playPauseCenterXOffset)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Styling.Spacing.sixteen)
         }
         
-        self.animationRect.snp.makeConstraints { make in
-            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
-            make.centerY.equalTo(self.safeAreaLayoutGuide.snp.centerY)
-            make.width.equalToSuperview().multipliedBy(Constants.animationRectWidthRatio)
-            make.height.equalTo(self.animationRect.snp.width)
+        self.dailyProgressComponent.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.eight)
+            make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
+            make.right.equalToSuperview().offset(-Styling.Spacing.sixteen)
         }
-    }
-    
-    func configureViews() {
         
+        self.contractRelax.snp.makeConstraints { make in
+            
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(self.circlesComponent.snp.top).offset(-Styling.Spacing.eight)
+        }
     }
 }
 
-extension TrainingView {
-    
-    private func addCircularLayers(amount: Int) -> [CAShapeLayer] {
-        
-        var shapes: [CAShapeLayer] = []
-        
-        let biggestRadius = self.animationRect.frame.width / 2
-        let centerColor = Styling.Colors.softPinkTwo
-        
-        for index in 1...amount {
-            
-            let shape = CAShapeLayer()
-            
-            let alpha = CGFloat(index) / CGFloat(amount)
-            
-            shape.fillColor = centerColor.withAlphaComponent(alpha).cgColor
-            
-            let sideRatio = (CGFloat(amount) / CGFloat(index) / CGFloat(amount))
-            let side = self.animationRect.frame.width
-            let rect = CGRect(x: 0, y: 0, width: self.animationRect.frame.width, height: <#T##Int#>)
-            shape.path = UIBezierPath(roundedRect: <#T##CGRect#>, cornerRadius: <#T##CGFloat#>)
-            shapes.append(shape)
-        }
-        
-        return []
-    }
-}
 extension TrainingView: ViewConfiguration {
     
     enum States {
-    case initial(TrainingConfiguration)
-    case inProgress(TrainingConfiguration, DailyGoal)
+        
+        case initial(TrainingConfiguration)
+        case start(DailyGoal)
+        case stop
+        case resume
+        case contract
+        case relax
+        case restart
+        case updateTime(Int)
     }
     
     func configure(with state: TrainingView.States) {
         
         switch state {
+            
         case .initial(let configuration):
             
             let footerConfig = TrainingFooterButtonConfiguration(title: "Começar",
                                                                  subtitle: "nível \(configuration.level.lowercased())")
-            self.initialFooter.configure(with: .initial(footerConfig))
-            self.initialFooter.isHidden = false
             self.instructions.isHidden = false
+            self.playPauseComponent.isHidden = true
+            self.dailyProgressComponent.isHidden = true
+            self.initialFooter.isHidden = false
             
-            self.playPauseContainer.isHidden = true
+            self.initialFooter.configure(with: .initial(footerConfig))
             
-        case .inProgress:
+            self.circlesComponent.configure(with: .stopAnimation)
+            
+            self.innerCircle.configure(with: .build(number: configuration.convergingDuration,
+                                                    color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
+            
+            self.contractRelax.text = .empty
+            
+        case .start(let goal):
             
             self.instructions.isHidden = true
+            self.initialFooter.isHidden = true
+            self.playPauseComponent.isHidden = false
+            self.dailyProgressComponent.isHidden = false
+            
+            self.playPauseComponent.configure(with: .play)
+            self.circlesComponent.configure(with: .startAnimation)
+            self.dailyProgressComponent.configure(with: .initial(current: goal.currentStep,
+                                                                 total: goal.goalSteps))
+            
+            self.contractRelax.text = .empty
+            
+        case .resume:
+            
+            self.circlesComponent.configure(with: .startAnimation)
+            self.playPauseComponent.configure(with: .play)
+            
+        case .contract:
+            
+            self.contractRelax.text = Constants.contract
+            
+        case .relax:
+            
+            self.contractRelax.text = Constants.relax
+            
+        case .stop:
+            
+            self.playPauseComponent.configure(with: .pause)
+            self.circlesComponent.configure(with: .stopAnimation)
+    
+            self.contractRelax.text = .empty
+            
+        case .restart:
+            
+            self.circlesComponent.configure(with: .stopAnimation)
+            self.circlesComponent.configure(with: .startAnimation)
+            
+        case .updateTime(let time):
+            
+            self.innerCircle.configure(with: .updateNumber(time))
         }
+    }
+}
+
+extension TrainingView: PlayPauseRestartComponentDelegate {
+    
+    func playPauseRestartComponentTappedPlay(_ trainingView: PlayPauseRestartComponent) {
+        
+        self.delegate?.trainingViewWantsToResumeTrain(self)
+    }
+    
+    func playPauseRestartComponentTappedPause(_ trainingView: PlayPauseRestartComponent) {
+        
+        self.delegate?.trainingViewWantsToStopTrain(self)
+    }
+    
+    func playPauseRestartComponentTappedRestart(_ trainingView: PlayPauseRestartComponent) {
+        
+        self.delegate?.trainingViewWantsToRestartTrain(self)
     }
 }
 
 extension TrainingView {
     
+    private func handleTimeUpdate(_ time: Int) {
+        
+        //TODO
+    }
+    
+}
+extension TrainingView {
+    
     struct Constants {
         
-        static let numberOfLines = 2
+        static let instructionsLines = 2
         static let initialFooterHeight = 48
         static let initialFooterWidth = 332
-        static let repeatSides = 24
-        static let playPauseSides = 68
+        static let playPauseRestartWidth = 124
+        static let playPauseRestartHeight = 68
+        static let playPauseCenterXOffset = -34
         static let animationRectWidthRatio: CGFloat = 0.75
+        static let innerCircleSide = 102
+        static let dailyProgressComponentHeight = 36
+        static let contract = "CONTRAIR"
+        static let relax = "RELAXAR"
     }
 }
