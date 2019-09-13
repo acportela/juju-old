@@ -31,9 +31,16 @@ class TrainingTimer {
         timer.invalidate()
     }
     
+    func restart() {
+        
+        self.stop()
+        self.start()
+    }
+    
     @objc
     private func timerUpdated() {
         
+        self.counter += 1
         self.timerWasUpdated?(counter)
     }
 }

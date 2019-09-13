@@ -14,6 +14,7 @@ protocol TrainingViewDelegate: AnyObject {
     func trainingViewWantsToResumeTrain(_ trainingView: TrainingView)
     func trainingViewWantsToStopTrain(_ trainingView: TrainingView)
     func trainingViewWantsToRestartTrain(_ trainingView: TrainingView)
+    func trainingViewFinishedDailyGoal(_ trainingView: TrainingView)
 }
 
 final class TrainingView: UIView {
@@ -37,7 +38,7 @@ final class TrainingView: UIView {
         label.textAlignment = .center
         label.textColor = Styling.Colors.rosyPink
         label.text = .empty
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twenty)
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty)
         return label
     }()
     
@@ -78,6 +79,24 @@ final class TrainingView: UIView {
         }
         return timer
     }()
+    
+    private var currentBladderState: BladderState = .contraction {
+        didSet {
+            self.contractRelax.text = self.currentBladderState.rawValue.uppercased()
+        }
+    }
+    
+    private (set) var currentTrain: TrainingConfiguration = .empty {
+        didSet { self.setInitialViewOrLevelUp() }
+    }
+    
+    private (set) var dailyGoal: DailyGoal = .empty {
+        didSet {
+            
+            self.dailyProgressComponent.configure(with: .set(current: self.dailyGoal.currentStep,
+                                                             total: self.dailyGoal.goalSteps))
+        }
+    }
     
     public weak var delegate: TrainingViewDelegate?
     
@@ -133,7 +152,8 @@ extension TrainingView: ViewCoding {
         self.circlesComponent.snp.makeConstraints { make in
             make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
             make.centerY.equalTo(self.safeAreaLayoutGuide.snp.centerY)
-            make.width.height.equalToSuperview().multipliedBy(Constants.animationRectWidthRatio)
+            make.width.equalToSuperview().multipliedBy(Constants.animationRectWidthRatio)
+            make.height.equalTo(self.circlesComponent.snp.width)
         }
         
         self.playPauseComponent.snp.makeConstraints { make in
@@ -152,7 +172,7 @@ extension TrainingView: ViewCoding {
         self.contractRelax.snp.makeConstraints { make in
             
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.circlesComponent.snp.top).offset(-Styling.Spacing.eight)
+            make.bottom.equalTo(self.circlesComponent.snp.top).offset(-Styling.Spacing.twentyfour)
         }
     }
 }
@@ -161,7 +181,7 @@ extension TrainingView: ViewConfiguration {
     
     enum States {
         
-        case initial(TrainingConfiguration)
+        case initialAndLevelUp(TrainingConfiguration)
         case start(DailyGoal)
         case stop
         case resume
@@ -175,62 +195,44 @@ extension TrainingView: ViewConfiguration {
         
         switch state {
             
-        case .initial(let configuration):
+        case .initialAndLevelUp(let configuration):
             
-            let footerConfig = TrainingFooterButtonConfiguration(title: "Começar",
-                                                                 subtitle: "nível \(configuration.level.lowercased())")
-            self.instructions.isHidden = false
-            self.playPauseComponent.isHidden = true
-            self.dailyProgressComponent.isHidden = true
-            self.initialFooter.isHidden = false
-            
-            self.initialFooter.configure(with: .initial(footerConfig))
-            
-            self.circlesComponent.configure(with: .stopAnimation)
-            
-            self.innerCircle.configure(with: .build(number: configuration.convergingDuration,
-                                                    color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
-            
-            self.contractRelax.text = .empty
+            self.currentTrain = configuration
             
         case .start(let goal):
             
-            self.instructions.isHidden = true
-            self.initialFooter.isHidden = true
-            self.playPauseComponent.isHidden = false
-            self.dailyProgressComponent.isHidden = false
-            
-            self.playPauseComponent.configure(with: .play)
-            self.circlesComponent.configure(with: .startAnimation)
-            self.dailyProgressComponent.configure(with: .initial(current: goal.currentStep,
-                                                                 total: goal.goalSteps))
-            
-            self.contractRelax.text = .empty
+            self.dailyGoal = goal
+            self.startTrain()
             
         case .resume:
             
-            self.circlesComponent.configure(with: .startAnimation)
             self.playPauseComponent.configure(with: .play)
+            self.circlesComponent.configure(with: .startAnimation)
+            self.contractRelax.isHidden = false
+            self.timer.start()
             
         case .contract:
             
-            self.contractRelax.text = Constants.contract
+            self.currentBladderState = .contraction
             
         case .relax:
             
-            self.contractRelax.text = Constants.relax
+            self.currentBladderState = .relaxation
             
         case .stop:
             
+            self.contractRelax.isHidden = true
             self.playPauseComponent.configure(with: .pause)
             self.circlesComponent.configure(with: .stopAnimation)
-    
-            self.contractRelax.text = .empty
+            self.timer.stop()
             
         case .restart:
             
-            self.circlesComponent.configure(with: .stopAnimation)
-            self.circlesComponent.configure(with: .startAnimation)
+            self.contractRelax.isHidden = false
+            self.currentBladderState = .contraction
+            
+            self.circlesComponent.configure(with: .restart)
+            self.timer.restart()
             
         case .updateTime(let time):
             
@@ -259,9 +261,73 @@ extension TrainingView: PlayPauseRestartComponentDelegate {
 
 extension TrainingView {
     
+    enum BladderState: String {
+        
+        case contraction = "Contrair"
+        case relaxation = "Relaxar"
+    }
+    
     private func handleTimeUpdate(_ time: Int) {
         
-        //TODO
+//        if time >= self.currentTrain.totalSerieTime {
+//            
+//            //terminou a serie
+//            self.currentBladderState = .contraction
+//            self.timer.restart()
+//            self.dailyGoal.incrementCurrentStep()
+//            return
+//        }
+        
+        switch self.currentBladderState {
+        case .contraction:
+            
+            let remainingTime = self.currentTrain.contractionTime - time
+            if remainingTime <= 0 {
+                self.currentBladderState = .relaxation
+                self.timer.restart()
+            }
+        case .relaxation:
+            let remainingTime = self.currentTrain.relaxationTime - time
+            if remainingTime <= 0 {
+                self.currentBladderState = .contraction
+                self.timer.restart()
+                self.dailyGoal.incrementCurrentStep()
+            }
+        }
+    }
+    
+    private func setInitialViewOrLevelUp() {
+        
+        let config = self.currentTrain
+        
+        self.contractRelax.text = .empty
+        self.instructions.isHidden = false
+        self.playPauseComponent.isHidden = true
+        self.dailyProgressComponent.isHidden = true
+        self.initialFooter.isHidden = false
+        
+        let footerConfig = TrainingFooterButtonConfiguration(title: "Começar",
+                                                             subtitle: "nível \(config.level.lowercased())")
+        self.initialFooter.configure(with: .initial(footerConfig))
+        self.circlesComponent.configure(with: .stopAnimation)
+        self.innerCircle.configure(with: .build(number: config.contractionTime,
+                                                color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
+        
+    }
+    
+    private func startTrain() {
+        
+        self.instructions.isHidden = true
+        self.initialFooter.isHidden = true
+        self.playPauseComponent.isHidden = false
+        self.dailyProgressComponent.isHidden = false
+        
+        self.currentBladderState = .contraction
+        self.contractRelax.isHidden = false
+        
+        self.playPauseComponent.configure(with: .play)
+        self.circlesComponent.configure(with: .startAnimation)
+        self.timer.start()
     }
     
 }
@@ -276,9 +342,7 @@ extension TrainingView {
         static let playPauseRestartHeight = 68
         static let playPauseCenterXOffset = -34
         static let animationRectWidthRatio: CGFloat = 0.75
-        static let innerCircleSide = 102
+        static let innerCircleSide = 103
         static let dailyProgressComponentHeight = 36
-        static let contract = "CONTRAIR"
-        static let relax = "RELAXAR"
     }
 }

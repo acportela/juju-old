@@ -90,7 +90,7 @@ extension Resources.Images {
     
     static let replayButton = image(named: "icn-replay")
     
-    static let circles = image(named: "circles-4")
+    static let circles = image(named: "circles")
     
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {

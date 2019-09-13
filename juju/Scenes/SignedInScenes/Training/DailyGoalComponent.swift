@@ -50,7 +50,6 @@ final class DailyGoalComponent: UIView {
         return view
     }()
     
-    
     // MARK: Properties
     private var completedBarWidthConstraint: Constraint?
 
@@ -58,7 +57,7 @@ final class DailyGoalComponent: UIView {
         
         didSet {
             
-            self.updateProgressOffset(progress: self.progress)
+            self.updateProgressOffset()
         }
     }
     // MARK: Lifecycle
@@ -110,14 +109,12 @@ extension DailyGoalComponent: ViewCoding {
             self.completedBarWidthConstraint = make.width.equalTo(0).constraint
             make.height.equalTo(Constants.progressBarsHeight)
             make.left.bottom.equalToSuperview()
-            make.height.equalTo(self.progressBarBackground.snp.height)
         }
     }
     
     func configureViews() {
         
         self.backgroundColor = .clear
-        self.completedBarWidthConstraint?.isActive = true
     }
 }
 
@@ -133,31 +130,31 @@ extension DailyGoalComponent: ViewConfiguration {
     
     enum States {
         
-        case initial(current: Int, total: Int)
-        case update(current: Int)
+        case set(current: Int, total: Int)
     }
     
     func configure(with state: DailyGoalComponent.States) {
         
         switch state {
             
-        case .initial(let current, let total):
+        case .set(let current, let total):
             
             guard current <= total else { return }
+            self.progressLabel.text = "\(current)/\(total)"
             self.progress = Progress(current: current, total: total)
-            
-        case .update(let current):
-            
-            guard current <= self.progress.total else { return }
-            self.progress.current = current
+
         }
     }
     
-    func updateProgressOffset(progress: Progress) {
+    func updateProgressOffset() {
         
-        let ratio = CGFloat(progress.current) / CGFloat(progress.total)
+        let ratio = CGFloat(self.progress.current) / CGFloat(self.progress.total)
         let offset = self.progressBarBackground.frame.width * ratio
-        self.completedBarWidthConstraint?.update(offset: offset)
+        
+        UIView.animate(withDuration: Constants.progressBarFillDuration) {
+            
+            self.completedBarWidthConstraint?.update(offset: offset)
+        }
     }
 }
 
@@ -167,5 +164,6 @@ extension DailyGoalComponent {
         
         static let cornerRadius: CGFloat = 7
         static let progressBarsHeight = 13
+        static let progressBarFillDuration: Double = 1
     }
 }

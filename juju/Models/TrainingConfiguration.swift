@@ -10,16 +10,22 @@ import Foundation
 
 struct TrainingConfiguration {
     
-    let convergingDuration: Int
-    let divergingDuration: Int
+    let contractionTime: Int
+    let relaxationTime: Int
     let level: String
+    
+    var totalSerieTime: Int {
+        return self.contractionTime + self.relaxationTime
+    }
     
     init(level: String,
          convergingDuration: Int,
          divergingDuration: Int? = nil) {
         
         self.level = level
-        self.convergingDuration = convergingDuration
-        self.divergingDuration = divergingDuration ?? convergingDuration
+        self.contractionTime = convergingDuration
+        self.relaxationTime = divergingDuration ?? convergingDuration
     }
+    
+    static let empty = TrainingConfiguration(level: .empty, convergingDuration: 0)
 }
