@@ -87,7 +87,7 @@ final class TrainingView: UIView {
     }
     
     private (set) var currentTrain: TrainingConfiguration = .empty {
-        didSet { self.setInitialViewOrLevelUp() }
+        didSet { self.setInitial() }
     }
     
     private (set) var dailyGoal: DailyGoal = .empty {
@@ -224,12 +224,15 @@ extension TrainingView: ViewConfiguration {
             self.contractRelax.isHidden = true
             self.playPauseComponent.configure(with: .pause)
             self.circlesComponent.configure(with: .stopAnimation)
+            self.currentBladderState = .contraction
+            self.resetInnerLabel(forState: .contraction)
             self.timer.stop()
             
         case .restart:
             
             self.contractRelax.isHidden = false
             self.currentBladderState = .contraction
+            self.resetInnerLabel(forState: .contraction)
             
             self.circlesComponent.configure(with: .restart)
             self.timer.restart()
@@ -269,16 +272,8 @@ extension TrainingView {
     
     private func handleTimeUpdate(_ time: Int) {
         
-//        if time >= self.currentTrain.totalSerieTime {
-//            
-//            //terminou a serie
-//            self.currentBladderState = .contraction
-//            self.timer.restart()
-//            self.dailyGoal.incrementCurrentStep()
-//            return
-//        }
-        
         switch self.currentBladderState {
+            
         case .contraction:
             
             let remainingTime = self.currentTrain.contractionTime - time
@@ -286,17 +281,24 @@ extension TrainingView {
                 self.currentBladderState = .relaxation
                 self.timer.restart()
             }
+            
+            self.updateInnerLabelFor(remainingTime: remainingTime, state: self.currentBladderState)
+            
         case .relaxation:
+            
             let remainingTime = self.currentTrain.relaxationTime - time
             if remainingTime <= 0 {
+                
                 self.currentBladderState = .contraction
                 self.timer.restart()
                 self.dailyGoal.incrementCurrentStep()
             }
+            
+            self.updateInnerLabelFor(remainingTime: remainingTime, state: self.currentBladderState)
         }
     }
     
-    private func setInitialViewOrLevelUp() {
+    private func setInitial() {
         
         let config = self.currentTrain
         
@@ -330,6 +332,26 @@ extension TrainingView {
         self.timer.start()
     }
     
+    private func updateInnerLabelFor(remainingTime: Int, state: BladderState) {
+        
+        if remainingTime > 0 {
+            
+            self.innerCircle.configure(with: .updateNumber(remainingTime))
+            
+        } else {
+            
+            self.resetInnerLabel(forState: state)
+        }
+        
+    }
+    
+    private func resetInnerLabel(forState state: BladderState) {
+        
+        let time = state == .contraction ? self.currentTrain.contractionTime
+                                         : self.currentTrain.relaxationTime
+        self.innerCircle.configure(with: .updateNumber(time))
+    }
+    
 }
 extension TrainingView {
     
@@ -337,12 +359,10 @@ extension TrainingView {
         
         static let instructionsLines = 2
         static let initialFooterHeight = 48
-        static let initialFooterWidth = 332
         static let playPauseRestartWidth = 124
         static let playPauseRestartHeight = 68
         static let playPauseCenterXOffset = -34
         static let animationRectWidthRatio: CGFloat = 0.75
         static let innerCircleSide = 103
-        static let dailyProgressComponentHeight = 36
     }
 }

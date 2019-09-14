@@ -13,8 +13,12 @@ final class JujuButton: UIView {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        //button.titleLabel?.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty)
+        //button.titleLabel?.font = Resources.Fonts.Gilroy.extrabold(ofSize: Styling.FontSize.twenty)
         button.layer.cornerRadius = Constants.buttonCornerRadius
+        button.titleEdgeInsets = UIEdgeInsets(top: Styling.Spacing.twelve,
+                                              left: Styling.Spacing.sixteen,
+                                              bottom: Styling.Spacing.twelve,
+                                              right: Styling.Spacing.sixteen)
         button.layer.masksToBounds = true
         button.backgroundColor = theme.backgroundColor
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)

@@ -27,6 +27,8 @@
 		D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3D22E4D62D003700EA /* SignInViewController.swift */; };
 		D622755722FA4527004992E5 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755622FA4527004992E5 /* DateUtils.swift */; };
 		D622755922FA4913004992E5 /* AppPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622755822FA4913004992E5 /* AppPrefs.swift */; };
+		D6283471232C87670068CF47 /* TrainingModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6283470232C87670068CF47 /* TrainingModeView.swift */; };
+		D6283474232C8BE50068CF47 /* TrainingViewModeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6283473232C8BE50068CF47 /* TrainingViewModeSpec.swift */; };
 		D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */; };
 		D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6414003230028C0005BD008 /* FirebaseConstants.swift */; };
 		D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400523002A87005BD008 /* FirebaseQuery.swift */; };
@@ -133,6 +135,8 @@
 		D61E0C3D22E4D62D003700EA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D622755622FA4527004992E5 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		D622755822FA4913004992E5 /* AppPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrefs.swift; sourceTree = "<group>"; };
+		D6283470232C87670068CF47 /* TrainingModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModeView.swift; sourceTree = "<group>"; };
+		D6283473232C8BE50068CF47 /* TrainingViewModeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewModeSpec.swift; sourceTree = "<group>"; };
 		D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInCoordinator.swift; sourceTree = "<group>"; };
 		D6414003230028C0005BD008 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		D641400523002A87005BD008 /* FirebaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuery.swift; sourceTree = "<group>"; };
@@ -255,6 +259,14 @@
 				D61E0C3F22E4D6CF003700EA /* SignedOutScenes */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D6283472232C8BBA0068CF47 /* TrainingViewMode */ = {
+			isa = PBXGroup;
+			children = (
+				D6283473232C8BE50068CF47 /* TrainingViewModeSpec.swift */,
+			);
+			path = TrainingViewMode;
 			sourceTree = "<group>";
 		};
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
@@ -546,6 +558,7 @@
 				D6C75ADD2329E13300F44EE7 /* PlayPauseRestartComponent.swift */,
 				D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */,
 				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
+				D6283470232C87670068CF47 /* TrainingModeView.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -573,6 +586,7 @@
 		D6E1186E22F2843D00F01899 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D6283472232C8BBA0068CF47 /* TrainingViewMode */,
 				D6B1207622E4E6FA005180D5 /* SignIn */,
 				D6FF00AD22E3511300D8B2CB /* Intro */,
 				D645C0F122CCCBF900FAB219 /* SignUp */,
@@ -923,6 +937,7 @@
 				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6182B5D2324540000932DA3 /* TrainingConfiguration.swift in Sources */,
+				D6283471232C87670068CF47 /* TrainingModeView.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -937,6 +952,7 @@
 				D6E1187022F2848C00F01899 /* ValidatorsSpec.swift in Sources */,
 				D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */,
 				D6182B512324168000932DA3 /* TrainingFooterButtonSpec.swift in Sources */,
+				D6283474232C8BE50068CF47 /* TrainingViewModeSpec.swift in Sources */,
 				D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */,
 				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,
 				D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */,
