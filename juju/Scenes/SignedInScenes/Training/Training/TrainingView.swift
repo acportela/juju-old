@@ -175,6 +175,11 @@ extension TrainingView: ViewCoding {
             make.bottom.equalTo(self.circlesComponent.snp.top).offset(-Styling.Spacing.twentyfour)
         }
     }
+    
+    func configureViews() {
+        
+        self.backgroundColor = Styling.Colors.white
+    }
 }
 
 extension TrainingView: ViewConfiguration {

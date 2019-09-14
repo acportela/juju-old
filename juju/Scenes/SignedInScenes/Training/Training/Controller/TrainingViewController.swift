@@ -11,10 +11,22 @@ import UIKit
 final class TrainingViewController: UIViewController {
     
     private let trainingView = TrainingView()
+    private let trainingMode: TrainingMode
     
     //REMOVE
     let trainingConfig = TrainingConfiguration(level: "fácil", convergingDuration: 5)
     let dailyGoal = DailyGoal(goalSteps: 4)!
+    
+    init(trainingMode: TrainingMode) {
+        
+        self.trainingMode = trainingMode
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         
@@ -25,6 +37,10 @@ final class TrainingViewController: UIViewController {
         
         super.viewDidLoad()
         self.trainingView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.configureNavigation()
     }
     
@@ -32,16 +48,15 @@ final class TrainingViewController: UIViewController {
         super.viewDidAppear(animated)
         //Improve resume decision (initial vs resume)
         self.trainingView.configure(with: .initialAndLevelUp(trainingConfig))
-        
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         self.trainingView.configure(with: .stop)
-        self.viewDidAppear(animated)
+        super.viewWillDisappear(animated)
     }
     
     private func configureNavigation() {
-
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = "Exercícios"
     }
 }

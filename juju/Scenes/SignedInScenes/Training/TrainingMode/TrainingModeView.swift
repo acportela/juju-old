@@ -9,6 +9,12 @@
 import UIKit
 import SnapKit
 
+protocol TrainingModeViewDelegate: AnyObject {
+    
+    func trainingModeViewDidTapSlowTrain(_ view: TrainingModeView)
+    func trainingModeViewDidTapFastTrain(_ view: TrainingModeView)
+}
+
 final class TrainingModeView: UIView {
     
     // MARK: Views
@@ -26,11 +32,13 @@ final class TrainingModeView: UIView {
         return view
     }()
     
-    let slowTrain = JujuButton(title: "Treino Lento", theme: .secondary)
-    let fastTrain = JujuButton(title: "Treino Rápido", theme: .secondary)
+    private let slowTrain = JujuButton(title: TrainingMode.slow.title, theme: .secondary)
+    private let fastTrain = JujuButton(title: TrainingMode.fast.title, theme: .secondary)
+    
+    // MARK: Properties
+    weak var delegate: TrainingModeViewDelegate?
     
     // MARK: Lifecycle
-    
     override init(frame: CGRect = .zero) {
         
         super.init(frame: frame)
@@ -84,6 +92,37 @@ extension TrainingModeView: ViewCoding {
             make.width.equalTo(Constants.buttonWidth)
             make.height.equalTo(Constants.buttonHeight)
         }
+    }
+    
+    func configureViews() {
+        
+        let slowTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapSlowTrain))
+        let fastTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFastTrain))
+        self.topBackground.addGestureRecognizer(slowTapGesture)
+        self.bottomBackground.addGestureRecognizer(fastTapGesture)
+        
+        self.slowTrain.onTapAction = {
+            self.didTapSlowTrain()
+        }
+        
+        self.fastTrain.onTapAction = {
+            self.didTapFastTrain()
+        }
+    }
+}
+
+extension TrainingModeView {
+    
+    @objc
+    private func didTapSlowTrain() {
+        
+        self.delegate?.trainingModeViewDidTapSlowTrain(self)
+    }
+    
+    @objc
+    private func didTapFastTrain() {
+        
+        self.delegate?.trainingModeViewDidTapFastTrain(self)
     }
 }
 

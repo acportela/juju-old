@@ -80,6 +80,9 @@
 		D6C75AE22329F45000F44EE7 /* DailyGoalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */; };
 		D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */; };
 		D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */; };
+		D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */; };
+		D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */; };
+		D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D39753232D966400EBA4FE /* TrainingMode.swift */; };
 		D6E1187022F2848C00F01899 /* ValidatorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1186F22F2848C00F01899 /* ValidatorsSpec.swift */; };
 		D6E3C6AA22EC74C800627CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E3C6A922EC74C800627CE6 /* GoogleService-Info.plist */; };
 		D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */; };
@@ -192,6 +195,9 @@
 		D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalComponent.swift; sourceTree = "<group>"; };
 		D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePersistable.swift; sourceTree = "<group>"; };
 		D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreUser.swift; sourceTree = "<group>"; };
+		D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModeViewController.swift; sourceTree = "<group>"; };
+		D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCoordinator.swift; sourceTree = "<group>"; };
+		D6D39753232D966400EBA4FE /* TrainingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMode.swift; sourceTree = "<group>"; };
 		D6E1186F22F2848C00F01899 /* ValidatorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsSpec.swift; sourceTree = "<group>"; };
 		D6E3C6A922EC74C800627CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -272,9 +278,9 @@
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
 			isa = PBXGroup;
 			children = (
-				D6DD714C232405AB00569B73 /* Training */,
-				D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */,
 				D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */,
+				D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */,
+				D6D39756232DA68D00EBA4FE /* Training */,
 			);
 			path = SignedInScenes;
 			sourceTree = "<group>";
@@ -459,12 +465,14 @@
 		D6ABED1C22DF2C020022CF0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
 				D6EA765922DDF47200E87D00 /* Results.swift */,
 				D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */,
 				D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */,
 				D681E48F22F128B3003754F4 /* InputKind.swift */,
 				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
 				D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */,
+				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -546,19 +554,52 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		D6DD714C232405AB00569B73 /* Training */ = {
+		D6D3974B232D806500EBA4FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D6182B48232406AF00932DA3 /* TrainingViewController.swift */,
-				D6182B4A232406CF00932DA3 /* TrainingView.swift */,
 				D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */,
 				D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */,
 				D6EE63EC232587450003F50C /* NumberedCircle.swift */,
 				D6BC42112328642F0005B686 /* CirclesComponent.swift */,
 				D6C75ADD2329E13300F44EE7 /* PlayPauseRestartComponent.swift */,
 				D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */,
-				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D6D3974C232D807500EBA4FE /* TrainingMode */ = {
+			isa = PBXGroup;
+			children = (
 				D6283470232C87670068CF47 /* TrainingModeView.swift */,
+				D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */,
+			);
+			path = TrainingMode;
+			sourceTree = "<group>";
+		};
+		D6D3974F232D90A800EBA4FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D6182B48232406AF00932DA3 /* TrainingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D6D39756232DA68D00EBA4FE /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */,
+				D6D3974C232D807500EBA4FE /* TrainingMode */,
+				D6DD714C232405AB00569B73 /* Training */,
+			);
+			path = Training;
+			sourceTree = "<group>";
+		};
+		D6DD714C232405AB00569B73 /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				D6D3974F232D90A800EBA4FE /* Controller */,
+				D6D3974B232D806500EBA4FE /* Views */,
+				D6182B4A232406CF00932DA3 /* TrainingView.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -884,8 +925,10 @@
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
+				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
+				D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */,
 				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
 				D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */,
 				D681E49522F1331A003754F4 /* TextFieldValidators.swift in Sources */,
@@ -930,6 +973,7 @@
 				D66D5AD92312C56700F0A944 /* Styling.swift in Sources */,
 				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
+				D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,
 				D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */,

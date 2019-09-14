@@ -23,11 +23,11 @@ class SignedOutCoordinator: Coordinator {
         
         self.navigation = rootNavigation
         self.userService = userService
-        self.navigation.setNavigationBarHidden(true, animated: false)
     }
     
     func start() {
         
+        self.navigation.setNavigationBarHidden(true, animated: false)
         self.startSignIn()
     }
     
