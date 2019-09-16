@@ -15,7 +15,9 @@ class AppCoordinator: Coordinator {
     private let userService: UserService
     
     private var signedInUser: ClientUser? {
+        
         set { self.updateUserLocally(signedInUser) }
+        
         get { return getUserLocally() }
     }
     
@@ -28,6 +30,7 @@ class AppCoordinator: Coordinator {
     func start() {
         
         guard let user = self.signedInUser else {
+            
             self.startSignedOutFlow()
             return
         }
@@ -41,9 +44,9 @@ class AppCoordinator: Coordinator {
     
     private func getUserLocally() -> ClientUser? {
         
-        //TODO: Remove. Test puposes
-        return ClientUser(email: "acarlosportela@gmail.com", name: "Antonio Rodrigues", dob: Date())
+        return  nil //ClientUser(email: "acarlosportela@gmail.com", name: "Antonio Rodrigues", dob: Date())
     }
+    
     private func startSignedInFlow(withUser user: ClientUser) {
         
         let signedInCoordinator = SignedInCoordinator(rootController: self.navigation, user: user)

@@ -9,6 +9,7 @@ def all_pods
     pod 'SnapKit', '~> 5.0.0'
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.4'
+    pod 'lottie-ios'
 end
 
 target 'juju' do

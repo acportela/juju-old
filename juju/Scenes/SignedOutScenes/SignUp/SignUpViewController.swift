@@ -18,7 +18,7 @@ final class SignUpViewController: UIViewController, Loadable {
     
     private let signUpView = SignUpView()
     private let userService: UserService
-    let loadingController = LoadingViewController()
+    let loadingController = LoadingViewController(animatable: JujuLoader())
     
     weak var delegate: SignUpViewControllerDelegate?
     

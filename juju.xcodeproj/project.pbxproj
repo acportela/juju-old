@@ -88,6 +88,13 @@
 		D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */; };
 		D6EA765A22DDF47200E87D00 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* Results.swift */; };
 		D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */; };
+		D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */ = {isa = PBXBuildFile; fileRef = D6EE5CB2232F0FDC00F3701A /* loading2x.json */; };
+		D6EE5CB6232F1FBF00F3701A /* TrainLevelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */; };
+		D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */; };
+		D6EE5CBC232F2BEE00F3701A /* TrainLevelComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */; };
+		D6EE5CC0232F303A00F3701A /* JujuLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CBF232F303A00F3701A /* JujuLoader.swift */; };
+		D6EE5CC2232F304500F3701A /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CC1232F304500F3701A /* Animatable.swift */; };
+		D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CC3232F305700F3701A /* SpinnerLoader.swift */; };
 		D6EE63ED232587450003F50C /* NumberedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE63EC232587450003F50C /* NumberedCircle.swift */; };
 		D6EE63EF232590600003F50C /* CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE63EE232590600003F50C /* CAShapeLayer.swift */; };
 		D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653922D4D94E0062C97A /* Coordinator.swift */; };
@@ -203,6 +210,13 @@
 		D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		D6EA765922DDF47200E87D00 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTimer.swift; sourceTree = "<group>"; };
+		D6EE5CB2232F0FDC00F3701A /* loading2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading2x.json; sourceTree = "<group>"; };
+		D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelComponent.swift; sourceTree = "<group>"; };
+		D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevel.swift; sourceTree = "<group>"; };
+		D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelComponentSpec.swift; sourceTree = "<group>"; };
+		D6EE5CBF232F303A00F3701A /* JujuLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuLoader.swift; sourceTree = "<group>"; };
+		D6EE5CC1232F304500F3701A /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
+		D6EE5CC3232F305700F3701A /* SpinnerLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerLoader.swift; sourceTree = "<group>"; };
 		D6EE63EC232587450003F50C /* NumberedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberedCircle.swift; sourceTree = "<group>"; };
 		D6EE63EE232590600003F50C /* CAShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayer.swift; sourceTree = "<group>"; };
 		D6F2653922D4D94E0062C97A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -250,7 +264,7 @@
 		D61E0C3F22E4D6CF003700EA /* SignedOutScenes */ = {
 			isa = PBXGroup;
 			children = (
-				D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */,
+				D6EE5CC8232F37C500F3701A /* Coordinator */,
 				D6FF00A622E34BCE00D8B2CB /* Intro */,
 				D645C0EE22CCC33C00FAB219 /* SignUp */,
 				D6FF00B022E39EBF00D8B2CB /* SignIn */,
@@ -261,6 +275,7 @@
 		D61E0C4022E4D706003700EA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D6EE5CBD232F2FE900F3701A /* Commons */,
 				D635DDCF2320899C00E36431 /* SignedInScenes */,
 				D61E0C3F22E4D6CF003700EA /* SignedOutScenes */,
 			);
@@ -278,8 +293,8 @@
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
 			isa = PBXGroup;
 			children = (
-				D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */,
-				D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */,
+				D6EE5CC7232F37B600F3701A /* Controller */,
+				D6EE5CC6232F378A00F3701A /* Coordinator */,
 				D6D39756232DA68D00EBA4FE /* Training */,
 			);
 			path = SignedInScenes;
@@ -362,7 +377,6 @@
 		D681E49122F12DC9003754F4 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				D69B923C231DF9D6009207B1 /* LoadingViewController.swift */,
 				D681E49222F12DF4003754F4 /* Validators.swift */,
 				D681E49422F1331A003754F4 /* TextFieldValidators.swift */,
 				D6046F3822EF1444002FB78B /* DateFormatters.swift */,
@@ -455,6 +469,7 @@
 		D695890D22C7AC71009A356C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6EE5CBE232F302700F3701A /* Animations */,
 				D6B1207B22E4EC2D005180D5 /* Extensions */,
 				D6B1207822E4EB93005180D5 /* Components */,
 				D6B1207722E4EB78005180D5 /* Protocols */,
@@ -473,6 +488,7 @@
 				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
 				D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */,
 				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
+				D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -522,6 +538,7 @@
 		D6B1207A22E4EBF1005180D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D6EE5CB1232F0FDC00F3701A /* Animations */,
 				D68ACB9322C7E76D001C94A5 /* Fonts */,
 				D65FCC5022C79EF500BA16E5 /* Assets.xcassets */,
 				D68ACB8E22C7DF9C001C94A5 /* Resources.swift */,
@@ -557,6 +574,7 @@
 		D6D3974B232D806500EBA4FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6182B4A232406CF00932DA3 /* TrainingView.swift */,
 				D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */,
 				D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */,
 				D6EE63EC232587450003F50C /* NumberedCircle.swift */,
@@ -587,7 +605,8 @@
 		D6D39756232DA68D00EBA4FE /* Training */ = {
 			isa = PBXGroup;
 			children = (
-				D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */,
+				D6EE5CC5232F321D00F3701A /* Coordinator */,
+				D6EE5CB4232F1FA800F3701A /* TrainingLevel */,
 				D6D3974C232D807500EBA4FE /* TrainingMode */,
 				D6DD714C232405AB00569B73 /* Training */,
 			);
@@ -599,7 +618,6 @@
 			children = (
 				D6D3974F232D90A800EBA4FE /* Controller */,
 				D6D3974B232D806500EBA4FE /* Views */,
-				D6182B4A232406CF00932DA3 /* TrainingView.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -612,6 +630,7 @@
 				D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */,
 				D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */,
 				D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */,
+				D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -643,6 +662,72 @@
 				D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		D6EE5CB1232F0FDC00F3701A /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D6EE5CB2232F0FDC00F3701A /* loading2x.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		D6EE5CB4232F1FA800F3701A /* TrainingLevel */ = {
+			isa = PBXGroup;
+			children = (
+				D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */,
+			);
+			path = TrainingLevel;
+			sourceTree = "<group>";
+		};
+		D6EE5CBD232F2FE900F3701A /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				D69B923C231DF9D6009207B1 /* LoadingViewController.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		D6EE5CBE232F302700F3701A /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D6EE5CBF232F303A00F3701A /* JujuLoader.swift */,
+				D6EE5CC1232F304500F3701A /* Animatable.swift */,
+				D6EE5CC3232F305700F3701A /* SpinnerLoader.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		D6EE5CC5232F321D00F3701A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D6EE5CC6232F378A00F3701A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D6EE5CC7232F37B600F3701A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D6EE5CC8232F37C500F3701A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		D6FF00A622E34BCE00D8B2CB /* Intro */ = {
@@ -775,6 +860,7 @@
 				D68ACBA622C7E7D4001C94A5 /* Montserrat-Medium.ttf in Resources */,
 				D68ACBA722C7E7D4001C94A5 /* Montserrat-Bold.ttf in Resources */,
 				D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */,
+				D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */,
 				D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */,
 				D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */,
 				D6E3C6AA22EC74C800627CE6 /* GoogleService-Info.plist in Resources */,
@@ -944,9 +1030,11 @@
 				D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */,
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
 				D61E0C3A22E4A5B7003700EA /* String.swift in Sources */,
+				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
+				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
@@ -963,8 +1051,10 @@
 				D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */,
 				D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */,
 				D6182B5523243D3100932DA3 /* UINavigationController.swift in Sources */,
+				D6EE5CC2232F304500F3701A /* Animatable.swift in Sources */,
 				D69B923D231DF9D6009207B1 /* LoadingViewController.swift in Sources */,
 				D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */,
+				D6EE5CB6232F1FBF00F3701A /* TrainLevelComponent.swift in Sources */,
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
@@ -976,6 +1066,7 @@
 				D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,
+				D6EE5CC0232F303A00F3701A /* JujuLoader.swift in Sources */,
 				D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */,
 				D6EE63ED232587450003F50C /* NumberedCircle.swift in Sources */,
 				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
@@ -992,6 +1083,7 @@
 			files = (
 				D61E0C3822E4930D003700EA /* JujuUnderlinedButtonSpec.swift in Sources */,
 				D67F845B22CA25DA00C5ECDE /* SnapshotUtils.swift in Sources */,
+				D6EE5CBC232F2BEE00F3701A /* TrainLevelComponentSpec.swift in Sources */,
 				D6B1207522E4E6F3005180D5 /* SignInViewSpec.swift in Sources */,
 				D6E1187022F2848C00F01899 /* ValidatorsSpec.swift in Sources */,
 				D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */,

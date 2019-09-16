@@ -37,6 +37,7 @@ final class TrainingViewController: UIViewController {
         
         super.viewDidLoad()
         self.trainingView.delegate = self
+        self.addBackgroundObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +59,23 @@ final class TrainingViewController: UIViewController {
     private func configureNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = "Exercícios"
+    }
+}
+
+extension TrainingViewController {
+    
+    private func addBackgroundObserver() {
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.applicationWillEnterBackground),
+                                               name: UIApplication.willResignActiveNotification,
+                                               object: nil)
+    }
+    
+    @objc
+    private func applicationWillEnterBackground() {
+        
+        self.trainingView.configure(with: .stop)
     }
 }
 

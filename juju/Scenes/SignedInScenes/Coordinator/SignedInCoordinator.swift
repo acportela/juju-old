@@ -22,10 +22,13 @@ class SignedInCoordinator: NSObject, Coordinator {
     private lazy var trainingCoordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation)
     
     private lazy var tabBarController: JujuTabBarController  = {
+        
         let controllers = self.setupTabControllers()
         return JujuTabBarController(viewControllers: controllers, initialIndex: 1)
     }()
+    
     private let trainingNavigation: UINavigationController = {
+        
         let controller = UINavigationController()
         controller.tabBarItem = UITabBarItem(title: .empty,
                                              image: Resources.Images.tabExercise,
@@ -34,17 +37,20 @@ class SignedInCoordinator: NSObject, Coordinator {
     }()
 
     init(rootController: UINavigationController, user: ClientUser) {
+        
         self.user = user
         self.rootNavigation = rootController
     }
     
     func start() {
+        
         self.setupNavigationBar()
         self.trainingCoordinator.start()
-        self.rootNavigation.pushViewController(self.tabBarController, animated: true)
+        self.rootNavigation.pushViewController(self.tabBarController, animated: false)
     }
     
     private func setupNavigationBar() {
+        
         self.rootNavigation.setNavigationBarHidden(true, animated: false)
     }
     

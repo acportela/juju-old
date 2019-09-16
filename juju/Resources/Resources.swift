@@ -92,6 +92,12 @@ extension Resources.Images {
     
     static let circles = image(named: "circles")
     
+    static let easyLevelIcon = image(named: "easyLevel")
+    
+    static let mediumLevelIcon = image(named: "mediumLevel")
+    
+    static let hardLevelIcon = image(named: "hardLevel")
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")
