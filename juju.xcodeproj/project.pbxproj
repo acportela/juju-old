@@ -86,6 +86,10 @@
 		D6E1187022F2848C00F01899 /* ValidatorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1186F22F2848C00F01899 /* ValidatorsSpec.swift */; };
 		D6E3C6AA22EC74C800627CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E3C6A922EC74C800627CE6 /* GoogleService-Info.plist */; };
 		D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */; };
+		D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */; };
+		D6E42DB32330819100B42EB1 /* TrainingLevelViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */; };
+		D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */; };
+		D6E42DB723308EAD00B42EB1 /* TrainingConfigurationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB623308EAD00B42EB1 /* TrainingConfigurationAdapter.swift */; };
 		D6EA765A22DDF47200E87D00 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* Results.swift */; };
 		D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */; };
 		D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */ = {isa = PBXBuildFile; fileRef = D6EE5CB2232F0FDC00F3701A /* loading2x.json */; };
@@ -208,6 +212,10 @@
 		D6E1186F22F2848C00F01899 /* ValidatorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsSpec.swift; sourceTree = "<group>"; };
 		D6E3C6A922EC74C800627CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelView.swift; sourceTree = "<group>"; };
+		D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelViewSpec.swift; sourceTree = "<group>"; };
+		D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelViewController.swift; sourceTree = "<group>"; };
+		D6E42DB623308EAD00B42EB1 /* TrainingConfigurationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConfigurationAdapter.swift; sourceTree = "<group>"; };
 		D6EA765922DDF47200E87D00 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTimer.swift; sourceTree = "<group>"; };
 		D6EE5CB2232F0FDC00F3701A /* loading2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading2x.json; sourceTree = "<group>"; };
@@ -286,6 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				D6283473232C8BE50068CF47 /* TrainingViewModeSpec.swift */,
+				D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */,
+				D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */,
 			);
 			path = TrainingViewMode;
 			sourceTree = "<group>";
@@ -486,9 +496,9 @@
 				D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */,
 				D681E48F22F128B3003754F4 /* InputKind.swift */,
 				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
-				D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */,
 				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
 				D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */,
+				D6E42DB623308EAD00B42EB1 /* TrainingConfigurationAdapter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -574,9 +584,9 @@
 		D6D3974B232D806500EBA4FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6E42DB823308ED800B42EB1 /* Configurations */,
 				D6182B4A232406CF00932DA3 /* TrainingView.swift */,
 				D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */,
-				D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */,
 				D6EE63EC232587450003F50C /* NumberedCircle.swift */,
 				D6BC42112328642F0005B686 /* CirclesComponent.swift */,
 				D6C75ADD2329E13300F44EE7 /* PlayPauseRestartComponent.swift */,
@@ -628,9 +638,6 @@
 				D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */,
 				D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */,
 				D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */,
-				D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */,
-				D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */,
-				D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -646,12 +653,31 @@
 		D6E1186E22F2843D00F01899 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D6E42DB12330815700B42EB1 /* TrainingLevel */,
 				D6283472232C8BBA0068CF47 /* TrainingViewMode */,
 				D6B1207622E4E6FA005180D5 /* SignIn */,
 				D6FF00AD22E3511300D8B2CB /* Intro */,
 				D645C0F122CCCBF900FAB219 /* SignUp */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D6E42DB12330815700B42EB1 /* TrainingLevel */ = {
+			isa = PBXGroup;
+			children = (
+				D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */,
+				D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */,
+			);
+			path = TrainingLevel;
+			sourceTree = "<group>";
+		};
+		D6E42DB823308ED800B42EB1 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */,
+				D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 		D6EA765822DDF44C00E87D00 /* Repository */ = {
@@ -676,6 +702,8 @@
 			isa = PBXGroup;
 			children = (
 				D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */,
+				D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */,
+				D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */,
 			);
 			path = TrainingLevel;
 			sourceTree = "<group>";
@@ -1008,6 +1036,7 @@
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
 				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
+				D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
@@ -1016,6 +1045,7 @@
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
 				D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */,
 				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
+				D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */,
 				D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */,
 				D681E49522F1331A003754F4 /* TextFieldValidators.swift in Sources */,
 				D6EE63EF232590600003F50C /* CAShapeLayer.swift in Sources */,
@@ -1033,6 +1063,7 @@
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
+				D6E42DB723308EAD00B42EB1 /* TrainingConfigurationAdapter.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
@@ -1092,6 +1123,7 @@
 				D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */,
 				D67F845F22CA299200C5ECDE /* TestHelpers.swift in Sources */,
 				D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */,
+				D6E42DB32330819100B42EB1 /* TrainingLevelViewSpec.swift in Sources */,
 				D6C75AE02329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift in Sources */,
 				D67F845D22CA27AD00C5ECDE /* ViewExtension.swift in Sources */,
 				D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */,

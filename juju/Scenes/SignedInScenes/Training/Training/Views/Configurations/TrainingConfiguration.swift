@@ -29,3 +29,4 @@ struct TrainingConfiguration {
     
     static let empty = TrainingConfiguration(level: .empty, convergingDuration: 0)
 }
+

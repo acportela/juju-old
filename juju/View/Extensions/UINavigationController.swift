@@ -24,10 +24,6 @@ extension UINavigationController {
             NSAttributedString.Key.font: Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty),
             NSAttributedString.Key.foregroundColor: Styling.Colors.white
         ]
-        
-        self.navigationBar.layer.cornerRadius = 15
-        self.navigationBar.clipsToBounds = true
-        self.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
 
 }

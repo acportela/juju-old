@@ -130,7 +130,7 @@ extension TrainingView: ViewCoding {
     func setupConstraints() {
        
         self.instructions.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Styling.Spacing.twentyfour)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.twentyfour)
             make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
             make.right.equalToSuperview().offset(-Styling.Spacing.sixteen)
             make.centerX.equalToSuperview()

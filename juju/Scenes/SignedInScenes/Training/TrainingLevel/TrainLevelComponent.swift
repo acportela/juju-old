@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol TrainLevelComponentSelectionDelegate: AnyObject {
+    
+    func shouldSelectComponent(_ component: TrainLevelComponent) -> Bool
+    func shouldDeselectComponent(_ component: TrainLevelComponent) -> Bool
+    func trainLevelComponentWasSelected(_ component: TrainLevelComponent)
+    func trainLevelComponentWasUnselected(_ component: TrainLevelComponent)
+}
+
 final class TrainLevelComponent: UIView {
     
     // MARK: Views
@@ -27,7 +35,7 @@ final class TrainLevelComponent: UIView {
         return label
     }()
     
-    let contentStack: UIStackView = {
+    private let contentStack: UIStackView = {
         
         let stack = UIStackView()
         stack.axis = .vertical
@@ -38,11 +46,14 @@ final class TrainLevelComponent: UIView {
     }()
     
     // MARK: Properties
-    let level: TrainingLevel
+    private (set) var level: TrainingLevel
+    weak var delegate: TrainLevelComponentSelectionDelegate?
     
-    var selected = false {
+    private (set) var isSelected = false {
+        
         didSet {
-            self.handleState(selected: self.selected)
+            
+            self.handleState()
         }
     }
     
@@ -85,6 +96,7 @@ extension TrainLevelComponent: ViewCoding {
     
     func configureViews() {
         
+        self.levelLabel.setContentHuggingPriority(.required, for: .vertical)
         self.backgroundColor = Styling.Colors.white
         self.levelLabel.text = self.level.title.uppercasedFirst
         
@@ -94,14 +106,22 @@ extension TrainLevelComponent: ViewCoding {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewWasTapped))
         self.addGestureRecognizer(tapGesture)
         
-        self.setImage()
-        self.setShadow()
+        self.handleState()
     }
 }
 
 extension TrainLevelComponent {
     
-    private func setImage() {
+    private func handleState() {
+        
+        self.setImageForSelected(self.isSelected)
+        self.setShadowForSelected(self.isSelected)
+        
+        self.backgroundColor = isSelected ? Styling.Colors.white
+                                        : Styling.Colors.rosyPink
+    }
+    
+    private func setImageForSelected(_ selected: Bool) {
         
         switch self.level {
             
@@ -119,12 +139,20 @@ extension TrainLevelComponent {
         }
     }
     
-    private func setShadow() {
+    private func setShadowForSelected(_ selected: Bool) {
         
-        self.layer.shadowColor = Styling.Colors.charcoalGrey.cgColor
-        self.layer.shadowOpacity = 1
-        self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 6
+        if selected {
+            
+            self.layer.shadowColor = Styling.Colors.duskyPink.cgColor
+            self.layer.shadowOffset = CGSize(width: 0, height: 4)
+            self.layer.shadowRadius = 10
+            
+        } else {
+            
+            self.layer.shadowColor = UIColor.clear.cgColor
+            self.layer.shadowOffset = .zero
+            self.layer.shadowRadius = 0
+        }
     }
 }
 
@@ -133,13 +161,49 @@ extension TrainLevelComponent {
     @objc
     private func viewWasTapped() {
         
-        self.selected.toggle()
+        self.handleTap()
     }
     
-    private func handleState(selected: Bool) {
+    private func handleTap() {
         
-        self.backgroundColor = selected ? Styling.Colors.charcoalGrey.withAlphaComponent(0.5)
-                                        : Styling.Colors.white
+        guard let delegate = self.delegate else { return }
+        
+        if self.isSelected, delegate.shouldDeselectComponent(self) {
+            
+            self.isSelected.toggle()
+            delegate.trainLevelComponentWasUnselected(self)
+            return
+        }
+        
+        if self.isSelected == false, delegate.shouldSelectComponent(self) {
+            
+            self.isSelected.toggle()
+            delegate.trainLevelComponentWasSelected(self)
+            return
+        }
+    }
+}
+
+extension TrainLevelComponent: ViewConfiguration {
+    
+    enum States {
+        
+        case selected
+        case unselected
+    }
+    
+    func configure(with state: TrainLevelComponent.States) {
+        
+        switch state {
+            
+        case .selected:
+            
+            self.isSelected = true
+            
+        case .unselected:
+            
+            self.isSelected = false
+        }
     }
 }
 

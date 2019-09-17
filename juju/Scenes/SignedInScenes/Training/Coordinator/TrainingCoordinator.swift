@@ -38,7 +38,14 @@ class TrainingCoordinator: Coordinator {
     private func startTrainingWithMode(_ mode: TrainingMode) {
         
         let training = TrainingViewController(trainingMode: mode)
+        training.delegate = self
         self.navigation.pushViewController(training, animated: true)
+    }
+    
+    private func startTrainingLevel(withInitialLevel level: TrainingLevel) {
+        
+        let trainingLevel = TrainLevelViewController(currentLevel: level)
+        self.navigation.pushViewController(trainingLevel, animated: true)
     }
 }
 
@@ -48,5 +55,14 @@ extension TrainingCoordinator: TrainingModeViewControllerDelegate {
                                     didChooseMode mode: TrainingMode) {
         
         self.startTrainingWithMode(mode)
+    }
+}
+
+extension TrainingCoordinator: TrainingViewControllerDelegate {
+    
+    func trainingViewControllerDidTapLevelSettings(_ controller: TrainingViewController,
+                                                   withCurrentLevel level: TrainingLevel) {
+        
+        self.startTrainingLevel(withInitialLevel: level)
     }
 }
