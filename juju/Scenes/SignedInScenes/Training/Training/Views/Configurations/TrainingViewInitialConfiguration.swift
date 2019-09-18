@@ -30,4 +30,3 @@ struct TrainingViewInitialConfiguration {
     
     static let empty = TrainingViewInitialConfiguration(level: .empty, convergingDuration: 0)
 }
-

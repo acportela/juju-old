@@ -14,7 +14,8 @@ struct TrainingConfiguration {
     let mode: TrainingMode
     
     static let defaultViewConfiguration = TrainingViewInitialConfiguration(level: TrainingLevel.defaultLevel.title,
-                                                                           convergingDuration: TrainingConstants.slowTrainTimeEasy)
+                                                                           convergingDuration: TrainingConstants
+                                                                                               .slowTrainTimeEasy)
     
     func viewConfiguration() -> TrainingViewInitialConfiguration {
         
@@ -27,11 +28,13 @@ struct TrainingConfiguration {
             case .easy:
                 
                 return TrainingViewInitialConfiguration(level: level.title,
-                                                        convergingDuration: TrainingConstants.slowTrainTimeEasy)
+                                                        convergingDuration: TrainingConstants
+                                                                            .slowTrainTimeEasy)
             case .medium:
                 
                 return TrainingViewInitialConfiguration(level: level.title,
-                                                        convergingDuration: TrainingConstants.slowTrainTimeMedium)
+                                                        convergingDuration: TrainingConstants
+                                                                            .slowTrainTimeMedium)
             case .hard:
                 
                 return TrainingViewInitialConfiguration(level: level.title,
@@ -45,20 +48,26 @@ struct TrainingConfiguration {
             case .easy:
                 
                 return TrainingViewInitialConfiguration(level: level.title,
-                                                        convergingDuration: TrainingConstants.fastTrainContractionTimeEasy,
-                                                        divergingDuration: TrainingConstants.fastTrainRelaxationTimeEasy)
+                                                        convergingDuration: TrainingConstants
+                                                                            .fastTrainContractionTimeEasy,
+                                                        divergingDuration: TrainingConstants
+                                                                           .fastTrainRelaxationTimeEasy)
                 
             case .medium:
                 
                 return TrainingViewInitialConfiguration(level: level.title,
-                                                        convergingDuration: TrainingConstants.fastTrainContractionTimeMedium,
-                                                        divergingDuration: TrainingConstants.fastTrainRelaxationTimeMedium)
+                                                        convergingDuration: TrainingConstants
+                                                                            .fastTrainContractionTimeMedium,
+                                                        divergingDuration: TrainingConstants
+                                                                           .fastTrainRelaxationTimeMedium)
                 
             case .hard:
                 
                 return TrainingViewInitialConfiguration(level: level.title,
-                                                        convergingDuration: TrainingConstants.fastTrainContractionTimeHard,
-                                                        divergingDuration: TrainingConstants.fastTrainRelaxationTimeHard)
+                                                        convergingDuration: TrainingConstants
+                                                                            .fastTrainContractionTimeHard,
+                                                        divergingDuration: TrainingConstants
+                                                                           .fastTrainRelaxationTimeHard)
             }
         }
     }
