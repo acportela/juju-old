@@ -10,34 +10,43 @@ import Foundation
 
 struct DailyGoal {
     
-    private (set) var currentStep: Int
+    var currentSteps: Int
     private (set) var goalSteps: Int
+    
+    static let empty = DailyGoal(goalSteps: 0)
+    static let defaultGoal = DailyGoal(currentStep: 0, goalSteps: TrainingConstants.fastTrainRepetitionsEasy)
     
     var remainingSteps: Int {
         
-        return goalSteps - currentStep
+        return goalSteps - currentSteps
     }
     
-    init?(currentStep: Int = 0, goalSteps: Int) {
-        
-        guard currentStep <= goalSteps else {
-            return nil
-        }
-        
-        self.currentStep = currentStep
+    init(currentStep: Int = 0, goalSteps: Int) {
+
+        self.currentSteps = currentStep
         self.goalSteps = goalSteps
+    }
+    
+    init(level: TrainingLevel, mode: TrainingMode) {
+        
+        self.currentSteps = 0
+        
+        if mode == .slow || level != .hard {
+            
+            self.goalSteps = TrainingConstants.slowTrainRepetitionsEasy
+        } else {
+            
+            self.goalSteps = TrainingConstants.fastTrainRepetitionsHard
+        }
     }
     
     mutating func incrementCurrentStep() {
     
-        guard self.currentStep < self.goalSteps else { return }
-        self.currentStep += 1
+        self.currentSteps += 1
     }
     
     mutating func resetSteps() {
         
-        self.currentStep = 0
+        self.currentSteps = 0
     }
-    
-    static let empty = DailyGoal(goalSteps: 0)!
 }

@@ -92,11 +92,17 @@ extension Resources.Images {
     
     static let circles = image(named: "circles")
     
-    static let easyLevelIcon = image(named: "easyLevel")
+    static let easyLevelIconSelected = image(named: "easyLevelSelected")
     
-    static let mediumLevelIcon = image(named: "mediumLevel")
+    static let mediumLevelIconSelected = image(named: "mediumLevelSelected")
     
-    static let hardLevelIcon = image(named: "hardLevel")
+    static let hardLevelIconSelected = image(named: "hardLevelSelected")
+    
+    static let easyLevelIconUnselected = image(named: "easyLevelUnselected")
+    
+    static let mediumLevelIconUnselected = image(named: "mediumLevelUnselected")
+    
+    static let hardLevelIconUnselected = image(named: "hardLevelUnselected")
     
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {

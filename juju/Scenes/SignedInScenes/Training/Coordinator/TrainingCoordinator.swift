@@ -12,6 +12,8 @@ class TrainingCoordinator: Coordinator {
     
     private let navigation: UINavigationController
     
+    var trainingViewController: TrainingViewController?
+    
     init(rootNavigation: UINavigationController) {
         
         self.navigation = rootNavigation
@@ -39,12 +41,14 @@ class TrainingCoordinator: Coordinator {
         
         let training = TrainingViewController(trainingMode: mode)
         training.delegate = self
+        self.trainingViewController = training
         self.navigation.pushViewController(training, animated: true)
     }
     
     private func startTrainingLevel(withInitialLevel level: TrainingLevel) {
         
         let trainingLevel = TrainLevelViewController(currentLevel: level)
+        trainingLevel.delegate = self
         self.navigation.pushViewController(trainingLevel, animated: true)
     }
 }
@@ -64,5 +68,13 @@ extension TrainingCoordinator: TrainingViewControllerDelegate {
                                                    withCurrentLevel level: TrainingLevel) {
         
         self.startTrainingLevel(withInitialLevel: level)
+    }
+}
+
+extension TrainingCoordinator: TrainLevelViewControllerDelegate {
+    
+    func trainLevelViewController(_ controller: TrainLevelViewController, didChooseLevel level: TrainingLevel) {
+        
+        self.trainingViewController?.updateCurrentLevelWith(level)
     }
 }

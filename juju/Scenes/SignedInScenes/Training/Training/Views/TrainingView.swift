@@ -66,7 +66,7 @@ final class TrainingView: UIView {
         return view
     }()
     
-    private let innerCircle = NumberedCircle(radius: 51.5)
+    private let innerCircle = NumberedCircle(radius: Constants.innerCircleRadius)
     private let circlesComponent = CirclesComponent(time: 5)
     
     // MARK: Properties
@@ -86,14 +86,14 @@ final class TrainingView: UIView {
         }
     }
     
-    private (set) var currentTrain: TrainingConfiguration = .empty {
+    private (set) var currentTrain: TrainingViewInitialConfiguration = .empty {
         didSet { self.setInitial() }
     }
     
     private (set) var dailyGoal: DailyGoal = .empty {
         didSet {
             
-            self.dailyProgressComponent.configure(with: .set(current: self.dailyGoal.currentStep,
+            self.dailyProgressComponent.configure(with: .set(current: self.dailyGoal.currentSteps,
                                                              total: self.dailyGoal.goalSteps))
         }
     }
@@ -184,9 +184,15 @@ extension TrainingView: ViewCoding {
 
 extension TrainingView: ViewConfiguration {
     
+    enum BladderState: String {
+        
+        case contraction = "Contrair"
+        case relaxation = "Relaxar"
+    }
+    
     enum States {
         
-        case initialAndLevelUp(TrainingConfiguration)
+        case initialAndLevelChange(TrainingViewInitialConfiguration)
         case start(DailyGoal)
         case stop
         case resume
@@ -200,7 +206,7 @@ extension TrainingView: ViewConfiguration {
         
         switch state {
             
-        case .initialAndLevelUp(let configuration):
+        case .initialAndLevelChange(let configuration):
             
             self.currentTrain = configuration
             
@@ -249,31 +255,9 @@ extension TrainingView: ViewConfiguration {
     }
 }
 
-extension TrainingView: PlayPauseRestartComponentDelegate {
-    
-    func playPauseRestartComponentTappedPlay(_ trainingView: PlayPauseRestartComponent) {
-        
-        self.delegate?.trainingViewWantsToResumeTrain(self)
-    }
-    
-    func playPauseRestartComponentTappedPause(_ trainingView: PlayPauseRestartComponent) {
-        
-        self.delegate?.trainingViewWantsToStopTrain(self)
-    }
-    
-    func playPauseRestartComponentTappedRestart(_ trainingView: PlayPauseRestartComponent) {
-        
-        self.delegate?.trainingViewWantsToRestartTrain(self)
-    }
-}
-
 extension TrainingView {
     
-    enum BladderState: String {
-        
-        case contraction = "Contrair"
-        case relaxation = "Relaxar"
-    }
+    // MARK: Time handler
     
     private func handleTimeUpdate(_ time: Int) {
         
@@ -302,6 +286,11 @@ extension TrainingView {
             self.updateInnerLabelFor(remainingTime: remainingTime, state: self.currentBladderState)
         }
     }
+}
+
+extension TrainingView {
+    
+    // MARK: Helpers for views updates
     
     private func setInitial() {
         
@@ -317,6 +306,7 @@ extension TrainingView {
                                                              subtitle: "nível \(config.level.lowercased())")
         self.initialFooter.configure(with: .initial(footerConfig))
         self.circlesComponent.configure(with: .stopAnimation)
+        self.circlesComponent.configure(with: .updateTime(time: config.contractionTime))
         self.innerCircle.configure(with: .build(number: config.contractionTime,
                                                 color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
         
@@ -347,17 +337,35 @@ extension TrainingView {
             
             self.resetInnerLabel(forState: state)
         }
-        
     }
     
     private func resetInnerLabel(forState state: BladderState) {
         
         let time = state == .contraction ? self.currentTrain.contractionTime
-                                         : self.currentTrain.relaxationTime
+            : self.currentTrain.relaxationTime
         self.innerCircle.configure(with: .updateNumber(time))
     }
     
 }
+
+extension TrainingView: PlayPauseRestartComponentDelegate {
+    
+    func playPauseRestartComponentTappedPlay(_ trainingView: PlayPauseRestartComponent) {
+        
+        self.delegate?.trainingViewWantsToResumeTrain(self)
+    }
+    
+    func playPauseRestartComponentTappedPause(_ trainingView: PlayPauseRestartComponent) {
+        
+        self.delegate?.trainingViewWantsToStopTrain(self)
+    }
+    
+    func playPauseRestartComponentTappedRestart(_ trainingView: PlayPauseRestartComponent) {
+        
+        self.delegate?.trainingViewWantsToRestartTrain(self)
+    }
+}
+
 extension TrainingView {
     
     struct Constants {
@@ -369,5 +377,6 @@ extension TrainingView {
         static let playPauseCenterXOffset = -34
         static let animationRectWidthRatio: CGFloat = 0.75
         static let innerCircleSide = 103
+        static let innerCircleRadius: Float = 51.5
     }
 }

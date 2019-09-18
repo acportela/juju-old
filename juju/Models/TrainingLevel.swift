@@ -14,12 +14,18 @@ enum TrainingLevel {
     case medium
     case hard
     
+    static let defaultLevel = TrainingLevel.easy
+    
     var title: String {
         
         switch self {
+            
         case .easy: return "fácil"
+            
         case .medium: return "médio"
+            
         case .hard: return "difícil"
+            
         }
     }
 }

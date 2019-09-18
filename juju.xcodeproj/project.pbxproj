@@ -19,7 +19,7 @@
 		D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */; };
 		D6182B5523243D3100932DA3 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5423243D3100932DA3 /* UINavigationController.swift */; };
 		D6182B5B2324526C00932DA3 /* DailyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5A2324526C00932DA3 /* DailyGoal.swift */; };
-		D6182B5D2324540000932DA3 /* TrainingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */; };
+		D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5C2324540000932DA3 /* TrainingViewInitialConfiguration.swift */; };
 		D61E0C3622E491B1003700EA /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3522E491B1003700EA /* UIButton.swift */; };
 		D61E0C3822E4930D003700EA /* JujuUnderlinedButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */; };
 		D61E0C3A22E4A5B7003700EA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3922E4A5B7003700EA /* String.swift */; };
@@ -59,6 +59,7 @@
 		D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */; };
 		D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */; };
 		D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */; };
+		D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */; };
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
@@ -89,7 +90,7 @@
 		D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */; };
 		D6E42DB32330819100B42EB1 /* TrainingLevelViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */; };
 		D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */; };
-		D6E42DB723308EAD00B42EB1 /* TrainingConfigurationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB623308EAD00B42EB1 /* TrainingConfigurationAdapter.swift */; };
+		D6E42DB723308EAD00B42EB1 /* TrainingConfiguratioFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */; };
 		D6EA765A22DDF47200E87D00 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* Results.swift */; };
 		D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */; };
 		D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */ = {isa = PBXBuildFile; fileRef = D6EE5CB2232F0FDC00F3701A /* loading2x.json */; };
@@ -141,7 +142,7 @@
 		D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuTabBarController.swift; sourceTree = "<group>"; };
 		D6182B5423243D3100932DA3 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		D6182B5A2324526C00932DA3 /* DailyGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoal.swift; sourceTree = "<group>"; };
-		D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConfiguration.swift; sourceTree = "<group>"; };
+		D6182B5C2324540000932DA3 /* TrainingViewInitialConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewInitialConfiguration.swift; sourceTree = "<group>"; };
 		D61E0C3522E491B1003700EA /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuUnderlinedButtonSpec.swift; sourceTree = "<group>"; };
 		D61E0C3922E4A5B7003700EA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		D68ACBAE22C7F763001C94A5 /* jujuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jujuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68ACBB222C7F763001C94A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputFieldSpec.swift; sourceTree = "<group>"; };
+		D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConstants.swift; sourceTree = "<group>"; };
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
@@ -215,7 +217,7 @@
 		D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelView.swift; sourceTree = "<group>"; };
 		D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelViewSpec.swift; sourceTree = "<group>"; };
 		D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelViewController.swift; sourceTree = "<group>"; };
-		D6E42DB623308EAD00B42EB1 /* TrainingConfigurationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConfigurationAdapter.swift; sourceTree = "<group>"; };
+		D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConfiguratioFactory.swift; sourceTree = "<group>"; };
 		D6EA765922DDF47200E87D00 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTimer.swift; sourceTree = "<group>"; };
 		D6EE5CB2232F0FDC00F3701A /* loading2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading2x.json; sourceTree = "<group>"; };
@@ -498,7 +500,8 @@
 				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
 				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
 				D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */,
-				D6E42DB623308EAD00B42EB1 /* TrainingConfigurationAdapter.swift */,
+				D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */,
+				D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -674,7 +677,7 @@
 		D6E42DB823308ED800B42EB1 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				D6182B5C2324540000932DA3 /* TrainingConfiguration.swift */,
+				D6182B5C2324540000932DA3 /* TrainingViewInitialConfiguration.swift */,
 				D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */,
 			);
 			path = Configurations;
@@ -1038,6 +1041,7 @@
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
+				D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */,
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
 				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
@@ -1063,7 +1067,7 @@
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
-				D6E42DB723308EAD00B42EB1 /* TrainingConfigurationAdapter.swift in Sources */,
+				D6E42DB723308EAD00B42EB1 /* TrainingConfiguratioFactory.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
@@ -1102,7 +1106,7 @@
 				D6EE63ED232587450003F50C /* NumberedCircle.swift in Sources */,
 				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
-				D6182B5D2324540000932DA3 /* TrainingConfiguration.swift in Sources */,
+				D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */,
 				D6283471232C87670068CF47 /* TrainingModeView.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);

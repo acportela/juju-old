@@ -8,13 +8,14 @@
 
 import Foundation
 
-struct TrainingConfiguration {
+struct TrainingViewInitialConfiguration {
     
     let contractionTime: Int
     let relaxationTime: Int
     let level: String
     
     var totalSerieTime: Int {
+        
         return self.contractionTime + self.relaxationTime
     }
     
@@ -27,6 +28,6 @@ struct TrainingConfiguration {
         self.relaxationTime = divergingDuration ?? convergingDuration
     }
     
-    static let empty = TrainingConfiguration(level: .empty, convergingDuration: 0)
+    static let empty = TrainingViewInitialConfiguration(level: .empty, convergingDuration: 0)
 }
 

@@ -34,7 +34,8 @@ final class TrainLevelViewController: UIViewController {
     
     override func loadView() {
         
-        self.view = trainLevelView
+        self.view = self.trainLevelView
+        self.trainLevelView.delegate = self
     }
     
     override func viewDidLoad() {

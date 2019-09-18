@@ -17,14 +17,27 @@ protocol TrainingViewControllerDelegate: AnyObject {
 final class TrainingViewController: UIViewController {
     
     private let trainingView = TrainingView()
+    
     private let trainingMode: TrainingMode
-    private let defaultLevel: TrainingLevel = .easy
-    private var currentLevel: TrainingLevel?
+    
+    private var currentLevel: TrainingLevel = .defaultLevel {
+        didSet {
+            self.dailyGoal = DailyGoal(level: self.currentLevel,
+                                       mode: self.trainingMode)
+            self.configureViewForInitialState()
+        }
+    }
+    
+    private var dailyGoal: DailyGoal = .defaultGoal
+    
+    private var currentTrainConfiguration: TrainingViewInitialConfiguration {
+
+        return TrainingConfiguration(level: self.currentLevel, mode: self.trainingMode).viewConfiguration()
+    }
     
     weak var delegate: TrainingViewControllerDelegate?
     
     //REMOVE
-    let dailyGoal = DailyGoal(goalSteps: 4)!
     
     init(trainingMode: TrainingMode) {
         
@@ -59,27 +72,13 @@ final class TrainingViewController: UIViewController {
         
         super.viewDidAppear(animated)
         //Improve resume decision (initial vs resume)
-        self.trainingView.configure(with: .initialAndLevelUp(self.currentTrainConfiguration()))
+        self.configureViewForInitialState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         self.trainingView.configure(with: .stop)
         super.viewWillDisappear(animated)
-    }
-    
-    private func configureNavigation() {
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.title = "Exercícios"
-        
-        let barButton = UIBarButtonItem(barButtonSystemItem: .organize,
-                                        target: self,
-                                        action: #selector(self.didTapLevelSettings))
-        self.navigationItem.rightBarButtonItem = barButton
-        
-        let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = item
     }
 }
 
@@ -101,17 +100,41 @@ extension TrainingViewController {
     
     @objc
     private func didTapLevelSettings() {
-        
-        let level = self.currentLevel ?? self.defaultLevel
+
         self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentLevel: level)
+                                                                 withCurrentLevel: self.currentLevel)
+    }
+}
+
+extension TrainingViewController {
+    
+    func updateCurrentLevelWith(_ newLevel: TrainingLevel) {
+        
+        self.currentLevel = newLevel
     }
     
-    private func currentTrainConfiguration() -> TrainingConfiguration {
+    private func configureNavigation() {
         
-        let adapter = TrainingConfigurationAdapter(level: self.currentLevel ?? self.defaultLevel,
-                                                   mode: self.trainingMode)
-        return adapter.configuration()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.title = "Exercícios"
+        
+        let barButton = UIBarButtonItem(barButtonSystemItem: .edit,
+                                        target: self,
+                                        action: #selector(self.didTapLevelSettings))
+        self.navigationItem.rightBarButtonItem = barButton
+        
+        let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = item
+    }
+    
+    private func configureViewForInitialState() {
+        
+        self.trainingView.configure(with: .initialAndLevelChange(self.currentTrainConfiguration))
+    }
+    
+    private func startTrain() {
+        
+        self.trainingView.configure(with: .start(self.dailyGoal))
     }
 }
 
@@ -119,7 +142,7 @@ extension TrainingViewController: TrainingViewDelegate {
 
     func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
         
-        self.trainingView.configure(with: .start(self.dailyGoal))
+        self.startTrain()
     }
     
     func trainingViewWantsToResumeTrain(_ trainingView: TrainingView) {

@@ -118,7 +118,7 @@ extension TrainLevelComponent {
         self.setShadowForSelected(self.isSelected)
         
         self.backgroundColor = isSelected ? Styling.Colors.white
-                                        : Styling.Colors.rosyPink
+                                          : Styling.Colors.rosyPink
     }
     
     private func setImageForSelected(_ selected: Bool) {
@@ -127,15 +127,18 @@ extension TrainLevelComponent {
             
         case .easy:
             
-            self.levelImage.image = Resources.Images.easyLevelIcon
+            self.levelImage.image = selected ? Resources.Images.easyLevelIconSelected
+                                             : Resources.Images.easyLevelIconUnselected
             
         case .medium:
             
-            self.levelImage.image = Resources.Images.mediumLevelIcon
+            self.levelImage.image = selected ? Resources.Images.mediumLevelIconSelected
+                                             : Resources.Images.mediumLevelIconUnselected
             
         case .hard:
             
-            self.levelImage.image = Resources.Images.hardLevelIcon
+            self.levelImage.image = selected ? Resources.Images.hardLevelIconSelected
+                                             : Resources.Images.hardLevelIconUnselected
         }
     }
     

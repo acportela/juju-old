@@ -139,7 +139,6 @@ extension DailyGoalComponent: ViewConfiguration {
             
         case .set(let current, let total):
             
-            guard current <= total else { return }
             self.progressLabel.text = "\(current)/\(total)"
             self.progress = Progress(current: current, total: total)
 
@@ -148,7 +147,10 @@ extension DailyGoalComponent: ViewConfiguration {
     
     func updateProgressOffset() {
         
-        let ratio = CGFloat(self.progress.current) / CGFloat(self.progress.total)
+        let newRatio = CGFloat(self.progress.current) / CGFloat(self.progress.total)
+        
+        let ratio = newRatio <= 1 ? newRatio : 1
+        
         let offset = self.progressBarBackground.frame.width * ratio
         
         UIView.animate(withDuration: Constants.progressBarFillDuration) {
