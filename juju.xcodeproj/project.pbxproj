@@ -76,7 +76,7 @@
 		D6B02A4422E0070100818C17 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B02A4322E0070100818C17 /* Repository.swift */; };
 		D6B1207522E4E6F3005180D5 /* SignInViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */; };
 		D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BC42112328642F0005B686 /* CirclesComponent.swift */; };
-		D6C75ADE2329E13300F44EE7 /* PlayPauseRestartComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADD2329E13300F44EE7 /* PlayPauseRestartComponent.swift */; };
+		D6C75ADE2329E13300F44EE7 /* PlayStopRestartComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADD2329E13300F44EE7 /* PlayStopRestartComponent.swift */; };
 		D6C75AE02329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */; };
 		D6C75AE22329F45000F44EE7 /* DailyGoalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */; };
 		D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */; };
@@ -203,7 +203,7 @@
 		D6B02A4322E0070100818C17 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewSpec.swift; sourceTree = "<group>"; };
 		D6BC42112328642F0005B686 /* CirclesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesComponent.swift; sourceTree = "<group>"; };
-		D6C75ADD2329E13300F44EE7 /* PlayPauseRestartComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseRestartComponent.swift; sourceTree = "<group>"; };
+		D6C75ADD2329E13300F44EE7 /* PlayStopRestartComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStopRestartComponent.swift; sourceTree = "<group>"; };
 		D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseRestartComponentSpec.swift; sourceTree = "<group>"; };
 		D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalComponent.swift; sourceTree = "<group>"; };
 		D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePersistable.swift; sourceTree = "<group>"; };
@@ -300,6 +300,13 @@
 				D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */,
 			);
 			path = TrainingViewMode;
+			sourceTree = "<group>";
+		};
+		D6343D892339B3A700D5C772 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
@@ -481,6 +488,7 @@
 		D695890D22C7AC71009A356C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6343D892339B3A700D5C772 /* Transitions */,
 				D6EE5CBE232F302700F3701A /* Animations */,
 				D6B1207B22E4EC2D005180D5 /* Extensions */,
 				D6B1207822E4EB93005180D5 /* Components */,
@@ -592,7 +600,7 @@
 				D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */,
 				D6EE63EC232587450003F50C /* NumberedCircle.swift */,
 				D6BC42112328642F0005B686 /* CirclesComponent.swift */,
-				D6C75ADD2329E13300F44EE7 /* PlayPauseRestartComponent.swift */,
+				D6C75ADD2329E13300F44EE7 /* PlayStopRestartComponent.swift */,
 				D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */,
 			);
 			path = Views;
@@ -1082,7 +1090,7 @@
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
 				D6182B4F23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift in Sources */,
-				D6C75ADE2329E13300F44EE7 /* PlayPauseRestartComponent.swift in Sources */,
+				D6C75ADE2329E13300F44EE7 /* PlayStopRestartComponent.swift in Sources */,
 				D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */,
 				D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */,
 				D6182B5523243D3100932DA3 /* UINavigationController.swift in Sources */,

@@ -52,9 +52,9 @@ final class TrainingView: UIView {
         return view
     }()
     
-    private lazy var playPauseComponent: PlayPauseRestartComponent = {
+    private lazy var playPauseComponent: PlayStopRestartComponent = {
         
-        let view = PlayPauseRestartComponent()
+        let view = PlayStopRestartComponent()
         view.delegate = self
         return view
     }()
@@ -233,7 +233,7 @@ extension TrainingView: ViewConfiguration {
         case .stop:
             
             self.contractRelax.isHidden = true
-            self.playPauseComponent.configure(with: .pause)
+            self.playPauseComponent.configure(with: .stop)
             self.circlesComponent.configure(with: .stopAnimation)
             self.currentBladderState = .contraction
             self.resetInnerLabel(forState: .contraction)
@@ -348,19 +348,19 @@ extension TrainingView {
     
 }
 
-extension TrainingView: PlayPauseRestartComponentDelegate {
+extension TrainingView: PlayStopRestartComponentDelegate {
     
-    func playPauseRestartComponentTappedPlay(_ trainingView: PlayPauseRestartComponent) {
+    func playStopRestartComponentTappedPlay(_ trainingView: PlayStopRestartComponent) {
         
         self.delegate?.trainingViewWantsToResumeTrain(self)
     }
     
-    func playPauseRestartComponentTappedPause(_ trainingView: PlayPauseRestartComponent) {
+    func playStopRestartComponentTappedStop(_ trainingView: PlayStopRestartComponent) {
         
         self.delegate?.trainingViewWantsToStopTrain(self)
     }
     
-    func playPauseRestartComponentTappedRestart(_ trainingView: PlayPauseRestartComponent) {
+    func playStopRestartComponentTappedRestart(_ trainingView: PlayStopRestartComponent) {
         
         self.delegate?.trainingViewWantsToRestartTrain(self)
     }

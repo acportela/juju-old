@@ -116,6 +116,7 @@ extension TrainLevelComponent {
         
         self.setImageForSelected(self.isSelected)
         self.setShadowForSelected(self.isSelected)
+        self.setLabelColor(self.isSelected)
         
         self.backgroundColor = isSelected ? Styling.Colors.white
                                           : Styling.Colors.rosyPink
@@ -156,6 +157,11 @@ extension TrainLevelComponent {
             self.layer.shadowOffset = .zero
             self.layer.shadowRadius = 0
         }
+    }
+    
+    private func setLabelColor(_ selected: Bool) {
+        
+        self.levelLabel.textColor = selected ? Styling.Colors.charcoalGrey : Styling.Colors.white
     }
 }
 

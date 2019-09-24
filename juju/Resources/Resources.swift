@@ -104,6 +104,10 @@ extension Resources.Images {
     
     static let hardLevelIconUnselected = image(named: "hardLevelUnselected")
     
+    static let levelsIcon = image(named: "levelsIcon")
+    
+    static let stopButton = image(named: "stop-circle")
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

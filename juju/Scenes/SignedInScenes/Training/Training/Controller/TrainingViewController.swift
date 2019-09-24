@@ -118,7 +118,8 @@ extension TrainingViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = "Exercícios"
         
-        let barButton = UIBarButtonItem(barButtonSystemItem: .edit,
+        let barButton = UIBarButtonItem(image: Resources.Images.levelsIcon,
+                                        style: .plain,
                                         target: self,
                                         action: #selector(self.didTapLevelSettings))
         self.navigationItem.rightBarButtonItem = barButton

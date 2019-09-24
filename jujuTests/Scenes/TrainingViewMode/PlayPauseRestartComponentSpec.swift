@@ -15,7 +15,7 @@ class PlayPauseRestartComponentSpec: QuickSpec {
     
     override func spec() {
         
-        var sut: PlayPauseRestartComponent!
+        var sut: PlayStopRestartComponent!
         
         describe("PlayPauseRestartComponent") {
             
@@ -24,7 +24,7 @@ class PlayPauseRestartComponentSpec: QuickSpec {
                 beforeEach {
                     
                     let frame = CGRect(x: 0, y: 0, width: 124, height: 68)
-                    sut = PlayPauseRestartComponent(frame: frame)
+                    sut = PlayStopRestartComponent(frame: frame)
                 }
                 
                 context("in play state") {
@@ -44,7 +44,7 @@ class PlayPauseRestartComponentSpec: QuickSpec {
                     
                     beforeEach {
                         
-                        sut.configure(with: .pause)
+                        sut.configure(with: .stop)
                     }
                     
                     it("must render properly") {

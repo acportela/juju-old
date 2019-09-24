@@ -9,14 +9,14 @@
 import UIKit
 import SnapKit
 
-protocol PlayPauseRestartComponentDelegate: AnyObject {
+protocol PlayStopRestartComponentDelegate: AnyObject {
     
-    func playPauseRestartComponentTappedPlay(_ trainingView: PlayPauseRestartComponent)
-    func playPauseRestartComponentTappedPause(_ trainingView: PlayPauseRestartComponent)
-    func playPauseRestartComponentTappedRestart(_ trainingView: PlayPauseRestartComponent)
+    func playStopRestartComponentTappedPlay(_ trainingView: PlayStopRestartComponent)
+    func playStopRestartComponentTappedStop(_ trainingView: PlayStopRestartComponent)
+    func playStopRestartComponentTappedRestart(_ trainingView: PlayStopRestartComponent)
 }
 
-final class PlayPauseRestartComponent: UIView {
+final class PlayStopRestartComponent: UIView {
     
     // MARK: Views
     private lazy var playButton: UIButton = {
@@ -28,11 +28,11 @@ final class PlayPauseRestartComponent: UIView {
         return button
     }()
     
-    private lazy var pauseButton: UIButton = {
+    private lazy var stopButton: UIButton = {
         
         let button = UIButton()
-        button.setImage(Resources.Images.pauseButton, for: .normal)
-        button.addTarget(self, action: #selector(self.pauseWasTapped), for: .touchUpInside)
+        button.setImage(Resources.Images.stopButton, for: .normal)
+        button.addTarget(self, action: #selector(self.stopWasTapped), for: .touchUpInside)
         button.isHidden = true
         return button
     }()
@@ -46,7 +46,7 @@ final class PlayPauseRestartComponent: UIView {
     }()
     
     // MARK: Properties
-    public weak var delegate: PlayPauseRestartComponentDelegate?
+    public weak var delegate: PlayStopRestartComponentDelegate?
     
     // MARK: Lifecycle
     
@@ -62,25 +62,25 @@ final class PlayPauseRestartComponent: UIView {
     }
 }
 
-extension PlayPauseRestartComponent: ViewCoding {
+extension PlayStopRestartComponent: ViewCoding {
     
     func addSubViews() {
         
         self.addSubview(self.playButton)
-        self.addSubview(self.pauseButton)
+        self.addSubview(self.stopButton)
         self.addSubview(self.restartButton)
     }
     
     func setupConstraints() {
         
         self.playButton.snp.makeConstraints { make in
-            make.height.width.equalTo(Constants.playPauseSides)
+            make.height.width.equalTo(Constants.playStopSides)
             make.left.top.bottom.equalToSuperview()
             make.right.equalTo(self.restartButton.snp.left).offset(-Styling.Spacing.thirtytwo)
         }
         
-        self.pauseButton.snp.makeConstraints { make in
-            make.height.width.equalTo(Constants.playPauseSides)
+        self.stopButton.snp.makeConstraints { make in
+            make.height.width.equalTo(Constants.playStopSides)
             make.left.top.bottom.equalToSuperview()
             make.right.equalTo(self.restartButton.snp.left).offset(-Styling.Spacing.thirtytwo)
         }
@@ -98,61 +98,61 @@ extension PlayPauseRestartComponent: ViewCoding {
     }
 }
 
-extension PlayPauseRestartComponent {
+extension PlayStopRestartComponent {
     
     @objc
     private func playWasTapped() {
         
-        self.delegate?.playPauseRestartComponentTappedPlay(self)
+        self.delegate?.playStopRestartComponentTappedPlay(self)
     }
     
     @objc
-    private func pauseWasTapped() {
+    private func stopWasTapped() {
         
-        self.delegate?.playPauseRestartComponentTappedPause(self)
+        self.delegate?.playStopRestartComponentTappedStop(self)
     }
     
     @objc
     private func restartWasTapped() {
         
-        self.delegate?.playPauseRestartComponentTappedRestart(self)
+        self.delegate?.playStopRestartComponentTappedRestart(self)
     }
 }
 
-extension PlayPauseRestartComponent: ViewConfiguration {
+extension PlayStopRestartComponent: ViewConfiguration {
     
     enum States {
         
         case play
-        case pause
+        case stop
         case restart
     }
     
-    func configure(with state: PlayPauseRestartComponent.States) {
+    func configure(with state: PlayStopRestartComponent.States) {
         switch state {
         case .play:
             
             self.playButton.isHidden = true
-            self.pauseButton.isHidden = false
+            self.stopButton.isHidden = false
             
-        case .pause:
+        case .stop:
             
             self.playButton.isHidden = false
-            self.pauseButton.isHidden = true
+            self.stopButton.isHidden = true
             
         case .restart:
             
             self.playButton.isHidden = true
-            self.pauseButton.isHidden = false
+            self.stopButton.isHidden = false
         }
     }
 }
 
-extension PlayPauseRestartComponent {
+extension PlayStopRestartComponent {
     
     struct Constants {
         
         static let repeatSides = 24
-        static let playPauseSides = 68
+        static let playStopSides = 68
     }
 }

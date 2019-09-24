@@ -49,6 +49,7 @@ final class TrainLevelViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
     private func configureNavigation() {
         
         self.title = "Nível do exercício"
