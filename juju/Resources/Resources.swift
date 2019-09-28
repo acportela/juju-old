@@ -108,6 +108,8 @@ extension Resources.Images {
     
     static let stopButton = image(named: "stop-circle")
     
+    static let arrowDown = image(named: "icn-arrow-down")
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

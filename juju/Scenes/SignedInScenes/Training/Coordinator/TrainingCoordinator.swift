@@ -49,7 +49,7 @@ class TrainingCoordinator: Coordinator {
         
         let trainingLevel = TrainLevelViewController(currentLevel: level)
         trainingLevel.delegate = self
-        self.navigation.pushViewController(trainingLevel, animated: true)
+        self.navigation.present(trainingLevel, animated: true, completion: nil)
     }
 }
 

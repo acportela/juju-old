@@ -3,12 +3,12 @@ platform :ios, '12.0'
 use_frameworks!
 
 def all_pods
-    pod 'SwiftLint', '~> 0.33.0'
+    pod 'SwiftLint'
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
-    pod 'SnapKit', '~> 5.0.0'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Crashlytics', '~> 3.13.4'
+    pod 'SnapKit', '~> 5.0.1'
+    pod 'Fabric'
+    pod 'Crashlytics'
     pod 'lottie-ios'
 end
 
@@ -18,7 +18,7 @@ end
 
 target 'jujuTests' do
     all_pods
-    pod 'Nimble-Snapshots', '~> 7.1.0'
-    pod 'Quick', '~> 2.1.0'
-    pod 'Nimble', '~> 8.0.2'
+    pod 'Nimble-Snapshots'
+    pod 'Quick'
+    pod 'Nimble'
 end

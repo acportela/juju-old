@@ -16,6 +16,25 @@ protocol TrainingLevelViewDelegate: AnyObject {
 final class TrainingLevelView: UIView {
     
     // MARK: Views
+    
+    private let titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.textAlignment = .left
+        label.text = "Nível do exercício"
+        label.textColor = Styling.Colors.white
+        label.font = Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty)
+        return label
+    }()
+    
+    private let arrowDown: UIImageView = {
+        
+        let imageView = UIImageView()
+        imageView.image = Resources.Images.arrowDown
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private let superiorComponentsStack: UIStackView = {
         
         let stack = UIStackView()
@@ -51,6 +70,8 @@ extension TrainingLevelView: ViewCoding {
     
     func addSubViews() {
         
+        self.addSubview(self.arrowDown)
+        self.addSubview(self.titleLabel)
         self.superiorComponentsStack.addArrangedSubview(self.easyLevelComponent)
         self.superiorComponentsStack.addArrangedSubview(self.mediumLevelComponent)
         self.addSubview(self.superiorComponentsStack)
@@ -59,9 +80,22 @@ extension TrainingLevelView: ViewCoding {
     
     func setupConstraints() {
         
+        self.arrowDown.snp.makeConstraints { make in
+            
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.thirtytwo)
+            make.centerX.equalToSuperview()
+        }
+        
+        self.titleLabel.snp.makeConstraints { make in
+            
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.arrowDown.snp.bottom).offset(Styling.Spacing.twentyfour)
+            make.left.equalTo(self.superiorComponentsStack.snp.left)
+        }
+        
         self.superiorComponentsStack.snp.makeConstraints { make in
             
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.twentyfour)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(Styling.Spacing.twentyfour)
             make.centerX.equalToSuperview()
         }
         

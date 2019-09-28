@@ -302,13 +302,6 @@
 			path = TrainingViewMode;
 			sourceTree = "<group>";
 		};
-		D6343D892339B3A700D5C772 /* Transitions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Transitions;
-			sourceTree = "<group>";
-		};
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,7 +481,6 @@
 		D695890D22C7AC71009A356C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D6343D892339B3A700D5C772 /* Transitions */,
 				D6EE5CBE232F302700F3701A /* Animations */,
 				D6B1207B22E4EC2D005180D5 /* Extensions */,
 				D6B1207822E4EB93005180D5 /* Components */,
