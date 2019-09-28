@@ -101,7 +101,6 @@ extension TrainLevelComponent: ViewCoding {
         self.levelLabel.text = self.level.title.uppercasedFirst
         
         self.layer.cornerRadius = Constants.cornerRadius
-        self.layer.masksToBounds = true
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewWasTapped))
         self.addGestureRecognizer(tapGesture)
@@ -150,6 +149,7 @@ extension TrainLevelComponent {
             self.layer.shadowColor = Styling.Colors.duskyPink.cgColor
             self.layer.shadowOffset = CGSize(width: 0, height: 4)
             self.layer.shadowRadius = 10
+            self.layer.shadowOpacity = 1
             
         } else {
             
