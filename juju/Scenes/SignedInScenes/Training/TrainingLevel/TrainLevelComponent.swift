@@ -46,7 +46,7 @@ final class TrainLevelComponent: UIView {
     }()
     
     // MARK: Properties
-    private (set) var level: TrainingLevel
+    private (set) var level: TrainingDifficulty
     weak var delegate: TrainLevelComponentSelectionDelegate?
     
     private (set) var isSelected = false {
@@ -58,7 +58,7 @@ final class TrainLevelComponent: UIView {
     }
     
     // MARK: Lifecycle
-    init(level: TrainingLevel, frame: CGRect = .zero) {
+    init(level: TrainingDifficulty, frame: CGRect = .zero) {
         
         self.level = level
         super.init(frame: frame)

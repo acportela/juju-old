@@ -10,6 +10,7 @@
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
 		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
 		D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6046F3822EF1444002FB78B /* DateFormatters.swift */; };
+		D60927552340097F00B0F594 /* TrainingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60927542340097F00B0F594 /* TrainingModel.swift */; };
 		D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */; };
 		D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B48232406AF00932DA3 /* TrainingViewController.swift */; };
 		D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B4A232406CF00932DA3 /* TrainingView.swift */; };
@@ -35,6 +36,8 @@
 		D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400723002AB9005BD008 /* FirebaseUserQuery.swift */; };
 		D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0EF22CCC39800FAB219 /* SignUpView.swift */; };
 		D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */; };
+		D65356E7234023CC00CEE476 /* FirebaseTrainingQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65356E6234023CC00CEE476 /* FirebaseTrainingQuery.swift */; };
+		D65356E92340241500CEE476 /* FirebaseTrainingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65356E82340241500CEE476 /* FirebaseTrainingModel.swift */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
 		D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5022C79EF500BA16E5 /* Assets.xcassets */; };
 		D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65FCC5222C79EF500BA16E5 /* LaunchScreen.storyboard */; };
@@ -60,6 +63,7 @@
 		D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */; };
 		D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */; };
 		D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */; };
+		D6944B9C23404B030024608A /* TrainingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6944B9B23404B030024608A /* TrainingService.swift */; };
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
@@ -80,7 +84,7 @@
 		D6C75AE02329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */; };
 		D6C75AE22329F45000F44EE7 /* DailyGoalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */; };
 		D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */; };
-		D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */; };
+		D6CDADD422E09C520030B753 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD322E09C520030B753 /* FirebaseUser.swift */; };
 		D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */; };
 		D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */; };
 		D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D39753232D966400EBA4FE /* TrainingMode.swift */; };
@@ -95,7 +99,7 @@
 		D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */; };
 		D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */ = {isa = PBXBuildFile; fileRef = D6EE5CB2232F0FDC00F3701A /* loading2x.json */; };
 		D6EE5CB6232F1FBF00F3701A /* TrainLevelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */; };
-		D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */; };
+		D6EE5CB8232F222D00F3701A /* TrainingDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */; };
 		D6EE5CBC232F2BEE00F3701A /* TrainLevelComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */; };
 		D6EE5CC0232F303A00F3701A /* JujuLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CBF232F303A00F3701A /* JujuLoader.swift */; };
 		D6EE5CC2232F304500F3701A /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CC1232F304500F3701A /* Animatable.swift */; };
@@ -133,6 +137,7 @@
 		C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_juju.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B963747690D2B138C0423C /* Pods-juju.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.release.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.release.xcconfig"; sourceTree = "<group>"; };
 		D6046F3822EF1444002FB78B /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
+		D60927542340097F00B0F594 /* TrainingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModel.swift; sourceTree = "<group>"; };
 		D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuUnderlinedButton.swift; sourceTree = "<group>"; };
 		D6182B48232406AF00932DA3 /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		D6182B4A232406CF00932DA3 /* TrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingView.swift; sourceTree = "<group>"; };
@@ -158,6 +163,8 @@
 		D641400723002AB9005BD008 /* FirebaseUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserQuery.swift; sourceTree = "<group>"; };
 		D645C0EF22CCC39800FAB219 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewSpec.swift; sourceTree = "<group>"; };
+		D65356E6234023CC00CEE476 /* FirebaseTrainingQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrainingQuery.swift; sourceTree = "<group>"; };
+		D65356E82340241500CEE476 /* FirebaseTrainingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrainingModel.swift; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D65FCC5022C79EF500BA16E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 		D68ACBB222C7F763001C94A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputFieldSpec.swift; sourceTree = "<group>"; };
 		D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConstants.swift; sourceTree = "<group>"; };
+		D6944B9B23404B030024608A /* TrainingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingService.swift; sourceTree = "<group>"; };
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
@@ -207,7 +215,7 @@
 		D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseRestartComponentSpec.swift; sourceTree = "<group>"; };
 		D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalComponent.swift; sourceTree = "<group>"; };
 		D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePersistable.swift; sourceTree = "<group>"; };
-		D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreUser.swift; sourceTree = "<group>"; };
+		D6CDADD322E09C520030B753 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModeViewController.swift; sourceTree = "<group>"; };
 		D6D39751232D91B800EBA4FE /* TrainingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCoordinator.swift; sourceTree = "<group>"; };
 		D6D39753232D966400EBA4FE /* TrainingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMode.swift; sourceTree = "<group>"; };
@@ -222,7 +230,7 @@
 		D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTimer.swift; sourceTree = "<group>"; };
 		D6EE5CB2232F0FDC00F3701A /* loading2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading2x.json; sourceTree = "<group>"; };
 		D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelComponent.swift; sourceTree = "<group>"; };
-		D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevel.swift; sourceTree = "<group>"; };
+		D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDifficulty.swift; sourceTree = "<group>"; };
 		D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelComponentSpec.swift; sourceTree = "<group>"; };
 		D6EE5CBF232F303A00F3701A /* JujuLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuLoader.swift; sourceTree = "<group>"; };
 		D6EE5CC1232F304500F3701A /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
@@ -315,7 +323,7 @@
 		D641400923002ACB005BD008 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D6CDADD322E09C520030B753 /* FirebaseFirestoreUser.swift */,
+				D6CDADD322E09C520030B753 /* FirebaseUser.swift */,
 				D641400723002AB9005BD008 /* FirebaseUserQuery.swift */,
 			);
 			path = User;
@@ -326,7 +334,6 @@
 			children = (
 				D645C0EF22CCC39800FAB219 /* SignUpView.swift */,
 				D6F2653D22D4DC840062C97A /* SignUpViewController.swift */,
-				D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -337,6 +344,40 @@
 				D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D65356E52340151F00CEE476 /* TrainingModel */ = {
+			isa = PBXGroup;
+			children = (
+				D65356E6234023CC00CEE476 /* FirebaseTrainingQuery.swift */,
+				D65356E82340241500CEE476 /* FirebaseTrainingModel.swift */,
+			);
+			path = TrainingModel;
+			sourceTree = "<group>";
+		};
+		D65356EA234028E400CEE476 /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
+				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
+				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
+				D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */,
+				D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */,
+				D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */,
+				D60927542340097F00B0F594 /* TrainingModel.swift */,
+			);
+			path = Training;
+			sourceTree = "<group>";
+		};
+		D65356EB2340312300CEE476 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */,
+				D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */,
+				D6414003230028C0005BD008 /* FirebaseConstants.swift */,
+				D641400523002A87005BD008 /* FirebaseQuery.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		D65FCC3D22C79EF400BA16E5 = {
@@ -458,6 +499,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D6944B9A23404AC60024608A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D6E3C6AB22EC7ABF00627CE6 /* UserService.swift */,
+				D6944B9B23404B030024608A /* TrainingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		D695890722C7AAD1009A356C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,16 +542,11 @@
 		D6ABED1C22DF2C020022CF0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
+				D65356EA234028E400CEE476 /* Training */,
 				D6EA765922DDF47200E87D00 /* Results.swift */,
 				D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */,
 				D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */,
 				D681E48F22F128B3003754F4 /* InputKind.swift */,
-				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
-				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
-				D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */,
-				D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */,
-				D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -509,11 +554,9 @@
 		D6ABED2922DF34C10022CF0A /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				D65356E52340151F00CEE476 /* TrainingModel */,
 				D641400923002ACB005BD008 /* User */,
-				D6A3FD2522E0190500CE41FF /* FirebaseRepository.swift */,
-				D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */,
-				D6414003230028C0005BD008 /* FirebaseConstants.swift */,
-				D641400523002A87005BD008 /* FirebaseQuery.swift */,
+				D65356EB2340312300CEE476 /* Base */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -686,6 +729,7 @@
 		D6EA765822DDF44C00E87D00 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				D6944B9A23404AC60024608A /* Service */,
 				D6ABED2922DF34C10022CF0A /* Firebase */,
 				D6B02A4322E0070100818C17 /* Repository.swift */,
 				D6A3FD2122E00DC300CE41FF /* RepositoryError.swift */,
@@ -1032,9 +1076,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6944B9C23404B030024608A /* TrainingService.swift in Sources */,
 				D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */,
 				D6A3FD2622E0190500CE41FF /* FirebaseRepository.swift in Sources */,
-				D6CDADD422E09C520030B753 /* FirebaseFirestoreUser.swift in Sources */,
+				D6CDADD422E09C520030B753 /* FirebaseUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
 				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
@@ -1048,6 +1093,7 @@
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
 				D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */,
+				D65356E92340241500CEE476 /* FirebaseTrainingModel.swift in Sources */,
 				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
 				D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */,
 				D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */,
@@ -1069,7 +1115,7 @@
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6E42DB723308EAD00B42EB1 /* TrainingConfiguratioFactory.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
-				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
+				D6EE5CB8232F222D00F3701A /* TrainingDifficulty.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
@@ -1078,10 +1124,12 @@
 				D622755722FA4527004992E5 /* DateUtils.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */,
+				D65356E7234023CC00CEE476 /* FirebaseTrainingQuery.swift in Sources */,
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
 				D6182B4F23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift in Sources */,
+				D60927552340097F00B0F594 /* TrainingModel.swift in Sources */,
 				D6C75ADE2329E13300F44EE7 /* PlayStopRestartComponent.swift in Sources */,
 				D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */,
 				D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */,

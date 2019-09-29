@@ -20,4 +20,19 @@ enum FirebaseConstants {
         
         static let dobField = "dateOfBirth"
     }
+    
+    enum TrainingModel {
+        
+        static let pathToCollection = "trainingmodels"
+        
+        static let modeField = "mode"
+        
+        static let difficultyField = "difficulty"
+        
+        static let repetitionsField = "repetitions"
+        
+        static let contractionDurationField = "contractionDuration"
+        
+        static let relaxationDurationField = "relaxationDuration"
+    }
 }

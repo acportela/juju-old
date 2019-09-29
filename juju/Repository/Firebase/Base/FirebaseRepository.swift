@@ -71,12 +71,8 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
                 return
             }
             
-            guard let snapshot = maybeSnapshot else {
-                callback(.error(.corruptedData))
-                return
-            }
-            
-            if snapshot.documents.count == 0 {
+            guard let snapshot = maybeSnapshot,
+            snapshot.documents.isEmpty == false else {
                 callback(.error(.noResults))
                 return
             }
@@ -93,4 +89,31 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
         
         callback(.success)
     }
+    
+    func getAll(path: String, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
+        
+        let fireQuery = self.firestore
+                            .collection(path)
+        
+        fireQuery.getDocuments(source: .cache) { (maybeSnapshot, maybeError) in
+            
+            //TODO firebase error code handling
+            if maybeError != nil {
+                callback(.error(.unknown))
+                return
+            }
+
+            guard let snapshot = maybeSnapshot,
+            snapshot.documents.isEmpty == false else {
+                callback(.error(.noResults))
+                return
+            }
+            
+            let entities = snapshot.documents.compactMap { Entity(fromData: $0.data()) }
+            guard entities.isEmpty == false else { return callback(.error(.corruptedData)) }
+        
+            callback(.success(entities))
+        }
+    }
+    
 }

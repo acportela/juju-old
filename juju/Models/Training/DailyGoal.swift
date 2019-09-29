@@ -27,7 +27,7 @@ struct DailyGoal {
         self.goalSteps = goalSteps
     }
     
-    init(level: TrainingLevel, mode: TrainingMode) {
+    init(level: TrainingDifficulty, mode: TrainingMode) {
         
         self.currentSteps = 0
         

@@ -11,7 +11,7 @@ import UIKit
 protocol TrainingViewControllerDelegate: AnyObject {
     
     func trainingViewControllerDidTapLevelSettings(_ controller: TrainingViewController,
-                                                   withCurrentLevel level: TrainingLevel)
+                                                   withCurrentLevel level: TrainingDifficulty)
 }
 
 final class TrainingViewController: UIViewController {
@@ -20,7 +20,7 @@ final class TrainingViewController: UIViewController {
     
     private let trainingMode: TrainingMode
     
-    private var currentLevel: TrainingLevel = .defaultLevel {
+    private var currentLevel: TrainingDifficulty = .defaultLevel {
         didSet {
             self.dailyGoal = DailyGoal(level: self.currentLevel,
                                        mode: self.trainingMode)
@@ -108,7 +108,7 @@ extension TrainingViewController {
 
 extension TrainingViewController {
     
-    func updateCurrentLevelWith(_ newLevel: TrainingLevel) {
+    func updateCurrentLevelWith(_ newLevel: TrainingDifficulty) {
         
         self.currentLevel = newLevel
     }

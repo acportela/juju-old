@@ -1,5 +1,5 @@
 //
-//  FirebaseFirestoreUser.swift
+//  FirebaseUser.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 18/07/19.
@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct FirebaseFirestoreUser: FirebasePersistable {
+struct FirebaseUser: FirebasePersistable {
     
     let name: String
     let email: String

@@ -10,10 +10,10 @@ import Foundation
 
 struct TrainingConfiguration {
     
-    let level: TrainingLevel
+    let level: TrainingDifficulty
     let mode: TrainingMode
     
-    static let defaultViewConfiguration = TrainingViewInitialConfiguration(level: TrainingLevel.defaultLevel.title,
+    static let defaultViewConfiguration = TrainingViewInitialConfiguration(level: TrainingDifficulty.defaultLevel.title,
                                                                            convergingDuration: TrainingConstants
                                                                                                .slowTrainTimeEasy)
     

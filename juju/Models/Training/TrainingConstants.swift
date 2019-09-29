@@ -6,6 +6,7 @@
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
+// TODO: Remove later
 struct TrainingConstants {
     
     static let slowTrainTimeEasy = 3

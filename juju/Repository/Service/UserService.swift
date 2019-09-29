@@ -22,9 +22,9 @@ protocol UserServiceProtocol {
 struct UserService: UserServiceProtocol {
     
     let userAuth: UserAuthenticationProtocol
-    let userRepo: FirebaseRepository<FirebaseFirestoreUser, FirebaseUserQuery>
+    let userRepo: FirebaseRepository<FirebaseUser, FirebaseUserQuery>
     
-    init(userAuth: UserAuthenticationProtocol, userRepo: FirebaseRepository<FirebaseFirestoreUser, FirebaseUserQuery>) {
+    init(userAuth: UserAuthenticationProtocol, userRepo: FirebaseRepository<FirebaseUser, FirebaseUserQuery>) {
         self.userAuth = userAuth
         self.userRepo = userRepo
     }
@@ -72,7 +72,7 @@ struct UserService: UserServiceProtocol {
 
             case .success:
 
-                let firebaseUser = FirebaseFirestoreUser(name: clientUser.name,
+                let firebaseUser = FirebaseUser(name: clientUser.name,
                                                          email: clientUser.email,
                                                          dateOfBirth: clientUser.dob)
 

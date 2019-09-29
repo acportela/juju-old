@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         let userService = UserService(userAuth: FirebaseEmailPasswordAuthentication(),
-                                      userRepo: FirebaseRepository<FirebaseFirestoreUser, FirebaseUserQuery>())
+                                      userRepo: FirebaseRepository<FirebaseUser, FirebaseUserQuery>())
         self.appCoordinator = AppCoordinator(rootNavigation: rootController, userService: userService)
         
         self.appCoordinator?.start()
