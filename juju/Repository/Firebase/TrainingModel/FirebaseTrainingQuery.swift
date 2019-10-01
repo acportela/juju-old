@@ -24,8 +24,8 @@ struct FirebaseTrainingQuery: FirebaseQuery {
     var uniqueValue: String
     
     // TODO: Set ID for TrainingModel
-    init(id: String) {
+    init(mode: String = .empty) {
         
-        self.uniqueValue = id
+        self.uniqueValue = mode
     }
 }

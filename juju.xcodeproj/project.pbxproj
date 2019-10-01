@@ -19,7 +19,6 @@
 		D6182B512324168000932DA3 /* TrainingFooterButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */; };
 		D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */; };
 		D6182B5523243D3100932DA3 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5423243D3100932DA3 /* UINavigationController.swift */; };
-		D6182B5B2324526C00932DA3 /* DailyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5A2324526C00932DA3 /* DailyGoal.swift */; };
 		D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5C2324540000932DA3 /* TrainingViewInitialConfiguration.swift */; };
 		D61E0C3622E491B1003700EA /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3522E491B1003700EA /* UIButton.swift */; };
 		D61E0C3822E4930D003700EA /* JujuUnderlinedButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */; };
@@ -82,7 +81,7 @@
 		D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BC42112328642F0005B686 /* CirclesComponent.swift */; };
 		D6C75ADE2329E13300F44EE7 /* PlayStopRestartComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADD2329E13300F44EE7 /* PlayStopRestartComponent.swift */; };
 		D6C75AE02329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */; };
-		D6C75AE22329F45000F44EE7 /* DailyGoalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */; };
+		D6C75AE22329F45000F44EE7 /* ProgressComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75AE12329F45000F44EE7 /* ProgressComponent.swift */; };
 		D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */; };
 		D6CDADD422E09C520030B753 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDADD322E09C520030B753 /* FirebaseUser.swift */; };
 		D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */; };
@@ -94,7 +93,6 @@
 		D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */; };
 		D6E42DB32330819100B42EB1 /* TrainingLevelViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */; };
 		D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */; };
-		D6E42DB723308EAD00B42EB1 /* TrainingConfiguratioFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */; };
 		D6EA765A22DDF47200E87D00 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EA765922DDF47200E87D00 /* Results.swift */; };
 		D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */; };
 		D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */ = {isa = PBXBuildFile; fileRef = D6EE5CB2232F0FDC00F3701A /* loading2x.json */; };
@@ -146,7 +144,6 @@
 		D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingFooterButtonSpec.swift; sourceTree = "<group>"; };
 		D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuTabBarController.swift; sourceTree = "<group>"; };
 		D6182B5423243D3100932DA3 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
-		D6182B5A2324526C00932DA3 /* DailyGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoal.swift; sourceTree = "<group>"; };
 		D6182B5C2324540000932DA3 /* TrainingViewInitialConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewInitialConfiguration.swift; sourceTree = "<group>"; };
 		D61E0C3522E491B1003700EA /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D61E0C3722E4930D003700EA /* JujuUnderlinedButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuUnderlinedButtonSpec.swift; sourceTree = "<group>"; };
@@ -213,7 +210,7 @@
 		D6BC42112328642F0005B686 /* CirclesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesComponent.swift; sourceTree = "<group>"; };
 		D6C75ADD2329E13300F44EE7 /* PlayStopRestartComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStopRestartComponent.swift; sourceTree = "<group>"; };
 		D6C75ADF2329E69F00F44EE7 /* PlayPauseRestartComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseRestartComponentSpec.swift; sourceTree = "<group>"; };
-		D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalComponent.swift; sourceTree = "<group>"; };
+		D6C75AE12329F45000F44EE7 /* ProgressComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressComponent.swift; sourceTree = "<group>"; };
 		D6CDADD122E0985C0030B753 /* FirebasePersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePersistable.swift; sourceTree = "<group>"; };
 		D6CDADD322E09C520030B753 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		D6D3974D232D80D600EBA4FE /* TrainingModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModeViewController.swift; sourceTree = "<group>"; };
@@ -225,7 +222,6 @@
 		D6E42DAF2330699D00B42EB1 /* TrainingLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelView.swift; sourceTree = "<group>"; };
 		D6E42DB22330819100B42EB1 /* TrainingLevelViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelViewSpec.swift; sourceTree = "<group>"; };
 		D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelViewController.swift; sourceTree = "<group>"; };
-		D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConfiguratioFactory.swift; sourceTree = "<group>"; };
 		D6EA765922DDF47200E87D00 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTimer.swift; sourceTree = "<group>"; };
 		D6EE5CB2232F0FDC00F3701A /* loading2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading2x.json; sourceTree = "<group>"; };
@@ -359,10 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
-				D6182B5A2324526C00932DA3 /* DailyGoal.swift */,
 				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
 				D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */,
-				D6E42DB623308EAD00B42EB1 /* TrainingConfiguratioFactory.swift */,
 				D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */,
 				D60927542340097F00B0F594 /* TrainingModel.swift */,
 			);
@@ -636,7 +630,7 @@
 				D6EE63EC232587450003F50C /* NumberedCircle.swift */,
 				D6BC42112328642F0005B686 /* CirclesComponent.swift */,
 				D6C75ADD2329E13300F44EE7 /* PlayStopRestartComponent.swift */,
-				D6C75AE12329F45000F44EE7 /* DailyGoalComponent.swift */,
+				D6C75AE12329F45000F44EE7 /* ProgressComponent.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1113,7 +1107,6 @@
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
-				D6E42DB723308EAD00B42EB1 /* TrainingConfiguratioFactory.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6EE5CB8232F222D00F3701A /* TrainingDifficulty.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
@@ -1141,8 +1134,7 @@
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
-				D6C75AE22329F45000F44EE7 /* DailyGoalComponent.swift in Sources */,
-				D6182B5B2324526C00932DA3 /* DailyGoal.swift in Sources */,
+				D6C75AE22329F45000F44EE7 /* ProgressComponent.swift in Sources */,
 				D66D5AD92312C56700F0A944 /* Styling.swift in Sources */,
 				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,

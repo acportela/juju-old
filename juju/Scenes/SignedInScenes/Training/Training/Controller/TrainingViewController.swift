@@ -18,30 +18,20 @@ final class TrainingViewController: UIViewController {
     
     private let trainingView = TrainingView()
     
-    private let trainingMode: TrainingMode
-    
-    private var currentLevel: TrainingDifficulty = .defaultLevel {
+    private var trainingModel: TrainingModel {
         didSet {
-            self.dailyGoal = DailyGoal(level: self.currentLevel,
-                                       mode: self.trainingMode)
+            
             self.configureViewForInitialState()
         }
     }
-    
-    private var dailyGoal: DailyGoal = .defaultGoal
-    
-    private var currentTrainConfiguration: TrainingViewInitialConfiguration {
 
-        return TrainingConfiguration(level: self.currentLevel, mode: self.trainingMode).viewConfiguration()
-    }
-    
     weak var delegate: TrainingViewControllerDelegate?
     
     //REMOVE
     
-    init(trainingMode: TrainingMode) {
+    init(trainingModel: TrainingModel) {
         
-        self.trainingMode = trainingMode
+        self.trainingModel = trainingModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -102,7 +92,7 @@ extension TrainingViewController {
     private func didTapLevelSettings() {
 
         self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentLevel: self.currentLevel)
+                                                                 withCurrentLevel: self.trainingModel.difficulty)
     }
 }
 
@@ -110,7 +100,7 @@ extension TrainingViewController {
     
     func updateCurrentLevelWith(_ newLevel: TrainingDifficulty) {
         
-        self.currentLevel = newLevel
+        self.trainingModel.updateDifficulty(newLevel)
     }
     
     private func configureNavigation() {
@@ -130,12 +120,12 @@ extension TrainingViewController {
     
     private func configureViewForInitialState() {
         
-        self.trainingView.configure(with: .initialAndLevelChange(self.currentTrainConfiguration))
+        self.trainingView.configure(with: .initialAndLevelChange(self.trainingModel))
     }
     
     private func startTrain() {
         
-        self.trainingView.configure(with: .start(self.dailyGoal))
+        self.trainingView.configure(with: .start)
     }
 }
 

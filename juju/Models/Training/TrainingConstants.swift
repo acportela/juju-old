@@ -6,27 +6,48 @@
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
-// TODO: Remove later
 struct TrainingConstants {
     
-    static let slowTrainTimeEasy = 3
-    static let slowTrainTimeMedium = 6
-    static let slowTrainTimeHard = 10
+    static let slowEasy = TrainingModel(mode: .slow,
+                                        difficulty: .easy,
+                                        repetitions: 10,
+                                        contractionDuration: 4,
+                                        relaxationDuration: 4)
     
-    static let fastTrainContractionTimeEasy = 1
-    static let fastTrainRelaxationTimeEasy = 3
+    static let slowMedium = TrainingModel(mode: .slow,
+                                          difficulty: .medium,
+                                          repetitions: 10,
+                                          contractionDuration: 6,
+                                          relaxationDuration: 6)
     
-    static let fastTrainContractionTimeMedium = 1
-    static let fastTrainRelaxationTimeMedium = 1
+    static let slowHard = TrainingModel(mode: .slow,
+                                        difficulty: .hard,
+                                        repetitions: 10,
+                                        contractionDuration: 10,
+                                        relaxationDuration: 10)
     
-    static let fastTrainContractionTimeHard = 1
-    static let fastTrainRelaxationTimeHard = 1
+    static let fastEasy = TrainingModel(mode: .fast,
+                                        difficulty: .easy,
+                                        repetitions: 10,
+                                        contractionDuration: 1,
+                                        relaxationDuration: 3)
     
-    static let slowTrainRepetitionsEasy = 10
-    static let slowTrainRepetitionsMedium = 10
-    static let slowTrainRepetitionsHard = 10
+    static let fastMedium = TrainingModel(mode: .fast,
+                                          difficulty: .medium,
+                                          repetitions: 10,
+                                          contractionDuration: 2,
+                                          relaxationDuration: 2)
     
-    static let fastTrainRepetitionsEasy = 10
-    static let fastTrainRepetitionsMedium = 10
-    static let fastTrainRepetitionsHard = 20
+    static let fastHard = TrainingModel(mode: .fast,
+                                        difficulty: .hard,
+                                        repetitions: 10,
+                                        contractionDuration: 3,
+                                        relaxationDuration: 6)
+    
+    static let defaultTrainingModels: [TrainingModel] = [TrainingConstants.slowEasy,
+                                                         TrainingConstants.slowMedium,
+                                                         TrainingConstants.slowHard,
+                                                         TrainingConstants.fastEasy,
+                                                         TrainingConstants.fastMedium,
+                                                         TrainingConstants.fastHard]
 }

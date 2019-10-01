@@ -19,7 +19,14 @@ class SignedInCoordinator: NSObject, Coordinator {
     private let user: ClientUser
     weak var delegate: SignedInCoordinatorDelegate?
     
-    private lazy var trainingCoordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation)
+    private lazy var trainingCoordinator: Coordinator = {
+        
+        let trainingRepo = FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingQuery>()
+        let trainingService = TrainingService(trainingRepo: trainingRepo)
+        let coordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation,
+                                              trainingService: trainingService)
+        return coordinator
+    }()
     
     private lazy var tabBarController: JujuTabBarController  = {
         

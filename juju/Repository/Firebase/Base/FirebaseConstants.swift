@@ -23,7 +23,7 @@ enum FirebaseConstants {
     
     enum TrainingModel {
         
-        static let pathToCollection = "trainingmodels"
+        static let pathToCollection = "training-models"
         
         static let modeField = "mode"
         
@@ -31,8 +31,8 @@ enum FirebaseConstants {
         
         static let repetitionsField = "repetitions"
         
-        static let contractionDurationField = "contractionDuration"
+        static let contractionDurationField = "contraction"
         
-        static let relaxationDurationField = "relaxationDuration"
+        static let relaxationDurationField = "relaxation"
     }
 }

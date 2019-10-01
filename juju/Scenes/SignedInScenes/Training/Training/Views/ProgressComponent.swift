@@ -1,5 +1,5 @@
 //
-//  DailyGoalComponent.swift
+//  ProgressComponent.swift
 //  juju
 //
 //  Created by Antonio Portela on 12/09/19.
@@ -9,14 +9,14 @@
 import UIKit
 import SnapKit
 
-final class DailyGoalComponent: UIView {
+final class ProgressComponent: UIView {
     
     // MARK: Views
     private let title: UILabel = {
         
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "Meta Diária"
+        label.text = "Hoje"
         label.textColor = Styling.Colors.rosyPink
         label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.sixteen)
         return label
@@ -74,7 +74,7 @@ final class DailyGoalComponent: UIView {
     }
 }
 
-extension DailyGoalComponent: ViewCoding {
+extension ProgressComponent: ViewCoding {
     
     func addSubViews() {
         
@@ -118,30 +118,29 @@ extension DailyGoalComponent: ViewCoding {
     }
 }
 
-extension DailyGoalComponent: ViewConfiguration {
-    
-    struct Progress {
-        
-        var current: Int
-        var total: Int
-        
-        static let empty = Progress(current: 0, total: 0)
-    }
+extension ProgressComponent: ViewConfiguration {
     
     enum States {
         
-        case set(current: Int, total: Int)
+        case build(current: Int, total: Int)
+        case increment
     }
     
-    func configure(with state: DailyGoalComponent.States) {
+    func configure(with state: ProgressComponent.States) {
         
         switch state {
             
-        case .set(let current, let total):
+        case .build(let current, let total):
             
-            self.progressLabel.text = "\(current)/\(total)"
+            if current > total { return }
+            
             self.progress = Progress(current: current, total: total)
-
+            self.progressLabel.text = "\(self.progress.current)/\(self.progress.total)"
+            
+        case .increment:
+            
+            self.progress.increment()
+            self.progressLabel.text = "\(self.progress.current)/\(self.progress.total)"
         }
     }
     
@@ -160,12 +159,26 @@ extension DailyGoalComponent: ViewConfiguration {
     }
 }
 
-extension DailyGoalComponent {
+extension ProgressComponent {
     
     struct Constants {
         
         static let cornerRadius: CGFloat = 7
         static let progressBarsHeight = 13
         static let progressBarFillDuration: Double = 1
+    }
+}
+
+struct Progress {
+    
+    var current: Int
+    var total: Int
+    
+    static let empty = Progress(current: 0, total: 0)
+    
+    mutating func increment() {
+        
+        if self.current == total { return }
+        self.current += 1
     }
 }

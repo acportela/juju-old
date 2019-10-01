@@ -59,9 +59,9 @@ final class TrainingView: UIView {
         return view
     }()
     
-    private let dailyProgressComponent: DailyGoalComponent = {
+    private let progressComponent: ProgressComponent = {
         
-        let view = DailyGoalComponent()
+        let view = ProgressComponent()
         view.isHidden = true
         return view
     }()
@@ -86,22 +86,15 @@ final class TrainingView: UIView {
         }
     }
     
-    private (set) var currentTrain: TrainingViewInitialConfiguration = .empty {
-        didSet { self.setInitial() }
-    }
-    
-    private (set) var dailyGoal: DailyGoal = .empty {
+    private (set) var trainingModel: TrainingModel = .fallbackTrainingModel {
         didSet {
-            
-            self.dailyProgressComponent.configure(with: .set(current: self.dailyGoal.currentSteps,
-                                                             total: self.dailyGoal.goalSteps))
+            self.setInitial()
         }
     }
     
     public weak var delegate: TrainingViewDelegate?
     
     // MARK: Lifecycle
-    
     override init(frame: CGRect = .zero) {
         
         super.init(frame: frame)
@@ -124,7 +117,7 @@ extension TrainingView: ViewCoding {
         self.addSubview(self.circlesComponent)
         self.addSubview(self.initialFooter)
         self.addSubview(self.playPauseComponent)
-        self.addSubview(self.dailyProgressComponent)
+        self.addSubview(self.progressComponent)
     }
     
     func setupConstraints() {
@@ -163,7 +156,7 @@ extension TrainingView: ViewCoding {
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Styling.Spacing.sixteen)
         }
         
-        self.dailyProgressComponent.snp.makeConstraints { make in
+        self.progressComponent.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.eight)
             make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
             make.right.equalToSuperview().offset(-Styling.Spacing.sixteen)
@@ -182,6 +175,7 @@ extension TrainingView: ViewCoding {
     }
 }
 
+// MARK: States
 extension TrainingView: ViewConfiguration {
     
     enum BladderState: String {
@@ -192,8 +186,8 @@ extension TrainingView: ViewConfiguration {
     
     enum States {
         
-        case initialAndLevelChange(TrainingViewInitialConfiguration)
-        case start(DailyGoal)
+        case initialAndLevelChange(TrainingModel)
+        case start
         case stop
         case resume
         case contract
@@ -206,13 +200,14 @@ extension TrainingView: ViewConfiguration {
         
         switch state {
             
-        case .initialAndLevelChange(let configuration):
+        case .initialAndLevelChange(let model):
             
-            self.currentTrain = configuration
+            self.trainingModel = model
             
-        case .start(let goal):
+        case .start:
             
-            self.dailyGoal = goal
+            self.progressComponent.configure(with: .build(current: 0,
+                                                          total: self.trainingModel.repetitions))
             self.startTrain()
             
         case .resume:
@@ -265,7 +260,7 @@ extension TrainingView {
             
         case .contraction:
             
-            let remainingTime = self.currentTrain.contractionTime - time
+            let remainingTime = self.trainingModel.contractionDuration - time
             if remainingTime <= 0 {
                 self.currentBladderState = .relaxation
                 self.timer.restart()
@@ -275,12 +270,12 @@ extension TrainingView {
             
         case .relaxation:
             
-            let remainingTime = self.currentTrain.relaxationTime - time
+            let remainingTime = self.trainingModel.relaxationDuration - time
             if remainingTime <= 0 {
                 
                 self.currentBladderState = .contraction
                 self.timer.restart()
-                self.dailyGoal.incrementCurrentStep()
+                self.progressComponent.configure(with: .increment)
             }
             
             self.updateInnerLabelFor(remainingTime: remainingTime, state: self.currentBladderState)
@@ -291,23 +286,22 @@ extension TrainingView {
 extension TrainingView {
     
     // MARK: Helpers for views updates
-    
     private func setInitial() {
         
-        let config = self.currentTrain
+        let model = self.trainingModel
         
         self.contractRelax.text = .empty
         self.instructions.isHidden = false
         self.playPauseComponent.isHidden = true
-        self.dailyProgressComponent.isHidden = true
+        self.progressComponent.isHidden = true
         self.initialFooter.isHidden = false
         
         let footerConfig = TrainingFooterButtonConfiguration(title: "Começar",
-                                                             subtitle: "nível \(config.level.lowercased())")
+                                                             subtitle: "nível \(model.difficulty.title.lowercased())")
         self.initialFooter.configure(with: .initial(footerConfig))
         self.circlesComponent.configure(with: .stopAnimation)
-        self.circlesComponent.configure(with: .updateTime(time: config.contractionTime))
-        self.innerCircle.configure(with: .build(number: config.contractionTime,
+        self.circlesComponent.configure(with: .updateTime(time: model.contractionDuration))
+        self.innerCircle.configure(with: .build(number: model.contractionDuration,
                                                 color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
         
     }
@@ -317,7 +311,7 @@ extension TrainingView {
         self.instructions.isHidden = true
         self.initialFooter.isHidden = true
         self.playPauseComponent.isHidden = false
-        self.dailyProgressComponent.isHidden = false
+        self.progressComponent.isHidden = false
         
         self.currentBladderState = .contraction
         self.contractRelax.isHidden = false
@@ -341,8 +335,8 @@ extension TrainingView {
     
     private func resetInnerLabel(forState state: BladderState) {
         
-        let time = state == .contraction ? self.currentTrain.contractionTime
-            : self.currentTrain.relaxationTime
+        let time = state == .contraction ? self.trainingModel.contractionDuration
+                            : self.trainingModel.relaxationDuration
         self.innerCircle.configure(with: .updateNumber(time))
     }
     

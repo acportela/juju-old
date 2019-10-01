@@ -25,9 +25,9 @@ struct TrainingService: TrainingServiceProtocol {
     
     func trainingWantsToFetchModels(callback: @escaping (ContentResult<[TrainingModel], RepositoryError>) -> Void) {
         
-        let path = FirebaseConstants.TrainingModel.pathToCollection
+        let query = FirebaseTrainingQuery()
         
-        self.trainingRepo.getAll(path: path) { contentResult in
+        self.trainingRepo.getAll(query: query) { contentResult in
 
             switch contentResult {
 

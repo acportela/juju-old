@@ -23,7 +23,7 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
                                         isEqualTo: query.uniqueValue)
                             .limit(to: 1)
         
-        fireQuery.getDocuments(source: .cache) { (maybeSnapshot, maybeError) in
+        fireQuery.getDocuments { (maybeSnapshot, maybeError) in
             
             //TODO firebase error code handling
             if maybeError != nil {
@@ -60,8 +60,9 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
     func delete(query: Query, callback: @escaping (Result<RepositoryError>) -> Void) {
 
         let returnQuery = self.firestore
-                                .collection(query.path)
-                                .whereField(query.uniqueField, isEqualTo: query.uniqueValue)
+                              .collection(query.path)
+                              .whereField(query.uniqueField,
+                                          isEqualTo: query.uniqueValue)
         
         returnQuery.getDocuments { (maybeSnapshot, maybeError) in
             
@@ -90,21 +91,30 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
         callback(.success)
     }
     
-    func getAll(path: String, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
+    func getAll(query: Query, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
         
-        let fireQuery = self.firestore
-                            .collection(path)
+        let collection = self.firestore
+                             .collection(query.path)
         
-        fireQuery.getDocuments(source: .cache) { (maybeSnapshot, maybeError) in
+        let validQuery = self.firestore
+                             .collection(query.path)
+                             .whereField(query.uniqueField,
+                                         isEqualTo: query.uniqueValue)
+
+        let fireQuery = query.uniqueValue.isEmpty ? collection : validQuery
+        
+        fireQuery.getDocuments { (maybeSnapshot, maybeError) in
             
             //TODO firebase error code handling
             if maybeError != nil {
+                
                 callback(.error(.unknown))
                 return
             }
 
             guard let snapshot = maybeSnapshot,
             snapshot.documents.isEmpty == false else {
+                
                 callback(.error(.noResults))
                 return
             }

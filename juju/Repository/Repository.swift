@@ -17,7 +17,7 @@ protocol Repository {
     
     func get(query: Query, callback: @escaping (ContentResult<Entity, RepositoryError>) -> Void)
     
-    func getAll(path: String, callback: @escaping (ContentResult<[Entity], RepositoryError>) -> Void)
+    func getAll(query: Query, callback: @escaping (ContentResult<[Entity], RepositoryError>) -> Void)
     
     func delete(query: Query, callback: @escaping (Result<RepositoryError>) -> Void)
 }
