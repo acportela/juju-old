@@ -23,8 +23,10 @@ class SignedInCoordinator: NSObject, Coordinator {
         
         let trainingRepo = FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingQuery>()
         let trainingService = TrainingService(trainingRepo: trainingRepo)
+        let defaults = UserDefaultsStorage()
         let coordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation,
-                                              trainingService: trainingService)
+                                              trainingService: trainingService,
+                                              localDefaults: defaults)
         return coordinator
     }()
     

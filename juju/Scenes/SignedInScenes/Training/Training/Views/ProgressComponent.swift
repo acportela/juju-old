@@ -18,15 +18,25 @@ final class ProgressComponent: UIView {
         label.textAlignment = .center
         label.text = "Hoje"
         label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.sixteen)
+        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.sixteen)
         return label
     }()
     
-    private let progressLabel: UILabel = {
+    private let repetitionsLabel: UILabel = {
         
         let label = UILabel()
         label.textAlignment = .right
-        label.text = "0/0"
+        label.text = .empty
+        label.textColor = Styling.Colors.rosyPink
+        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twelve)
+        return label
+    }()
+    
+    private let seriesLabel: UILabel = {
+        
+        let label = UILabel()
+        label.textAlignment = .left
+        label.text = .empty
         label.textColor = Styling.Colors.rosyPink
         label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twelve)
         return label
@@ -50,18 +60,35 @@ final class ProgressComponent: UIView {
         return view
     }()
     
+    private let superiorComponentsStack: UIStackView = {
+        
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .bottom
+        stack.distribution = .fillEqually
+        stack.spacing = Styling.Spacing.eight
+        return stack
+    }()
+    
     // MARK: Properties
     private var completedBarWidthConstraint: Constraint?
 
-    private var progress: Progress = .empty {
+    private var repetitionsProgress: RepetitionsProgress = .empty {
         
         didSet {
             
             self.updateProgressOffset()
+            self.updateRepetitionsLabel()
         }
     }
-    // MARK: Lifecycle
     
+    private var series: Int = 0 {
+        didSet {
+            self.updateSeriesLabel()
+        }
+    }
+    
+    // MARK: Lifecycle
     override init(frame: CGRect = .zero) {
         
         super.init(frame: frame)
@@ -78,30 +105,26 @@ extension ProgressComponent: ViewCoding {
     
     func addSubViews() {
         
-        self.addSubview(self.title)
-        self.addSubview(self.progressLabel)
+        self.superiorComponentsStack.addArrangedSubview(self.seriesLabel)
+        self.superiorComponentsStack.addArrangedSubview(self.title)
+        self.superiorComponentsStack.addArrangedSubview(self.repetitionsLabel)
+        self.addSubview(self.superiorComponentsStack)
+        
         self.addSubview(self.progressBarBackground)
         self.addSubview(self.progressBarCompleted)
     }
     
     func setupConstraints() {
         
-        self.title.snp.makeConstraints { make in
-            
-            make.centerX.top.equalToSuperview()
-        }
-        
-        self.progressLabel.snp.makeConstraints { make in
-            
-            make.right.equalToSuperview()
-            make.centerY.equalTo(self.title.snp.centerY)
+        self.superiorComponentsStack.snp.makeConstraints { make in
+            make.left.top.right.equalToSuperview()
         }
         
         self.progressBarBackground.snp.makeConstraints { make in
             
             make.height.equalTo(Constants.progressBarsHeight)
             make.left.bottom.right.equalToSuperview()
-            make.top.equalTo(self.title.snp.bottom).offset(Styling.Spacing.eight)
+            make.top.equalTo(self.superiorComponentsStack.snp.bottom).offset(Styling.Spacing.eight)
         }
         
         self.progressBarCompleted.snp.makeConstraints { make in
@@ -122,31 +145,42 @@ extension ProgressComponent: ViewConfiguration {
     
     enum States {
         
-        case build(current: Int, total: Int)
-        case increment
+        case initial(currentRepetition: Int, totalRepetitions: Int, series: Int)
+        case incrementRepetitions
+        case incrementSeries
+        case resetRepetitions
     }
     
     func configure(with state: ProgressComponent.States) {
         
         switch state {
             
-        case .build(let current, let total):
+        case .initial(let current, let total, let series):
             
             if current > total { return }
             
-            self.progress = Progress(current: current, total: total)
-            self.progressLabel.text = "\(self.progress.current)/\(self.progress.total)"
+            self.series = series
+            self.repetitionsProgress = RepetitionsProgress(current: current, total: total)
+            //self.repetitionsLabel.text = "Repetições: \(self.progress.current)/\(self.progress.total)"
             
-        case .increment:
+        case .incrementRepetitions:
             
-            self.progress.increment()
-            self.progressLabel.text = "\(self.progress.current)/\(self.progress.total)"
+            self.repetitionsProgress.increment()
+            //self.repetitionsLabel.text = "Repetições: \(self.progress.current)/\(self.progress.total)"
+            
+        case .incrementSeries:
+            
+            self.series += 1
+        
+        case .resetRepetitions:
+            
+            self.repetitionsProgress = RepetitionsProgress(current: 0, total: self.repetitionsProgress.total)
         }
     }
     
-    func updateProgressOffset() {
+    private func updateProgressOffset() {
         
-        let newRatio = CGFloat(self.progress.current) / CGFloat(self.progress.total)
+        let newRatio = CGFloat(self.repetitionsProgress.current) / CGFloat(self.repetitionsProgress.total)
         
         let ratio = newRatio <= 1 ? newRatio : 1
         
@@ -157,6 +191,16 @@ extension ProgressComponent: ViewConfiguration {
             self.completedBarWidthConstraint?.update(offset: offset)
         }
     }
+    
+    private func updateSeriesLabel() {
+        
+        self.seriesLabel.text = "Séries: \(self.series)"
+    }
+    
+    private func updateRepetitionsLabel() {
+        
+        self.repetitionsLabel.text = "Repetições: \(self.repetitionsProgress.current)/\(self.repetitionsProgress.total)"
+    }
 }
 
 extension ProgressComponent {
@@ -166,19 +210,5 @@ extension ProgressComponent {
         static let cornerRadius: CGFloat = 7
         static let progressBarsHeight = 13
         static let progressBarFillDuration: Double = 1
-    }
-}
-
-struct Progress {
-    
-    var current: Int
-    var total: Int
-    
-    static let empty = Progress(current: 0, total: 0)
-    
-    mutating func increment() {
-        
-        if self.current == total { return }
-        self.current += 1
     }
 }

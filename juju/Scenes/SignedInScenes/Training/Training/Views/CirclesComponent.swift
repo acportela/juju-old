@@ -14,12 +14,11 @@ final class CirclesComponent: UIView {
     private let circlesImage = UIImageView(image: Resources.Images.circles)
     
     // MARK: Properties
-    private var time: Int
+    private var time: Int = 0
 
     // MARK: Lifecycle
-    init(time: Int, frame: CGRect = .zero) {
+    override init(frame: CGRect = .zero) {
         
-        self.time = time
         super.init(frame: frame)
         setupViewConfiguration()
     }
@@ -116,6 +115,6 @@ extension CirclesComponent {
     struct Constants {
         
         static let scaleFactor: CGFloat = 0.36
-        static let resetDuration: Double = 0.2
+        static let resetDuration: Double = 0.1
     }
 }

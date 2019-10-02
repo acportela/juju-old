@@ -11,10 +11,8 @@ import UIKit
 protocol TrainingViewDelegate: AnyObject {
     
     func trainingViewWantsToStartTrain(_ trainingView: TrainingView)
-    func trainingViewWantsToResumeTrain(_ trainingView: TrainingView)
     func trainingViewWantsToStopTrain(_ trainingView: TrainingView)
-    func trainingViewWantsToRestartTrain(_ trainingView: TrainingView)
-    func trainingViewFinishedDailyGoal(_ trainingView: TrainingView)
+    func trainingViewFinishedSerie(_ trainingView: TrainingView)
 }
 
 final class TrainingView: UIView {
@@ -52,22 +50,20 @@ final class TrainingView: UIView {
         return view
     }()
     
-    private lazy var playPauseComponent: PlayStopRestartComponent = {
-        
-        let view = PlayStopRestartComponent()
+    private lazy var playPauseComponent: PlayStopComponent = {
+        let view = PlayStopComponent()
         view.delegate = self
         return view
     }()
     
     private let progressComponent: ProgressComponent = {
-        
         let view = ProgressComponent()
         view.isHidden = true
         return view
     }()
     
     private let innerCircle = NumberedCircle(radius: Constants.innerCircleRadius)
-    private let circlesComponent = CirclesComponent(time: 5)
+    private let circlesComponent = CirclesComponent()
     
     // MARK: Properties
     private lazy var timer: TrainingTimer = {
@@ -150,10 +146,9 @@ extension TrainingView: ViewCoding {
         }
         
         self.playPauseComponent.snp.makeConstraints { make in
-            make.width.equalTo(Constants.playPauseRestartWidth)
-            make.height.equalTo(Constants.playPauseRestartHeight)
-            make.left.equalTo(self.snp.centerX).offset(Constants.playPauseCenterXOffset)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Styling.Spacing.sixteen)
+            make.width.height.equalTo(Constants.playStopSides)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Styling.Spacing.twentyfour)
         }
         
         self.progressComponent.snp.makeConstraints { make in
@@ -163,14 +158,12 @@ extension TrainingView: ViewCoding {
         }
         
         self.contractRelax.snp.makeConstraints { make in
-            
             make.centerX.equalToSuperview()
             make.bottom.equalTo(self.circlesComponent.snp.top).offset(-Styling.Spacing.twentyfour)
         }
     }
     
     func configureViews() {
-        
         self.backgroundColor = Styling.Colors.white
     }
 }
@@ -186,13 +179,11 @@ extension TrainingView: ViewConfiguration {
     
     enum States {
         
-        case initialAndLevelChange(TrainingModel)
+        case initial(TrainingModel)
         case start
         case stop
-        case resume
         case contract
         case relax
-        case restart
         case updateTime(Int)
     }
     
@@ -200,22 +191,13 @@ extension TrainingView: ViewConfiguration {
         
         switch state {
             
-        case .initialAndLevelChange(let model):
+        case .initial(let model):
             
             self.trainingModel = model
             
         case .start:
-            
-            self.progressComponent.configure(with: .build(current: 0,
-                                                          total: self.trainingModel.repetitions))
+        
             self.startTrain()
-            
-        case .resume:
-            
-            self.playPauseComponent.configure(with: .play)
-            self.circlesComponent.configure(with: .startAnimation)
-            self.contractRelax.isHidden = false
-            self.timer.start()
             
         case .contract:
             
@@ -227,21 +209,7 @@ extension TrainingView: ViewConfiguration {
             
         case .stop:
             
-            self.contractRelax.isHidden = true
-            self.playPauseComponent.configure(with: .stop)
-            self.circlesComponent.configure(with: .stopAnimation)
-            self.currentBladderState = .contraction
-            self.resetInnerLabel(forState: .contraction)
-            self.timer.stop()
-            
-        case .restart:
-            
-            self.contractRelax.isHidden = false
-            self.currentBladderState = .contraction
-            self.resetInnerLabel(forState: .contraction)
-            
-            self.circlesComponent.configure(with: .restart)
-            self.timer.restart()
+            self.stopTrain()
             
         case .updateTime(let time):
             
@@ -261,6 +229,7 @@ extension TrainingView {
         case .contraction:
             
             let remainingTime = self.trainingModel.contractionDuration - time
+            
             if remainingTime <= 0 {
                 self.currentBladderState = .relaxation
                 self.timer.restart()
@@ -271,11 +240,11 @@ extension TrainingView {
         case .relaxation:
             
             let remainingTime = self.trainingModel.relaxationDuration - time
+            
             if remainingTime <= 0 {
-                
                 self.currentBladderState = .contraction
                 self.timer.restart()
-                self.progressComponent.configure(with: .increment)
+                self.progressComponent.configure(with: .incrementRepetitions)
             }
             
             self.updateInnerLabelFor(remainingTime: remainingTime, state: self.currentBladderState)
@@ -304,6 +273,10 @@ extension TrainingView {
         self.innerCircle.configure(with: .build(number: model.contractionDuration,
                                                 color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
         
+        // TODO: Don't restart from 0 series
+        self.progressComponent.configure(with: .initial(currentRepetition: 0,
+                                                        totalRepetitions: self.trainingModel.repetitions,
+                                                        series: 0))
     }
     
     private func startTrain() {
@@ -319,6 +292,20 @@ extension TrainingView {
         self.playPauseComponent.configure(with: .play)
         self.circlesComponent.configure(with: .startAnimation)
         self.timer.start()
+    }
+    
+    private func stopTrain() {
+        
+        self.contractRelax.isHidden = true
+        self.playPauseComponent.configure(with: .stop)
+        self.circlesComponent.configure(with: .stopAnimation)
+        self.currentBladderState = .contraction
+        self.resetInnerLabel(forState: .contraction)
+        // TODO: Don't restart from 0 series
+        self.progressComponent.configure(with: .initial(currentRepetition: 0,
+                                                        totalRepetitions: self.trainingModel.repetitions,
+                                                        series: 0))
+        self.timer.stop()
     }
     
     private func updateInnerLabelFor(remainingTime: Int, state: BladderState) {
@@ -342,21 +329,16 @@ extension TrainingView {
     
 }
 
-extension TrainingView: PlayStopRestartComponentDelegate {
+extension TrainingView: PlayStopComponentDelegate {
     
-    func playStopRestartComponentTappedPlay(_ trainingView: PlayStopRestartComponent) {
+    func playStopComponentTappedPlay(_ trainingView: PlayStopComponent) {
         
-        self.delegate?.trainingViewWantsToResumeTrain(self)
+        self.delegate?.trainingViewWantsToStartTrain(self)
     }
     
-    func playStopRestartComponentTappedStop(_ trainingView: PlayStopRestartComponent) {
+    func playStopComponentTappedStop(_ trainingView: PlayStopComponent) {
         
         self.delegate?.trainingViewWantsToStopTrain(self)
-    }
-    
-    func playStopRestartComponentTappedRestart(_ trainingView: PlayStopRestartComponent) {
-        
-        self.delegate?.trainingViewWantsToRestartTrain(self)
     }
 }
 
@@ -366,11 +348,9 @@ extension TrainingView {
         
         static let instructionsLines = 2
         static let initialFooterHeight = 48
-        static let playPauseRestartWidth = 124
-        static let playPauseRestartHeight = 68
-        static let playPauseCenterXOffset = -34
         static let animationRectWidthRatio: CGFloat = 0.75
         static let innerCircleSide = 103
         static let innerCircleRadius: Float = 51.5
+        static let playStopSides = 68
     }
 }

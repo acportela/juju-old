@@ -18,9 +18,8 @@ final class TrainingViewController: UIViewController {
     
     private let trainingView = TrainingView()
     
-    private var trainingModel: TrainingModel {
+    private var trainingModel: TrainingModel = .fallbackTrainingModel {
         didSet {
-            
             self.configureViewForInitialState()
         }
     }
@@ -29,10 +28,10 @@ final class TrainingViewController: UIViewController {
     
     //REMOVE
     
-    init(trainingModel: TrainingModel) {
+    init(mode: TrainingMode, difficulty: TrainingDifficulty) {
         
-        self.trainingModel = trainingModel
         super.init(nibName: nil, bundle: nil)
+        self.trainingModel = modelFromModeAndDifficulty(mode: mode, difficulty: difficulty)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,7 +60,6 @@ final class TrainingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        //Improve resume decision (initial vs resume)
         self.configureViewForInitialState()
     }
     
@@ -98,11 +96,21 @@ extension TrainingViewController {
 
 extension TrainingViewController {
     
-    func updateCurrentLevelWith(_ newLevel: TrainingDifficulty) {
+    func updateCurrentDifficultyWith(_ newDifficulty: TrainingDifficulty) {
         
-        self.trainingModel.updateDifficulty(newLevel)
+        let newModel = self.modelFromModeAndDifficulty(mode: self.trainingModel.mode, difficulty: newDifficulty)
+        self.trainingModel = newModel
     }
-    
+
+    private func modelFromModeAndDifficulty(mode: TrainingMode,
+                                            difficulty: TrainingDifficulty) -> TrainingModel {
+        
+        let modelSet = TrainingConstants.defaultTrainingModels
+        
+        return modelSet.first { $0.mode == mode && $0.difficulty == difficulty }
+                        ?? TrainingModel.fallbackTrainingModel
+    }
+        
     private func configureNavigation() {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -120,7 +128,7 @@ extension TrainingViewController {
     
     private func configureViewForInitialState() {
         
-        self.trainingView.configure(with: .initialAndLevelChange(self.trainingModel))
+        self.trainingView.configure(with: .initial(self.trainingModel))
     }
     
     private func startTrain() {
@@ -136,22 +144,12 @@ extension TrainingViewController: TrainingViewDelegate {
         self.startTrain()
     }
     
-    func trainingViewWantsToResumeTrain(_ trainingView: TrainingView) {
-        
-        self.trainingView.configure(with: .resume)
-    }
-    
     func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
         
         self.trainingView.configure(with: .stop)
     }
     
-    func trainingViewWantsToRestartTrain(_ trainingView: TrainingView) {
-        
-        self.trainingView.configure(with: .restart)
-    }
-    
-    func trainingViewFinishedDailyGoal(_ trainingView: TrainingView) {
+    func trainingViewFinishedSerie(_ trainingView: TrainingView) {
         
     }
 }

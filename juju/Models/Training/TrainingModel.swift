@@ -11,7 +11,7 @@ import Foundation
 struct TrainingModel {
     
     let mode: TrainingMode
-    private (set) var difficulty: TrainingDifficulty
+    let difficulty: TrainingDifficulty
     let repetitions: Int
     let contractionDuration: Int
     let relaxationDuration: Int
@@ -34,9 +34,4 @@ struct TrainingModel {
                                                      repetitions: 10,
                                                      contractionDuration: 3,
                                                      relaxationDuration: 3)
-    
-    mutating func updateDifficulty(_ newDifficulty: TrainingDifficulty) {
-        
-        self.difficulty = newDifficulty
-    }
 }
