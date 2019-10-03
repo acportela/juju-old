@@ -13,23 +13,41 @@ class AppCoordinator: Coordinator {
     private var childCoordinators: [Coordinator] = []
     private let navigation: UINavigationController
     private let userService: UserService
+    private let diaryService: TrainingDiaryServiceProtocol
+    private let localStorage: LocalStorageProtocol
     
-    private var signedInUser: ClientUser? {
+    private var loggedUser: ClientUser? {
         
-        set { self.updateUserLocally(signedInUser) }
+        set {
+            if newValue == nil {
+                self.localStorage.remove(from: [.loggedUser])
+            } else {
+                self.localStorage.set(value: newValue, for: .loggedUser)
+            }
+        }
         
-        get { return getUserLocally() }
+        get {
+            guard let validUser = self.localStorage.get(from: .loggedUser) as ClientUser? else {
+                return nil
+            }
+            return validUser
+        }
     }
     
-    init(rootNavigation: UINavigationController, userService: UserService) {
+    init(rootNavigation: UINavigationController,
+         userService: UserService,
+         diaryService: TrainingDiaryServiceProtocol,
+         localStorage: LocalStorageProtocol) {
         
         self.navigation = rootNavigation
         self.userService = userService
+        self.localStorage = localStorage
+        self.diaryService = diaryService
     }
     
     func start() {
         
-        guard let user = self.signedInUser else {
+        guard let user = self.loggedUser else {
             
             self.startSignedOutFlow()
             return
@@ -38,18 +56,21 @@ class AppCoordinator: Coordinator {
         self.startSignedInFlow(withUser: user)
     }
     
-    private func updateUserLocally(_ user: ClientUser?) {
-        
-    }
-    
-    private func getUserLocally() -> ClientUser? {
-        
-        return  ClientUser(email: "acarlosportela@gmail.com", name: "Antonio Rodrigues", dob: Date())
-    }
+//    private func updateUserLocally(_ user: ClientUser?) {
+//
+//    }
+//
+//    private func getUserLocally() -> ClientUser? {
+//
+//        return  ClientUser(email: "acarlosportela@gmail.com", name: "Antonio Rodrigues", dob: Date())
+//    }
     
     private func startSignedInFlow(withUser user: ClientUser) {
         
-        let signedInCoordinator = SignedInCoordinator(rootController: self.navigation, user: user)
+        let signedInCoordinator = SignedInCoordinator(rootController: self.navigation,
+                                                      diaryService: self.diaryService,
+                                                      localStorage: self.localStorage,
+                                                      user: user)
         signedInCoordinator.delegate = self
         
         self.childCoordinators.append(signedInCoordinator)
@@ -58,7 +79,8 @@ class AppCoordinator: Coordinator {
     }
     
     private func startSignedOutFlow() {
-        let signedOutCoordinator = SignedOutCoordinator(rootNavigation: navigation, userService: self.userService)
+        let signedOutCoordinator = SignedOutCoordinator(rootNavigation: navigation,
+                                                        userService: self.userService)
         signedOutCoordinator.delegate = self
         
         childCoordinators.append(signedOutCoordinator)
@@ -68,14 +90,13 @@ class AppCoordinator: Coordinator {
 
 extension AppCoordinator: SignedOutCoordinatorDelegate {
     
-    func signedOutCoordinator(_ coordinator: SignedOutCoordinator, didSignInWithUser user: ClientUser) {
+    func signedOutCoordinator(_ coordinator: SignedOutCoordinator,
+                              didSignInWithUser user: ClientUser) {
         
         _ = self.childCoordinators.popLast()
-        self.signedInUser = user
-        
-        //TODO: Change this to self.start() once user is stored locally!!!
-        //so that there's only one source of truth
-        self.startSignedInFlow(withUser: user)
+   //     self.signedInUser = user
+        self.loggedUser = user
+        self.start()
     }
 }
 
@@ -84,7 +105,7 @@ extension AppCoordinator: SignedInCoordinatorDelegate {
     func signedInCoordinatorDidLogout(_ coordinator: SignedInCoordinator) {
         
         _ = self.childCoordinators.popLast()
-        self.signedInUser = nil
+        self.loggedUser = nil
         self.start()
     }
 }

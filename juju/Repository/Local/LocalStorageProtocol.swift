@@ -19,5 +19,12 @@ protocol LocalStorageProtocol {
 
 enum LocalStorageKeys: String {
     
+    case loggedUser
     case trainingDifficulty
+    case todaySlowEasySeries
+    case todaySlowMediumSeries
+    case todaySlowHardSeries
+    case todayFastEasySeries
+    case todayFastMediumSeries
+    case todayFastHardSeries
 }

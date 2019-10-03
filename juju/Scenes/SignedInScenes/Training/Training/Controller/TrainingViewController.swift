@@ -18,20 +18,41 @@ final class TrainingViewController: UIViewController {
     
     private let trainingView = TrainingView()
     
-    private var trainingModel: TrainingModel = .fallbackTrainingModel {
+    private let chosenMode: TrainingMode
+    
+    var chosenDifficulty: TrainingDifficulty {
+        didSet {
+            self.updateCurrentTraining()
+        }
+    }
+    
+    private var availableTrainings: [TrainingModel] {
+        
+        return TrainingConstants.defaultTrainingModels
+    }
+    
+    private var currentTrainining: TrainingModel = .fallbackTrainingModel {
         didSet {
             self.configureViewForInitialState()
         }
     }
 
+    private let user: ClientUser
+    private let diaryService: TrainingDiaryServiceProtocol
     weak var delegate: TrainingViewControllerDelegate?
     
     //REMOVE
     
-    init(mode: TrainingMode, difficulty: TrainingDifficulty) {
+    init(mode: TrainingMode,
+         difficulty: TrainingDifficulty,
+         diaryService: TrainingDiaryServiceProtocol,
+         user: ClientUser) {
         
+        self.chosenMode = mode
+        self.chosenDifficulty = difficulty
+        self.diaryService = diaryService
+        self.user = user
         super.init(nibName: nil, bundle: nil)
-        self.trainingModel = modelFromModeAndDifficulty(mode: mode, difficulty: difficulty)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +70,7 @@ final class TrainingViewController: UIViewController {
         super.viewDidLoad()
         self.trainingView.delegate = self
         self.addBackgroundObserver()
+        self.fetchTodayConfiguration()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,13 +82,83 @@ final class TrainingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.configureViewForInitialState()
+        self.updateCurrentTraining()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         self.trainingView.configure(with: .stop)
         super.viewWillDisappear(animated)
+    }
+    
+    private func fetchTodayConfiguration() {
+        
+        //Implement logic to try fecth locally first
+        
+        
+        self.diaryService.trainingWantsToFetchDiary(forUser: self.user, withDate: Date()) { result in
+            
+            switch result {
+                
+            case .success(let diary):
+                print(diary)
+            case .error:
+                break
+            }
+        }
+    }
+}
+
+extension TrainingViewController {
+
+    private func updateCurrentTraining() {
+        
+        let newTraining = self.availableTrainings.first { $0.mode == self.chosenMode
+                                                        && $0.difficulty == self.chosenDifficulty }
+                        ?? TrainingModel.fallbackTrainingModel
+        self.currentTrainining = newTraining
+    }
+        
+    private func configureNavigation() {
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.title = "Exercícios"
+        
+        let barButton = UIBarButtonItem(image: Resources.Images.levelsIcon,
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(self.didTapLevelSettings))
+        self.navigationItem.rightBarButtonItem = barButton
+        
+        let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = item
+    }
+    
+    private func configureViewForInitialState() {
+        
+        self.trainingView.configure(with: .initial(self.currentTrainining))
+    }
+    
+    private func startTrain() {
+        
+        self.trainingView.configure(with: .start)
+    }
+}
+
+extension TrainingViewController: TrainingViewDelegate {
+
+    func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
+        
+        self.startTrain()
+    }
+    
+    func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
+        
+        self.trainingView.configure(with: .stop)
+    }
+    
+    func trainingViewFinishedSerie(_ trainingView: TrainingView) {
+        
     }
 }
 
@@ -90,66 +182,6 @@ extension TrainingViewController {
     private func didTapLevelSettings() {
 
         self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentLevel: self.trainingModel.difficulty)
-    }
-}
-
-extension TrainingViewController {
-    
-    func updateCurrentDifficultyWith(_ newDifficulty: TrainingDifficulty) {
-        
-        let newModel = self.modelFromModeAndDifficulty(mode: self.trainingModel.mode, difficulty: newDifficulty)
-        self.trainingModel = newModel
-    }
-
-    private func modelFromModeAndDifficulty(mode: TrainingMode,
-                                            difficulty: TrainingDifficulty) -> TrainingModel {
-        
-        let modelSet = TrainingConstants.defaultTrainingModels
-        
-        return modelSet.first { $0.mode == mode && $0.difficulty == difficulty }
-                        ?? TrainingModel.fallbackTrainingModel
-    }
-        
-    private func configureNavigation() {
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.title = "Exercícios"
-        
-        let barButton = UIBarButtonItem(image: Resources.Images.levelsIcon,
-                                        style: .plain,
-                                        target: self,
-                                        action: #selector(self.didTapLevelSettings))
-        self.navigationItem.rightBarButtonItem = barButton
-        
-        let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = item
-    }
-    
-    private func configureViewForInitialState() {
-        
-        self.trainingView.configure(with: .initial(self.trainingModel))
-    }
-    
-    private func startTrain() {
-        
-        self.trainingView.configure(with: .start)
-    }
-}
-
-extension TrainingViewController: TrainingViewDelegate {
-
-    func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
-        
-        self.startTrain()
-    }
-    
-    func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
-        
-        self.trainingView.configure(with: .stop)
-    }
-    
-    func trainingViewFinishedSerie(_ trainingView: TrainingView) {
-        
+                                                                 withCurrentLevel: self.currentTrainining.difficulty)
     }
 }

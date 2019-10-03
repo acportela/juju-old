@@ -7,10 +7,9 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 protocol FirebaseQuery {
     
-    var path: String { get }
-    var uniqueField: String { get }
-    var uniqueValue: String { get }
+    var firebaseQuery: Query { get }
 }

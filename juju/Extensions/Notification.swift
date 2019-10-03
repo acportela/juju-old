@@ -20,9 +20,7 @@ extension Notification {
             fatalError("The UIKeyboardFrameBeginUserInfoKey from keyboard cannot cast to NSValue")
         }
         
-        let size = keyboardFrame.cgSizeValue
-        return size.height
-        
+        return keyboardFrame.cgRectValue.height
     }
     
 }

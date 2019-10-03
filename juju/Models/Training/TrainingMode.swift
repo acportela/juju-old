@@ -20,6 +20,7 @@ enum TrainingMode: String, RawRepresentable {
         case .slow: return "Treino Lento"
             
         case .fast: return "Treino Rápido"
+            
         }
     }
 }

@@ -45,8 +45,11 @@ struct UserService: UserServiceProtocol {
                     
                     switch result {
                         
-                    case .success(let fireUser):
-                        
+                    case .success(let results):
+                        guard let fireUser = results.first else {
+                            callback(.error(.unknown))
+                            return
+                        }
                         let user = ClientUser(email: fireUser.email, name: fireUser.name, dob: fireUser.dateOfBirth)
                         callback(.success(user))
                     case .error:

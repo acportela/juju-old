@@ -16,17 +16,18 @@ protocol SignedInCoordinatorDelegate: AnyObject {
 class SignedInCoordinator: NSObject, Coordinator {
     
     private var rootNavigation: UINavigationController
+    private let diaryService: TrainingDiaryServiceProtocol
+    private let localStorage: LocalStorageProtocol
     private let user: ClientUser
+    
     weak var delegate: SignedInCoordinatorDelegate?
     
     private lazy var trainingCoordinator: Coordinator = {
         
-        let trainingRepo = FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingQuery>()
-        let trainingService = TrainingService(trainingRepo: trainingRepo)
-        let defaults = UserDefaultsStorage()
         let coordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation,
-                                              trainingService: trainingService,
-                                              localDefaults: defaults)
+                                              diaryService: self.diaryService,
+                                              localDefaults: self.localStorage,
+                                              user: self.user)
         return coordinator
     }()
     
@@ -45,10 +46,15 @@ class SignedInCoordinator: NSObject, Coordinator {
         return controller
     }()
 
-    init(rootController: UINavigationController, user: ClientUser) {
+    init(rootController: UINavigationController,
+         diaryService: TrainingDiaryServiceProtocol,
+         localStorage: LocalStorageProtocol,
+         user: ClientUser) {
         
         self.user = user
         self.rootNavigation = rootController
+        self.diaryService = diaryService
+        self.localStorage = localStorage
     }
     
     func start() {

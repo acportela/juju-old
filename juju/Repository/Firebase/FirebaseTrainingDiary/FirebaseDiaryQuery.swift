@@ -7,23 +7,34 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct FirebaseDiaryQuery: FirebaseQuery {
     
-    var path: String {
+    var firebaseQuery: Query
+    
+    init?(user: String, withDate date: Date) {
         
-        return FirebaseConstants.TrainingDiary.pathToCollection
-    }
-
-    var uniqueField: String {
-        
-        return FirebaseConstants.TrainingDiary.userEmail
+        let firestore = Firestore.firestore()
+            
+        guard let dateQuery = firestore.collection(FirebaseConstants.TrainingDiary.pathToCollection)
+                            .whereField(FirebaseConstants.TrainingDiary.date,
+                                        isInDate: date) else {
+            return nil
+        }
+                            
+        self.firebaseQuery = dateQuery.whereField(FirebaseConstants.TrainingDiary.userEmail, isEqualTo: user)
     }
     
-    var uniqueValue: String
-    
-    init(user: String) {
+    init?(user: String, from: Date, until: Date) {
         
-        self.uniqueValue = user
+        let firestore = Firestore.firestore()
+            
+        guard let dateQuery = firestore.collection(FirebaseConstants.TrainingDiary.pathToCollection)
+                            .whereField(user, from: from, to: until) else {
+            return nil
+        }
+                            
+        self.firebaseQuery = dateQuery.whereField(FirebaseConstants.TrainingDiary.userEmail, isEqualTo: user)
     }
 }

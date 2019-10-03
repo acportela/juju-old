@@ -10,7 +10,8 @@ import UIKit
 
 protocol TrainLevelViewControllerDelegate: AnyObject {
     
-    func trainLevelViewController(_ controller: TrainLevelViewController, didChooseLevel level: TrainingDifficulty)
+    func trainLevelViewController(_ controller: TrainLevelViewController,
+                                  didChooseDifficulty difficulty: TrainingDifficulty)
 }
 
 final class TrainLevelViewController: UIViewController {
@@ -63,6 +64,6 @@ extension TrainLevelViewController: TrainingLevelViewDelegate {
     func trainingLevelView(_ view: TrainingLevelView, didSelectLevel level: TrainingDifficulty) {
         
         self.currentLevel = level
-        self.delegate?.trainLevelViewController(self, didChooseLevel: level)
+        self.delegate?.trainLevelViewController(self, didChooseDifficulty: level)
     }
 }

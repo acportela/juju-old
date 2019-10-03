@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct SeriesModel {
+struct Series {
     
-    let series: Int
-    let training: TrainingModel
+    let completed: Int
+    let settings: TrainingModel
 }

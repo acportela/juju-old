@@ -7,23 +7,19 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct FirebaseUserQuery: FirebaseQuery {
     
-    var path: String {
-        
-        return FirebaseConstants.User.pathToCollection
-    }
-    
-    var uniqueField: String {
-        
-        return FirebaseConstants.User.emailField
-    }
-    
-    var uniqueValue: String
+    var firebaseQuery: Query
     
     init(email: String) {
         
-        self.uniqueValue = email
+        let firestore = Firestore.firestore()
+        self.firebaseQuery = firestore
+                            .collection(FirebaseConstants.User.pathToCollection)
+                            .whereField(FirebaseConstants.User.emailField,
+                                        isEqualTo: email)
+                            .limit(to: 1)
     }
 }

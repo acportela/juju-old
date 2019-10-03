@@ -29,9 +29,5 @@ struct TrainingModel {
         self.relaxationDuration = relaxationDuration
     }
     
-    static let fallbackTrainingModel = TrainingModel(mode: .slow,
-                                                     difficulty: .easy,
-                                                     repetitions: 10,
-                                                     contractionDuration: 3,
-                                                     relaxationDuration: 3)
+    static let fallbackTrainingModel = TrainingConstants.slowEasy
 }

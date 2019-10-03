@@ -16,18 +16,18 @@ protocol TrainingServiceProtocol {
 
 struct TrainingService: TrainingServiceProtocol {
     
-    let trainingRepo: FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingQuery>
+    let trainingRepo: FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingModelsQuery>
     
-    init(trainingRepo: FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingQuery>) {
+    init(trainingRepo: FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingModelsQuery>) {
 
         self.trainingRepo = trainingRepo
     }
     
     func trainingWantsToFetchModels(callback: @escaping (ContentResult<[TrainingModel], RepositoryError>) -> Void) {
         
-        let query = FirebaseTrainingQuery()
+        let query = FirebaseTrainingModelsQuery()
         
-        self.trainingRepo.getAll(query: query) { contentResult in
+        self.trainingRepo.get(query: query) { contentResult in
 
             switch contentResult {
 

@@ -25,12 +25,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     
         FirebaseApp.configure()
-
-        let userService = UserService(userAuth: FirebaseEmailPasswordAuthentication(),
-                                      userRepo: FirebaseRepository<FirebaseUser, FirebaseUserQuery>())
-        self.appCoordinator = AppCoordinator(rootNavigation: rootController, userService: userService)
+        
+        self.setupDependencies(withRootController: rootController)
         
         self.appCoordinator?.start()
+        
         return true
+    }
+
+    private func setupDependencies(withRootController root: UINavigationController) {
+        
+        let userRepo = FirebaseRepository<FirebaseUser, FirebaseUserQuery>()
+        let userService = UserService(userAuth: FirebaseEmailPasswordAuthentication(), userRepo: userRepo)
+        let diaryRepo = FirebaseRepository<FirebaseTrainingDiary, FirebaseDiaryQuery>()
+        let diaryService = TrainingDiaryService(diaryRepo: diaryRepo)
+        let defaults = UserDefaultsStorage()
+
+        self.appCoordinator = AppCoordinator(rootNavigation: root,
+                                             userService: userService,
+                                             diaryService: diaryService,
+                                             localStorage: defaults)
     }
 }

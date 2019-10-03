@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct TrainingDiary {
+struct DiaryProgress {
     
     let date: Date
-    let series: [SeriesModel]
+    let series: [Series]
 }

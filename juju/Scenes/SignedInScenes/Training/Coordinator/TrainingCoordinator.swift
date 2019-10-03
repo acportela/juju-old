@@ -11,31 +11,38 @@ import UIKit
 class TrainingCoordinator: Coordinator {
     
     private let navigation: UINavigationController
-    private let trainingService: TrainingServiceProtocol
+    private let diaryService: TrainingDiaryServiceProtocol
     private let localDefaults: LocalStorageProtocol
+    private let user: ClientUser
     
     var trainingViewController: TrainingViewController?
     
     var preferredDifficulty: TrainingDifficulty {
+        
         get {
             guard let difficulty = self.localDefaults.get(from: .trainingDifficulty)
             as TrainingDifficulty? else {
+                
                 return .defaultLevel
             }
             return difficulty
         }
+        
         set {
             self.localDefaults.set(value: newValue, for: .trainingDifficulty)
+            self.trainingViewController?.chosenDifficulty = newValue
         }
     }
     
     init(rootNavigation: UINavigationController,
-         trainingService: TrainingServiceProtocol,
-         localDefaults: LocalStorageProtocol) {
+         diaryService: TrainingDiaryServiceProtocol,
+         localDefaults: LocalStorageProtocol,
+         user: ClientUser) {
         
-        self.trainingService = trainingService
+        self.diaryService = diaryService
         self.navigation = rootNavigation
         self.localDefaults = localDefaults
+        self.user = user
     }
     
     func start() {
@@ -59,7 +66,10 @@ class TrainingCoordinator: Coordinator {
     private func startTrainingWith(mode: TrainingMode,
                                    andDifficulty difficulty: TrainingDifficulty) {
         
-        let training = TrainingViewController(mode: mode, difficulty: difficulty)
+        let training = TrainingViewController(mode: mode,
+                                              difficulty: difficulty,
+                                              diaryService: self.diaryService,
+                                              user: self.user)
         training.delegate = self
         
         self.trainingViewController = training
@@ -96,8 +106,8 @@ extension TrainingCoordinator: TrainingViewControllerDelegate {
 extension TrainingCoordinator: TrainLevelViewControllerDelegate {
     
     func trainLevelViewController(_ controller: TrainLevelViewController,
-                                  didChooseLevel level: TrainingDifficulty) {
+                                  didChooseDifficulty difficulty: TrainingDifficulty) {
         
-        self.trainingViewController?.updateCurrentDifficultyWith(level)
+        self.preferredDifficulty = difficulty
     }
 }

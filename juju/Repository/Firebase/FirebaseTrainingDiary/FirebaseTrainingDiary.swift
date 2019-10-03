@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-import Foundation
 import FirebaseFirestore
 
 struct FirebaseTrainingDiary: FirebasePersistable {
@@ -84,4 +82,35 @@ struct FirebaseTrainingDiary: FirebasePersistable {
                 FirebaseConstants.TrainingDiary.seriesFastHard: self.seriesFastHard]
     }
 
+    func toDiary(withModels trainingModels: [TrainingModel]) -> DiaryProgress {
+        
+        var series: [Series] = []
+        
+        trainingModels.forEach { training in
+            
+            switch (training.mode, training.difficulty) {
+            
+            case (.slow, .easy):
+
+                series.append(Series(completed: self.seriesSlowEasy, settings: training))
+            case (.slow, .medium):
+                
+                series.append(Series(completed: self.seriesSlowMedium, settings: training))
+            case (.slow, .hard):
+                
+                series.append(Series(completed: self.seriesSlowHard, settings: training))
+            case (.fast, .easy):
+                
+                series.append(Series(completed: self.seriesFastEasy, settings: training))
+            case (.fast, .medium):
+                
+                series.append(Series(completed: self.seriesFastMedium, settings: training))
+            case (.fast, .hard):
+                
+                series.append(Series(completed: self.seriesFastHard, settings: training))
+            }
+        }
+        
+        return DiaryProgress(date: self.date, series: series)
+    }
 }

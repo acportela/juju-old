@@ -10,61 +10,20 @@ import FirebaseFirestore
 
 struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository {
     
-    typealias Entity = T
-    typealias Query = V
-    
-    let firestore = Firestore.firestore()
-    
-    func get(query: Query, callback: @escaping (ContentResult<Entity, RepositoryError>) -> Void) {
+    func save(entity: T, callback: @escaping (Result<RepositoryError>) -> Void) {
         
-        let fireQuery = self.firestore
-                            .collection(query.path)
-                            .whereField(query.uniqueField,
-                                        isEqualTo: query.uniqueValue)
-                            .limit(to: 1)
-        
-        fireQuery.getDocuments { (maybeSnapshot, maybeError) in
-            
-            //TODO firebase error code handling
-            if maybeError != nil {
-                callback(.error(.unknown))
-                return
-            }
-            
-            guard let snapshot = maybeSnapshot,
-            let data = snapshot.documents.first?.data() else {
-                callback(.error(.noResults))
-                return
-            }
-            
-            guard let content = Entity(fromData: data) else {
-                callback(.error(.corruptedData))
-                return
-            }
-            
-            callback(.success(content))
-        }
-    }
-
-    func save(entity: Entity, callback: @escaping (Result<RepositoryError>) -> Void) {
-        
-        self.firestore
-            .collection(entity.path)
-            .addDocument(data: entity.toDictionary()) { error in
+        let firestore = Firestore.firestore()
+        firestore.collection(entity.path)
+        .addDocument(data: entity.toDictionary()) { error in
             
             //TODO firebase error code handling
             error == nil ? callback(.success) : callback(.error(.unknown))
         }
     }
-
-    func delete(query: Query, callback: @escaping (Result<RepositoryError>) -> Void) {
-
-        let returnQuery = self.firestore
-                              .collection(query.path)
-                              .whereField(query.uniqueField,
-                                          isEqualTo: query.uniqueValue)
+    
+    func delete(query: V, callback: @escaping (Result<RepositoryError>) -> Void) {
         
-        returnQuery.getDocuments { (maybeSnapshot, maybeError) in
+        query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
             
             //TODO firebase error code handling
             if maybeError != nil {
@@ -91,37 +50,25 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
         callback(.success)
     }
     
-    func getAll(query: Query, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
+    func get(query: V, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
         
-        let collection = self.firestore
-                             .collection(query.path)
+        query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
         
-        let validQuery = self.firestore
-                             .collection(query.path)
-                             .whereField(query.uniqueField,
-                                         isEqualTo: query.uniqueValue)
-
-        let fireQuery = query.uniqueValue.isEmpty ? collection : validQuery
-        
-        fireQuery.getDocuments { (maybeSnapshot, maybeError) in
-            
             //TODO firebase error code handling
             if maybeError != nil {
-                
                 callback(.error(.unknown))
                 return
             }
-
+            
             guard let snapshot = maybeSnapshot,
             snapshot.documents.isEmpty == false else {
-                
                 callback(.error(.noResults))
                 return
             }
-            
-            let entities = snapshot.documents.compactMap { Entity(fromData: $0.data()) }
+                
+            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data()) }
             guard entities.isEmpty == false else { return callback(.error(.corruptedData)) }
-        
+            
             callback(.success(entities))
         }
     }
