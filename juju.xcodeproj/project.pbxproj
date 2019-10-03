@@ -53,6 +53,10 @@
 		D681E49522F1331A003754F4 /* TextFieldValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681E49422F1331A003754F4 /* TextFieldValidators.swift */; };
 		D682062822CADE9B006D4937 /* JujuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D682062722CADE9B006D4937 /* JujuButton.swift */; };
 		D682062A22CAE4CC006D4937 /* JujuButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */; };
+		D6856AA723457ED100270F14 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6856AA623457ED100270F14 /* SeriesModel.swift */; };
+		D6856AA923457FDB00270F14 /* TrainingDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6856AA823457FDB00270F14 /* TrainingDiary.swift */; };
+		D6856AAC2345875E00270F14 /* FirebaseTrainingDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6856AAB2345875E00270F14 /* FirebaseTrainingDiary.swift */; };
+		D6856AAE2345878700270F14 /* FirebaseDiaryQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6856AAD2345878700270F14 /* FirebaseDiaryQuery.swift */; };
 		D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB8E22C7DF9C001C94A5 /* Resources.swift */; };
 		D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACB9122C7E329001C94A5 /* UIColor.swift */; };
 		D68ACBA222C7E7D4001C94A5 /* Gilroy-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */; };
@@ -183,6 +187,10 @@
 		D681E49422F1331A003754F4 /* TextFieldValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidators.swift; sourceTree = "<group>"; };
 		D682062722CADE9B006D4937 /* JujuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuButton.swift; sourceTree = "<group>"; };
 		D682062922CAE4CC006D4937 /* JujuButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuButtonSpec.swift; sourceTree = "<group>"; };
+		D6856AA623457ED100270F14 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
+		D6856AA823457FDB00270F14 /* TrainingDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDiary.swift; sourceTree = "<group>"; };
+		D6856AAB2345875E00270F14 /* FirebaseTrainingDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrainingDiary.swift; sourceTree = "<group>"; };
+		D6856AAD2345878700270F14 /* FirebaseDiaryQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDiaryQuery.swift; sourceTree = "<group>"; };
 		D68ACB8E22C7DF9C001C94A5 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		D68ACB9122C7E329001C94A5 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		D68ACB9922C7E7D4001C94A5 /* Gilroy-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.otf"; sourceTree = "<group>"; };
@@ -375,6 +383,8 @@
 				D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */,
 				D60927542340097F00B0F594 /* TrainingModel.swift */,
 				D612165D234447A1003AB0C3 /* RepetitionsProgress.swift */,
+				D6856AA623457ED100270F14 /* SeriesModel.swift */,
+				D6856AA823457FDB00270F14 /* TrainingDiary.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -447,6 +457,15 @@
 				D622755822FA4913004992E5 /* AppPrefs.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		D6856AAA234586FC00270F14 /* FirebaseTrainingDiary */ = {
+			isa = PBXGroup;
+			children = (
+				D6856AAB2345875E00270F14 /* FirebaseTrainingDiary.swift */,
+				D6856AAD2345878700270F14 /* FirebaseDiaryQuery.swift */,
+			);
+			path = FirebaseTrainingDiary;
 			sourceTree = "<group>";
 		};
 		D68ACB9022C7E315001C94A5 /* Extensions */ = {
@@ -564,6 +583,7 @@
 		D6ABED2922DF34C10022CF0A /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				D6856AAA234586FC00270F14 /* FirebaseTrainingDiary */,
 				D65356E52340151F00CEE476 /* TrainingModel */,
 				D641400923002ACB005BD008 /* User */,
 				D65356EB2340312300CEE476 /* Base */,
@@ -1089,6 +1109,7 @@
 			files = (
 				D6944B9C23404B030024608A /* TrainingService.swift in Sources */,
 				D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */,
+				D6856AAC2345875E00270F14 /* FirebaseTrainingDiary.swift in Sources */,
 				D6A3FD2622E0190500CE41FF /* FirebaseRepository.swift in Sources */,
 				D6CDADD422E09C520030B753 /* FirebaseUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
@@ -1101,11 +1122,14 @@
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
 				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
+				D6856AAE2345878700270F14 /* FirebaseDiaryQuery.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
 				D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */,
 				D65356E92340241500CEE476 /* FirebaseTrainingModel.swift in Sources */,
 				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
+				D6856AA923457FDB00270F14 /* TrainingDiary.swift in Sources */,
+				D6856AA723457ED100270F14 /* SeriesModel.swift in Sources */,
 				D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */,
 				D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */,
 				D681E49522F1331A003754F4 /* TextFieldValidators.swift in Sources */,

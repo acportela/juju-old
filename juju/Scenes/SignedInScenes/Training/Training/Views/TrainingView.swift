@@ -88,6 +88,19 @@ final class TrainingView: UIView {
         }
     }
     
+    private var repetitionsProgress: RepetitionsProgress = .empty {
+        
+        didSet {
+            
+        }
+    }
+    
+    private var series: Int = 0 {
+        didSet {
+            
+        }
+    }
+    
     public weak var delegate: TrainingViewDelegate?
     
     // MARK: Lifecycle

@@ -35,4 +35,25 @@ enum FirebaseConstants {
         
         static let relaxationDurationField = "relaxation"
     }
+    
+    enum TrainingDiary {
+        
+        static let pathToCollection = "training-diary"
+        
+        static let userEmail = "userEmail"
+        
+        static let date = "date"
+        
+        static let seriesSlowEasy = "seriesSlowEasy"
+        
+        static let seriesSlowMedium = "seriesSlowMedium"
+        
+        static let seriesSlowHard = "seriesSlowHard"
+        
+        static let seriesFastEasy = "seriesFastEasy"
+        
+        static let seriesFastMedium = "seriesFastMedium"
+        
+        static let seriesFastHard = "seriesFastHard"
+    }
 }

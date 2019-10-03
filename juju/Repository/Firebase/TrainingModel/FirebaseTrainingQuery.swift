@@ -15,15 +15,13 @@ struct FirebaseTrainingQuery: FirebaseQuery {
         return FirebaseConstants.TrainingModel.pathToCollection
     }
     
-    // TODO: Set ID for TrainingModel
     var uniqueField: String {
         
         return FirebaseConstants.TrainingModel.modeField
     }
     
     var uniqueValue: String
-    
-    // TODO: Set ID for TrainingModel
+
     init(mode: String = .empty) {
         
         self.uniqueValue = mode
