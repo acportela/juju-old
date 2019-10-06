@@ -42,16 +42,6 @@ final class SignUpViewController: UIViewController, Loadable {
         setupCallbacks()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        KeyboardListener.shared.register(signUpView)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        KeyboardListener.shared.remove(signUpView)
-        super.viewWillDisappear(animated)
-    }
-    
     private func setupCallbacks() {
         
         signUpView.onBackTap = { [weak self] in

@@ -42,18 +42,6 @@ final class SignUpView: UIView, JujuFormProtocol {
     private let signUpButton = JujuButton(title: "entrar")
     private let backButton = JujuUnderlinedButton(title: "Voltar")
     
-    var scrollInputStack: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.showsVerticalScrollIndicator = false
-        scroll.showsHorizontalScrollIndicator = false
-        scroll.alwaysBounceVertical = false
-        scroll.bounces = false
-        scroll.isScrollEnabled = false
-        scroll.contentInsetAdjustmentBehavior = .never
-        scroll.backgroundColor = .clear
-        return scroll
-    }()
-    
     var onDoneAction: (() -> Void)? {
         didSet {
             signUpButton.onTapAction = onDoneAction
@@ -84,24 +72,17 @@ extension SignUpView: ViewCoding {
     func addSubViews() {
         
         addSubview(bottomBG)
-        scrollInputStack.addSubview(logoLabel)
+        addSubview(logoLabel)
         inputStack.addArrangedSubview(nameInput)
         inputStack.addArrangedSubview(dateOfBirth)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
-        scrollInputStack.addSubview(inputStack)
-        scrollInputStack.addSubview(signUpButton)
-        scrollInputStack.addSubview(backButton)
-        addSubview(scrollInputStack)
+        addSubview(inputStack)
+        addSubview(signUpButton)
+        addSubview(backButton)
     }
     
     func setupConstraints() {
-        
-        scrollInputStack.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-        }
         
         inputStack.snp.makeConstraints { make in
             
@@ -140,7 +121,6 @@ extension SignUpView: ViewCoding {
         
         self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Styling.Colors.softPink
-        self.scrollInputStack.backgroundColor = .clear
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
         setupToolbar()
     }

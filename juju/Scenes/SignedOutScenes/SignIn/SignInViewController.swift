@@ -41,16 +41,6 @@ final class SignInViewController: UIViewController, Loadable {
         setupCallbacks()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        KeyboardListener.shared.register(signInView)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        KeyboardListener.shared.remove(signInView)
-        super.viewWillDisappear(animated)
-    }
-    
     func setupCallbacks() {
         
         signInView.onDoneAction = { [weak self] in

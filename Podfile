@@ -10,6 +10,7 @@ def all_pods
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'lottie-ios'
+    pod 'IQKeyboardManagerSwift'
 end
 
 target 'juju' do

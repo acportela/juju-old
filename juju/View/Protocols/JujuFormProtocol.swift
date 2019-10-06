@@ -9,13 +9,11 @@
 import UIKit
 import SnapKit
 
-protocol JujuFormProtocol: KeyboardListenerDelegate where Self: UIView {
+protocol JujuFormProtocol where Self: UIView {
     
     var inputs: [JujuInputField] { get }
-    var firstResponder: JujuInputField? { get }
     var fieldsAreValid: Bool { get }
     var inputStack: UIStackView { get }
-    var scrollInputStack: UIScrollView { get }
     var onDoneAction: (() -> Void)? { get set }
     func setupToolbar()
 }
@@ -45,16 +43,6 @@ extension JujuFormProtocol {
         }
     }
     
-    var firstResponder: JujuInputField? {
-        
-        for input in inputs where input.isFirstResponder {
-            
-            return input
-        }
-        
-        return nil
-    }
-    
     var fieldsAreValid: Bool {
         
         for input in self.inputs where !input.isValid {
@@ -63,33 +51,5 @@ extension JujuFormProtocol {
         }
         
         return true
-    }
-    
-    func keyboardWillAppear(_ notification: Notification) {
-        
-        if let validFirstResponder = firstResponder {
-            
-            let keyboardHeight = notification.keyboardHeight
-            
-            self.scrollInputStack.isScrollEnabled = true
-            let scrollInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
-            self.scrollInputStack.contentInset = scrollInsets
-            self.scrollInputStack.scrollIndicatorInsets = scrollInsets
-            
-            var containingRect = self.frame
-            containingRect.size.height -= keyboardHeight
-
-            if !containingRect.contains(validFirstResponder.frame.origin) {
-                self.scrollInputStack.scrollRectToVisible(validFirstResponder.frame, animated: true)
-            }
-        }
-    }
-    
-    func keyboardWillDisappear(_ notification: Notification) {
-        
-        UIView.animate(withDuration: 0.2) {
-            self.scrollInputStack.contentInset = .zero
-            self.scrollInputStack.scrollIndicatorInsets = .zero
-        }
     }
 }

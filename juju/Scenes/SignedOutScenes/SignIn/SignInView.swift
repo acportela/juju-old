@@ -36,18 +36,6 @@ final class SignInView: UIView, JujuFormProtocol {
     
     private let enterButton = JujuButton(title: "entrar")
     
-    var scrollInputStack: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.showsVerticalScrollIndicator = false
-        scroll.showsHorizontalScrollIndicator = false
-        scroll.alwaysBounceVertical = false
-        scroll.bounces = false
-        scroll.isScrollEnabled = false
-        scroll.contentInsetAdjustmentBehavior = .never
-        scroll.backgroundColor = .clear
-        return scroll
-    }()
-    
     private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
     private let createAccountButton: UIButton = {
@@ -92,22 +80,15 @@ extension SignInView: ViewCoding {
     func addSubViews() {
         
         addSubview(bottomBG)
-        scrollInputStack.addSubview(logoLabel)
+        addSubview(logoLabel)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
-        scrollInputStack.addSubview(inputStack)
-        scrollInputStack.addSubview(enterButton)
-        scrollInputStack.addSubview(createAccountButton)
-        addSubview(scrollInputStack)
+        addSubview(inputStack)
+        addSubview(enterButton)
+        addSubview(createAccountButton)
     }
     
     func setupConstraints() {
-        
-        scrollInputStack.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-        }
         
         inputStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -140,7 +121,7 @@ extension SignInView: ViewCoding {
     }
     
     func configureViews() {
-        self.scrollInputStack.backgroundColor = .clear
+
         self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Styling.Colors.softPink
         inputs = [emailInput, passwordInput]
