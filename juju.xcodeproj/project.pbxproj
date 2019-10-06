@@ -34,6 +34,8 @@
 		D6283474232C8BE50068CF47 /* TrainingViewModeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6283473232C8BE50068CF47 /* TrainingViewModeSpec.swift */; };
 		D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */; };
 		D63BE807234A3EA60015FC27 /* OldJujuFormProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63BE806234A3EA60015FC27 /* OldJujuFormProtocol.swift */; };
+		D63BE80A234A567F0015FC27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63BE809234A567F0015FC27 /* ProfileViewController.swift */; };
+		D63BE80C234A575B0015FC27 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63BE80B234A575B0015FC27 /* ProfileView.swift */; };
 		D6414004230028C0005BD008 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6414003230028C0005BD008 /* FirebaseConstants.swift */; };
 		D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400523002A87005BD008 /* FirebaseQuery.swift */; };
 		D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400723002AB9005BD008 /* FirebaseUserQuery.swift */; };
@@ -170,6 +172,8 @@
 		D6283473232C8BE50068CF47 /* TrainingViewModeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewModeSpec.swift; sourceTree = "<group>"; };
 		D635DDD0232089CF00E36431 /* SignedInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInCoordinator.swift; sourceTree = "<group>"; };
 		D63BE806234A3EA60015FC27 /* OldJujuFormProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldJujuFormProtocol.swift; sourceTree = "<group>"; };
+		D63BE809234A567F0015FC27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D63BE80B234A575B0015FC27 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D6414003230028C0005BD008 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		D641400523002A87005BD008 /* FirebaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuery.swift; sourceTree = "<group>"; };
 		D641400723002AB9005BD008 /* FirebaseUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserQuery.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
 			isa = PBXGroup;
 			children = (
+				D63BE808234A56680015FC27 /* Profile */,
 				D6EE5CC7232F37B600F3701A /* Controller */,
 				D6EE5CC6232F378A00F3701A /* Coordinator */,
 				D6D39756232DA68D00EBA4FE /* Training */,
@@ -355,6 +360,15 @@
 				D63BE806234A3EA60015FC27 /* OldJujuFormProtocol.swift */,
 			);
 			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		D63BE808234A56680015FC27 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D63BE809234A567F0015FC27 /* ProfileViewController.swift */,
+				D63BE80B234A575B0015FC27 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		D641400923002ACB005BD008 /* User */ = {
@@ -1167,6 +1181,7 @@
 				D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */,
 				D612165E234447A1003AB0C3 /* RepetitionsProgress.swift in Sources */,
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
+				D63BE80C234A575B0015FC27 /* ProfileView.swift in Sources */,
 				D61E0C3A22E4A5B7003700EA /* String.swift in Sources */,
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D6BCD69A23491D44007529D9 /* SessionState.swift in Sources */,
@@ -1215,6 +1230,7 @@
 				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */,
+				D63BE80A234A567F0015FC27 /* ProfileViewController.swift in Sources */,
 				D6283471232C87670068CF47 /* TrainingModeView.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);

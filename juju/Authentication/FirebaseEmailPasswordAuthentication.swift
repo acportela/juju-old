@@ -13,6 +13,7 @@ protocol UserAuthenticationProtocol {
     
     func authenticate(email: String, password: String, callback: @escaping (Result<UserAuthenticationError>) -> Void)
     func create(email: String, password: String, callback: @escaping (Result<UserAuthenticationError>) -> Void)
+    func signOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
 }
 
 struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
@@ -60,4 +61,16 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
         
     }
     
+    func signOut(callback: @escaping (Result<UserAuthenticationError>) -> Void) {
+        
+        do {
+            
+            try Auth.auth().signOut()
+            callback(.success)
+            
+        } catch {
+            
+            callback(.error(.couldntLogout))
+        }
+    }
 }

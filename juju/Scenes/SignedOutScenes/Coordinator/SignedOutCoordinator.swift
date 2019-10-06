@@ -51,7 +51,6 @@ extension SignedOutCoordinator: SignUpViewControllerDelegate {
     func signUpViewController(_ viewController: SignUpViewController,
                               didSignUpWithUser user: ClientUser) {
         
-        self.navigation.popToRootViewController(animated: false)
         self.navigation.popViewController(animated: true)
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }

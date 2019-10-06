@@ -93,8 +93,8 @@ final class TrainingViewController: UIViewController {
     
     private func fetchTodayConfiguration() {
         
-        //Implement logic to try fecth locally first
-        
+        // TODO: Implement logic to try fecth locally first
+        // TODO: Include loading
         
         self.diaryService.trainingWantsToFetchDiary(forUser: self.user, withDate: Date()) { result in
             

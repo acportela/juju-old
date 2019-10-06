@@ -59,6 +59,7 @@ class AppCoordinator: Coordinator {
     private func startSignedInFlow(withUser user: ClientUser) {
         
         let signedInCoordinator = SignedInCoordinator(rootController: self.navigation,
+                                                      userService: self.userService,
                                                       diaryService: self.diaryService,
                                                       localStorage: self.localStorage,
                                                       user: user)

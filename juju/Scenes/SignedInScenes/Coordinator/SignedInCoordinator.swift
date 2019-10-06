@@ -17,6 +17,7 @@ class SignedInCoordinator: NSObject, Coordinator {
     
     private var rootNavigation: UINavigationController
     private let diaryService: TrainingDiaryServiceProtocol
+    private let userService: UserServiceProtocol
     private let localStorage: LocalStorageProtocol
     private let user: ClientUser
     
@@ -47,12 +48,14 @@ class SignedInCoordinator: NSObject, Coordinator {
     }()
 
     init(rootController: UINavigationController,
+         userService: UserServiceProtocol,
          diaryService: TrainingDiaryServiceProtocol,
          localStorage: LocalStorageProtocol,
          user: ClientUser) {
         
         self.user = user
         self.rootNavigation = rootController
+        self.userService = userService
         self.diaryService = diaryService
         self.localStorage = localStorage
     }
@@ -76,7 +79,10 @@ class SignedInCoordinator: NSObject, Coordinator {
                                         image: Resources.Images.tabVideo,
                                         selectedImage: nil)
         
-        let profile = UIViewController()
+        //TODO: Move to a Profile Coordinator later on
+        let profile = ProfileViewController(loggerUser: self.user,
+                                            userService: self.userService)
+        profile.delegate = self
         profile.tabBarItem = UITabBarItem(title: "Perfil",
                                           image: Resources.Images.tabProfile,
                                           selectedImage: nil)
@@ -87,5 +93,16 @@ class SignedInCoordinator: NSObject, Coordinator {
                                            selectedImage: nil)
         
         return [calendar, trainingNavigation, video, profile]
+    }
+}
+
+extension SignedInCoordinator: ProfileViewControllerDelegate {
+    
+    func profileViewControllerDidLogout(_ controller: ProfileViewController, success: Bool) {
+        
+        if self.rootNavigation.topViewController == self.tabBarController {
+            self.rootNavigation.popViewController(animated: true)
+        }
+        self.delegate?.signedInCoordinatorDidLogout(self)
     }
 }

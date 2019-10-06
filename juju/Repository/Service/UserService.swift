@@ -17,6 +17,8 @@ protocol UserServiceProtocol {
     func userWantsToSignUp(clientUser: ClientUser,
                            password: String,
                            callback: @escaping (Result<UserAuthenticationError>) -> Void)
+    
+    func userWantsToSignOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
 }
 
 struct UserService: UserServiceProtocol {
@@ -94,6 +96,23 @@ struct UserService: UserServiceProtocol {
             case .error:
 
                 callback(.error(.unknown))
+            }
+        }
+    }
+    
+    func userWantsToSignOut(callback: @escaping (Result<UserAuthenticationError>) -> Void) {
+        
+        self.userAuth.signOut { result in
+            
+            switch result {
+                
+            case .success:
+                
+                callback(.success)
+                
+            case .error(let error):
+                
+                callback(.error(error))
             }
         }
     }
