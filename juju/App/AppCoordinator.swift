@@ -19,11 +19,11 @@ class AppCoordinator: Coordinator {
     private var loggedUser: ClientUser? {
         
         set {
-            if newValue == nil {
-                self.localStorage.remove(from: [.loggedUser])
-            } else {
-                self.localStorage.set(value: newValue, for: .loggedUser)
+            guard let user = newValue else {
+                self.localStorage.remove(valueForkey: .loggedUser)
+                return
             }
+            self.localStorage.set(user, for: .loggedUser)
         }
         
         get {
@@ -56,15 +56,6 @@ class AppCoordinator: Coordinator {
         self.startSignedInFlow(withUser: user)
     }
     
-//    private func updateUserLocally(_ user: ClientUser?) {
-//
-//    }
-//
-//    private func getUserLocally() -> ClientUser? {
-//
-//        return  ClientUser(email: "acarlosportela@gmail.com", name: "Antonio Rodrigues", dob: Date())
-//    }
-    
     private func startSignedInFlow(withUser user: ClientUser) {
         
         let signedInCoordinator = SignedInCoordinator(rootController: self.navigation,
@@ -94,7 +85,6 @@ extension AppCoordinator: SignedOutCoordinatorDelegate {
                               didSignInWithUser user: ClientUser) {
         
         _ = self.childCoordinators.popLast()
-   //     self.signedInUser = user
         self.loggedUser = user
         self.start()
     }

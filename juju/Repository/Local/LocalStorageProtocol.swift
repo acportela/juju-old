@@ -8,16 +8,7 @@
 
 import Foundation
 
-protocol LocalStorageProtocol {
-    
-    func get<T>(from key: LocalStorageKeys) -> T?
-    func set(value: Any?, for key: LocalStorageKeys)
-    func remove(from keys: [LocalStorageKeys])
-    func clear()
-    
-}
-
-enum LocalStorageKeys: String {
+enum StorageKeys: String {
     
     case loggedUser
     case trainingDifficulty
@@ -27,4 +18,11 @@ enum LocalStorageKeys: String {
     case todayFastEasySeries
     case todayFastMediumSeries
     case todayFastHardSeries
+}
+
+protocol LocalStorageProtocol {
+
+    func get<T: Codable>(from key: StorageKeys) -> T?
+    func set<T: Codable>(_ value: T, for key: StorageKeys)
+    func remove(valueForkey key: StorageKeys)
 }

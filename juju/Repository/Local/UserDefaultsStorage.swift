@@ -8,33 +8,39 @@
 
 import Foundation
 
-class UserDefaultsStorage: LocalStorageProtocol {
+struct UserDefaultsStorage: LocalStorageProtocol {
     
-    private let userDefaults: UserDefaults
+    let storage = UserDefaults.standard
     
-    init(userDefaults: UserDefaults = .standard) {
-        self.userDefaults = userDefaults
-    }
-    
-    func get<T>(from key: LocalStorageKeys) -> T? {
-        return userDefaults.object(forKey: key.rawValue) as? T
-    }
-    
-    func set(value: Any?, for key: LocalStorageKeys) {
-        userDefaults.set(value, forKey: key.rawValue)
-    }
-    
-    func remove(from keys: [LocalStorageKeys]) {
-        keys.forEach { userDefaults.removeObject(forKey: $0.rawValue) }
-    }
-    
-    func clear() {
+    func get<T: Codable>(from key: StorageKeys) -> T? {
         
-        guard let domain = Bundle.main.bundleIdentifier else {
-            fatalError("Was not possible get bundleIdentifier from Bundle")
+        guard let object = storage.object(forKey: key.rawValue),
+            let data = object as? Data else {
+                return nil
         }
         
-        userDefaults.removePersistentDomain(forName: domain)
+        do {
+            
+            let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
+            return unarchiver.decodeDecodable(T.self, forKey: key.rawValue)
+            
+        } catch {
+            
+            return nil
+        }
     }
     
+    func set<T: Codable>(_ value: T, for key: StorageKeys) {
+        
+        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+        try? archiver.encodeEncodable(value, forKey: key.rawValue)
+        storage.set(archiver.encodedData, forKey: key.rawValue)
+        
+    }
+    
+    
+    func remove(valueForkey key: StorageKeys) {
+        
+        storage.removeObject(forKey: key.rawValue)
+    }
 }

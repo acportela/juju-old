@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TrainingDifficulty: String, RawRepresentable {
+enum TrainingDifficulty: String, RawRepresentable, Codable {
     
     case easy
     case medium

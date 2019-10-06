@@ -29,7 +29,7 @@ class TrainingCoordinator: Coordinator {
         }
         
         set {
-            self.localDefaults.set(value: newValue, for: .trainingDifficulty)
+            self.localDefaults.set(newValue, for: .trainingDifficulty)
             self.trainingViewController?.chosenDifficulty = newValue
         }
     }

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct ClientUser {
+struct ClientUser: Codable {
+    
     let email: String
     let name: String
     let dob: Date
