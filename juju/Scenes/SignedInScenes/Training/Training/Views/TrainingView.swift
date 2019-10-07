@@ -165,7 +165,7 @@ extension TrainingView: ViewCoding {
         }
         
         self.progressComponent.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.eight)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.sixteen)
             make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
             make.right.equalToSuperview().offset(-Styling.Spacing.sixteen)
         }
@@ -364,6 +364,6 @@ extension TrainingView {
         static let animationRectWidthRatio: CGFloat = 0.75
         static let innerCircleSide = 103
         static let innerCircleRadius: Float = 51.5
-        static let playStopSides = 68
+        static let playStopSides = 80
     }
 }

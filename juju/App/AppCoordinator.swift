@@ -16,24 +16,13 @@ class AppCoordinator: Coordinator {
     private let diaryService: TrainingDiaryServiceProtocol
     private let localStorage: LocalStorageProtocol
     
-    private var loggedUser: ClientUser? {
+    private lazy var splashScreen: SplashScreenViewController = {
         
-        set {
-            guard let user = newValue else {
-                self.localStorage.remove(valueForkey: .loggedUser)
-                return
-            }
-            self.localStorage.set(user, for: .loggedUser)
-        }
-        
-        get {
-            guard let validUser = self.localStorage.get(from: .loggedUser) as ClientUser? else {
-                return nil
-            }
-            return validUser
-        }
-    }
-    
+        let splash = SplashScreenViewController(localStorage: self.localStorage)
+        splash.delegate = self
+        return splash
+    }()
+
     init(rootNavigation: UINavigationController,
          userService: UserService,
          diaryService: TrainingDiaryServiceProtocol,
@@ -47,13 +36,8 @@ class AppCoordinator: Coordinator {
     
     func start() {
         
-        guard let user = self.loggedUser else {
-            
-            self.startSignedOutFlow()
-            return
-        }
-        
-        self.startSignedInFlow(withUser: user)
+        self.navigation.pushViewController(splashScreen, animated: false)
+        self.setupInitialUser()
     }
     
     private func startSignedInFlow(withUser user: ClientUser) {
@@ -71,12 +55,19 @@ class AppCoordinator: Coordinator {
     }
     
     private func startSignedOutFlow() {
+        
         let signedOutCoordinator = SignedOutCoordinator(rootNavigation: navigation,
-                                                        userService: self.userService)
+                                                        userService: self.userService,
+                                                        localStorage: self.localStorage)
         signedOutCoordinator.delegate = self
         
         childCoordinators.append(signedOutCoordinator)
         signedOutCoordinator.start()
+    }
+    
+    private func setupInitialUser() {
+        
+        self.splashScreen.setupInitialUser()
     }
 }
 
@@ -86,8 +77,7 @@ extension AppCoordinator: SignedOutCoordinatorDelegate {
                               didSignInWithUser user: ClientUser) {
         
         _ = self.childCoordinators.popLast()
-        self.loggedUser = user
-        self.start()
+        self.startSignedInFlow(withUser: user)
     }
 }
 
@@ -96,7 +86,20 @@ extension AppCoordinator: SignedInCoordinatorDelegate {
     func signedInCoordinatorDidLogout(_ coordinator: SignedInCoordinator) {
         
         _ = self.childCoordinators.popLast()
-        self.loggedUser = nil
-        self.start()
+        self.setupInitialUser()
+    }
+}
+
+extension AppCoordinator: SplashScreenViewControllerDelegate {
+    
+    func splashScreenViewControllerFailedFetchingUser(_ controller: SplashScreenViewController) {
+        
+        self.startSignedOutFlow()
+    }
+
+    func splashScreenViewController(_ controller: SplashScreenViewController,
+                                    didFetchLocalUser user: ClientUser) {
+        
+        self.startSignedInFlow(withUser: user)
     }
 }

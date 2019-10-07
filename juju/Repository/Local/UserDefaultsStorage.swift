@@ -38,9 +38,8 @@ struct UserDefaultsStorage: LocalStorageProtocol {
         
     }
     
-    
-    func remove(valueForkey key: StorageKeys) {
+    func remove(valuesForKeys keys: [StorageKeys]) {
         
-        storage.removeObject(forKey: key.rawValue)
+        keys.forEach { self.storage.removeObject(forKey: $0.rawValue) }
     }
 }

@@ -81,7 +81,8 @@ class SignedInCoordinator: NSObject, Coordinator {
         
         //TODO: Move to a Profile Coordinator later on
         let profile = ProfileViewController(loggerUser: self.user,
-                                            userService: self.userService)
+                                            userService: self.userService,
+                                            localStorage: self.localStorage)
         profile.delegate = self
         profile.tabBarItem = UITabBarItem(title: "Perfil",
                                           image: Resources.Images.tabProfile,
@@ -100,9 +101,10 @@ extension SignedInCoordinator: ProfileViewControllerDelegate {
     
     func profileViewControllerDidLogout(_ controller: ProfileViewController, success: Bool) {
         
-        if self.rootNavigation.topViewController == self.tabBarController {
-            self.rootNavigation.popViewController(animated: true)
+        if success {
+            
+            self.rootNavigation.popViewController(animated: false)
+            self.delegate?.signedInCoordinatorDidLogout(self)
         }
-        self.delegate?.signedInCoordinatorDidLogout(self)
     }
 }

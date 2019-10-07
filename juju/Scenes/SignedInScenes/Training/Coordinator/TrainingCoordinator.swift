@@ -60,7 +60,7 @@ class TrainingCoordinator: Coordinator {
         
         let trainingMode = TrainingModeViewController()
         trainingMode.delegate = self
-        self.navigation.pushViewController(trainingMode, animated: true)
+        self.navigation.pushViewController(trainingMode, animated: false)
     }
     
     private func startTrainingWith(mode: TrainingMode,

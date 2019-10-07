@@ -41,6 +41,7 @@
 		D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641400723002AB9005BD008 /* FirebaseUserQuery.swift */; };
 		D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0EF22CCC39800FAB219 /* SignUpView.swift */; };
 		D645C0F322CCCC0F00FAB219 /* SignUpViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */; };
+		D6466EB0234AB57E006E7F1A /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6466EAF234AB57E006E7F1A /* SplashScreenViewController.swift */; };
 		D65356E7234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65356E6234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift */; };
 		D65356E92340241500CEE476 /* FirebaseTrainingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65356E82340241500CEE476 /* FirebaseTrainingModel.swift */; };
 		D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FCC4922C79EF400BA16E5 /* AppDelegate.swift */; };
@@ -91,7 +92,6 @@
 		D6B02A4422E0070100818C17 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B02A4322E0070100818C17 /* Repository.swift */; };
 		D6B1207522E4E6F3005180D5 /* SignInViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */; };
 		D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BC42112328642F0005B686 /* CirclesComponent.swift */; };
-		D6BCD69A23491D44007529D9 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BCD69923491D44007529D9 /* SessionState.swift */; };
 		D6C75ADE2329E13300F44EE7 /* PlayStopComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADD2329E13300F44EE7 /* PlayStopComponent.swift */; };
 		D6C75AE02329E69F00F44EE7 /* PlayStopComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75ADF2329E69F00F44EE7 /* PlayStopComponentSpec.swift */; };
 		D6C75AE22329F45000F44EE7 /* ProgressComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C75AE12329F45000F44EE7 /* ProgressComponent.swift */; };
@@ -179,6 +179,7 @@
 		D641400723002AB9005BD008 /* FirebaseUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserQuery.swift; sourceTree = "<group>"; };
 		D645C0EF22CCC39800FAB219 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewSpec.swift; sourceTree = "<group>"; };
+		D6466EAF234AB57E006E7F1A /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		D65356E6234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrainingModelsQuery.swift; sourceTree = "<group>"; };
 		D65356E82340241500CEE476 /* FirebaseTrainingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrainingModel.swift; sourceTree = "<group>"; };
 		D65FCC4622C79EF400BA16E5 /* juju.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = juju.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,7 +234,6 @@
 		D6B02A4322E0070100818C17 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D6B1207422E4E6F3005180D5 /* SignInViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewSpec.swift; sourceTree = "<group>"; };
 		D6BC42112328642F0005B686 /* CirclesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesComponent.swift; sourceTree = "<group>"; };
-		D6BCD69923491D44007529D9 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
 		D6C75ADD2329E13300F44EE7 /* PlayStopComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStopComponent.swift; sourceTree = "<group>"; };
 		D6C75ADF2329E69F00F44EE7 /* PlayStopComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStopComponentSpec.swift; sourceTree = "<group>"; };
 		D6C75AE12329F45000F44EE7 /* ProgressComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressComponent.swift; sourceTree = "<group>"; };
@@ -313,6 +313,7 @@
 		D61E0C3F22E4D6CF003700EA /* SignedOutScenes */ = {
 			isa = PBXGroup;
 			children = (
+				D6466EAC234AB551006E7F1A /* Splash */,
 				D6EE5CC8232F37C500F3701A /* Coordinator */,
 				D6FF00A622E34BCE00D8B2CB /* Intro */,
 				D645C0EE22CCC33C00FAB219 /* SignUp */,
@@ -395,6 +396,14 @@
 				D645C0F222CCCC0F00FAB219 /* SignUpViewSpec.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D6466EAC234AB551006E7F1A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				D6466EAF234AB57E006E7F1A /* SplashScreenViewController.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		D65356E52340151F00CEE476 /* TrainingModel */ = {
@@ -610,7 +619,6 @@
 				D6ABED1D22DF2C1C0022CF0A /* ClientUser.swift */,
 				D6ABED2522DF30A50022CF0A /* StringErrorConstants.swift */,
 				D681E48F22F128B3003754F4 /* InputKind.swift */,
-				D6BCD69923491D44007529D9 /* SessionState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1184,7 +1192,6 @@
 				D63BE80C234A575B0015FC27 /* ProfileView.swift in Sources */,
 				D61E0C3A22E4A5B7003700EA /* String.swift in Sources */,
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
-				D6BCD69A23491D44007529D9 /* SessionState.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
@@ -1220,6 +1227,7 @@
 				D6C75AE22329F45000F44EE7 /* ProgressComponent.swift in Sources */,
 				D66D5AD92312C56700F0A944 /* Styling.swift in Sources */,
 				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
+				D6466EB0234AB57E006E7F1A /* SplashScreenViewController.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
 				D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,

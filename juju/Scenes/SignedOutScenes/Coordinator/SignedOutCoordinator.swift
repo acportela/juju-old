@@ -17,12 +17,17 @@ class SignedOutCoordinator: Coordinator {
     
     private let userService: UserService
     private let navigation: UINavigationController
+    private let localStorage: LocalStorageProtocol
+    
     weak var delegate: SignedOutCoordinatorDelegate?
 
-    init(rootNavigation: UINavigationController, userService: UserService) {
+    init(rootNavigation: UINavigationController,
+         userService: UserService,
+         localStorage: LocalStorageProtocol) {
         
         self.navigation = rootNavigation
         self.userService = userService
+        self.localStorage = localStorage
     }
     
     func start() {
@@ -42,7 +47,12 @@ class SignedOutCoordinator: Coordinator {
         
         let signInViewController = SignInViewController(userService: self.userService)
         signInViewController.delegate = self
-        navigation.pushViewController(signInViewController, animated: true)
+        navigation.pushViewController(signInViewController, animated: false)
+    }
+    
+    private func saveUserLocally(_ user: ClientUser) {
+        
+        self.localStorage.set(user, for: .loggedUser)
     }
 }
 
@@ -51,7 +61,8 @@ extension SignedOutCoordinator: SignUpViewControllerDelegate {
     func signUpViewController(_ viewController: SignUpViewController,
                               didSignUpWithUser user: ClientUser) {
         
-        self.navigation.popViewController(animated: true)
+        self.saveUserLocally(user)
+        self.navigation.popViewController(animated: false)
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }
     
@@ -66,7 +77,8 @@ extension SignedOutCoordinator: SignInViewControllerDelegate {
     func signInViewController(_ viewController: SignInViewController,
                               didSignInWithUser user: ClientUser) {
         
-        self.navigation.popViewController(animated: true)
+        self.saveUserLocally(user)
+        self.navigation.popViewController(animated: false)
         self.delegate?.signedOutCoordinator(self, didSignInWithUser: user)
     }
     

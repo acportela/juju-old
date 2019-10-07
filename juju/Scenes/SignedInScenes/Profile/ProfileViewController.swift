@@ -19,13 +19,16 @@ final class ProfileViewController: UIViewController, Loadable {
     private let profileView = ProfileView()
     private let loggerUser: ClientUser
     private let userService: UserServiceProtocol
-    
+    private let localStorage: LocalStorageProtocol
     weak var delegate: ProfileViewControllerDelegate?
     
-    init(loggerUser: ClientUser, userService: UserServiceProtocol) {
+    init(loggerUser: ClientUser,
+         userService: UserServiceProtocol,
+         localStorage: LocalStorageProtocol) {
         
         self.loggerUser = loggerUser
         self.userService = userService
+        self.localStorage = localStorage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,6 +74,7 @@ extension ProfileViewController {
             case .success:
                 
                 sSelf.delegate?.profileViewControllerDidLogout(sSelf, success: true)
+                sSelf.localStorage.remove(valuesForKeys: StorageKeys.allCases)
                 
             case .error:
                 // TODO: Test for only one possible error: connection

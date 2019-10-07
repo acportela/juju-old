@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum StorageKeys: String {
+enum StorageKeys: String, CaseIterable {
     
     case loggedUser
     case trainingDifficulty
@@ -24,5 +24,5 @@ protocol LocalStorageProtocol {
 
     func get<T: Codable>(from key: StorageKeys) -> T?
     func set<T: Codable>(_ value: T, for key: StorageKeys)
-    func remove(valueForkey key: StorageKeys)
+    func remove(valuesForKeys keys: [StorageKeys])
 }
