@@ -11,13 +11,11 @@ import SnapKit
 
 final class SignUpView: UIView, JujuFormProtocol {
     
-    private let logoLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = "Juju"
-        label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.thirtysix)
-        return label
+    private let logo: UIImageView = {
+        
+        let imageView = UIImageView(image: Resources.Images.signInLogo)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     let nameInput = JujuInputField(inputKind: .name)
@@ -72,7 +70,7 @@ extension SignUpView: ViewCoding {
     func addSubViews() {
         
         addSubview(bottomBG)
-        addSubview(logoLabel)
+        addSubview(self.logo)
         inputStack.addArrangedSubview(nameInput)
         inputStack.addArrangedSubview(dateOfBirth)
         inputStack.addArrangedSubview(emailInput)
@@ -91,11 +89,11 @@ extension SignUpView: ViewCoding {
             make.right.equalToSuperview().inset(Styling.Spacing.twentyeight)
         }
         
-        logoLabel.snp.makeConstraints { make in
-            
+        logo.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview()
             make.bottom.equalTo(inputStack.snp.top)
+            make.width.equalTo(Constants.logoWidth)
         }
         
         signUpButton.snp.makeConstraints { make in
@@ -119,7 +117,6 @@ extension SignUpView: ViewCoding {
     
     func configureViews() {
         
-        self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Styling.Colors.softPink
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
         setupToolbar()
@@ -133,5 +130,7 @@ extension SignUpView {
         
         static let signUpButtonWidth = 141
         static let signUpButtonHeight = 48
+        static let logoWidth = 83
+        static let logoHeight = 71
     }
 }

@@ -10,7 +10,7 @@ struct TrainingConstants {
     
     static let slowEasy = TrainingModel(mode: .slow,
                                         difficulty: .easy,
-                                        repetitions: 10,
+                                        repetitions: 2,
                                         contractionDuration: 4,
                                         relaxationDuration: 4)
     

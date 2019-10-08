@@ -31,7 +31,7 @@ struct TrainingDiaryService: TrainingDiaryServiceProtocol {
                                    withDate date: Date,
                                    callback: @escaping (DiaryResult) -> Void) {
         
-        guard let query = FirebaseDiaryQuery(user: user.email, withDate: Date()) else {
+        guard let query = FirebaseDiaryQuery(user: user.email, withDate: date) else {
             
             callback(.error(.malformedQuery))
             return

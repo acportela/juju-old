@@ -11,13 +11,11 @@ import SnapKit
 
 final class SignInView: UIView, JujuFormProtocol {
     
-    private let logoLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = "Juju"
-        label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.thirtysix)
-        return label
+    private let logo: UIImageView = {
+        
+        let imageView = UIImageView(image: Resources.Images.signInLogo)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     let emailInput = JujuInputField(inputKind: .email)
@@ -80,7 +78,7 @@ extension SignInView: ViewCoding {
     func addSubViews() {
         
         addSubview(bottomBG)
-        addSubview(logoLabel)
+        addSubview(self.logo)
         inputStack.addArrangedSubview(emailInput)
         inputStack.addArrangedSubview(passwordInput)
         addSubview(inputStack)
@@ -96,10 +94,11 @@ extension SignInView: ViewCoding {
             make.right.equalToSuperview().inset(Styling.Spacing.twentyeight)
         }
         
-        logoLabel.snp.makeConstraints { make in
+        logo.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview()
             make.bottom.equalTo(inputStack.snp.top)
+            make.width.equalTo(Constants.logoWidth)
         }
         
         enterButton.snp.makeConstraints { make in
@@ -122,7 +121,6 @@ extension SignInView: ViewCoding {
     
     func configureViews() {
 
-        self.logoLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.backgroundColor = Styling.Colors.softPink
         inputs = [emailInput, passwordInput]
         setupToolbar()
@@ -143,5 +141,7 @@ extension SignInView {
         
         static let enterButtonWidth = 141
         static let enterButtonHeight = 48
+        static let logoWidth = 83
+        static let logoHeight = 71
     }
 }

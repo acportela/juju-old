@@ -17,23 +17,6 @@ class TrainingCoordinator: Coordinator {
     
     var trainingViewController: TrainingViewController?
     
-    var preferredDifficulty: TrainingDifficulty {
-        
-        get {
-            guard let difficulty = self.localDefaults.get(from: .trainingDifficulty)
-            as TrainingDifficulty? else {
-                
-                return .defaultLevel
-            }
-            return difficulty
-        }
-        
-        set {
-            self.localDefaults.set(newValue, for: .trainingDifficulty)
-            self.trainingViewController?.chosenDifficulty = newValue
-        }
-    }
-    
     init(rootNavigation: UINavigationController,
          diaryService: TrainingDiaryServiceProtocol,
          localDefaults: LocalStorageProtocol,
@@ -63,11 +46,10 @@ class TrainingCoordinator: Coordinator {
         self.navigation.pushViewController(trainingMode, animated: false)
     }
     
-    private func startTrainingWith(mode: TrainingMode,
-                                   andDifficulty difficulty: TrainingDifficulty) {
+    private func startTrainingWith(mode: TrainingMode) {
         
         let training = TrainingViewController(mode: mode,
-                                              difficulty: difficulty,
+                                              localDefaults: localDefaults,
                                               diaryService: self.diaryService,
                                               user: self.user)
         training.delegate = self
@@ -82,6 +64,11 @@ class TrainingCoordinator: Coordinator {
         trainingLevel.delegate = self
         self.navigation.present(trainingLevel, animated: true, completion: nil)
     }
+    
+    private func udpatePrefferedDifficulty(_ difficulty: TrainingDifficulty) {
+        
+        self.trainingViewController?.updatePreferredDifficulty(difficulty)
+    }
 }
 
 extension TrainingCoordinator: TrainingModeViewControllerDelegate {
@@ -89,15 +76,14 @@ extension TrainingCoordinator: TrainingModeViewControllerDelegate {
     func trainingModeViewController(_ controller: TrainingModeViewController,
                                     didChooseMode mode: TrainingMode) {
 
-        self.startTrainingWith(mode: mode,
-                               andDifficulty: self.preferredDifficulty)
+        self.startTrainingWith(mode: mode)
     }
 }
 
 extension TrainingCoordinator: TrainingViewControllerDelegate {
     
     func trainingViewControllerDidTapLevelSettings(_ controller: TrainingViewController,
-                                                   withCurrentLevel level: TrainingDifficulty) {
+                                                   withCurrentDifficulty level: TrainingDifficulty) {
         
         self.startTrainingLevel(withCurrentLevel: level)
     }
@@ -108,6 +94,6 @@ extension TrainingCoordinator: TrainLevelViewControllerDelegate {
     func trainLevelViewController(_ controller: TrainLevelViewController,
                                   didChooseDifficulty difficulty: TrainingDifficulty) {
         
-        self.preferredDifficulty = difficulty
+        self.udpatePrefferedDifficulty(difficulty)
     }
 }

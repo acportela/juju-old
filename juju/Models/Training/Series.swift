@@ -12,4 +12,6 @@ struct Series {
     
     let completed: Int
     let settings: TrainingModel
+    
+    static let fallbackSeries = Series(completed: 0, settings: .fallbackTrainingModel)
 }
