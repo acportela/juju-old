@@ -92,22 +92,22 @@ struct FirebaseTrainingDiary: FirebasePersistable {
             
             case (.slow, .easy):
 
-                series.append(Series(completed: self.seriesSlowEasy, settings: training))
+                series.append(Series(completed: self.seriesSlowEasy, model: training))
             case (.slow, .medium):
                 
-                series.append(Series(completed: self.seriesSlowMedium, settings: training))
+                series.append(Series(completed: self.seriesSlowMedium, model: training))
             case (.slow, .hard):
                 
-                series.append(Series(completed: self.seriesSlowHard, settings: training))
+                series.append(Series(completed: self.seriesSlowHard, model: training))
             case (.fast, .easy):
                 
-                series.append(Series(completed: self.seriesFastEasy, settings: training))
+                series.append(Series(completed: self.seriesFastEasy, model: training))
             case (.fast, .medium):
                 
-                series.append(Series(completed: self.seriesFastMedium, settings: training))
+                series.append(Series(completed: self.seriesFastMedium, model: training))
             case (.fast, .hard):
                 
-                series.append(Series(completed: self.seriesFastHard, settings: training))
+                series.append(Series(completed: self.seriesFastHard, model: training))
             }
         }
         

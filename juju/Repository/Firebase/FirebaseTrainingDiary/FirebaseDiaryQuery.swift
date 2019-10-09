@@ -31,7 +31,7 @@ struct FirebaseDiaryQuery: FirebaseQuery {
         let firestore = Firestore.firestore()
             
         guard let dateQuery = firestore.collection(FirebaseConstants.TrainingDiary.pathToCollection)
-                            .whereField(user, from: from, to: until) else {
+            .whereField(FirebaseConstants.TrainingDiary.date, from: from, to: until) else {
             return nil
         }
                             

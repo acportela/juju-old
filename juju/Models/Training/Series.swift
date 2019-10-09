@@ -10,8 +10,8 @@ import Foundation
 
 struct Series {
     
-    let completed: Int
-    let settings: TrainingModel
+    var completed: Int
+    let model: TrainingModel
     
-    static let fallbackSeries = Series(completed: 0, settings: .fallbackTrainingModel)
+    static let fallbackSeries = Series(completed: 0, model: .fallbackTrainingModel)
 }

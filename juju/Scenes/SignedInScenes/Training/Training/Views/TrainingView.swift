@@ -82,7 +82,7 @@ final class TrainingView: UIView {
         }
     }
     
-    private (set) var trainingModel: TrainingModel = .fallbackTrainingModel {
+    private (set) var series: Series = .fallbackSeries {
         didSet {
             self.setInitial()
         }
@@ -90,12 +90,6 @@ final class TrainingView: UIView {
     
     private var repetitionsProgress: RepetitionsProgress = .empty {
         
-        didSet {
-            
-        }
-    }
-    
-    private var series: Int = 0 {
         didSet {
             
         }
@@ -192,7 +186,7 @@ extension TrainingView: ViewConfiguration {
     
     enum States {
         
-        case initial(TrainingModel)
+        case initial(Series)
         case start
         case stop
         case contract
@@ -204,9 +198,9 @@ extension TrainingView: ViewConfiguration {
         
         switch state {
             
-        case .initial(let model):
+        case .initial(let series):
             
-            self.trainingModel = model
+            self.series = series
             
         case .start:
         
@@ -241,7 +235,7 @@ extension TrainingView {
             
         case .contraction:
             
-            let remainingTime = self.trainingModel.contractionDuration - time
+            let remainingTime = self.series.model.contractionDuration - time
             
             if remainingTime <= 0 {
                 self.currentBladderState = .relaxation
@@ -252,7 +246,7 @@ extension TrainingView {
             
         case .relaxation:
             
-            let remainingTime = self.trainingModel.relaxationDuration - time
+            let remainingTime = self.series.model.relaxationDuration - time
             
             if remainingTime <= 0 {
                 self.currentBladderState = .contraction
@@ -270,7 +264,7 @@ extension TrainingView {
     // MARK: Helpers for views updates
     private func setInitial() {
         
-        let model = self.trainingModel
+        let model = self.series.model
         
         self.contractRelax.text = .empty
         self.instructions.isHidden = false
@@ -286,10 +280,9 @@ extension TrainingView {
         self.innerCircle.configure(with: .build(number: model.contractionDuration,
                                                 color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
         
-        // TODO: Don't restart from 0 series
         self.progressComponent.configure(with: .initial(currentRepetition: 0,
-                                                        totalRepetitions: self.trainingModel.repetitions,
-                                                        series: 0))
+                                                        totalRepetitions: model.repetitions,
+                                                        series: self.series.completed))
     }
     
     private func startTrain() {
@@ -314,10 +307,10 @@ extension TrainingView {
         self.circlesComponent.configure(with: .stopAnimation)
         self.currentBladderState = .contraction
         self.resetInnerLabel(forState: .contraction)
-        // TODO: Don't restart from 0 series
+
         self.progressComponent.configure(with: .initial(currentRepetition: 0,
-                                                        totalRepetitions: self.trainingModel.repetitions,
-                                                        series: 0))
+                                                        totalRepetitions: self.series.model.repetitions,
+                                                        series: self.series.completed))
         self.timer.stop()
     }
     
@@ -335,8 +328,8 @@ extension TrainingView {
     
     private func resetInnerLabel(forState state: BladderState) {
         
-        let time = state == .contraction ? self.trainingModel.contractionDuration
-                            : self.trainingModel.relaxationDuration
+        let time = state == .contraction ? self.series.model.contractionDuration
+                            : self.series.model.relaxationDuration
         self.innerCircle.configure(with: .updateNumber(time))
     }
     

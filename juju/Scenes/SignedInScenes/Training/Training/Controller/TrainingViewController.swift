@@ -17,53 +17,20 @@ protocol TrainingViewControllerDelegate: AnyObject {
 final class TrainingViewController: UIViewController, Loadable {
     
     private let trainingView = TrainingView()
-    private let localDefaults: LocalStorageProtocol
-    private let diaryService: TrainingDiaryServiceProtocol
-    private let chosenMode: TrainingMode
-    private let user: ClientUser
+    private var dataSource: TrainingDataSource
+
     let loadingController = LoadingViewController(animatable: JujuLoader())
     weak var delegate: TrainingViewControllerDelegate?
-    
-    private var preferredDifficulty: TrainingDifficulty {
-        get {
-            guard let difficulty = self.localDefaults.get(from: .trainingDifficulty)
-            as TrainingDifficulty? else { return .defaultLevel }
-            return difficulty
-        }
-        set {
-            self.localDefaults.set(newValue, for: .trainingDifficulty)
-            self.getCurrentTrainingModel()
-        }
-    }
-    
-    private var availableTrainings: [TrainingModel] {
-        
-        return TrainingConstants.defaultTrainingModels
-    }
-    
-    private var currentTrainining: TrainingModel = .fallbackTrainingModel {
-        didSet {
-            self.fetchDiaryProgress()
-        }
-    }
-    
-    private var diary: DiaryProgress? {
-        didSet {
-            self.configureViewForInitialState()
-        }
-    }
-    
-    //REMOVE
     
     init(mode: TrainingMode,
          localDefaults: LocalStorageProtocol,
          diaryService: TrainingDiaryServiceProtocol,
          user: ClientUser) {
         
-        self.chosenMode = mode
-        self.localDefaults = localDefaults
-        self.diaryService = diaryService
-        self.user = user
+        self.dataSource = TrainingDataSource(mode: mode,
+                                             localStorage: localDefaults,
+                                             diaryService: diaryService,
+                                             user: user)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -81,8 +48,8 @@ final class TrainingViewController: UIViewController, Loadable {
         
         super.viewDidLoad()
         self.trainingView.delegate = self
+        self.dataSource.delegate = self
         self.addBackgroundObserver()
-        self.getCurrentTrainingModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +61,7 @@ final class TrainingViewController: UIViewController, Loadable {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.getCurrentTrainingModel()
+        self.updateInitialState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -117,29 +84,24 @@ final class TrainingViewController: UIViewController, Loadable {
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     }
+    
+    private func updateInitialState() {
+        
+        //Resolve local vs remote infinite loop
+        guard let diary = self.dataSource.localDiary else {
+            self.dataSource.fetchRemoteDiary()
+            return
+        }
+        let serie = self.dataSource.getSerieFromDiary(diary)
+        self.trainingView.configure(with: .initial(serie))
+    }
 }
 
 extension TrainingViewController {
 
     func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
         
-        self.preferredDifficulty = newDifficulty
-    }
-    
-    private func getCurrentTrainingModel() {
-        
-        let difficulty = self.preferredDifficulty
-        
-        let newTraining = self.availableTrainings.first { $0.mode == self.chosenMode
-                                                        && $0.difficulty == difficulty }
-                        ?? TrainingModel.fallbackTrainingModel
-        self.currentTrainining = newTraining
-    }
-    
-    private func configureViewForInitialState() {
-        
-        //TODO: Change to serie (that maybe nil)
-        self.trainingView.configure(with: .initial(self.currentTrainining))
+        self.dataSource.updatePreferredDifficulty(newDifficulty)
     }
     
     private func startTrain() {
@@ -166,6 +128,20 @@ extension TrainingViewController: TrainingViewDelegate {
     }
 }
 
+extension TrainingViewController: TrainingDataSourceDelegate {
+    
+    func trainingDataSourceStartedFetch(_ dataSource: TrainingDataSource) {
+        
+        self.startLoading()
+    }
+    
+    func trainingDataSourceDidFetchDiary(_ dataSource: TrainingDataSource) {
+        
+        self.stopLoading()
+        self.updateInitialState()
+    }
+}
+
 extension TrainingViewController {
     
     private func addBackgroundObserver() {
@@ -186,56 +162,6 @@ extension TrainingViewController {
     private func didTapLevelSettings() {
 
         self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentDifficulty: self.preferredDifficulty)
-    }
-}
-
-// MARK: Diary Progress Logic
-extension TrainingViewController {
-
-    private func fetchDiaryProgress() {
-        
-        // TODO: Implement logic to try fecth locally first
-        guard let localDiary = self.fetchDiaryLocally() else {
-            self.fetchDiaryRemotely()
-            return
-        }
-        self.diary = localDiary
-    }
-    
-    private func fetchDiaryLocally() -> DiaryProgress? {
-        return nil
-    }
-    
-    private func fetchDiaryRemotely() {
-        
-        self.startLoading()
-        
-        self.diaryService.trainingWantsToFetchDiary(forUser: self.user,
-                                                    withDate: Date()) { [weak self] result in
-            
-            self?.stopLoading()
-            
-            switch result {
-                
-            case .success(let diary):
-                
-                self?.diary = diary
-                self?.saveDiaryLocally(diary)
-                
-            case .error:
-                
-                //TODO: Display warning to user
-                self?.diary = nil
-            }
-        }
-    }
-    
-    private func saveDiaryLocally(_ diary: DiaryProgress) {
-        
-    }
-    
-    private func updateRemoteDiary(_ diary: DiaryProgress) {
-        
+                                                                 withCurrentDifficulty: self.dataSource.difficulty)
     }
 }

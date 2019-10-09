@@ -121,6 +121,7 @@
 		D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653B22D4D9830062C97A /* AppCoordinator.swift */; };
 		D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653D22D4DC840062C97A /* SignUpViewController.swift */; };
 		D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F3202922F5D35300950325 /* UIAlertController.swift */; };
+		D6FEE9D7234D6B1F002372C4 /* TrainingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FEE9D6234D6B1F002372C4 /* TrainingDataSource.swift */; };
 		D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */; };
 		D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A722E34BE800D8B2CB /* IntroView.swift */; };
 		D6FF00AA22E350E900D8B2CB /* IntroViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */; };
@@ -263,6 +264,7 @@
 		D6F2653B22D4D9830062C97A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D6F2653D22D4DC840062C97A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D6F3202922F5D35300950325 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		D6FEE9D6234D6B1F002372C4 /* TrainingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDataSource.swift; sourceTree = "<group>"; };
 		D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutCoordinator.swift; sourceTree = "<group>"; };
 		D6FF00A722E34BE800D8B2CB /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		D6FF00A922E350E900D8B2CB /* IntroViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewSpec.swift; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 			children = (
 				D6D3974F232D90A800EBA4FE /* Controller */,
 				D6D3974B232D806500EBA4FE /* Views */,
+				D6FEE9D6234D6B1F002372C4 /* TrainingDataSource.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
+				D6FEE9D7234D6B1F002372C4 /* TrainingDataSource.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
 				D6EE5CB8232F222D00F3701A /* TrainingDifficulty.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TrainingModel {
+struct TrainingModel: Equatable {
     
     let mode: TrainingMode
     let difficulty: TrainingDifficulty
@@ -30,4 +30,9 @@ struct TrainingModel {
     }
     
     static let fallbackTrainingModel = TrainingConstants.slowEasy
+    
+    static func == (lhs: TrainingModel, rhs: TrainingModel) -> Bool {
+        
+        return (lhs.difficulty == rhs.difficulty) && (lhs.mode == rhs.mode )
+    }
 }
