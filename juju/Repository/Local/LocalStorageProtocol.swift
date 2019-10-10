@@ -12,12 +12,7 @@ enum StorageKeys: String, CaseIterable {
     
     case loggedUser
     case trainingDifficulty
-    case todaySlowEasySeries
-    case todaySlowMediumSeries
-    case todaySlowHardSeries
-    case todayFastEasySeries
-    case todayFastMediumSeries
-    case todayFastHardSeries
+    case todayDiary
 }
 
 protocol LocalStorageProtocol {

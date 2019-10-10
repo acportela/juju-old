@@ -16,11 +16,13 @@ protocol TrainingViewControllerDelegate: AnyObject {
 
 final class TrainingViewController: UIViewController, Loadable {
     
-    private let trainingView = TrainingView()
+    private let trainingView = TrainingView(defaultSerie: .fallbackSeries)
     private var dataSource: TrainingDataSource
 
     let loadingController = LoadingViewController(animatable: JujuLoader())
     weak var delegate: TrainingViewControllerDelegate?
+    
+    var currentProgress: DiaryProgress?
     
     init(mode: TrainingMode,
          localDefaults: LocalStorageProtocol,
@@ -61,7 +63,7 @@ final class TrainingViewController: UIViewController, Loadable {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.updateInitialState()
+        self.initialDiarySetup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,21 +86,32 @@ final class TrainingViewController: UIViewController, Loadable {
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     }
-    
-    private func updateInitialState() {
-        
-        //Resolve local vs remote infinite loop
-        guard let diary = self.dataSource.localDiary else {
-            self.dataSource.fetchRemoteDiary()
-            return
-        }
-        let serie = self.dataSource.getSerieFromDiary(diary)
-        self.trainingView.configure(with: .initial(serie))
-    }
 }
 
 extension TrainingViewController {
+    
+    private func initialDiarySetup() {
+        
+        guard let diary = self.dataSource.localDiary else {
+            
+            self.startLoading()
+            self.dataSource.fetchRemoteDiary()
+            return
+        }
+        
+        self.setupTrainingViewWithDiary(diary)
+    }
 
+    private func setupTrainingViewWithDiary(_ diary: DiaryProgress) {
+        
+        guard let serie = self.dataSource.getSerieFromDiary(diary) else {
+            self.initWithDefaultTraining()
+            return
+        }
+        
+        self.trainingView.configure(with: .initial(serie))
+    }
+    
     func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
         
         self.dataSource.updatePreferredDifficulty(newDifficulty)
@@ -107,6 +120,43 @@ extension TrainingViewController {
     private func startTrain() {
         
         self.trainingView.configure(with: .start)
+    }
+    
+    private func stopTrain() {
+        
+        self.trainingView.configure(with: .stop)
+    }
+    
+    private func initWithDefaultTraining() {
+        
+        self.trainingView.configure(with: .initial(Series.fallbackSeries))
+    }
+    
+    private func showDefaultTrainingAlert() {
+        
+        let alert = UIAlertController(title: "Juju",
+                                      message: "Ocorreu um erro ao buscar seu treino. Usaremos o treino padrão",
+                                      primaryActionTitle: "OK")
+        self.present(alert, animated: true)
+    }
+    
+    private func handleRemoteFetchError(_ error: RepositoryError) {
+        
+        self.initWithDefaultTraining()
+        
+        if error != .noResults {
+            
+            self.showDefaultTrainingAlert()
+        }
+    }
+    
+    @objc
+    private func didTapLevelSettings() {
+
+        let currentDifficulty = self.dataSource.difficulty ?? .defaultLevel
+        
+        self.delegate?.trainingViewControllerDidTapLevelSettings(self,
+                                                                 withCurrentDifficulty: currentDifficulty)
     }
 }
 
@@ -120,25 +170,28 @@ extension TrainingViewController: TrainingViewDelegate {
     
     func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
         
-        self.trainingView.configure(with: .stop)
+        self.stopTrain()
     }
     
     func trainingViewFinishedSerie(_ trainingView: TrainingView) {
-        
+        //Update local diary
+        //Update remote diary
     }
 }
 
+// MARK: Datasource Delegate
 extension TrainingViewController: TrainingDataSourceDelegate {
     
-    func trainingDataSourceStartedFetch(_ dataSource: TrainingDataSource) {
-        
-        self.startLoading()
-    }
-    
-    func trainingDataSourceDidFetchDiary(_ dataSource: TrainingDataSource) {
+    func trainingDataSourceDidFetchDiary(_ dataSource: TrainingDataSource, diary: DiaryProgress) {
         
         self.stopLoading()
-        self.updateInitialState()
+        self.setupTrainingViewWithDiary(diary)
+    }
+    
+    func trainingDataSourceFailedFetchingDiary(withError error: RepositoryError) {
+        
+        self.stopLoading()
+        self.handleRemoteFetchError(error)
     }
 }
 
@@ -155,13 +208,6 @@ extension TrainingViewController {
     @objc
     private func applicationWillEnterBackground() {
         
-        self.trainingView.configure(with: .stop)
-    }
-    
-    @objc
-    private func didTapLevelSettings() {
-
-        self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentDifficulty: self.dataSource.difficulty)
+        self.stopTrain()
     }
 }

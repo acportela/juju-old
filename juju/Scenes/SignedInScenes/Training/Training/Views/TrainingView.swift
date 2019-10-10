@@ -82,24 +82,20 @@ final class TrainingView: UIView {
         }
     }
     
-    private (set) var series: Series = .fallbackSeries {
+    private (set) var series: Series {
         didSet {
             self.setInitial()
         }
     }
     
-    private var repetitionsProgress: RepetitionsProgress = .empty {
-        
-        didSet {
-            
-        }
-    }
+    private var repetitionsProgress: RepetitionsProgress = .empty
     
     public weak var delegate: TrainingViewDelegate?
     
     // MARK: Lifecycle
-    override init(frame: CGRect = .zero) {
+    init(frame: CGRect = .zero, defaultSerie: Series) {
         
+        self.series = defaultSerie
         super.init(frame: frame)
         setupViewConfiguration()
     }

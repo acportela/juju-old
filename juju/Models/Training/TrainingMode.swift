@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TrainingMode: String, RawRepresentable {
+enum TrainingMode: String, Codable, RawRepresentable {
     
     case slow
     case fast

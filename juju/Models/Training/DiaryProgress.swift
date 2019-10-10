@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DiaryProgress {
+struct DiaryProgress: Codable {
     
     let date: Date
     let series: [Series]

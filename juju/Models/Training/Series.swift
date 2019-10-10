@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Series {
+struct Series: Codable {
     
     var completed: Int
     let model: TrainingModel

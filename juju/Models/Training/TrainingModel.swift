@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TrainingModel: Equatable {
+struct TrainingModel: Codable, Equatable {
     
     let mode: TrainingMode
     let difficulty: TrainingDifficulty
