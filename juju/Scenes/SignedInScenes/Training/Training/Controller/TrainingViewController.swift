@@ -16,22 +16,21 @@ protocol TrainingViewControllerDelegate: AnyObject {
 
 final class TrainingViewController: UIViewController, Loadable {
     
-    private let trainingView = TrainingView(defaultSerie: .fallbackSeries)
+    private let trainingView = TrainingView(defaultSerie: .fallback)
     private var dataSource: TrainingDataSource
-
     let loadingController = LoadingViewController(animatable: JujuLoader())
     weak var delegate: TrainingViewControllerDelegate?
-    
-    var currentProgress: DiaryProgress?
     
     init(mode: TrainingMode,
          localDefaults: LocalStorageProtocol,
          diaryService: TrainingDiaryServiceProtocol,
+         trainingService: TrainingServiceProtocol,
          user: ClientUser) {
         
         self.dataSource = TrainingDataSource(mode: mode,
                                              localStorage: localDefaults,
                                              diaryService: diaryService,
+                                             trainingService: trainingService,
                                              user: user)
         super.init(nibName: nil, bundle: nil)
     }
@@ -68,7 +67,8 @@ final class TrainingViewController: UIViewController, Loadable {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        self.trainingView.configure(with: .stop)
+        self.stopTrain()
+        self.dataSource.unregisterListeners()
         super.viewWillDisappear(animated)
     }
     
@@ -91,25 +91,9 @@ final class TrainingViewController: UIViewController, Loadable {
 extension TrainingViewController {
     
     private func initialDiarySetup() {
-        
-        guard let diary = self.dataSource.localDiary else {
-            
-            self.startLoading()
-            self.dataSource.fetchRemoteDiary()
-            return
-        }
-        
-        self.setupTrainingViewWithDiary(diary)
-    }
 
-    private func setupTrainingViewWithDiary(_ diary: DiaryProgress) {
-        
-        guard let serie = self.dataSource.getSerieFromDiary(diary) else {
-            self.initWithDefaultTraining()
-            return
-        }
-        
-        self.trainingView.configure(with: .initial(serie))
+        self.startLoading()
+        self.dataSource.listenToTrainingModels()
     }
     
     func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
@@ -127,9 +111,14 @@ extension TrainingViewController {
         self.trainingView.configure(with: .stop)
     }
     
-    private func initWithDefaultTraining() {
+    private func initScreenWithFallbackSerie() {
         
-        self.trainingView.configure(with: .initial(Series.fallbackSeries))
+        self.trainingView.configure(with: .initial(Series.fallback))
+    }
+    
+    private func initScreenWithSerie(_ serie: Series) {
+        
+        self.trainingView.configure(with: .initial(serie))
     }
     
     private func showDefaultTrainingAlert() {
@@ -139,28 +128,9 @@ extension TrainingViewController {
                                       primaryActionTitle: "OK")
         self.present(alert, animated: true)
     }
-    
-    private func handleRemoteFetchError(_ error: RepositoryError) {
-        
-        self.initWithDefaultTraining()
-        
-        if error != .noResults {
-            
-            self.showDefaultTrainingAlert()
-        }
-    }
-    
-    @objc
-    private func didTapLevelSettings() {
-
-        let currentDifficulty = self.dataSource.difficulty ?? .defaultLevel
-        
-        self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentDifficulty: currentDifficulty)
-    }
 }
 
-// MARK: TrainingViewDelegate
+// MARK: TrainingView Delegate
 extension TrainingViewController: TrainingViewDelegate {
 
     func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
@@ -173,29 +143,54 @@ extension TrainingViewController: TrainingViewDelegate {
         self.stopTrain()
     }
     
-    func trainingViewFinishedSerie(_ trainingView: TrainingView) {
-        //Update local diary
-        //Update remote diary
+    func trainingViewFinishedSerie(_ trainingView: TrainingView, serie: Series) {
+        
+        self.dataSource.updateCurrentDiaryWithSerie(serie)
     }
 }
 
 // MARK: Datasource Delegate
 extension TrainingViewController: TrainingDataSourceDelegate {
     
-    func trainingDataSourceDidFetchDiary(_ dataSource: TrainingDataSource, diary: DiaryProgress) {
+    func trainingDataSourceFetchedDiary(_ dataSource: TrainingDataSource, error: RepositoryError?) {
         
         self.stopLoading()
-        self.setupTrainingViewWithDiary(diary)
+        
+        if let error = error {
+            
+            if error == .noResults {
+                
+                // New day
+                let models = self.dataSource.availableTrainings ?? TrainingConstants.defaultTrainingModels
+                self.dataSource.setNewDiary(DiaryProgress(date: Date(), models: models))
+                // TODO: maybe return here and wait for request that saves diary
+            } else {
+                
+                self.initScreenWithFallbackSerie()
+                self.showDefaultTrainingAlert()
+                return
+            }
+        }
+        
+        self.initScreenWithSerie(self.dataSource.currentSerie ?? .fallback)
     }
     
-    func trainingDataSourceFailedFetchingDiary(withError error: RepositoryError) {
+    func trainingDataSourceTrainingModelWasUpdated(_ dataSource: TrainingDataSource, error: Bool) {
         
-        self.stopLoading()
-        self.handleRemoteFetchError(error)
+        self.dataSource.fetchTodayDiary()
     }
 }
 
 extension TrainingViewController {
+    
+    @objc
+    private func didTapLevelSettings() {
+
+        let currentDifficulty = self.dataSource.difficulty ?? .fallback
+        
+        self.delegate?.trainingViewControllerDidTapLevelSettings(self,
+                                                                 withCurrentDifficulty: currentDifficulty)
+    }
     
     private func addBackgroundObserver() {
         

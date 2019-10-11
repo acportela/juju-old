@@ -12,7 +12,7 @@ protocol TrainingViewDelegate: AnyObject {
     
     func trainingViewWantsToStartTrain(_ trainingView: TrainingView)
     func trainingViewWantsToStopTrain(_ trainingView: TrainingView)
-    func trainingViewFinishedSerie(_ trainingView: TrainingView)
+    func trainingViewFinishedSerie(_ trainingView: TrainingView, serie: Series)
 }
 
 final class TrainingView: UIView {
@@ -82,11 +82,7 @@ final class TrainingView: UIView {
         }
     }
     
-    private (set) var series: Series {
-        didSet {
-            self.setInitial()
-        }
-    }
+    private (set) var series: Series
     
     private var repetitionsProgress: RepetitionsProgress = .empty
     
@@ -197,6 +193,7 @@ extension TrainingView: ViewConfiguration {
         case .initial(let series):
             
             self.series = series
+            self.setInitial()
             
         case .start:
         
@@ -247,10 +244,33 @@ extension TrainingView {
             if remainingTime <= 0 {
                 self.currentBladderState = .contraction
                 self.timer.restart()
-                self.progressComponent.configure(with: .incrementRepetitions)
+                self.incrementProgressComponent()
             }
             
             self.updateInnerLabelFor(remainingTime: remainingTime, state: self.currentBladderState)
+        }
+    }
+    
+    private func incrementProgressComponent() {
+        
+        let current = self.repetitionsProgress.current
+        let total = self.repetitionsProgress.total
+        
+        if total - current > 1 {
+            
+            //Increment repetition
+            self.repetitionsProgress.increment()
+            self.progressComponent.configure(with: .incrementRepetition(progress: self.repetitionsProgress))
+            
+        } else {
+            
+            //Increment serie and reset repetition
+            self.series.incrementCompleted()
+            self.repetitionsProgress = RepetitionsProgress(current: 0, total: series.model.repetitions)
+            self.progressComponent.configure(with: .initial(progress: self.repetitionsProgress,
+                                                            series: self.series.completed))
+            
+            self.delegate?.trainingViewFinishedSerie(self, serie: self.series)
         }
     }
 }
@@ -276,8 +296,8 @@ extension TrainingView {
         self.innerCircle.configure(with: .build(number: model.contractionDuration,
                                                 color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
         
-        self.progressComponent.configure(with: .initial(currentRepetition: 0,
-                                                        totalRepetitions: model.repetitions,
+        self.repetitionsProgress = RepetitionsProgress(current: 0, total: model.repetitions)
+        self.progressComponent.configure(with: .initial(progress: self.repetitionsProgress,
                                                         series: self.series.completed))
     }
     
@@ -304,8 +324,8 @@ extension TrainingView {
         self.currentBladderState = .contraction
         self.resetInnerLabel(forState: .contraction)
 
-        self.progressComponent.configure(with: .initial(currentRepetition: 0,
-                                                        totalRepetitions: self.series.model.repetitions,
+        self.repetitionsProgress = RepetitionsProgress(current: 0, total: self.series.model.repetitions)
+        self.progressComponent.configure(with: .initial(progress: self.repetitionsProgress,
                                                         series: self.series.completed))
         self.timer.stop()
     }

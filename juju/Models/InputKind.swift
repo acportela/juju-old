@@ -94,5 +94,4 @@ enum InputKind {
             return nil
         }
     }
-    //TODO: Add UITextContentType ?
 }

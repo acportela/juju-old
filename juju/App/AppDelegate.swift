@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = rootController
         self.window?.makeKeyAndVisible()
     
-        FirebaseApp.configure()
+        self.setupFirebase()
         self.configureKeyboardManager()
         self.setupDependencies(withRootController: rootController)
         
@@ -38,16 +38,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let userRepo = FirebaseRepository<FirebaseUser, FirebaseUserQuery>()
         let userService = UserService(userAuth: FirebaseEmailPasswordAuthentication(), userRepo: userRepo)
+        
         let diaryRepo = FirebaseRepository<FirebaseTrainingDiary, FirebaseDiaryQuery>()
         let diaryService = TrainingDiaryService(diaryRepo: diaryRepo)
+        
+        let trainingRepo = FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingModelsQuery>()
+        let trainingService = TrainingService(trainingRepo: trainingRepo)
+        
         let defaults = UserDefaultsStorage()
 
         self.appCoordinator = AppCoordinator(rootNavigation: root,
                                              userService: userService,
                                              diaryService: diaryService,
+                                             trainingService: trainingService,
                                              localStorage: defaults)
     }
     
+    private func setupFirebase() {
+        
+        FirebaseApp.configure()
+        let settings = Firestore.firestore().settings
+        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+    }
+
     private func configureKeyboardManager() {
         
         IQKeyboardManager.shared.enable = true

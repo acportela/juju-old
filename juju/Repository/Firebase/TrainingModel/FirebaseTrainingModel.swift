@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 struct FirebaseTrainingModel: FirebasePersistable {
     
+    var modelId: String?
     let mode: TrainingMode
     let difficulty: TrainingDifficulty
     let repetitions: Int
@@ -34,7 +35,7 @@ struct FirebaseTrainingModel: FirebasePersistable {
         self.relaxationDuration = relaxationDuration
     }
 
-    init?(fromData data: [String: Any]) {
+    init?(fromData data: [String: Any], id: String) {
         
         guard let modeString = data[FirebaseConstants.TrainingModel.modeField] as? String,
         let mode = TrainingMode(rawValue: modeString),
@@ -52,6 +53,7 @@ struct FirebaseTrainingModel: FirebasePersistable {
         self.repetitions = repetitions
         self.contractionDuration = contraction
         self.relaxationDuration = relaxation
+        self.modelId = id
     }
 
     func toDictionary() -> [String: Any] {
@@ -63,4 +65,8 @@ struct FirebaseTrainingModel: FirebasePersistable {
                 FirebaseConstants.TrainingModel.relaxationDurationField: self.relaxationDuration]
     }
 
+    mutating func setId(_ id: String) {
+        
+        self.modelId = id
+    }
 }

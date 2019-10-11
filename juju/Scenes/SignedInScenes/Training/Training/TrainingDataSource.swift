@@ -10,23 +10,25 @@ import Foundation
 
 protocol TrainingDataSourceDelegate: AnyObject {
     
-    func trainingDataSourceDidFetchDiary(_ dataSource: TrainingDataSource,
-                                         diary: DiaryProgress)
-    
-    func trainingDataSourceFailedFetchingDiary(withError error: RepositoryError)
+    func trainingDataSourceFetchedDiary(_ dataSource: TrainingDataSource, error: RepositoryError?)
+    func trainingDataSourceTrainingModelWasUpdated(_ dataSource: TrainingDataSource, error: Bool)
 }
 
 class TrainingDataSource {
     
     private let diaryService: TrainingDiaryServiceProtocol
+    private var trainingService: TrainingServiceProtocol
     private let localStorage: LocalStorageProtocol
     private let chosenMode: TrainingMode
     private let user: ClientUser
 
     weak var delegate: TrainingDataSourceDelegate?
 
-    private var availableTrainings: [TrainingModel] { return TrainingConstants.defaultTrainingModels }
+    /// Should only be used to populate a new zero serie Diary
+    private (set) var availableTrainings: [TrainingModel]?
     
+    private (set) var diaryProgress: DiaryProgress?
+
     private (set) var difficulty: TrainingDifficulty? {
         get {
             return self.localStorage.get(from: .trainingDifficulty) as TrainingDifficulty?
@@ -36,47 +38,42 @@ class TrainingDataSource {
         }
     }
     
-    private var currentTrainining: TrainingModel? {
+    var currentSerie: Series? {
         
-        guard let difficulty = self.difficulty else { return nil }
-        
-        return self.availableTrainings.first { $0.mode == self.chosenMode
-                                                && $0.difficulty == difficulty }
-    }
-    
-    private (set) var localDiary: DiaryProgress? {
-        set {
-            guard let diary = newValue else {
-                self.localStorage.remove(valuesForKeys: [.todayDiary])
-                return
-            }
-            self.localStorage.set(diary, for: .todayDiary)
-        }
-        get {
-            return self.localStorage.get(from: .todayDiary) as DiaryProgress?
-        }
+        let difficulty = self.difficulty ?? .fallback
+        return self.diaryProgress?.series.first { $0.model.mode == self.chosenMode
+                                                && $0.model.difficulty == difficulty }
     }
     
     init(mode: TrainingMode,
          localStorage: LocalStorageProtocol,
          diaryService: TrainingDiaryServiceProtocol,
+         trainingService: TrainingServiceProtocol,
          user: ClientUser) {
         
         self.chosenMode = mode
         self.localStorage = localStorage
         self.diaryService = diaryService
+        self.trainingService = trainingService
         self.user = user
     }
 }
 
-// MARK: Diary Progress Logic
+// MARK: Diary Progress
 extension TrainingDataSource {
     
-    // MARK: Remote Diary
-    func fetchRemoteDiary() {
+    // TODO: To keep it in scync with multiple devices, change this to a listener
+    func fetchTodayDiary() {
+        
+        guard let models = self.availableTrainings else {
+
+            self.delegate?.trainingDataSourceFetchedDiary(self, error: .corruptedData)
+            return
+        }
         
         self.diaryService.trainingWantsToFetchDiary(forUser: self.user,
-                                                    withDate: Date()) { [weak self] result in
+                                                    withDate: Date(),
+                                                    trainingModels: models) { [weak self] result in
             
             guard let sSelf = self else { return }
                                                         
@@ -84,42 +81,67 @@ extension TrainingDataSource {
                 
             case .success(let diary):
                 
-                sSelf.delegate?.trainingDataSourceDidFetchDiary(sSelf,
-                                                                diary: diary)
-                sSelf.localDiary = diary
+                sSelf.diaryProgress = diary
+                sSelf.delegate?.trainingDataSourceFetchedDiary(sSelf, error: nil)
                 
             case .error(let error):
                 
-                sSelf.delegate?.trainingDataSourceFailedFetchingDiary(withError: error)
+                sSelf.diaryProgress = nil
+                sSelf.delegate?.trainingDataSourceFetchedDiary(sSelf, error: error)
             }
         }
     }
     
-    private func updateRemoteDiary(_ diary: DiaryProgress?) {
+    func setNewDiary(_ diary: DiaryProgress) {
         
+        self.diaryProgress = diary
+        self.diaryService.trainingWantsToCreateNewDiary(diary, forUser: self.user) { _ in }
     }
     
-    // MARK: Local Diary
-    private func updateLocalDiary(_ diary: DiaryProgress?) {
+    func updateCurrentDiaryWithSerie(_ serie: Series) {
         
-        guard let diary = diary else {
-            self.localStorage.remove(valuesForKeys: [.todayDiary])
-            return
+        self.diaryProgress?.updateDiaryWith(serie)
+        if let diary = self.diaryProgress {
+            self.diaryService.trainingWantsToUpdateDiary(diary, forUser: self.user) { _ in }
         }
-        self.localStorage.set(diary, for: .todayDiary)
-    }
-    
-    func getSerieFromDiary(_ diary: DiaryProgress) -> Series? {
-        
-        guard let training = self.currentTrainining else { return nil }
-        return diary.series.first { $0.model == training }
     }
 }
 
+// MARK: Training Model
+extension TrainingDataSource {
+    
+    func listenToTrainingModels() {
+        
+        self.trainingService.listenToTrainingModels { [weak self] contentResult in
+            
+            guard let sSelf = self else { return }
+            
+            switch contentResult {
+                
+            case .success(let models):
+                
+                sSelf.availableTrainings = models
+                sSelf.delegate?.trainingDataSourceTrainingModelWasUpdated(sSelf, error: false)
+                
+            case .error:
+                
+                sSelf.availableTrainings = nil
+                sSelf.delegate?.trainingDataSourceTrainingModelWasUpdated(sSelf, error: true)
+            }
+        }
+    }
+    
+    func unregisterListeners() {
+        
+        self.trainingService.unregisterTrainingModelListener()
+    }
+}
+
+// MARK: Training Difficulty
 extension TrainingDataSource {
     
     func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
-        
+
         self.difficulty = newDifficulty
     }
 }

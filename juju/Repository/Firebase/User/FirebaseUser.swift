@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 struct FirebaseUser: FirebasePersistable {
     
+    var userId: String?
     let name: String
     let email: String
     let dateOfBirth: Date
@@ -26,7 +27,7 @@ struct FirebaseUser: FirebasePersistable {
         self.dateOfBirth = dateOfBirth
     }
 
-    init?(fromData data: [String: Any]) {
+    init?(fromData data: [String: Any], id: String) {
         
         guard let name = data[FirebaseConstants.User.nameField] as? String,
         let email = data[FirebaseConstants.User.emailField] as? String,
@@ -37,6 +38,7 @@ struct FirebaseUser: FirebasePersistable {
         self.name = name
         self.email = email
         self.dateOfBirth = date.dateValue()
+        self.userId = id
     }
 
     func toDictionary() -> [String: Any] {
@@ -46,4 +48,8 @@ struct FirebaseUser: FirebasePersistable {
                 FirebaseConstants.User.dobField: dateOfBirth]
     }
 
+    mutating func setId(_ id: String) {
+        
+        self.userId = id
+    }
 }

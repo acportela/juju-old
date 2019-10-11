@@ -11,6 +11,7 @@ import Foundation
 protocol FirebasePersistable {
     
     var path: String { get }
-    init?(fromData data: [String: Any])
+    init?(fromData data: [String: Any], id: String)
     func toDictionary() -> [String: Any]
+    mutating func setId(_ id: String)
 }

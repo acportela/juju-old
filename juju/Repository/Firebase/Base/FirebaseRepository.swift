@@ -8,16 +8,26 @@
 
 import FirebaseFirestore
 
-struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository {
+protocol FirebaseListenable: Repository {
     
-    func save(entity: T, callback: @escaping (Result<RepositoryError>) -> Void) {
+    func listenTo(query: QueryType,
+                  callback: @escaping (ContentResult<[EntityType], RepositoryError>) -> Void) -> ListenerRegistration
+}
+
+struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseListenable {
+    
+    func save(entity: T, callback: @escaping (ContentResult<T, RepositoryError>) -> Void) {
         
         let firestore = Firestore.firestore()
-        firestore.collection(entity.path)
-        .addDocument(data: entity.toDictionary()) { error in
+        
+        let document = firestore.collection(entity.path).document()
+        
+        document.setData(entity.toDictionary()) { error in
             
-            //TODO firebase error code handling
-            error == nil ? callback(.success) : callback(.error(.unknown))
+            var newEntity = entity
+            newEntity.setId(document.documentID)
+            
+            error == nil ? callback(.success(newEntity)) : callback(.error(.unknown))
         }
     }
     
@@ -25,7 +35,6 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
             
-            //TODO firebase error code handling
             if maybeError != nil {
                 callback(.error(.unknown))
                 return
@@ -36,7 +45,7 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
                 callback(.error(.noResults))
                 return
             }
-            
+
             snapshot.documents.forEach { $0.reference.delete { error in
                     if error != nil {
                         callback(.error(.unknown))
@@ -53,8 +62,7 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
     func get(query: V, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
-        
-            //TODO firebase error code handling
+
             if maybeError != nil {
                 callback(.error(.unknown))
                 return
@@ -65,12 +73,39 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: Repository 
                 callback(.error(.noResults))
                 return
             }
-                
-            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data()) }
+            
+            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data(), id: $0.documentID) }
             guard entities.isEmpty == false else { return callback(.error(.corruptedData)) }
             
             callback(.success(entities))
         }
     }
     
+    func listenTo(query: V, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) -> ListenerRegistration {
+        
+        return query.firebaseQuery.addSnapshotListener { maybeSnapshot, maybeError in
+                           
+            if maybeError != nil {
+                callback(.error(.unknown))
+                return
+            }
+           
+            guard let snapshot = maybeSnapshot,
+            snapshot.documents.isEmpty == false else {
+                callback(.error(.noResults))
+                return
+            }
+           
+            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data(), id: $0.documentID) }
+            guard entities.isEmpty == false else { return callback(.error(.corruptedData)) }
+
+            callback(.success(entities))
+        }
+    }
+    
+    func update(entity: T, id: String, callback: @escaping (Result<RepositoryError>) -> Void) {
+        
+        let firestore = Firestore.firestore()
+        firestore.collection(entity.path).document(id).setData(entity.toDictionary())
+    }
 }

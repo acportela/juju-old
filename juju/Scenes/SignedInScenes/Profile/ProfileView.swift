@@ -72,4 +72,3 @@ extension ProfileView {
         static let buttonHeight = 48
     }
 }
-

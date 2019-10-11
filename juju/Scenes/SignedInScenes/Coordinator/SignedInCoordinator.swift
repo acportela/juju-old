@@ -17,6 +17,7 @@ class SignedInCoordinator: NSObject, Coordinator {
     
     private var rootNavigation: UINavigationController
     private let diaryService: TrainingDiaryServiceProtocol
+    private let trainingService: TrainingServiceProtocol
     private let userService: UserServiceProtocol
     private let localStorage: LocalStorageProtocol
     private let user: ClientUser
@@ -27,6 +28,7 @@ class SignedInCoordinator: NSObject, Coordinator {
         
         let coordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation,
                                               diaryService: self.diaryService,
+                                              trainingService: self.trainingService,
                                               localDefaults: self.localStorage,
                                               user: self.user)
         return coordinator
@@ -50,6 +52,7 @@ class SignedInCoordinator: NSObject, Coordinator {
     init(rootController: UINavigationController,
          userService: UserServiceProtocol,
          diaryService: TrainingDiaryServiceProtocol,
+         trainingService: TrainingServiceProtocol,
          localStorage: LocalStorageProtocol,
          user: ClientUser) {
         
@@ -57,6 +60,7 @@ class SignedInCoordinator: NSObject, Coordinator {
         self.rootNavigation = rootController
         self.userService = userService
         self.diaryService = diaryService
+        self.trainingService = trainingService
         self.localStorage = localStorage
     }
     

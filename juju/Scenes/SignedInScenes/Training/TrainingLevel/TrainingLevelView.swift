@@ -17,6 +17,7 @@ final class TrainingLevelView: UIView {
     
     // MARK: Views
     
+    // TODO: Add button for iOSes < 13
     private let titleLabel: UILabel = {
         
         let label = UILabel()

@@ -145,36 +145,22 @@ extension ProgressComponent: ViewConfiguration {
     
     enum States {
         
-        case initial(currentRepetition: Int, totalRepetitions: Int, series: Int)
-        case incrementRepetitions
-        case incrementSeries
-        case resetRepetitions
+        case initial(progress: RepetitionsProgress, series: Int)
+        case incrementRepetition(progress: RepetitionsProgress)
     }
     
     func configure(with state: ProgressComponent.States) {
         
         switch state {
             
-        case .initial(let current, let total, let series):
-            
-            if current > total { return }
+        case .initial(let progress, let series):
             
             self.series = series
-            self.repetitionsProgress = RepetitionsProgress(current: current, total: total)
-            //self.repetitionsLabel.text = "Repetições: \(self.progress.current)/\(self.progress.total)"
+            self.repetitionsProgress = progress
             
-        case .incrementRepetitions:
+        case .incrementRepetition(let repetitionProgress):
             
-            self.repetitionsProgress.increment()
-            //self.repetitionsLabel.text = "Repetições: \(self.progress.current)/\(self.progress.total)"
-            
-        case .incrementSeries:
-            
-            self.series += 1
-        
-        case .resetRepetitions:
-            
-            self.repetitionsProgress = RepetitionsProgress(current: 0, total: self.repetitionsProgress.total)
+            self.repetitionsProgress = repetitionProgress
         }
     }
     

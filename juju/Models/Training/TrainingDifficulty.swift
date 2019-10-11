@@ -14,7 +14,7 @@ enum TrainingDifficulty: String, RawRepresentable, Codable {
     case medium
     case hard
     
-    static let defaultLevel = TrainingDifficulty.easy
+    static let fallback = TrainingDifficulty.easy
     
     var title: String {
         

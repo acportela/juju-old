@@ -32,12 +32,12 @@ extension CollectionReference {
         let endComponents = Calendar.current.dateComponents([.year, .month, .day], from: finalDate)
         let endDate = Calendar.current.date(from: endComponents)
         
-        guard let validStart = startDate, let validEnd = endDate,
-        let end = Calendar.current.date(byAdding: .day, value: 1, to: validEnd) else {
+        guard let validStart = startDate, let end = endDate,
+        let validEnd = Calendar.current.date(byAdding: .day, value: 1, to: end) else {
             
             return nil
         }
         
-        return whereField(field, isGreaterThan: validStart).whereField(field, isLessThan: end)
+        return whereField(field, isGreaterThan: validStart).whereField(field, isLessThan: validEnd)
     }
 }

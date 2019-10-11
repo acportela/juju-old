@@ -13,7 +13,7 @@ protocol Repository {
     associatedtype EntityType
     associatedtype QueryType
     
-    func save(entity: EntityType, callback: @escaping (Result<RepositoryError>) -> Void)
+    func save(entity: EntityType, callback: @escaping (ContentResult<EntityType, RepositoryError>) -> Void)
     
     func get(query: QueryType, callback: @escaping (ContentResult<[EntityType], RepositoryError>) -> Void)
     

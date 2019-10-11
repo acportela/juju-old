@@ -17,7 +17,6 @@ struct RepetitionsProgress {
     
     mutating func increment() {
         
-        if self.current == total { return }
         self.current += 1
     }
 }

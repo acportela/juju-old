@@ -14,6 +14,7 @@ class AppCoordinator: Coordinator {
     private let navigation: UINavigationController
     private let userService: UserService
     private let diaryService: TrainingDiaryServiceProtocol
+    private let trainingService: TrainingServiceProtocol
     private let localStorage: LocalStorageProtocol
     
     private lazy var splashScreen: SplashScreenViewController = {
@@ -26,12 +27,14 @@ class AppCoordinator: Coordinator {
     init(rootNavigation: UINavigationController,
          userService: UserService,
          diaryService: TrainingDiaryServiceProtocol,
+         trainingService: TrainingServiceProtocol,
          localStorage: LocalStorageProtocol) {
         
         self.navigation = rootNavigation
         self.userService = userService
         self.localStorage = localStorage
         self.diaryService = diaryService
+        self.trainingService = trainingService
     }
     
     func start() {
@@ -45,6 +48,7 @@ class AppCoordinator: Coordinator {
         let signedInCoordinator = SignedInCoordinator(rootController: self.navigation,
                                                       userService: self.userService,
                                                       diaryService: self.diaryService,
+                                                      trainingService: self.trainingService,
                                                       localStorage: self.localStorage,
                                                       user: user)
         signedInCoordinator.delegate = self
