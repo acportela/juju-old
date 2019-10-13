@@ -146,16 +146,17 @@ extension TrainLevelComponent {
         
         if selected {
             
-            self.layer.shadowColor = Styling.Colors.duskyPink.cgColor
-            self.layer.shadowOffset = CGSize(width: 0, height: 4)
-            self.layer.shadowRadius = 10
-            self.layer.shadowOpacity = 1
+            self.addShadow(color: Styling.Colors.duskyPink,
+                           opacity: 1,
+                           radius: 10,
+                           offset: CGSize(width: 0, height: 4))
             
         } else {
             
-            self.layer.shadowColor = UIColor.clear.cgColor
-            self.layer.shadowOffset = .zero
-            self.layer.shadowRadius = 0
+            self.addShadow(color: .clear,
+                           opacity: 0,
+                           radius: 0,
+                           offset: .zero)
         }
     }
     

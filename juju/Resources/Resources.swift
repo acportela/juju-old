@@ -112,6 +112,10 @@ extension Resources.Images {
     
     static let signInLogo = image(named: "signInLogo")
     
+    static let clear = image(named: "clear", template: true)
+    
+    static let checkSmall = image(named: "checkSmall", template: true)
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

@@ -9,6 +9,7 @@
 import UIKit
 
 public protocol KeyboardListenerDelegate: class {
+    
     func keyboardWillAppear(_ notification: Notification)
     func keyboardWillDisappear(_ notification: Notification)
 }
@@ -16,10 +17,12 @@ public protocol KeyboardListenerDelegate: class {
 public class KeyboardListener: NSObject {
     
     public static let shared = KeyboardListener()
+    public var keyboardHeight: CGFloat
     
     private var delegates: [KeyboardListenerDelegate] = []
     
     private override init() {
+        self.keyboardHeight = .leastNonzeroMagnitude
         super.init()
         self.prepare()
     }
@@ -36,6 +39,9 @@ public class KeyboardListener: NSObject {
     
     @objc
     private func keyboardDidAppear(notification: Notification) {
+        
+        self.keyboardHeight = notification.keyboardHeight
+        
         for delegate in delegates {
             delegate.keyboardWillAppear(notification)
         }
@@ -43,6 +49,9 @@ public class KeyboardListener: NSObject {
     
     @objc
     private func keyboardWillDisappear(notification: Notification) {
+        
+        self.keyboardHeight = .leastNonzeroMagnitude
+        
         for delegate in delegates {
             delegate.keyboardWillDisappear(notification)
         }

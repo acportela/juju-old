@@ -76,6 +76,7 @@
 		D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */; };
 		D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */; };
 		D6944B9C23404B030024608A /* TrainingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6944B9B23404B030024608A /* TrainingService.swift */; };
+		D69586562353877000B55896 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69586552353877000B55896 /* UIView.swift */; };
 		D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695890E22C7AD16009A356C /* JujuInputField.swift */; };
 		D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891022C7AD6E009A356C /* ViewCoding.swift */; };
 		D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695891222C7AF98009A356C /* ViewConfiguration.swift */; };
@@ -121,6 +122,8 @@
 		D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653B22D4D9830062C97A /* AppCoordinator.swift */; };
 		D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2653D22D4DC840062C97A /* SignUpViewController.swift */; };
 		D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F3202922F5D35300950325 /* UIAlertController.swift */; };
+		D6FC90912353720A006440D6 /* SnackbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC90902353720A006440D6 /* SnackbarView.swift */; };
+		D6FC909323537477006440D6 /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC909223537477006440D6 /* Snackbar.swift */; };
 		D6FEE9D7234D6B1F002372C4 /* TrainingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FEE9D6234D6B1F002372C4 /* TrainingDataSource.swift */; };
 		D6FF00A522E34B8200D8B2CB /* SignedOutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */; };
 		D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF00A722E34BE800D8B2CB /* IntroView.swift */; };
@@ -219,6 +222,7 @@
 		D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputFieldSpec.swift; sourceTree = "<group>"; };
 		D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingConstants.swift; sourceTree = "<group>"; };
 		D6944B9B23404B030024608A /* TrainingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingService.swift; sourceTree = "<group>"; };
+		D69586552353877000B55896 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		D695890E22C7AD16009A356C /* JujuInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputField.swift; sourceTree = "<group>"; };
 		D695891022C7AD6E009A356C /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
 		D695891222C7AF98009A356C /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 		D6F2653B22D4D9830062C97A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D6F2653D22D4DC840062C97A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D6F3202922F5D35300950325 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		D6FC90902353720A006440D6 /* SnackbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarView.swift; sourceTree = "<group>"; };
+		D6FC909223537477006440D6 /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
 		D6FEE9D6234D6B1F002372C4 /* TrainingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDataSource.swift; sourceTree = "<group>"; };
 		D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutCoordinator.swift; sourceTree = "<group>"; };
 		D6FF00A722E34BE800D8B2CB /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -358,8 +364,6 @@
 		D63BE805234A38720015FC27 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
-				D6FF00BE22E3CC5600D8B2CB /* Notification.swift */,
-				D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */,
 				D63BE806234A3EA60015FC27 /* OldJujuFormProtocol.swift */,
 			);
 			path = Deprecated;
@@ -604,6 +608,7 @@
 		D695890D22C7AC71009A356C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6FC909423537C0A006440D6 /* Keyboard */,
 				D63BE805234A38720015FC27 /* Deprecated */,
 				D6EE5CBE232F302700F3701A /* Animations */,
 				D6B1207B22E4EC2D005180D5 /* Extensions */,
@@ -661,6 +666,8 @@
 				D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */,
 				D695890E22C7AD16009A356C /* JujuInputField.swift */,
 				D682062722CADE9B006D4937 /* JujuButton.swift */,
+				D6FC90902353720A006440D6 /* SnackbarView.swift */,
+				D6FC909223537477006440D6 /* Snackbar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -680,6 +687,7 @@
 		D6B1207B22E4EC2D005180D5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D6FF00BE22E3CC5600D8B2CB /* Notification.swift */,
 				D68ACB9122C7E329001C94A5 /* UIColor.swift */,
 				D61E0C3522E491B1003700EA /* UIButton.swift */,
 				D6F3202922F5D35300950325 /* UIAlertController.swift */,
@@ -687,6 +695,7 @@
 				D69B923E231E048E009207B1 /* UIViewController.swift */,
 				D6182B5423243D3100932DA3 /* UINavigationController.swift */,
 				D6EE63EE232590600003F50C /* CAShapeLayer.swift */,
+				D69586552353877000B55896 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -879,6 +888,14 @@
 				D6FF00A422E34B8200D8B2CB /* SignedOutCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D6FC909423537C0A006440D6 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				D6FF00C122E3CC8F00D8B2CB /* KeyboardListener.swift */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		D6FF00A622E34BCE00D8B2CB /* Intro */ = {
@@ -1216,8 +1233,10 @@
 				D6182B4F23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift in Sources */,
 				D60927552340097F00B0F594 /* TrainingModel.swift in Sources */,
 				D6C75ADE2329E13300F44EE7 /* PlayStopComponent.swift in Sources */,
+				D69586562353877000B55896 /* UIView.swift in Sources */,
 				D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */,
 				D6BC42122328642F0005B686 /* CirclesComponent.swift in Sources */,
+				D6FC909323537477006440D6 /* Snackbar.swift in Sources */,
 				D6182B5523243D3100932DA3 /* UINavigationController.swift in Sources */,
 				D6EE5CC2232F304500F3701A /* Animatable.swift in Sources */,
 				D69B923D231DF9D6009207B1 /* LoadingViewController.swift in Sources */,
@@ -1233,6 +1252,7 @@
 				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
 				D6466EB0234AB57E006E7F1A /* SplashScreenViewController.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
+				D6FC90912353720A006440D6 /* SnackbarView.swift in Sources */,
 				D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,

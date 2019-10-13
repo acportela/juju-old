@@ -20,7 +20,8 @@ struct JujuLoader: Animatable {
         
         self.animationView.snp.makeConstraints { make in
             
-            make.center.equalToSuperview()
+            make.centerY.equalTo(hostView.safeAreaLayoutGuide.snp.centerY)
+            make.centerX.equalTo(hostView.safeAreaLayoutGuide.snp.centerX)
             make.width.height.equalTo(100)
         }
         

@@ -99,6 +99,8 @@ extension TrainingViewController {
     func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
         
         self.dataSource.updatePreferredDifficulty(newDifficulty)
+        self.trainingView.configure(with: .stop)
+        self.initScreenWithSerie(self.dataSource.currentSerie ?? .fallback)
     }
     
     private func startTrain() {
@@ -109,11 +111,6 @@ extension TrainingViewController {
     private func stopTrain() {
         
         self.trainingView.configure(with: .stop)
-    }
-    
-    private func initScreenWithFallbackSerie() {
-        
-        self.trainingView.configure(with: .initial(Series.fallback))
     }
     
     private func initScreenWithSerie(_ serie: Series) {
@@ -166,7 +163,7 @@ extension TrainingViewController: TrainingDataSourceDelegate {
                 // TODO: maybe return here and wait for request that saves diary
             } else {
                 
-                self.initScreenWithFallbackSerie()
+                self.initScreenWithSerie(.fallback)
                 self.showDefaultTrainingAlert()
                 return
             }

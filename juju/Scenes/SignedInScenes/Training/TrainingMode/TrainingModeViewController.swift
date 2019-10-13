@@ -52,6 +52,6 @@ extension TrainingModeViewController: TrainingModeViewDelegate {
     
     func trainingModeViewDidTapFastTrain(_ view: TrainingModeView) {
         
-        //self.delegate?.trainingModeViewController(self, didChooseMode: .fast)
+        self.delegate?.trainingModeViewController(self, didChooseMode: .fast)
     }
 }
