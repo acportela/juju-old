@@ -289,7 +289,7 @@ extension TrainingView {
         self.initialFooter.isHidden = false
         
         let footerConfig = TrainingFooterButtonConfiguration(title: "Começar",
-                                                             subtitle: "nível \(model.difficulty.title.lowercased())")
+                                                             subtitle: "nível \(model.level.title.lowercased())")
         self.initialFooter.configure(with: .initial(footerConfig))
         self.circlesComponent.configure(with: .stopAnimation)
         self.circlesComponent.configure(with: .updateTime(time: model.contractionDuration))

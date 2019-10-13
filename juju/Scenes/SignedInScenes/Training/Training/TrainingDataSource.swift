@@ -27,13 +27,13 @@ class TrainingDataSource {
     /// Should only be used to populate a new zero serie Diary
     private (set) var availableTrainings: [TrainingModel]?
     
-    private (set) var difficulty: TrainingDifficulty {
+    private (set) var level: TrainingLevel {
         get {
-            return self.localStorage.get(from: .trainingDifficulty) as TrainingDifficulty?
+            return self.localStorage.get(from: .trainingLevel) as TrainingLevel?
             ?? .fallback
         }
         set {
-            self.localStorage.set(newValue, for: .trainingDifficulty)
+            self.localStorage.set(newValue, for: .trainingLevel)
         }
     }
     
@@ -42,7 +42,7 @@ class TrainingDataSource {
     var currentSerie: Series? {
         
         return self.diaryProgress?.series.first { $0.model.mode == self.chosenMode
-                                                && $0.model.difficulty == self.difficulty }
+                                                && $0.model.level == self.level }
     }
     
     init(mode: TrainingMode,
@@ -133,11 +133,11 @@ extension TrainingDataSource {
     }
 }
 
-// MARK: Training Difficulty
+// MARK: Training level
 extension TrainingDataSource {
     
-    func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
+    func updatePreferredLevel(_ newLevel: TrainingLevel) {
 
-        self.difficulty = newDifficulty
+        self.level = newLevel
     }
 }

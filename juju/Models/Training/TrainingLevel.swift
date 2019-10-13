@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum TrainingDifficulty: String, RawRepresentable, Codable {
+enum TrainingLevel: String, RawRepresentable, Codable {
     
     case easy
     case medium
     case hard
     
-    static let fallback = TrainingDifficulty.easy
+    static let fallback = TrainingLevel.easy
     
     var title: String {
         

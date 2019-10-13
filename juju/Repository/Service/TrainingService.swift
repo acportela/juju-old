@@ -41,7 +41,7 @@ struct TrainingService: TrainingServiceProtocol {
                 let models = entities.map { entity in
                     
                     return TrainingModel(mode: entity.mode,
-                                         difficulty: entity.difficulty,
+                                         level: entity.level,
                                          repetitions: entity.repetitions,
                                          contractionDuration: entity.contractionDuration,
                                          relaxationDuration: entity.relaxationDuration)
@@ -71,7 +71,7 @@ struct TrainingService: TrainingServiceProtocol {
                 let models = entities.map { entity in
                     
                     return TrainingModel(mode: entity.mode,
-                                         difficulty: entity.difficulty,
+                                         level: entity.level,
                                          repetitions: entity.repetitions,
                                          contractionDuration: entity.contractionDuration,
                                          relaxationDuration: entity.relaxationDuration)

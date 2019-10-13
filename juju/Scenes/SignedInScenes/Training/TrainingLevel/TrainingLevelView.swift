@@ -10,7 +10,7 @@ import UIKit
 
 protocol TrainingLevelViewDelegate: AnyObject {
     
-    func trainingLevelView(_ view: TrainingLevelView, didSelectLevel level: TrainingDifficulty)
+    func trainingLevelView(_ view: TrainingLevelView, didSelectLevel level: TrainingLevel)
 }
 
 final class TrainingLevelView: UIView {
@@ -135,7 +135,7 @@ extension TrainingLevelView: ViewConfiguration {
     
     enum States {
         
-        case selectLevel(TrainingDifficulty)
+        case selectLevel(TrainingLevel)
     }
     
     func configure(with state: TrainingLevelView.States) {

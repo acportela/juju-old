@@ -84,7 +84,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         
         for serie in diary.series {
             
-            switch (serie.model.mode, serie.model.difficulty) {
+            switch (serie.model.mode, serie.model.level) {
             
             case (.slow, .easy):
 
@@ -135,7 +135,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         
         trainingModels.forEach { training in
             
-            switch (training.mode, training.difficulty) {
+            switch (training.mode, training.level) {
             
             case (.slow, .easy):
 

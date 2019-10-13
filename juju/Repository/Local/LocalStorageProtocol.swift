@@ -11,7 +11,7 @@ import Foundation
 enum StorageKeys: String, CaseIterable {
     
     case loggedUser
-    case trainingDifficulty
+    case trainingLevel
     case todayDiary
 }
 

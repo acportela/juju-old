@@ -12,7 +12,7 @@ struct FirebaseTrainingModel: FirebasePersistable {
     
     var modelId: String?
     let mode: TrainingMode
-    let difficulty: TrainingDifficulty
+    let level: TrainingLevel
     let repetitions: Int
     let contractionDuration: Int
     let relaxationDuration: Int
@@ -23,13 +23,13 @@ struct FirebaseTrainingModel: FirebasePersistable {
     }
     
     init(mode: TrainingMode,
-         difficulty: TrainingDifficulty,
+         level: TrainingLevel,
          repetitions: Int,
          contractionDuration: Int,
          relaxationDuration: Int) {
         
         self.mode = mode
-        self.difficulty = difficulty
+        self.level = level
         self.repetitions = repetitions
         self.contractionDuration = contractionDuration
         self.relaxationDuration = relaxationDuration
@@ -39,8 +39,8 @@ struct FirebaseTrainingModel: FirebasePersistable {
         
         guard let modeString = data[FirebaseConstants.TrainingModel.modeField] as? String,
         let mode = TrainingMode(rawValue: modeString),
-        let difficultyString = data[FirebaseConstants.TrainingModel.difficultyField] as? String,
-        let difficulty = TrainingDifficulty(rawValue: difficultyString),
+        let levelString = data[FirebaseConstants.TrainingModel.levelField] as? String,
+        let level = TrainingLevel(rawValue: levelString),
         let repetitions = data[FirebaseConstants.TrainingModel.repetitionsField] as? Int,
         let contraction = data[FirebaseConstants.TrainingModel.contractionDurationField] as? Int,
         let relaxation = data[FirebaseConstants.TrainingModel.relaxationDurationField] as? Int else {
@@ -49,7 +49,7 @@ struct FirebaseTrainingModel: FirebasePersistable {
         }
         
         self.mode = mode
-        self.difficulty = difficulty
+        self.level = level
         self.repetitions = repetitions
         self.contractionDuration = contraction
         self.relaxationDuration = relaxation
@@ -59,7 +59,7 @@ struct FirebaseTrainingModel: FirebasePersistable {
     func toDictionary() -> [String: Any] {
         
         return [FirebaseConstants.TrainingModel.modeField: self.mode,
-                FirebaseConstants.TrainingModel.difficultyField: self.difficulty,
+                FirebaseConstants.TrainingModel.levelField: self.level,
                 FirebaseConstants.TrainingModel.repetitionsField: self.repetitions,
                 FirebaseConstants.TrainingModel.contractionDurationField: self.contractionDuration,
                 FirebaseConstants.TrainingModel.relaxationDurationField: self.relaxationDuration]

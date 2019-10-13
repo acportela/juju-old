@@ -9,37 +9,37 @@
 struct TrainingConstants {
     
     static let slowEasy = TrainingModel(mode: .slow,
-                                        difficulty: .easy,
+                                        level: .easy,
                                         repetitions: 2,
                                         contractionDuration: 4,
                                         relaxationDuration: 4)
     
     static let slowMedium = TrainingModel(mode: .slow,
-                                          difficulty: .medium,
+                                          level: .medium,
                                           repetitions: 10,
                                           contractionDuration: 6,
                                           relaxationDuration: 6)
     
     static let slowHard = TrainingModel(mode: .slow,
-                                        difficulty: .hard,
+                                        level: .hard,
                                         repetitions: 10,
                                         contractionDuration: 10,
                                         relaxationDuration: 10)
     
     static let fastEasy = TrainingModel(mode: .fast,
-                                        difficulty: .easy,
+                                        level: .easy,
                                         repetitions: 10,
                                         contractionDuration: 1,
                                         relaxationDuration: 3)
     
     static let fastMedium = TrainingModel(mode: .fast,
-                                          difficulty: .medium,
+                                          level: .medium,
                                           repetitions: 10,
                                           contractionDuration: 2,
                                           relaxationDuration: 2)
     
     static let fastHard = TrainingModel(mode: .fast,
-                                        difficulty: .hard,
+                                        level: .hard,
                                         repetitions: 10,
                                         contractionDuration: 3,
                                         relaxationDuration: 6)

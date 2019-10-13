@@ -11,7 +11,7 @@ import UIKit
 protocol TrainingViewControllerDelegate: AnyObject {
     
     func trainingViewControllerDidTapLevelSettings(_ controller: TrainingViewController,
-                                                   withCurrentDifficulty level: TrainingDifficulty)
+                                                   withCurrentLevel level: TrainingLevel)
 }
 
 final class TrainingViewController: UIViewController, Loadable {
@@ -102,9 +102,9 @@ extension TrainingViewController {
         self.initScreenWithSerie(serie)
     }
     
-    func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
+    func updatePreferredLevel(_ newLevel: TrainingLevel) {
         
-        self.dataSource.updatePreferredDifficulty(newDifficulty)
+        self.dataSource.updatePreferredLevel(newLevel)
         self.trainingView.configure(with: .stop)
         self.initScreenWithSerie(self.dataSource.currentSerie ?? .fallback)
     }
@@ -192,7 +192,7 @@ extension TrainingViewController {
     private func didTapLevelSettings() {
         
         self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentDifficulty: self.dataSource.difficulty)
+                                                                 withCurrentLevel: self.dataSource.level)
     }
     
     private func addBackgroundObserver() {

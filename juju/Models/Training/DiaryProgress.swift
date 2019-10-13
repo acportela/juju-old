@@ -29,7 +29,7 @@ struct DiaryProgress: Codable {
         
         models.forEach { training in
             
-            switch (training.mode, training.difficulty) {
+            switch (training.mode, training.level) {
             
             case (.slow, .easy):
 
@@ -59,7 +59,7 @@ struct DiaryProgress: Codable {
         
         self.series = self.series.map { element in
             
-            guard element.model.difficulty == serie.model.difficulty
+            guard element.model.level == serie.model.level
             && element.model.mode == serie.model.mode else {
                 
                 return element

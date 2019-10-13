@@ -111,7 +111,7 @@
 		D6EC19D9232A921000A6DB01 /* TrainingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */; };
 		D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */ = {isa = PBXBuildFile; fileRef = D6EE5CB2232F0FDC00F3701A /* loading2x.json */; };
 		D6EE5CB6232F1FBF00F3701A /* TrainLevelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */; };
-		D6EE5CB8232F222D00F3701A /* TrainingDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */; };
+		D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */; };
 		D6EE5CBC232F2BEE00F3701A /* TrainLevelComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */; };
 		D6EE5CC0232F303A00F3701A /* JujuLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CBF232F303A00F3701A /* JujuLoader.swift */; };
 		D6EE5CC2232F304500F3701A /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE5CC1232F304500F3701A /* Animatable.swift */; };
@@ -257,7 +257,7 @@
 		D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTimer.swift; sourceTree = "<group>"; };
 		D6EE5CB2232F0FDC00F3701A /* loading2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading2x.json; sourceTree = "<group>"; };
 		D6EE5CB5232F1FBF00F3701A /* TrainLevelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelComponent.swift; sourceTree = "<group>"; };
-		D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDifficulty.swift; sourceTree = "<group>"; };
+		D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevel.swift; sourceTree = "<group>"; };
 		D6EE5CBB232F2BEE00F3701A /* TrainLevelComponentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLevelComponentSpec.swift; sourceTree = "<group>"; };
 		D6EE5CBF232F303A00F3701A /* JujuLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuLoader.swift; sourceTree = "<group>"; };
 		D6EE5CC1232F304500F3701A /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 			children = (
 				D6EC19D8232A921000A6DB01 /* TrainingTimer.swift */,
 				D6D39753232D966400EBA4FE /* TrainingMode.swift */,
-				D6EE5CB7232F222D00F3701A /* TrainingDifficulty.swift */,
+				D6EE5CB7232F222D00F3701A /* TrainingLevel.swift */,
 				D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */,
 				D60927542340097F00B0F594 /* TrainingModel.swift */,
 				D612165D234447A1003AB0C3 /* RepetitionsProgress.swift */,
@@ -1216,7 +1216,7 @@
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6FEE9D7234D6B1F002372C4 /* TrainingDataSource.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
-				D6EE5CB8232F222D00F3701A /* TrainingDifficulty.swift in Sources */,
+				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,

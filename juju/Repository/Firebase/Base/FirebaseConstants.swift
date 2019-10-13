@@ -27,7 +27,7 @@ enum FirebaseConstants {
         
         static let modeField = "mode"
         
-        static let difficultyField = "difficulty"
+        static let levelField = "level"
         
         static let repetitionsField = "repetitions"
         

@@ -11,19 +11,19 @@ import Foundation
 struct TrainingModel: Codable, Equatable {
     
     let mode: TrainingMode
-    let difficulty: TrainingDifficulty
+    let level: TrainingLevel
     let repetitions: Int
     let contractionDuration: Int
     let relaxationDuration: Int
     
     init(mode: TrainingMode,
-         difficulty: TrainingDifficulty,
+         level: TrainingLevel,
          repetitions: Int,
          contractionDuration: Int,
          relaxationDuration: Int) {
         
         self.mode = mode
-        self.difficulty = difficulty
+        self.level = level
         self.repetitions = repetitions
         self.contractionDuration = contractionDuration
         self.relaxationDuration = relaxationDuration
@@ -33,6 +33,6 @@ struct TrainingModel: Codable, Equatable {
     
     static func == (lhs: TrainingModel, rhs: TrainingModel) -> Bool {
         
-        return (lhs.difficulty == rhs.difficulty) && (lhs.mode == rhs.mode )
+        return (lhs.level == rhs.level) && (lhs.mode == rhs.mode )
     }
 }
