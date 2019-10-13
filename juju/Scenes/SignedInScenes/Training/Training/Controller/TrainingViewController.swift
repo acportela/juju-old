@@ -92,8 +92,14 @@ extension TrainingViewController {
     
     private func initialDiarySetup() {
 
-        self.startLoading()
-        self.dataSource.listenToTrainingModels()
+        guard let serie = self.dataSource.currentSerie else {
+            
+            self.startLoading()
+            self.dataSource.fetchTrainingModels()
+            return
+        }
+        
+        self.initScreenWithSerie(serie)
     }
     
     func updatePreferredDifficulty(_ newDifficulty: TrainingDifficulty) {
@@ -120,10 +126,8 @@ extension TrainingViewController {
     
     private func showDefaultTrainingAlert() {
         
-        let alert = UIAlertController(title: "Juju",
-                                      message: "Ocorreu um erro ao buscar seu treino. Usaremos o treino padrão",
-                                      primaryActionTitle: "OK")
-        self.present(alert, animated: true)
+        let message = "Ocorreu um erro ao buscar seu treino. Usaremos o treino padrão"
+        Snackbar.showError(message: message, in: self.view)
     }
 }
 
@@ -158,9 +162,10 @@ extension TrainingViewController: TrainingDataSourceDelegate {
             if error == .noResults {
                 
                 // New day
-                let models = self.dataSource.availableTrainings ?? TrainingConstants.defaultTrainingModels
+                let models = self.dataSource.availableTrainings
+                ?? TrainingConstants.defaultTrainingModels
                 self.dataSource.setNewDiary(DiaryProgress(date: Date(), models: models))
-                // TODO: maybe return here and wait for request that saves diary
+                
             } else {
                 
                 self.initScreenWithSerie(.fallback)
@@ -174,7 +179,10 @@ extension TrainingViewController: TrainingDataSourceDelegate {
     
     func trainingDataSourceTrainingModelWasUpdated(_ dataSource: TrainingDataSource, error: Bool) {
         
-        self.dataSource.fetchTodayDiary()
+        if self.dataSource.currentSerie == nil {
+            
+            self.dataSource.fetchTodayDiary()
+        }
     }
 }
 
@@ -182,11 +190,9 @@ extension TrainingViewController {
     
     @objc
     private func didTapLevelSettings() {
-
-        let currentDifficulty = self.dataSource.difficulty ?? .fallback
         
         self.delegate?.trainingViewControllerDidTapLevelSettings(self,
-                                                                 withCurrentDifficulty: currentDifficulty)
+                                                                 withCurrentDifficulty: self.dataSource.difficulty)
     }
     
     private func addBackgroundObserver() {

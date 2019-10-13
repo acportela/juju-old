@@ -27,22 +27,22 @@ class TrainingDataSource {
     /// Should only be used to populate a new zero serie Diary
     private (set) var availableTrainings: [TrainingModel]?
     
-    private (set) var diaryProgress: DiaryProgress?
-
-    private (set) var difficulty: TrainingDifficulty? {
+    private (set) var difficulty: TrainingDifficulty {
         get {
             return self.localStorage.get(from: .trainingDifficulty) as TrainingDifficulty?
+            ?? .fallback
         }
         set {
             self.localStorage.set(newValue, for: .trainingDifficulty)
         }
     }
     
+    private var diaryProgress: DiaryProgress?
+
     var currentSerie: Series? {
         
-        let difficulty = self.difficulty ?? .fallback
         return self.diaryProgress?.series.first { $0.model.mode == self.chosenMode
-                                                && $0.model.difficulty == difficulty }
+                                                && $0.model.difficulty == self.difficulty }
     }
     
     init(mode: TrainingMode,
@@ -65,11 +65,7 @@ extension TrainingDataSource {
     // TODO: To keep it in scync with multiple devices, change this to a listener
     func fetchTodayDiary() {
         
-        guard let models = self.availableTrainings else {
-
-            self.delegate?.trainingDataSourceFetchedDiary(self, error: .corruptedData)
-            return
-        }
+        let models = self.availableTrainings ?? TrainingConstants.defaultTrainingModels
         
         self.diaryService.trainingWantsToFetchDiary(forUser: self.user,
                                                     withDate: Date(),
@@ -110,7 +106,7 @@ extension TrainingDataSource {
 // MARK: Training Model
 extension TrainingDataSource {
     
-    func listenToTrainingModels() {
+    func fetchTrainingModels() {
         
         self.trainingService.listenToTrainingModels { [weak self] contentResult in
             

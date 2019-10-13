@@ -16,14 +16,14 @@ struct StringErrorConstants {
     static let errorAltertBadLogin = "Email ou senha inválidos. Verifique suas credenciais e tente novamente"
     static let errorAltertNoNetwork = "Verifique sua conexão e tente novamente"
     
-    static let errorAltertWeakPasswork = "Escolha uma senha com comprimento mínimo de seis caracteres"
-    static let errorAltertInvalidEmail = "Insira um email válido"
-    static let errorAltertExpiredSession = "Sessão expirada! Faça o login novamente"
-    static let errorLoggingOut = "Por favor, tente sair novamente"
+    static let errorAltertWeakPasswork = "Por favor, escolha uma senha com comprimento mínimo de seis caracteres"
+    static let errorAltertInvalidEmail = "Por favor, insira um email válido"
+    static let errorAltertExpiredSession = "Sua sessão expirou. Por favor, entre novamente"
+    static let errorLoggingOut = "Por favor, tente novamente"
     
     //Sign Up
     static let errorAltertEmailInUse = "O email inserido já foi cadastrado"
     static let defaultAlertButton = "OK"
-    static let errorAltertMissingInfo = "Preencha todos os dados"
-    static let unknownErrorMessage = "Erro desconhecido"
+    static let errorAltertMissingInfo = "Por favor, preencha todos os dados"
+    static let unknownErrorMessage = "Ocorreu um erro. Por favor, tente novamente"
 }

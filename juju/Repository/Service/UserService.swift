@@ -48,21 +48,25 @@ struct UserService: UserServiceProtocol {
                     switch result {
                         
                     case .success(let results):
+                        
                         guard let fireUser = results.first else {
+                            
                             callback(.error(.unknown))
                             return
                         }
-                        let user = ClientUser(email: fireUser.email, name: fireUser.name, dob: fireUser.dateOfBirth)
-                        callback(.success(user))
-                    case .error:
                         
-                        callback(.error(.unknown))
+                        let user = ClientUser(email: fireUser.email,
+                                              name: fireUser.name,
+                                              dob: fireUser.dateOfBirth)
+                        callback(.success(user))
+                        
+                    case .error: callback(.error(.wrongCredentials))
                     }
                 }
                 
-            case .error:
+            case .error(let error):
                 
-                callback(.error(.unknown))
+                callback(.error(error))
             }
         }
     }
@@ -93,7 +97,7 @@ struct UserService: UserServiceProtocol {
                         self.userRepo.delete(query: query, callback: {_ in })
                     }
                 }
-            case .error:
+            case .error(let error):
 
                 callback(.error(.unknown))
             }

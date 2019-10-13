@@ -22,5 +22,4 @@ extension Notification {
         
         return keyboardFrame.cgRectValue.height
     }
-    
 }

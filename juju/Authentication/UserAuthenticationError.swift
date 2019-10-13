@@ -25,26 +25,17 @@ enum UserAuthenticationError: Error {
         
         switch self {
             
-        case .invalidEmailFormat:
-            return StringErrorConstants.errorAltertInvalidEmail
-        case .weakPasswork:
-            return StringErrorConstants.errorAltertWeakPasswork
-        case .tokenExpired:
-            return StringErrorConstants.errorAltertExpiredSession
-        case .network:
-            return StringErrorConstants.errorAltertNoNetwork
-        case .wrongCredentials:
-            return StringErrorConstants.errorAltertBadLogin
-        case .emailInUse:
-            return StringErrorConstants.errorAltertEmailInUse
-        case .missingInfo:
-            return StringErrorConstants.errorAltertMissingInfo
-        case .customError(let message):
-            return message
-        case .couldntLogout:
-            return StringErrorConstants.errorLoggingOut
-        case .unknown:
-            return StringErrorConstants.unknownErrorMessage
+        case .invalidEmailFormat: return StringErrorConstants.errorAltertInvalidEmail
+        case .weakPasswork: return StringErrorConstants.errorAltertWeakPasswork
+        case .tokenExpired: return StringErrorConstants.errorAltertExpiredSession
+        case .network: return StringErrorConstants.errorAltertNoNetwork
+        case .wrongCredentials: return StringErrorConstants.errorAltertBadLogin
+        case .emailInUse: return StringErrorConstants.errorAltertEmailInUse
+        case .missingInfo: return StringErrorConstants.errorAltertMissingInfo
+        case .customError(let message): return message
+        case .couldntLogout: return StringErrorConstants.errorLoggingOut
+        case .unknown: return StringErrorConstants.unknownErrorMessage
+            
         }
     }
 }

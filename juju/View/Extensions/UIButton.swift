@@ -39,6 +39,7 @@ extension UIButton {
         let attributedTitle = NSMutableAttributedString(string: title, attributes: [.font: regularFont])
         
         if title.range(of: term) != nil {
+            
             let range = NSString(string: title).range(of: term)
             attributedTitle.addAttribute(.underlineStyle, value: 1, range: range)
             attributedTitle.addAttribute(.font, value: underlinedFont, range: range)

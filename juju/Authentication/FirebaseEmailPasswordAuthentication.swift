@@ -22,7 +22,8 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
-            if let error = error, let authCode = AuthErrorCode(rawValue: (error as NSError).code) {
+            if let error = error,
+            let authCode = AuthErrorCode(rawValue: (error as NSError).code) {
                 
                 let userError = FirebaseAuthErrorAdapter.getErrorFrom(code: authCode)
                 callback(.error(userError))
@@ -43,7 +44,8 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
         
         Auth.auth().createUser(withEmail: email, password: password) { ( user, error) in
             
-            if let error = error, let authCode = AuthErrorCode(rawValue: (error as NSError).code) {
+            if let error = error,
+            let authCode = AuthErrorCode(rawValue: (error as NSError).code) {
                 
                 let userError = FirebaseAuthErrorAdapter.getErrorFrom(code: authCode)
                 callback(.error(userError))

@@ -81,16 +81,18 @@ final class SignInViewController: UIViewController, Loadable {
             switch result {
             
             case .success(let user):
+                
                 sSelf.delegate?.signInViewController(sSelf, didSignInWithUser: user)
-            case .error:
-                sSelf.enableAlertState("Ocorreu um erro inesperado. Por favor, tente novamente")
+                
+            case .error(let error):
+                
+                sSelf.enableAlertState(error.errorMessage)
             }
         }
     }
 
     private func enableAlertState(_ message: String) {
-        
-        let alert = UIAlertController(title: "Juju", message: message, primaryActionTitle: "OK")
-        self.present(alert, animated: true)
+
+        Snackbar.showError(message: message, in: self.view)
     }
 }

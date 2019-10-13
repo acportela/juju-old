@@ -27,9 +27,11 @@ extension UIAlertController {
         addAction(positiveAction)
         
         if let cancelTitle = secondaryActionTitle {
-            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: secondaryHandler)
+            
+            let cancelAction = UIAlertAction(title: cancelTitle,
+                                             style: .cancel,
+                                             handler: secondaryHandler)
             addAction(cancelAction)
         }
-        
     }
 }

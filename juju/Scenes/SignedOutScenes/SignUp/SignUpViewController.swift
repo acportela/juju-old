@@ -96,7 +96,7 @@ final class SignUpViewController: UIViewController, Loadable {
     }
     
     private func enableErrorState(_ message: String) {
-        let alert = UIAlertController(title: "Juju", message: message, primaryActionTitle: "OK")
-        self.present(alert, animated: true)
+        
+        Snackbar.showError(message: message, in: self.view)
     }
 }
