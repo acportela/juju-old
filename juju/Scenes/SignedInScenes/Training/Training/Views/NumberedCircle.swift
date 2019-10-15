@@ -75,6 +75,7 @@ extension NumberedCircle {
 extension NumberedCircle: ViewConfiguration {
     
     enum States {
+        
         case build(number: Int?, color: UIColor)
         case updateNumber(Int)
     }

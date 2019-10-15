@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
+		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
+		15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947A2356B35000FE85D3 /* DateCircleView.swift */; };
+		15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */; };
+		15E0947F2356CC4E00FE85D3 /* MonthLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */; };
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
 		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
 		D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6046F3822EF1444002FB78B /* DateFormatters.swift */; };
@@ -17,8 +22,8 @@
 		D612165E234447A1003AB0C3 /* RepetitionsProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612165D234447A1003AB0C3 /* RepetitionsProgress.swift */; };
 		D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B48232406AF00932DA3 /* TrainingViewController.swift */; };
 		D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B4A232406CF00932DA3 /* TrainingView.swift */; };
-		D6182B4D23240D3200932DA3 /* TrainingFooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */; };
-		D6182B4F23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */; };
+		D6182B4D23240D3200932DA3 /* JujuButtonWithAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B4C23240D3200932DA3 /* JujuButtonWithAccessory.swift */; };
+		D6182B4F23240DF200932DA3 /* JujuButtonWithAccessoryConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B4E23240DF200932DA3 /* JujuButtonWithAccessoryConfiguration.swift */; };
 		D6182B512324168000932DA3 /* TrainingFooterButtonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */; };
 		D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */; };
 		D6182B5523243D3100932DA3 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6182B5423243D3100932DA3 /* UINavigationController.swift */; };
@@ -147,6 +152,11 @@
 /* Begin PBXFileReference section */
 		056D944913A4FA78B9ACA0E2 /* Pods-jujuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.release.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.release.xcconfig"; sourceTree = "<group>"; };
 		141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.debug.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.debug.xcconfig"; sourceTree = "<group>"; };
+		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		15E0947A2356B35000FE85D3 /* DateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCircleView.swift; sourceTree = "<group>"; };
+		15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
+		15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthLabelView.swift; sourceTree = "<group>"; };
 		1B3AD8AF7EE33C59F99BDC09 /* Pods-jujuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.debug.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.debug.xcconfig"; sourceTree = "<group>"; };
 		520468F01B60305E7F01B021 /* Pods_jujuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jujuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_juju.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,8 +169,8 @@
 		D612165D234447A1003AB0C3 /* RepetitionsProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepetitionsProgress.swift; sourceTree = "<group>"; };
 		D6182B48232406AF00932DA3 /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		D6182B4A232406CF00932DA3 /* TrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingView.swift; sourceTree = "<group>"; };
-		D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingFooterButton.swift; sourceTree = "<group>"; };
-		D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingFooterButtonConfiguration.swift; sourceTree = "<group>"; };
+		D6182B4C23240D3200932DA3 /* JujuButtonWithAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuButtonWithAccessory.swift; sourceTree = "<group>"; };
+		D6182B4E23240DF200932DA3 /* JujuButtonWithAccessoryConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuButtonWithAccessoryConfiguration.swift; sourceTree = "<group>"; };
 		D6182B502324168000932DA3 /* TrainingFooterButtonSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingFooterButtonSpec.swift; sourceTree = "<group>"; };
 		D6182B5223242E3C00932DA3 /* JujuTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuTabBarController.swift; sourceTree = "<group>"; };
 		D6182B5423243D3100932DA3 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
@@ -300,6 +310,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150E24872355E2AE00F11C8E /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				150E24882355E2C200F11C8E /* CalendarView.swift */,
+				150E248A2355E2D200F11C8E /* CalendarViewController.swift */,
+				15E0947A2356B35000FE85D3 /* DateCircleView.swift */,
+				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
+				15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		4008D6DB513CD81095C2E1DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +375,7 @@
 		D635DDCF2320899C00E36431 /* SignedInScenes */ = {
 			isa = PBXGroup;
 			children = (
+				150E24872355E2AE00F11C8E /* Calendar */,
 				D63BE808234A56680015FC27 /* Profile */,
 				D6EE5CC7232F37B600F3701A /* Controller */,
 				D6EE5CC6232F378A00F3701A /* Coordinator */,
@@ -715,7 +738,7 @@
 			children = (
 				D6E42DB823308ED800B42EB1 /* Configurations */,
 				D6182B4A232406CF00932DA3 /* TrainingView.swift */,
-				D6182B4C23240D3200932DA3 /* TrainingFooterButton.swift */,
+				D6182B4C23240D3200932DA3 /* JujuButtonWithAccessory.swift */,
 				D6EE63EC232587450003F50C /* NumberedCircle.swift */,
 				D6BC42112328642F0005B686 /* CirclesComponent.swift */,
 				D6C75ADD2329E13300F44EE7 /* PlayStopComponent.swift */,
@@ -805,7 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				D6182B5C2324540000932DA3 /* TrainingViewInitialConfiguration.swift */,
-				D6182B4E23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift */,
+				D6182B4E23240DF200932DA3 /* JujuButtonWithAccessoryConfiguration.swift */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -1183,6 +1206,7 @@
 				D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */,
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
+				15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */,
 				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
 				D6856AAE2345878700270F14 /* FirebaseDiaryQuery.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
@@ -1194,6 +1218,7 @@
 				D6856AA923457FDB00270F14 /* DiaryProgress.swift in Sources */,
 				D6856AA723457ED100270F14 /* Series.swift in Sources */,
 				D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */,
+				15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */,
 				D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */,
 				D681E49522F1331A003754F4 /* TextFieldValidators.swift in Sources */,
 				D6EE63EF232590600003F50C /* CAShapeLayer.swift in Sources */,
@@ -1201,7 +1226,8 @@
 				D681E49322F12DF4003754F4 /* Validators.swift in Sources */,
 				D682062822CADE9B006D4937 /* JujuButton.swift in Sources */,
 				D69B9241231E0503009207B1 /* Loadable.swift in Sources */,
-				D6182B4D23240D3200932DA3 /* TrainingFooterButton.swift in Sources */,
+				150E24892355E2C200F11C8E /* CalendarView.swift in Sources */,
+				D6182B4D23240D3200932DA3 /* JujuButtonWithAccessory.swift in Sources */,
 				D681E49022F128B3003754F4 /* InputKind.swift in Sources */,
 				D612165A2344303B003AB0C3 /* UserDefaultsStorage.swift in Sources */,
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
@@ -1227,10 +1253,11 @@
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */,
 				D65356E7234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift in Sources */,
+				15E0947F2356CC4E00FE85D3 /* MonthLabelView.swift in Sources */,
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
-				D6182B4F23240DF200932DA3 /* TrainingFooterButtonConfiguration.swift in Sources */,
+				D6182B4F23240DF200932DA3 /* JujuButtonWithAccessoryConfiguration.swift in Sources */,
 				D60927552340097F00B0F594 /* TrainingModel.swift in Sources */,
 				D6C75ADE2329E13300F44EE7 /* PlayStopComponent.swift in Sources */,
 				D69586562353877000B55896 /* UIView.swift in Sources */,
@@ -1264,6 +1291,7 @@
 				D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */,
 				D63BE80A234A567F0015FC27 /* ProfileViewController.swift in Sources */,
 				D6283471232C87670068CF47 /* TrainingModeView.swift in Sources */,
+				150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */,
 				D6F2653A22D4D94E0062C97A /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

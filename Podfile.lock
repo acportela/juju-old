@@ -78,6 +78,7 @@ PODS:
   - iOSSnapshotTestCase/SwiftSupport (6.0.3):
     - iOSSnapshotTestCase/Core
   - IQKeyboardManagerSwift (6.5.1)
+  - JTAppleCalendar (8.0.2)
   - leveldb-library (1.20)
   - lottie-ios (3.1.2)
   - nanopb (0.3.901):
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
   - IQKeyboardManagerSwift
+  - JTAppleCalendar (~> 8.0.2)
   - lottie-ios
   - Nimble
   - Nimble-Snapshots
@@ -125,6 +127,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - iOSSnapshotTestCase
     - IQKeyboardManagerSwift
+    - JTAppleCalendar
     - leveldb-library
     - lottie-ios
     - nanopb
@@ -150,6 +153,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   iOSSnapshotTestCase: 944a73f6d9676302811a86c0cf35f0e6ef5ab2a0
   IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
+  JTAppleCalendar: bb3dd3752e2bcc85cb798ab763fbdd6e142715fc
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   lottie-ios: 49cd85b1f24f61a7708ad7ec76a523ab2d0e3100
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -160,6 +164,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 943fc0b48bdbcc1192b101c2bb0c1690383985dc
+PODFILE CHECKSUM: c9e7e5347200d947852d8b2cae7b7092ab7731e6
 
 COCOAPODS: 1.8.3

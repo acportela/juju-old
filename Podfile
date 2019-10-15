@@ -11,6 +11,7 @@ def all_pods
     pod 'Crashlytics'
     pod 'lottie-ios'
     pod 'IQKeyboardManagerSwift'
+    pod 'JTAppleCalendar', '~> 8.0.2'
 end
 
 target 'juju' do

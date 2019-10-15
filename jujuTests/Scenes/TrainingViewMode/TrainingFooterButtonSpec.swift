@@ -15,7 +15,7 @@ class TrainingFooterButtonSpec: QuickSpec {
     
     override func spec() {
         
-        var sut: TrainingFooterButton!
+        var sut: JujuButtonWithAccessory!
         
         describe("TrainingFooterButton") {
             

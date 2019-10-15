@@ -40,9 +40,9 @@ final class TrainingView: UIView {
         return label
     }()
     
-    private lazy var initialFooter: TrainingFooterButton = {
+    private lazy var initialFooter: JujuButtonWithAccessory = {
         
-        let view = TrainingFooterButton()
+        let view = JujuButtonWithAccessory()
         view.wasTappedCallback = {
             
             self.delegate?.trainingViewWantsToStartTrain(self)
@@ -288,8 +288,9 @@ extension TrainingView {
         self.progressComponent.isHidden = true
         self.initialFooter.isHidden = false
         
-        let footerConfig = TrainingFooterButtonConfiguration(title: "Começar",
-                                                             subtitle: "nível \(model.level.title.lowercased())")
+        let footerConfig = JujuButtonWithAccessoryConfiguration(title: "Começar",
+                                                             subtitle: "nível \(model.level.title.lowercased())",
+                                                                accessoryImage: Resources.Images.playIndicator)
         self.initialFooter.configure(with: .initial(footerConfig))
         self.circlesComponent.configure(with: .stopAnimation)
         self.circlesComponent.configure(with: .updateTime(time: model.contractionDuration))

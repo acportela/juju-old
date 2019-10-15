@@ -24,6 +24,14 @@ class SignedInCoordinator: NSObject, Coordinator {
     
     weak var delegate: SignedInCoordinatorDelegate?
     
+    // MARK: Main Tab Bar
+    private lazy var tabBarController: JujuTabBarController  = {
+        
+        let controllers = self.setupTabControllers()
+        return JujuTabBarController(viewControllers: controllers, initialIndex: 1)
+    }()
+
+    // MARK: Training
     private lazy var trainingCoordinator: Coordinator = {
         
         let coordinator = TrainingCoordinator(rootNavigation: self.trainingNavigation,
@@ -34,17 +42,29 @@ class SignedInCoordinator: NSObject, Coordinator {
         return coordinator
     }()
     
-    private lazy var tabBarController: JujuTabBarController  = {
-        
-        let controllers = self.setupTabControllers()
-        return JujuTabBarController(viewControllers: controllers, initialIndex: 1)
-    }()
-    
     private let trainingNavigation: UINavigationController = {
         
         let controller = UINavigationController()
         controller.tabBarItem = UITabBarItem(title: .empty,
                                              image: Resources.Images.tabExercise,
+                                             selectedImage: nil)
+        return controller
+    }()
+
+    // MARK: Calendar
+    private lazy var calendarCoordinator: Coordinator = {
+        
+        let coordinator = CalendarCoordinator(rootNavigation: self.calendarNavigation,
+                                              diaryService: self.diaryService,
+                                              user: self.user)
+        return coordinator
+    }()
+    
+    private let calendarNavigation: UINavigationController = {
+        
+        let controller = UINavigationController()
+        controller.tabBarItem = UITabBarItem(title: "Diário",
+                                             image: Resources.Images.tabCalendar,
                                              selectedImage: nil)
         return controller
     }()
@@ -68,6 +88,7 @@ class SignedInCoordinator: NSObject, Coordinator {
         
         self.setupNavigationBar()
         self.trainingCoordinator.start()
+        self.calendarCoordinator.start()
         self.rootNavigation.pushViewController(self.tabBarController, animated: false)
     }
     
@@ -92,12 +113,7 @@ class SignedInCoordinator: NSObject, Coordinator {
                                           image: Resources.Images.tabProfile,
                                           selectedImage: nil)
         
-        let calendar = UIViewController()
-        calendar.tabBarItem = UITabBarItem(title: "Calendário",
-                                           image: Resources.Images.tabCalendar,
-                                           selectedImage: nil)
-        
-        return [calendar, trainingNavigation, video, profile]
+        return [calendarNavigation, trainingNavigation, video, profile]
     }
 }
 

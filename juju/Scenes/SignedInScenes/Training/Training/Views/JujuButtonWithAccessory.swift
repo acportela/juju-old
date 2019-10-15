@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class TrainingFooterButton: UIView {
+final class JujuButtonWithAccessory: UIView {
     
     // MARK: Views
     private let title: UILabel = {
@@ -30,10 +30,9 @@ final class TrainingFooterButton: UIView {
         return label
     }()
     
-    private let playIndicator: UIImageView = {
+    private let accessoryView: UIImageView = {
         
         let imageView = UIImageView()
-        imageView.image = Resources.Images.playIndicator
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -67,13 +66,13 @@ final class TrainingFooterButton: UIView {
     }
 }
 
-extension TrainingFooterButton: ViewCoding {
+extension JujuButtonWithAccessory: ViewCoding {
     
     func addSubViews() {
         
         self.addSubview(title)
         self.addSubview(subtitle)
-        self.addSubview(playIndicator)
+        self.addSubview(accessoryView)
     }
     
     func setupConstraints() {
@@ -84,13 +83,13 @@ extension TrainingFooterButton: ViewCoding {
             make.bottom.equalToSuperview().offset(-Styling.Spacing.fourteen)
         }
         
-        playIndicator.snp.makeConstraints { make in
+        accessoryView.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-Styling.Spacing.fourteen)
             make.centerY.equalToSuperview()
         }
         
         subtitle.snp.makeConstraints { make in
-            make.right.equalTo(playIndicator.snp.left).offset(-Styling.Spacing.fourteen)
+            make.right.equalTo(accessoryView.snp.left).offset(-Styling.Spacing.fourteen)
             make.centerY.equalToSuperview()
         }
     }
@@ -105,37 +104,40 @@ extension TrainingFooterButton: ViewCoding {
     }
 }
 
-extension TrainingFooterButton {
+extension JujuButtonWithAccessory {
     
     @objc
     private func viewWasTapped() {
+        
         self.wasTappedCallback?()
     }
 }
 
-extension TrainingFooterButton: ViewConfiguration {
+extension JujuButtonWithAccessory: ViewConfiguration {
     
     enum States {
         
-        case initial(TrainingFooterButtonConfiguration)
+        case initial(JujuButtonWithAccessoryConfiguration)
     }
     
-    func configure(with state: TrainingFooterButton.States) {
+    func configure(with state: JujuButtonWithAccessory.States) {
         
         switch state {
             
         case .initial(let state):
+            
             self.title.text = state.title
             self.subtitle.text = state.subtitle
+            self.accessoryView.image = state.accessoryImage
         }
     }
 }
 
-extension TrainingFooterButton {
+extension JujuButtonWithAccessory {
     
     struct Constants {
         
-        static let playIndicatorSide = 24
+        static let accessoryImageSide = 24
         static let buttonCornerRadius: CGFloat = 25
         static let backgroundAlpha: CGFloat = 0.3
         static let defaultAlpha: CGFloat = 1

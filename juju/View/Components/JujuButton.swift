@@ -13,7 +13,6 @@ final class JujuButton: UIView {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        //button.titleLabel?.font = Resources.Fonts.Gilroy.extrabold(ofSize: Styling.FontSize.twenty)
         button.layer.cornerRadius = Constants.buttonCornerRadius
         button.titleEdgeInsets = UIEdgeInsets(top: Styling.Spacing.twelve,
                                               left: Styling.Spacing.sixteen,
