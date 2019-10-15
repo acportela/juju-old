@@ -110,7 +110,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - BoringSSL-GRPC
     - Crashlytics
     - Fabric
@@ -124,6 +124,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - iOSSnapshotTestCase
+    - IQKeyboardManagerSwift
     - leveldb-library
     - lottie-ios
     - nanopb
@@ -131,10 +132,8 @@ SPEC REPOS:
     - Nimble-Snapshots
     - Protobuf
     - Quick
-    - SwiftLint
-  trunk:
-    - IQKeyboardManagerSwift
     - SnapKit
+    - SwiftLint
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -163,4 +162,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 943fc0b48bdbcc1192b101c2bb0c1690383985dc
 
-COCOAPODS: 1.8.1
+COCOAPODS: 1.8.3
