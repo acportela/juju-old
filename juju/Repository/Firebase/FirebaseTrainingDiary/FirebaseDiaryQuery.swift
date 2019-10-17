@@ -13,28 +13,31 @@ struct FirebaseDiaryQuery: FirebaseQuery {
     
     var firebaseQuery: Query
     
-    init?(user: String, withDate date: Date) {
+    init(userId: String, withDate date: Date) {
         
         let firestore = Firestore.firestore()
-            
-        guard let dateQuery = firestore.collection(FirebaseConstants.TrainingDiary.pathToCollection)
-                            .whereField(FirebaseConstants.TrainingDiary.date,
-                                        isInDate: date) else {
-            return nil
-        }
-                            
-        self.firebaseQuery = dateQuery.whereField(FirebaseConstants.TrainingDiary.userEmail, isEqualTo: user)
+        
+        let collection = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
+        
+        let dateString = DateUtils().stringFromDate(date, withFormat: .iso8601UTCDash)
+        
+        self.firebaseQuery = firestore.collection(collection).whereField(FieldPath.documentID(),
+                                                                         isEqualTo: dateString)
     }
     
-    init?(user: String, from: Date, until: Date) {
+    
+    init(userId: String, fromDate lowerDate: Date, toDate upperDate: Date) {
         
         let firestore = Firestore.firestore()
-            
-        guard let dateQuery = firestore.collection(FirebaseConstants.TrainingDiary.pathToCollection)
-            .whereField(FirebaseConstants.TrainingDiary.date, from: from, to: until) else {
-            return nil
-        }
-                            
-        self.firebaseQuery = dateQuery.whereField(FirebaseConstants.TrainingDiary.userEmail, isEqualTo: user)
+        
+        let collection = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
+        
+        let lowerDateString = DateUtils().stringFromDate(lowerDate, withFormat: .iso8601UTCDash)
+        let upperDateString = DateUtils().stringFromDate(upperDate, withFormat: .iso8601UTCDash)
+        
+        self.firebaseQuery = firestore.collection(collection).whereField(FieldPath.documentID(),
+                                                                         isGreaterThanOrEqualTo: lowerDateString)
+                                                             .whereField(FieldPath.documentID(),
+                                                                         isLessThanOrEqualTo: upperDateString)
     }
 }

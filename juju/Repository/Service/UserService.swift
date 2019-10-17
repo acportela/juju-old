@@ -16,7 +16,7 @@ protocol UserServiceProtocol {
     
     func userWantsToSignUp(clientUser: ClientUser,
                            password: String,
-                           callback: @escaping (Result<UserAuthenticationError>) -> Void)
+                           callback: @escaping (ContentResult<ClientUser, UserAuthenticationError>) -> Void)
     
     func userWantsToSignOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
 }
@@ -39,9 +39,9 @@ struct UserService: UserServiceProtocol {
             
             switch result {
                 
-            case .success:
+            case .success(let user):
                 
-                let fetchObject = FirebaseUserQuery(email: email)
+                let fetchObject = FirebaseUserQuery(id: user.uid)
                 
                 self.userRepo.get(query: fetchObject) { result in
                     
@@ -55,9 +55,11 @@ struct UserService: UserServiceProtocol {
                             return
                         }
                         
-                        let user = ClientUser(email: fireUser.email,
+                        let user = ClientUser(userId: user.uid,
+                                              email: fireUser.email,
                                               name: fireUser.name,
                                               dob: fireUser.dateOfBirth)
+                        
                         callback(.success(user))
                         
                     case .error: callback(.error(.wrongCredentials))
@@ -73,31 +75,30 @@ struct UserService: UserServiceProtocol {
     
     func userWantsToSignUp(clientUser: ClientUser,
                            password: String,
-                           callback: @escaping (Result<UserAuthenticationError>) -> Void) {
+                           callback: @escaping (ContentResult<ClientUser, UserAuthenticationError>) -> Void) {
         
         self.userAuth.create(email: clientUser.email, password: password) { result in
 
             switch result {
 
-            case .success:
+            case .success(let user):
 
-                let firebaseUser = FirebaseUser(name: clientUser.name,
-                                                         email: clientUser.email,
-                                                         dateOfBirth: clientUser.dob)
+                let firebaseUser = FirebaseUser(userId: user.uid,
+                                                name: clientUser.name,
+                                                email: clientUser.email,
+                                                dateOfBirth: clientUser.dob)
 
                 self.userRepo.save(entity: firebaseUser) { result in
 
                     switch result {
 
                     case .success:
-                        callback(.success)
+                        callback(.success(firebaseUser.toClientUser()))
                     case .error:
                         callback(.error(.unknown))
-                        let query = FirebaseUserQuery(email: clientUser.email)
-                        self.userRepo.delete(query: query, callback: {_ in })
                     }
                 }
-            case .error(let error):
+            case .error:
 
                 callback(.error(.unknown))
             }

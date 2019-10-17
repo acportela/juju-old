@@ -224,7 +224,7 @@ extension JujuInputField {
         case .newPassword:
             return validator.validate(password: value)
         case .dateOfBirth:
-            return validator.validate(date: DateUtils().dateFromString(value) ?? Date())
+            return validator.validate(date: DateUtils().dateFromString(value, withFormat: .iso8601UTCBar) ?? Date())
         default:
             return .valid
         }
@@ -285,7 +285,7 @@ extension JujuInputField {
         
         if inputKind == .dateOfBirth, let datePicker = self.datePicker {
             
-            input.text = DateUtils().stringFromDate(datePicker.date)
+            input.text = DateUtils().stringFromDate(datePicker.date, withFormat: .iso8601UTCBar)
         }
         
         toolbarButtonAction?()

@@ -18,7 +18,9 @@ enum FirebaseConstants {
         
         static let nameField = "name"
         
-        static let dobField = "dateOfBirth"
+        static let dobField = "birthday"
+        
+        static let idField = "uid"
     }
     
     enum TrainingModel {
@@ -38,9 +40,11 @@ enum FirebaseConstants {
     
     enum TrainingDiary {
         
-        static let pathToCollection = "training-diary"
+        static let pathToRootCollection = "training-diary"
         
-        static let userEmail = "userEmail"
+        static let pathToDiary = "diary"
+        
+        static let userId = "uid"
         
         static let date = "date"
         
@@ -55,5 +59,10 @@ enum FirebaseConstants {
         static let seriesFastMedium = "seriesFastMedium"
         
         static let seriesFastHard = "seriesFastHard"
+        
+        static func fullPathWith(userId: String) -> String {
+            
+            return "\(FirebaseConstants.TrainingDiary.pathToRootCollection)/\(userId)/\(FirebaseConstants.TrainingDiary.pathToDiary)"
+        }
     }
 }

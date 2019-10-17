@@ -13,13 +13,11 @@ struct FirebaseUserQuery: FirebaseQuery {
     
     var firebaseQuery: Query
     
-    init(email: String) {
+    init(id: String) {
         
         let firestore = Firestore.firestore()
         self.firebaseQuery = firestore
                             .collection(FirebaseConstants.User.pathToCollection)
-                            .whereField(FirebaseConstants.User.emailField,
-                                        isEqualTo: email)
-                            .limit(to: 1)
+                            .whereField(FieldPath.documentID(), isEqualTo: id)
     }
 }

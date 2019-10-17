@@ -10,6 +10,7 @@ import Foundation
 
 struct ClientUser: Codable {
     
+    let userId: String
     let email: String
     let name: String
     let dob: Date

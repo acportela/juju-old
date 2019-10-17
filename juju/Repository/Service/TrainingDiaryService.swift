@@ -32,9 +32,6 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
     
     let diaryRepo: FirebaseRepository<FirebaseTrainingDiary, FirebaseDiaryQuery>
     
-    // TODO: Improve this solution
-    private (set) var currentFirebaseDiary: FirebaseTrainingDiary?
-    
     init(diaryRepo: FirebaseRepository<FirebaseTrainingDiary, FirebaseDiaryQuery>) {
 
         self.diaryRepo = diaryRepo
@@ -45,12 +42,8 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
                                    trainingModels: [TrainingModel],
                                    callback: @escaping (DiaryContentResult) -> Void) {
         
-        guard let query = FirebaseDiaryQuery(user: user.email, withDate: date) else {
-            
-            callback(.error(.malformedQuery))
-            return
-        }
-        
+        let query = FirebaseDiaryQuery(userId: user.userId, withDate: date)
+
         self.diaryRepo.get(query: query) { contentResult in
         
             switch contentResult {
@@ -74,15 +67,10 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
                                     forUser user: ClientUser,
                                     callback: @escaping (DiaryResult) -> Void) {
         
-        // TODO: This is ugly. Improve it later
-        guard let diaryId = self.currentFirebaseDiary?.diaryId else {
-            callback(.error(.noResults))
-            return
-        }
-        
         let updatedDiary = FirebaseTrainingDiary(diary: diary, user: user)
+        guard let id = updatedDiary.unique else { return }
         
-        self.diaryRepo.update(entity: updatedDiary, id: diaryId) { result in
+        self.diaryRepo.update(entity: updatedDiary, id: id) { result in
             
             switch result {
                 
@@ -107,9 +95,8 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
             
             switch result {
                 
-            case .success(let savedDiary):
+            case .success:
                 
-                self?.currentFirebaseDiary = savedDiary
                 callback(.success)
                 
             case .error(let error):

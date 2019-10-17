@@ -11,15 +11,15 @@ import FirebaseAuth
 
 protocol UserAuthenticationProtocol {
     
-    func authenticate(email: String, password: String, callback: @escaping (Result<UserAuthenticationError>) -> Void)
-    func create(email: String, password: String, callback: @escaping (Result<UserAuthenticationError>) -> Void)
+    func authenticate(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
+    func create(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
     func signOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
 }
 
 struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
     
-    func authenticate(email: String, password: String, callback: @escaping (Result<UserAuthenticationError>) -> Void) {
-        
+    func authenticate(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void) {
+
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             if let error = error,
@@ -30,17 +30,17 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
                 return
             }
             
-            guard user?.user.email != nil else {
+            guard let validUser = user?.user, validUser.email != nil else {
                 
                 callback(.error(.customError(StringErrorConstants.unknownErrorMessage)))
                 return
             }
-            
-            callback(.success)
+
+            callback(.success(validUser))
         }
     }
     
-    func create(email: String, password: String, callback: @escaping (Result<UserAuthenticationError>) -> Void) {
+    func create(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void) {
         
         Auth.auth().createUser(withEmail: email, password: password) { ( user, error) in
             
@@ -52,13 +52,13 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
                 return
             }
             
-            guard user?.user.email != nil else {
+            guard let validUser = user?.user, validUser.email != nil else {
                 
                 callback(.error(.customError(StringErrorConstants.unknownErrorMessage)))
                 return
             }
             
-            callback(.success)
+            callback(.success(validUser))
         }
         
     }

@@ -13,11 +13,9 @@ public enum DateFormatters { }
 extension DateFormatters {
     
     public enum Format: String {
-        case iso8601UTC
-        case iso8601LocalTime
-        case yyyyMMddHHmmss
-        case yyyyMMdd
-        case ddMMyyyy
+        case iso8601UTCDash
+        case iso8601LocalTimeDash
+        case iso8601UTCBar
     }
     
     public static func dateFormatter(withFormat format: Format) -> DateFormatter {
@@ -25,17 +23,14 @@ extension DateFormatters {
         let formatter = DateFormatter()
         
         switch format {
-        case .iso8601UTC, .iso8601LocalTime:
-            //formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        case .iso8601UTCDash, .iso8601LocalTimeDash:
             formatter.dateFormat = "yyyy-MM-dd"
             formatter.calendar = Calendar(identifier: .iso8601)
             formatter.locale = Locale(identifier: "en_US_POSIX")
-        case .yyyyMMddHHmmss:
-            formatter.dateFormat = "yyyyMMddHHmmss"
-        case .yyyyMMdd:
-            formatter.dateFormat = "yyyyMMdd"
-        case .ddMMyyyy:
-            formatter.dateFormat = "ddMMyyyy"
+        case .iso8601UTCBar:
+            formatter.dateFormat = "yyyy/MM/dd"
+            formatter.calendar = Calendar(identifier: .iso8601)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
         }
         
         return formatter

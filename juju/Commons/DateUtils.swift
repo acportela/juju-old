@@ -18,21 +18,17 @@ struct DateUtils {
     }
     
     func dateFromString(_ dateString: String,
-                        withFormat format: DateFormatters.Format = .iso8601UTC,
-                        andStyle style: DateFormatter.Style = .short) -> Date? {
+                        withFormat format: DateFormatters.Format) -> Date? {
         
         let formatter = DateFormatters.dateFormatter(withFormat: format)
-        formatter.dateStyle = style
         return formatter.date(from: dateString)
     }
     
     func stringFromDate(_ date: Date,
-                        withFormat format: DateFormatters.Format = .iso8601UTC,
-                        andStyle style: DateFormatter.Style = .short) -> String {
+                        withFormat format: DateFormatters.Format) -> String {
         
         let formatter = DateFormatters.dateFormatter(withFormat: format)
-        formatter.dateStyle = style
-        
+
         return formatter.string(from: date)
     }
 }

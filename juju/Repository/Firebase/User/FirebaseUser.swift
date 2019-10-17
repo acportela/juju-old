@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 struct FirebaseUser: FirebasePersistable {
     
-    var userId: String?
+    var userId: String
     let name: String
     let email: String
     let dateOfBirth: Date
@@ -21,15 +21,23 @@ struct FirebaseUser: FirebasePersistable {
         return FirebaseConstants.User.pathToCollection
     }
     
-    init(name: String, email: String, dateOfBirth: Date) {
+    var unique: String? {
+        
+        return self.userId
+    }
+
+    init(userId: String, name: String, email: String, dateOfBirth: Date) {
+        
+        self.userId = userId
         self.name = name
         self.email = email
         self.dateOfBirth = dateOfBirth
     }
 
-    init?(fromData data: [String: Any], id: String) {
+    init?(fromData data: [String: Any]) {
         
         guard let name = data[FirebaseConstants.User.nameField] as? String,
+        let uid = data[FirebaseConstants.User.idField] as? String,
         let email = data[FirebaseConstants.User.emailField] as? String,
         let date = data[FirebaseConstants.User.dobField] as? Timestamp else {
             return nil
@@ -38,18 +46,19 @@ struct FirebaseUser: FirebasePersistable {
         self.name = name
         self.email = email
         self.dateOfBirth = date.dateValue()
-        self.userId = id
+        self.userId = uid
     }
 
     func toDictionary() -> [String: Any] {
         
-        return [FirebaseConstants.User.emailField: email,
+        return [FirebaseConstants.User.idField: userId,
+                FirebaseConstants.User.emailField: email,
                 FirebaseConstants.User.nameField: name,
                 FirebaseConstants.User.dobField: dateOfBirth]
     }
-
-    mutating func setId(_ id: String) {
+    
+    func toClientUser() -> ClientUser {
         
-        self.userId = id
+        return ClientUser(userId: userId, email: email, name: name, dob: dateOfBirth)
     }
 }

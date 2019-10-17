@@ -11,9 +11,12 @@ import FirebaseFirestore
 
 struct FirebaseTrainingDiary: FirebasePersistable {
     
-    var diaryId: String?
+    var unique: String? {
+        
+        return DateUtils().stringFromDate(self.date, withFormat: .iso8601UTCDash)
+    }
     
-    let userEmail: String
+    let userId: String
     let date: Date
     
     let seriesSlowEasy: Int
@@ -24,12 +27,9 @@ struct FirebaseTrainingDiary: FirebasePersistable {
     let seriesFastMedium: Int
     let seriesFastHard: Int
     
-    var path: String {
-        
-        return FirebaseConstants.TrainingDiary.pathToCollection
-    }
+    let path: String
     
-    init(userEmail: String,
+    init(userId: String,
          date: Date,
          seriesSlowEasy: Int,
          seriesSlowMedium: Int,
@@ -38,7 +38,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
          seriesFastMedium: Int,
          seriesFastHard: Int) {
         
-        self.userEmail = userEmail
+        self.userId = userId
         self.date = date
         self.seriesSlowEasy = seriesSlowEasy
         self.seriesSlowMedium = seriesSlowMedium
@@ -46,11 +46,13 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         self.seriesFastEasy = seriesFastEasy
         self.seriesFastMedium = seriesFastMedium
         self.seriesFastHard = seriesFastHard
+        
+        self.path = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
     }
 
-      init?(fromData data: [String: Any], id: String) {
+      init?(fromData data: [String: Any]) {
         
-        guard let userEmail = data[FirebaseConstants.TrainingDiary.userEmail] as? String,
+        guard let userId = data[FirebaseConstants.TrainingDiary.userId] as? String,
         let date = data[FirebaseConstants.TrainingDiary.date] as? Timestamp,
         let seriesSlowEasy = data[FirebaseConstants.TrainingDiary.seriesSlowEasy] as? Int,
         let seriesSlowMedium = data[FirebaseConstants.TrainingDiary.seriesSlowMedium] as? Int,
@@ -62,7 +64,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
             return nil
         }
         
-        self.userEmail = userEmail
+        self.userId = userId
         self.date = date.dateValue()
         self.seriesSlowEasy = seriesSlowEasy
         self.seriesSlowMedium = seriesSlowMedium
@@ -70,7 +72,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         self.seriesFastEasy = seriesFastEasy
         self.seriesFastMedium = seriesFastMedium
         self.seriesFastHard = seriesFastHard
-        self.diaryId = id
+        self.path = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
     }
     
     init(diary: DiaryProgress, user: ClientUser) {
@@ -108,18 +110,19 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         }
         
         self.date = diary.date
-        self.userEmail = user.email
+        self.userId = user.userId
         self.seriesSlowEasy = seriesSlowEasy
         self.seriesSlowMedium = seriesSlowMedium
         self.seriesSlowHard = seriesSlowHard
         self.seriesFastEasy = seriesFastEasy
         self.seriesFastMedium = seriesFastMedium
         self.seriesFastHard = seriesFastHard
+        self.path = FirebaseConstants.TrainingDiary.fullPathWith(userId: user.userId)
     }
     
     func toDictionary() -> [String: Any] {
         
-        return [FirebaseConstants.TrainingDiary.userEmail: self.userEmail,
+        return [FirebaseConstants.TrainingDiary.userId: self.userId,
                 FirebaseConstants.TrainingDiary.date: self.date,
                 FirebaseConstants.TrainingDiary.seriesSlowEasy: self.seriesSlowEasy,
                 FirebaseConstants.TrainingDiary.seriesSlowMedium: self.seriesSlowMedium,
@@ -159,10 +162,5 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         }
         
         return DiaryProgress(date: self.date, series: series)
-    }
-    
-    mutating func setId(_ id: String) {
-        
-        self.diaryId = id
     }
 }

@@ -20,14 +20,16 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         let firestore = Firestore.firestore()
         
-        let document = firestore.collection(entity.path).document()
+        var document = firestore.collection(entity.path).document()
+        
+        if let presetId = entity.unique {
+            
+            document = firestore.collection(entity.path).document(presetId)
+        }
         
         document.setData(entity.toDictionary()) { error in
             
-            var newEntity = entity
-            newEntity.setId(document.documentID)
-            
-            error == nil ? callback(.success(newEntity)) : callback(.error(.unknown))
+            error == nil ? callback(.success(entity)) : callback(.error(.unknown))
         }
     }
     
@@ -74,7 +76,7 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
                 return
             }
             
-            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data(), id: $0.documentID) }
+            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data()) }
             guard entities.isEmpty == false else { return callback(.error(.corruptedData)) }
             
             callback(.success(entities))
@@ -96,7 +98,7 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
                 return
             }
            
-            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data(), id: $0.documentID) }
+            let entities = snapshot.documents.compactMap { EntityType(fromData: $0.data()) }
             guard entities.isEmpty == false else { return callback(.error(.corruptedData)) }
 
             callback(.success(entities))

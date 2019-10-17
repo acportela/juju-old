@@ -58,41 +58,41 @@ final class SignUpViewController: UIViewController, Loadable {
                 return
             }
             
-            sSelf.proceedWithSignUp(user: user.user, password: user.pass)
+            sSelf.proceedWithSignUp(formUser: user.formUser, password: user.pass)
         }
     }
     
-    private func proceedWithSignUp(user: ClientUser, password: String) {
+    private func proceedWithSignUp(formUser: ClientUser, password: String) {
         
         self.startLoading()
-        self.userService.userWantsToSignUp(clientUser: user, password: password) { [weak self] result in
+        self.userService.userWantsToSignUp(clientUser: formUser, password: password) { [weak self] result in
             
             guard let sSelf = self else { return }
             sSelf.stopLoading()
             
             switch result {
                 
-            case .success:
-                sSelf.delegate?.signUpViewController(sSelf, didSignUpWithUser: user)
+            case .success(let newUser):
+                sSelf.delegate?.signUpViewController(sSelf, didSignUpWithUser: newUser)
             case .error:
                 sSelf.enableErrorState("Ocorreu um erro inesperado. Por favor, tente novamente")
             }
         }
     }
     
-    private func userFromForm() -> (user: ClientUser, pass: String)? {
+    private func userFromForm() -> (formUser: ClientUser, pass: String)? {
         
         guard let name = signUpView.nameInput.currentValue,
               let email = signUpView.emailInput.currentValue,
               let pass = signUpView.passwordInput.currentValue,
               let dateString = signUpView.dateOfBirth.currentValue,
-              let date = DateUtils().dateFromString(dateString) else {
+            let date = DateUtils().dateFromString(dateString, withFormat: .iso8601UTCBar) else {
                 
             return nil
         }
         
-        let user = ClientUser(email: email, name: name.uppercased(), dob: date)
-        return (user: user, pass: pass)
+        let formUser = ClientUser(userId: .empty, email: email, name: name.uppercased(), dob: date)
+        return (formUser: formUser, pass: pass)
     }
     
     private func enableErrorState(_ message: String) {
