@@ -122,6 +122,10 @@ extension Resources.Images {
     
     static let urineDropCircle = image(named: "urine-drop-circle")
     
+    static let exitIcon = image(named: "icn_exit")
+    
+    static let lockIcon = image(named: "icn_lock")
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

@@ -9,6 +9,13 @@
 import UIKit
 import SnapKit
 
+struct JujuUnderlinedButtonConfiguration {
+    
+    let title: String
+    let font: UIFont
+    let color: UIColor
+}
+
 final class JujuUnderlinedButton: UIView {
     
     private lazy var button: UIButton = {
@@ -24,15 +31,9 @@ final class JujuUnderlinedButton: UIView {
     
     var onTapAction: (() -> Void)?
     
-    init(title: String, frame: CGRect = .zero) {
+    override init(frame: CGRect = .zero) {
 
         super.init(frame: frame)
-        
-        button.setTitle(title.lowercased(),
-                        withColor: Styling.Colors.veryLightPink,
-                        andFont: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty),
-                        underlined: true)
-        
         setupViewConfiguration()
     }
     
@@ -44,11 +45,14 @@ final class JujuUnderlinedButton: UIView {
 extension JujuUnderlinedButton: ViewCoding {
     
     func addSubViews() {
+        
         addSubview(button)
     }
     
     func setupConstraints() {
+        
         button.snp.makeConstraints { make in
+            
             make.edges.equalToSuperview()
         }
     }
@@ -56,10 +60,32 @@ extension JujuUnderlinedButton: ViewCoding {
     func configureViews() { }
 }
 
+extension JujuUnderlinedButton: ViewConfiguration {
+    
+    enum States {
+        
+        case build(JujuUnderlinedButtonConfiguration)
+    }
+    
+    func configure(with state: States) {
+        
+        switch state {
+            
+        case .build(let config):
+            
+            button.setTitle(config.title.lowercased(),
+                            withColor: config.color,
+                            andFont: config.font,
+                            underlined: true)
+        }
+    }
+}
+
 extension JujuUnderlinedButton {
     
     @objc
     private func buttonAction() {
+        
         onTapAction?()
     }
 }

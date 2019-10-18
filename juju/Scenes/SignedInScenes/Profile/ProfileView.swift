@@ -14,6 +14,8 @@ final class ProfileView: UIView {
     // MARK: Views
     let logout = JujuButton(title: "Sair", theme: .secondary)
 
+    private let footerView = ProfileFooterView()
+    
     // MARK: Lifecycle
     override init(frame: CGRect = .zero) {
         
@@ -31,6 +33,7 @@ extension ProfileView: ViewCoding {
     
     func addSubViews() {
         self.addSubview(self.logout)
+        self.addSubview(self.footerView)
     }
     
     func setupConstraints() {
@@ -41,11 +44,19 @@ extension ProfileView: ViewCoding {
             make.width.equalTo(Constants.buttonWidth)
             make.height.equalTo(Constants.buttonHeight)
         }
+        
+        self.footerView.snp.makeConstraints { make in
+            
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.left)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.right.equalTo(self.safeAreaLayoutGuide.snp.right)
+            make.height.equalTo(Constants.footerHeight)
+        }
     }
     
     func configureViews() {
         
-        self.backgroundColor = Styling.Colors.veryLightPink
+        self.backgroundColor = Styling.Colors.white
     }
 }
 
@@ -70,5 +81,6 @@ extension ProfileView {
         
         static let buttonWidth = 173
         static let buttonHeight = 48
+        static let footerHeight = 170
     }
 }
