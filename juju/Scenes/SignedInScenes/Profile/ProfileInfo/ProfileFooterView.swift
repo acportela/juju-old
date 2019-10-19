@@ -24,7 +24,7 @@ final class ProfileFooterView: UIView {
         label.textAlignment = .left
         label.text = "Configurações"
         label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     
@@ -122,14 +122,14 @@ extension ProfileFooterView: ViewCoding {
         self.backgroundColor = Styling.Colors.veryLightPink
         
         let changePasswordConfig = JujuUnderlinedButtonConfiguration(title: "Alterar senha",
-                                                                     font: Resources.Fonts.Gilroy.regular(ofSize: 14),
+                                                                     font: Resources.Fonts.Rubik.regular(ofSize: 14),
                                                                      color: Styling.Colors.duskyRose,
                                                                      lowercased: false)
         self.changePasswordButton.configure(with: .build(changePasswordConfig))
         self.changePasswordButton.onTapAction = { self.didTapChangePassword() }
         
         let logoutConfig = JujuUnderlinedButtonConfiguration(title: "Sair da conta",
-                                                             font: Resources.Fonts.Gilroy.regular(ofSize: 14),
+                                                             font: Resources.Fonts.Rubik.regular(ofSize: 14),
                                                              color: Styling.Colors.duskyRose,
                                                              lowercased: false)
         

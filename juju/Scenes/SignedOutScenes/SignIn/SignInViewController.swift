@@ -22,11 +22,13 @@ final class SignInViewController: UIViewController, Loadable {
     weak var delegate: SignInViewControllerDelegate?
     
     init(userService: UserService) {
+        
         self.userService = userService
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     

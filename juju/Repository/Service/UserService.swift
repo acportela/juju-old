@@ -19,6 +19,9 @@ protocol UserServiceProtocol {
                            callback: @escaping (ContentResult<ClientUser, UserAuthenticationError>) -> Void)
     
     func userWantsToSignOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
+    
+    func userWantsToChangePassword(newPassword: String,
+                                   callback: @escaping (Result<UserAuthenticationError>) -> Void)
 }
 
 struct UserService: UserServiceProtocol {
@@ -108,6 +111,24 @@ struct UserService: UserServiceProtocol {
     func userWantsToSignOut(callback: @escaping (Result<UserAuthenticationError>) -> Void) {
         
         self.userAuth.signOut { result in
+            
+            switch result {
+                
+            case .success:
+                
+                callback(.success)
+                
+            case .error(let error):
+                
+                callback(.error(error))
+            }
+        }
+    }
+    
+    func userWantsToChangePassword(newPassword: String,
+                                   callback: @escaping (Result<UserAuthenticationError>) -> Void) {
+        
+        self.userAuth.changePassword(newPassword: newPassword) { result in
             
             switch result {
                 

@@ -16,6 +16,8 @@ protocol TrainingViewControllerDelegate: AnyObject {
 
 final class TrainingViewController: UIViewController, Loadable {
     
+    public static let title = "Treino"
+    
     private let trainingView = TrainingView(defaultSerie: .fallback)
     private var dataSource: TrainingDataSource
     let loadingController = LoadingViewController(animatable: JujuLoader())
@@ -75,7 +77,7 @@ final class TrainingViewController: UIViewController, Loadable {
     private func configureNavigation() {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.title = "Exercícios"
+        self.title = TrainingViewController.title
         
         let barButton = UIBarButtonItem(image: Resources.Images.levelsIcon,
                                         style: .plain,

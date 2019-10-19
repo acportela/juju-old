@@ -18,7 +18,7 @@ final class DateCircleView: JTACDayCell {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = Styling.Colors.white
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.sixteen)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.sixteen)
         return label
     }()
     

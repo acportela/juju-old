@@ -34,7 +34,7 @@ final class JujuButton: UIView {
         super.init(frame: frame)
         self.button.setTitle(title.capitalized,
                              withColor: background.textColor,
-                             andFont: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty))
+                             andFont: Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty))
         setupViewConfiguration()
     }
 

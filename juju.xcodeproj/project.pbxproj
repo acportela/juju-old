@@ -10,6 +10,9 @@
 		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
 		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
 		1550DCAC235B4379000CBC7C /* FormHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAB235B4379000CBC7C /* FormHeaderView.swift */; };
+		1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAE235B8576000CBC7C /* UITabBarController.swift */; };
+		1550DCB3235B89B5000CBC7C /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */; };
+		1550DCB4235B89B5000CBC7C /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */; };
 		15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */; };
 		15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */; };
 		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
@@ -79,10 +82,6 @@
 		D68ACBA322C7E7D4001C94A5 /* Gilroy-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9A22C7E7D4001C94A5 /* Gilroy-Medium.otf */; };
 		D68ACBA422C7E7D4001C94A5 /* Gilroy-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9B22C7E7D4001C94A5 /* Gilroy-Bold.otf */; };
 		D68ACBA522C7E7D4001C94A5 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9C22C7E7D4001C94A5 /* Gilroy-ExtraBold.otf */; };
-		D68ACBA622C7E7D4001C94A5 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9E22C7E7D4001C94A5 /* Montserrat-Medium.ttf */; };
-		D68ACBA722C7E7D4001C94A5 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */; };
-		D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */; };
-		D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */; };
 		D68ACBBA22C7F79F001C94A5 /* JujuInputFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */; };
 		D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690E01F2331B78E008A1DB3 /* TrainingConstants.swift */; };
 		D6944B9C23404B030024608A /* TrainingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6944B9B23404B030024608A /* TrainingService.swift */; };
@@ -160,6 +159,9 @@
 		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1550DCAB235B4379000CBC7C /* FormHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHeaderView.swift; sourceTree = "<group>"; };
+		1550DCAE235B8576000CBC7C /* UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
+		1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -233,10 +235,6 @@
 		D68ACB9A22C7E7D4001C94A5 /* Gilroy-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.otf"; sourceTree = "<group>"; };
 		D68ACB9B22C7E7D4001C94A5 /* Gilroy-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.otf"; sourceTree = "<group>"; };
 		D68ACB9C22C7E7D4001C94A5 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
-		D68ACB9E22C7E7D4001C94A5 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
-		D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
-		D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		D68ACBAE22C7F763001C94A5 /* jujuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jujuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68ACBB222C7F763001C94A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D68ACBB922C7F79F001C94A5 /* JujuInputFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JujuInputFieldSpec.swift; sourceTree = "<group>"; };
@@ -340,6 +338,15 @@
 				15F786A12359522B00D1C211 /* ProfileFooterView.swift */,
 			);
 			path = ProfileInfo;
+			sourceTree = "<group>";
+		};
+		1550DCB0235B890D000CBC7C /* Rubik */ = {
+			isa = PBXGroup;
+			children = (
+				1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */,
+				1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */,
+			);
+			path = Rubik;
 			sourceTree = "<group>";
 		};
 		15AA30EA235AADE7007D7173 /* ChangePassword */ = {
@@ -581,8 +588,8 @@
 		D68ACB9322C7E76D001C94A5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				1550DCB0235B890D000CBC7C /* Rubik */,
 				D68ACB9822C7E7D4001C94A5 /* Gilroy */,
-				D68ACB9D22C7E7D4001C94A5 /* Montserrat */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -596,17 +603,6 @@
 				D68ACB9C22C7E7D4001C94A5 /* Gilroy-ExtraBold.otf */,
 			);
 			path = Gilroy;
-			sourceTree = "<group>";
-		};
-		D68ACB9D22C7E7D4001C94A5 /* Montserrat */ = {
-			isa = PBXGroup;
-			children = (
-				D68ACB9E22C7E7D4001C94A5 /* Montserrat-Medium.ttf */,
-				D68ACB9F22C7E7D4001C94A5 /* Montserrat-Bold.ttf */,
-				D68ACBA022C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf */,
-				D68ACBA122C7E7D4001C94A5 /* Montserrat-Regular.ttf */,
-			);
-			path = Montserrat;
 			sourceTree = "<group>";
 		};
 		D68ACBAF22C7F763001C94A5 /* jujuTests */ = {
@@ -750,6 +746,7 @@
 				D6182B5423243D3100932DA3 /* UINavigationController.swift */,
 				D6EE63EE232590600003F50C /* CAShapeLayer.swift */,
 				D69586552353877000B55896 /* UIView.swift */,
+				1550DCAE235B8576000CBC7C /* UITabBarController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1079,14 +1076,12 @@
 				D68ACBA322C7E7D4001C94A5 /* Gilroy-Medium.otf in Resources */,
 				D68ACBA222C7E7D4001C94A5 /* Gilroy-Regular.otf in Resources */,
 				D68ACBA422C7E7D4001C94A5 /* Gilroy-Bold.otf in Resources */,
-				D68ACBA622C7E7D4001C94A5 /* Montserrat-Medium.ttf in Resources */,
-				D68ACBA722C7E7D4001C94A5 /* Montserrat-Bold.ttf in Resources */,
+				1550DCB4235B89B5000CBC7C /* Rubik-Regular.ttf in Resources */,
 				D65FCC5422C79EF500BA16E5 /* LaunchScreen.storyboard in Resources */,
 				D6EE5CB3232F0FDC00F3701A /* loading2x.json in Resources */,
 				D65FCC5122C79EF500BA16E5 /* Assets.xcassets in Resources */,
-				D68ACBA822C7E7D4001C94A5 /* Montserrat-ExtraBold.ttf in Resources */,
+				1550DCB3235B89B5000CBC7C /* Rubik-Medium.ttf in Resources */,
 				D6E3C6AA22EC74C800627CE6 /* GoogleService-Info.plist in Resources */,
-				D68ACBA922C7E7D4001C94A5 /* Montserrat-Regular.ttf in Resources */,
 				D68ACBA522C7E7D4001C94A5 /* Gilroy-ExtraBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1232,6 +1227,7 @@
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
 				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
+				1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */,
 				D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				15F786A22359522B00D1C211 /* ProfileFooterView.swift in Sources */,

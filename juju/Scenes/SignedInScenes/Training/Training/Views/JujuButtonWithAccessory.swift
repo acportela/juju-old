@@ -26,7 +26,7 @@ final class JujuButtonWithAccessory: UIView {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = Styling.Colors.white
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     

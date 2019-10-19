@@ -13,7 +13,7 @@ class SnackbarView: UIView {
     lazy var labelInfo: UILabel = {
         
         let lbl = UILabel()
-        lbl.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.fourteen)
+        lbl.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen)
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
         return lbl
@@ -79,27 +79,24 @@ extension SnackbarView: ViewCoding {
         
         self.viewContainer.snp.makeConstraints { make in
             
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.edges.equalToSuperview()
         }
         
         self.labelInfo.snp.makeConstraints { make in
             
-            make.top.equalTo(self.viewContainer.snp.top).offset(30)
-            make.left.equalTo(self.viewContainer.snp.left).offset(52)
-            make.bottom.equalTo(self.viewContainer.snp.bottom).inset(30)
-            make.right.equalTo(self.viewContainer.snp.right).inset(16)
+            make.top.equalTo(self.viewContainer.snp.top).offset(Styling.Spacing.twentyfour)
+            make.left.equalTo(self.viewContainer.snp.left).offset(Styling.Spacing.fourtyeight)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(Styling.Spacing.sixteen)
+            make.right.equalTo(self.viewContainer.snp.right).inset(Styling.Spacing.sixteen)
             make.height.greaterThanOrEqualTo(20)
         }
         
         self.buttonClose.snp.makeConstraints { make in
-            
-            make.top.equalTo(self.viewContainer.snp.top).offset(28)
-            make.left.equalTo(self.viewContainer.snp.left).inset(16)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
+
+            make.centerY.equalTo(self.labelInfo.snp.centerY)
+            make.right.equalTo(self.labelInfo.snp.left).offset(-Styling.Spacing.twelve)
+            make.height.equalTo(Styling.Spacing.twentyfour)
+            make.width.equalTo(Styling.Spacing.twentyfour)
         }
         
     }
@@ -144,8 +141,8 @@ extension SnackbarView {
         self.layoutIfNeeded()
         view.layoutIfNeeded()
         
-        let keyboardHeight = KeyboardListener.shared.keyboardHeight
-        let top = view.bounds.height - self.bounds.height - keyboardHeight
+        //let keyboardHeight = KeyboardListener.shared.keyboardHeight
+        let top = view.bounds.height - self.bounds.height
         
         self.snp.updateConstraints { update in
             
@@ -157,7 +154,7 @@ extension SnackbarView {
             view.layoutIfNeeded()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             
             self.hide()
         }
@@ -197,7 +194,7 @@ extension SnackbarView {
         self.snp.makeConstraints { make in
             
             make.width.equalTo(view)
-            make.top.equalTo(view.bounds.height - KeyboardListener.shared.keyboardHeight)
+            make.top.equalTo(view.bounds.height /*- KeyboardListener.shared.keyboardHeight*/)
             make.top.equalTo(view.bounds.height)
         }
     }

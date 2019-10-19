@@ -26,7 +26,7 @@ final class FormHeaderView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twenty)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twenty)
         return label
     }()
     
@@ -36,7 +36,7 @@ final class FormHeaderView: UIView {
         label.textAlignment = .left
         label.textColor = Styling.Colors.charcoalGrey
         label.numberOfLines = 0
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.twelve)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.twelve)
         return label
     }()
     

@@ -17,10 +17,10 @@ final class ChangePasswordView: UIView, JujuFormProtocol {
     
     private let changeButton = JujuButton(title: "Atualizar", background: .light)
     
-    private let newPassword = JujuInputField(inputKind: .newPassword,
-                                             background: .light)
-    private let newPasswordConfirmation = JujuInputField(inputKind: .newPassword,
-                                                         background: .light)
+    let newPassword = JujuInputField(inputKind: .newPassword,
+                                     background: .light)
+    let newPasswordConfirmation = JujuInputField(inputKind: .newPassword,
+                                                 background: .light)
     
     let inputStack: UIStackView = {
         

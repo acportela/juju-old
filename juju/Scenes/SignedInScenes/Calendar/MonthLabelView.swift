@@ -18,7 +18,7 @@ final class MonthLabelView: JTACMonthReusableView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.sixteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     

@@ -18,7 +18,7 @@ final class ProgressComponent: UIView {
         label.textAlignment = .center
         label.text = "Hoje"
         label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.eighteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.sixteen)
         return label
     }()
     
@@ -28,7 +28,7 @@ final class ProgressComponent: UIView {
         label.textAlignment = .right
         label.text = .empty
         label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twelve)
         return label
     }()
     
@@ -38,7 +38,7 @@ final class ProgressComponent: UIView {
         label.textAlignment = .left
         label.text = .empty
         label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twelve)
         return label
     }()
     

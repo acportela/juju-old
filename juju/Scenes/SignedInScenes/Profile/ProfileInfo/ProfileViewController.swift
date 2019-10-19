@@ -16,6 +16,8 @@ protocol ProfileViewControllerDelegate: AnyObject {
 
 final class ProfileViewController: UIViewController, Loadable {
     
+    public static let title = "Perfil"
+    
     let loadingController = LoadingViewController(animatable: JujuLoader())
     private let profileView = ProfileView()
     private let loggerUser: ClientUser
@@ -48,7 +50,7 @@ final class ProfileViewController: UIViewController, Loadable {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = "Perfil"
+        self.title = ProfileViewController.title
         self.profileView.delegate = self
     }
 }

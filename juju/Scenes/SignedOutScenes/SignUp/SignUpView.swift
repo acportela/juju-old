@@ -122,7 +122,7 @@ extension SignUpView: ViewCoding {
         setupToolbar(nextText: "Próximo", doneText: "Finalizar")
         
         let jujuUnderlinedConfig = JujuUnderlinedButtonConfiguration(title: "Voltar",
-                                                                     font: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty),
+                                                                     font: Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty),
                                                                      color: Styling.Colors.veryLightPink, lowercased: true)
         self.backButton.configure(with: .build(jujuUnderlinedConfig))
     }

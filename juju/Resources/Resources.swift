@@ -18,44 +18,22 @@ enum Resources {
 
 extension Resources.Fonts {
     
-    enum Montserrat {
+    enum Rubik {
         
         static func regular(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Montserrat-Regular", size: size)
+            return Resources.Fonts.font(named: "Rubik-Regular", size: size)
         }
         
         static func medium(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Montserrat-Medium", size: size)
+            return Resources.Fonts.font(named: "Rubik-Medium", size: size)
         }
-        
-        static func bold(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Montserrat-Bold", size: size)
-        }
-        
-        static func extraBold(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Montserrat-ExtraBold", size: size)
-        }
-        
     }
     
     enum Gilroy {
         
-        static func regular(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Gilroy-Regular", size: size)
-        }
-        
-        static func medium(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Gilroy-Medium", size: size)
-        }
-        
-        static func bold(ofSize size: CGFloat) -> UIFont {
-            return Resources.Fonts.font(named: "Gilroy-Bold", size: size)
-        }
-        
         static func extraBold(ofSize size: CGFloat) -> UIFont {
             return Resources.Fonts.font(named: "Gilroy-ExtraBold", size: size)
         }
-        
     }
     
     private static func font(named: String, size: CGFloat) -> UIFont {
@@ -87,8 +65,6 @@ extension Resources.Images {
     static let playButton = image(named: "icn-play")
     
     static let pauseButton = image(named: "icn-pause")
-    
-    static let replayButton = image(named: "icn-replay")
     
     static let circles = image(named: "circles")
     

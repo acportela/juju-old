@@ -16,7 +16,7 @@ final class IntroView: UIView {
         label.textAlignment = .center
         label.text = "Juju"
         label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.thirtysix)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.thirtysix)
         return label
     }()
     
@@ -27,7 +27,7 @@ final class IntroView: UIView {
         label.numberOfLines = Constants.numberOfLines
         label.text = "Bem-vinda a Juju!\n\nSou um aplicativo que vai ajudar você a realizar exercícios pélvicos."
         label.textColor = Styling.Colors.veryLightPink
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.eighteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.eighteen)
         return label
     }()
     

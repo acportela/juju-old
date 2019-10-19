@@ -22,7 +22,7 @@ final class TrainingLevelView: UIView {
         
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "Nível do exercício"
+        label.text = TrainLevelViewController.title
         label.textColor = Styling.Colors.white
         label.font = Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty)
         return label

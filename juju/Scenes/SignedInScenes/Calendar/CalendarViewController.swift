@@ -10,6 +10,8 @@ import UIKit
 
 final class CalendarViewController: UIViewController {
     
+    public static let title = "Diário"
+    
     private let calendarView = CalendarView()
     
     init() {
@@ -42,7 +44,7 @@ final class CalendarViewController: UIViewController {
     
     private func configureNavigation() {
         
-        self.title = "Diário"
+        self.title = CalendarViewController.title
         
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item

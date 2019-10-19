@@ -26,6 +26,9 @@ class JujuTabBarController: UITabBarController {
         
         self.view.backgroundColor = Styling.Colors.white
         self.tabBar.backgroundColor = Styling.Colors.white
+        
+        self.tabBar.shadowImage = nil
+        self.tabBar.isTranslucent = false
         self.tabBar.tintColor = Styling.Colors.rosyPink
         self.tabBar.unselectedItemTintColor = Styling.Colors.rosyPink.withAlphaComponent(0.32)
         self.delegate = self

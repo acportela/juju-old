@@ -47,9 +47,8 @@ final class SignInView: UIView, JujuFormProtocol {
         button.setPartuallyUnderlined(title: "Ainda não possui uma conta? Criar agora",
                                       term: "Criar agora",
                                       color: Styling.Colors.veryLightPink,
-                                      regularFont: Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.sixteen),
-                                      underlinedFont: Resources.Fonts.Gilroy
-                                                                     .extraBold(ofSize: Styling.FontSize.sixteen))
+                                      regularFont: Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen),
+                                      underlinedFont: Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.fourteen))
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.titleLabel?.minimumScaleFactor = 0.8
         return button

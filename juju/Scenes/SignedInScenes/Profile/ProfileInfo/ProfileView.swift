@@ -32,7 +32,7 @@ final class ProfileView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twenty)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twenty)
         return label
     }()
     
@@ -41,7 +41,7 @@ final class ProfileView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.sixteen)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.sixteen)
         return label
     }()
     

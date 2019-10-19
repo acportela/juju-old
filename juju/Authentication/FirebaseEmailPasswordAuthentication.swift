@@ -14,6 +14,8 @@ protocol UserAuthenticationProtocol {
     func authenticate(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
     func create(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
     func signOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
+    func changePassword(newPassword: String,
+                        callback: @escaping (Result<UserAuthenticationError>) -> Void)
 }
 
 struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
@@ -75,4 +77,28 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
             callback(.error(.couldntLogout))
         }
     }
+    
+    func changePassword(newPassword: String,
+                        callback: @escaping (Result<UserAuthenticationError>) -> Void) {
+        
+        guard let user = Auth.auth().currentUser else {
+            
+            callback(.error(.tokenExpired))
+            return
+        }
+        
+        user.updatePassword(to: newPassword) { error in
+            
+            if let error = error,
+            let authCode = AuthErrorCode(rawValue: (error as NSError).code) {
+                
+                let userError = FirebaseAuthErrorAdapter.getErrorFrom(code: authCode)
+                callback(.error(userError))
+                return
+            }
+            
+            callback(.success)
+        }
+    }
+    
 }

@@ -45,7 +45,7 @@ class SignedInCoordinator: NSObject, Coordinator {
     private let trainingNavigation: UINavigationController = {
         
         let controller = UINavigationController()
-        controller.tabBarItem = UITabBarItem(title: .empty,
+        controller.tabBarItem = UITabBarItem(title: TrainingViewController.title,
                                              image: Resources.Images.tabExercise,
                                              selectedImage: nil)
         return controller
@@ -63,7 +63,7 @@ class SignedInCoordinator: NSObject, Coordinator {
     private let calendarNavigation: UINavigationController = {
         
         let controller = UINavigationController()
-        controller.tabBarItem = UITabBarItem(title: "Diário",
+        controller.tabBarItem = UITabBarItem(title: CalendarViewController.title,
                                              image: Resources.Images.tabCalendar,
                                              selectedImage: nil)
         return controller
@@ -76,13 +76,14 @@ class SignedInCoordinator: NSObject, Coordinator {
                                              userService: self.userService,
                                              localStorage: self.localStorage,
                                              user: self.user)
+        coordinator.delegate = self
         return coordinator
     }()
     
     private let profileNavigation: UINavigationController = {
         
         let controller = UINavigationController()
-        controller.tabBarItem = UITabBarItem(title: "Perfil",
+        controller.tabBarItem = UITabBarItem(title: ProfileViewController.title,
                                              image: Resources.Images.tabProfile,
                                              selectedImage: nil)
         return controller
@@ -120,24 +121,15 @@ class SignedInCoordinator: NSObject, Coordinator {
     
     private func setupTabControllers() -> [UIViewController] {
         
-        let video = UIViewController()
-        video.tabBarItem = UITabBarItem(title: "Vídeos",
-                                        image: Resources.Images.tabVideo,
-                                        selectedImage: nil)
-        
-        return [calendarNavigation, trainingNavigation, video, profileNavigation]
+        return [calendarNavigation, trainingNavigation, profileNavigation]
     }
 }
 
-extension SignedInCoordinator: ProfileViewControllerDelegate {
+extension SignedInCoordinator: ProfileCoordinatorDelegate {
     
-    func profileViewControllerDidLogout(_ controller: ProfileViewController) {
+    func profileCoordinatorDidLogout(_ coordinator: ProfileCoordinator) {
         
         self.rootNavigation.popViewController(animated: false)
         self.delegate?.signedInCoordinatorDidLogout(self)
-    }
-    
-    func profileViewControllerWantsToChangePassword(_ controller: ProfileViewController) {
-        
     }
 }

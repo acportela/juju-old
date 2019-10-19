@@ -16,6 +16,8 @@ protocol TrainLevelViewControllerDelegate: AnyObject {
 
 final class TrainLevelViewController: UIViewController {
     
+    public static let title = "Nível do treino"
+    
     private let trainLevelView = TrainingLevelView()
     
     private var currentLevel: TrainingLevel
@@ -53,7 +55,7 @@ final class TrainLevelViewController: UIViewController {
     
     private func configureNavigation() {
         
-        self.title = "Nível do exercício"
+        self.title = TrainLevelViewController.title
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     }

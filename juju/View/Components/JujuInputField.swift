@@ -15,7 +15,7 @@ final class JujuInputField: UIView {
     private lazy var input: UITextField = {
         
         let field = UITextField()
-        field.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.sixteen)
+        field.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.sixteen)
         field.textColor = Styling.Colors.duskyRose
         field.textAlignment = .left
         field.configurePlaceholderWith(title: self.inputKind.hint,
@@ -33,7 +33,7 @@ final class JujuInputField: UIView {
     private lazy var title: UILabel = {
         
         let label = UILabel()
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.twelve)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.twelve)
         label.textAlignment = .left
         label.textColor = self.backgoundTheme.titleColor
         label.text = self.inputKind.title
@@ -46,7 +46,7 @@ final class JujuInputField: UIView {
         
         let label = UILabel()
         label.text = ""
-        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.twelve)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.twelve)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = Constants.feedbackScaleFactor
         label.textAlignment = .left

@@ -26,7 +26,7 @@ final class TrainingView: UIView {
         label.numberOfLines = Constants.instructionsLines
         label.text = "Aqui é onde você pratica o exercício\nde relaxamento e contração do períneo"
         label.textColor = Styling.Colors.rosyPink
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     
@@ -36,7 +36,7 @@ final class TrainingView: UIView {
         label.textAlignment = .center
         label.textColor = Styling.Colors.rosyPink
         label.text = .empty
-        label.font = Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twenty)
         return label
     }()
     

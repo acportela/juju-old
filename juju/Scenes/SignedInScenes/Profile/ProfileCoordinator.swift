@@ -80,6 +80,6 @@ extension ProfileCoordinator: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ controller: ChangePasswordViewController) {
         
         self.navigation.popViewController(animated: false)
-        Snackbar.showSuccess(message: "Sua senha foi alterada com sucesso", in: navigation.view)
+        self.navigation.tabBarController?.setSuccessStateWithMessage("Sua senha foi alterada com sucesso")
     }
 }

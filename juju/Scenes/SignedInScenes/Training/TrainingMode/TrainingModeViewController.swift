@@ -15,6 +15,8 @@ protocol TrainingModeViewControllerDelegate: AnyObject {
 
 final class TrainingModeViewController: UIViewController {
     
+    public static let title = "Treino"
+    
     private let trainingModeView = TrainingModeView()
     
     weak var delegate: TrainingModeViewControllerDelegate?
@@ -37,7 +39,7 @@ final class TrainingModeViewController: UIViewController {
     }
     private func configureNavigation() {
         
-        self.title = "Exercícios"
+        self.title = TrainingModeViewController.title
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     }
