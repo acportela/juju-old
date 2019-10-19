@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
 		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
+		1550DCAC235B4379000CBC7C /* FormHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAB235B4379000CBC7C /* FormHeaderView.swift */; };
 		15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */; };
 		15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */; };
 		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
@@ -158,6 +159,7 @@
 		141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.debug.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.debug.xcconfig"; sourceTree = "<group>"; };
 		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		1550DCAB235B4379000CBC7C /* FormHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHeaderView.swift; sourceTree = "<group>"; };
 		15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -330,11 +332,22 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		1550DCAD235B5963000CBC7C /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D63BE809234A567F0015FC27 /* ProfileViewController.swift */,
+				D63BE80B234A575B0015FC27 /* ProfileView.swift */,
+				15F786A12359522B00D1C211 /* ProfileFooterView.swift */,
+			);
+			path = ProfileInfo;
+			sourceTree = "<group>";
+		};
 		15AA30EA235AADE7007D7173 /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
 				15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */,
 				15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */,
+				1550DCAB235B4379000CBC7C /* FormHeaderView.swift */,
 			);
 			path = ChangePassword;
 			sourceTree = "<group>";
@@ -412,9 +425,7 @@
 		D63BE808234A56680015FC27 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D63BE809234A567F0015FC27 /* ProfileViewController.swift */,
-				D63BE80B234A575B0015FC27 /* ProfileView.swift */,
-				15F786A12359522B00D1C211 /* ProfileFooterView.swift */,
+				1550DCAD235B5963000CBC7C /* ProfileInfo */,
 				15AA30EA235AADE7007D7173 /* ChangePassword */,
 				15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */,
 			);
@@ -1265,6 +1276,7 @@
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
 				D6FEE9D7234D6B1F002372C4 /* TrainingDataSource.swift in Sources */,
 				D6FF00C222E3CC8F00D8B2CB /* KeyboardListener.swift in Sources */,
+				1550DCAC235B4379000CBC7C /* FormHeaderView.swift in Sources */,
 				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,

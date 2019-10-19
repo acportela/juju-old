@@ -18,8 +18,8 @@ final class SignInView: UIView, JujuFormProtocol {
         return imageView
     }()
     
-    let emailInput = JujuInputField(inputKind: .email)
-    let passwordInput = JujuInputField(inputKind: .password)
+    let emailInput = JujuInputField(inputKind: .email, background: .dark)
+    let passwordInput = JujuInputField(inputKind: .password, background: .dark)
     
     var inputs: [JujuInputField] = []
     
@@ -28,11 +28,11 @@ final class SignInView: UIView, JujuFormProtocol {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.spacing = Styling.Spacing.twentyfour
+        stack.spacing = Styling.Spacing.twentyeight
         return stack
     }()
     
-    private let enterButton = JujuButton(title: "entrar")
+    private let enterButton = JujuButton(title: "entrar", background: .dark)
     
     private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
@@ -61,7 +61,7 @@ final class SignInView: UIView, JujuFormProtocol {
         }
     }
     
-    var onCreateTap: (() -> Void)?
+    var onCreateAccountTap: (() -> Void)?
 
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -123,7 +123,7 @@ extension SignInView: ViewCoding {
 
         self.backgroundColor = Styling.Colors.softPink
         inputs = [emailInput, passwordInput]
-        setupToolbar()
+        setupToolbar(nextText: "Próximo", doneText: "Entrar")
     }
 }
 
@@ -131,7 +131,7 @@ extension SignInView {
     
     @objc
     private func createAccountWasPressed() {
-        self.onCreateTap?()
+        self.onCreateAccountTap?()
     }
 }
 

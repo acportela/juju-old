@@ -11,11 +11,11 @@ import SnapKit
 
 final class JujuInputField: UIView {
     
-    // MARK: Properties
+    // MARK: Views
     private lazy var input: UITextField = {
         
         let field = UITextField()
-        field.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.sixteen)
+        field.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.sixteen)
         field.textColor = Styling.Colors.duskyRose
         field.textAlignment = .left
         field.configurePlaceholderWith(title: self.inputKind.hint,
@@ -33,29 +33,24 @@ final class JujuInputField: UIView {
     private lazy var title: UILabel = {
         
         let label = UILabel()
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twelve)
+        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.twelve)
         label.textAlignment = .left
-        label.textColor = Styling.Colors.veryLightPink
+        label.textColor = self.backgoundTheme.titleColor
         label.text = self.inputKind.title
         return label
     }()
     
-    private let selectedIndicator: UIView = {
-        
-        let view = UIView()
-        view.backgroundColor = Styling.Colors.rosyPink
-        return view
-    }()
+    private let bottomLine = UIView()
     
     private var feedback: UILabel = {
         
         let label = UILabel()
         label.text = ""
-        label.font = Resources.Fonts.Gilroy.medium(ofSize: Styling.FontSize.twelve)
+        label.font = Resources.Fonts.Gilroy.regular(ofSize: Styling.FontSize.twelve)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = Constants.feedbackScaleFactor
         label.textAlignment = .left
-        label.textColor = Styling.Colors.veryLightPink
+        label.textColor = Styling.Colors.white
         return label
     }()
     
@@ -69,18 +64,24 @@ final class JujuInputField: UIView {
         return stack
     }()
     
-    private let inputKind: InputKind
-    var datePicker: UIDatePicker?
+    // MARK: Properties
     
+    private let backgoundTheme: Background
+    private let inputKind: InputKind
+    
+    var datePicker: UIDatePicker?
+
     var isValid: Bool { return validateCurrentInput() == .valid }
+
     var currentValue: String? { return self.input.text }
     
     var toolbarButtonAction: (() -> Void)?
     
     // MARK: Lifecycle
-    init(frame: CGRect = .zero, inputKind: InputKind) {
+    init(frame: CGRect = .zero, inputKind: InputKind, background: Background) {
         
         self.inputKind = inputKind
+        self.backgoundTheme = background
         super.init(frame: frame)
         setupViewConfiguration()
     }
@@ -99,7 +100,7 @@ extension JujuInputField: ViewCoding {
         
         containerStack.addArrangedSubview(title)
         containerStack.addArrangedSubview(input)
-        containerStack.addArrangedSubview(selectedIndicator)
+        containerStack.addArrangedSubview(bottomLine)
         containerStack.addArrangedSubview(feedback)
         
         addSubview(containerStack)
@@ -112,7 +113,7 @@ extension JujuInputField: ViewCoding {
             make.edges.equalToSuperview()
         }
         
-        selectedIndicator.snp.makeConstraints { make in
+        bottomLine.snp.makeConstraints { make in
             
             make.height.equalTo(Constants.selectedLineHeight)
             make.width.equalToSuperview()
@@ -121,12 +122,16 @@ extension JujuInputField: ViewCoding {
     
     func configureViews() {
         
+        self.setBottomLineColorForState(.unfocused)
+        
         input.setContentCompressionResistancePriority(.required, for: .vertical)
         
         if self.inputKind == .dateOfBirth {
+            
             self.input.tintColor = .clear
             self.configureDatePicker()
         }
+        
         if self.inputKind == .email || self.inputKind == .newEmail { self.input.autocapitalizationType = .none }
         if self.inputKind.isSecureEntry { self.configure(with: .secure(true))}
     }
@@ -140,6 +145,7 @@ extension JujuInputField: ViewConfiguration {
     
     // MARK: Configuration
     enum States {
+        
         case focused
         case unfocused
         case secure(Bool)
@@ -147,16 +153,16 @@ extension JujuInputField: ViewConfiguration {
     
     func configure(with state: JujuInputField.States) {
         
+        self.setBottomLineColorForState(state)
+
         switch state {
         
         case .focused:
             
             self.feedback.text = ""
-            self.selectedIndicator.backgroundColor = Styling.Colors.veryLightPink
             
         case .unfocused:
         
-            self.selectedIndicator.backgroundColor = Styling.Colors.rosyPink
             self.feedback.text = validateCurrentInput().message
             
         case .secure(let secure):
@@ -164,7 +170,35 @@ extension JujuInputField: ViewConfiguration {
             self.input.isSecureTextEntry = secure
         }
     }
-
+    
+    private func setBottomLineColorForState(_ state: JujuInputField.States) {
+        
+        switch state {
+        
+        case .focused:
+            
+            switch self.backgoundTheme {
+                
+            case .dark: self.bottomLine.backgroundColor = Styling.Colors.veryLightPink
+                
+            case .light: self.bottomLine.backgroundColor = Styling.Colors.rosyPink
+    
+            }
+            
+        case .unfocused:
+            
+            switch self.backgoundTheme {
+                
+            case .dark: self.bottomLine.backgroundColor = Styling.Colors.rosyPink
+                
+            case .light:  self.bottomLine.backgroundColor = Styling.Colors.veryLightPink
+                
+            }
+            
+        default: break
+            
+        }
+    }
 }
 
 extension JujuInputField {
@@ -207,25 +241,37 @@ extension JujuInputField {
     private func validateCurrentInput() -> InputValidationResult {
         
         guard let value = self.input.text else {
+            
             return .required(fieldName: inputKind.title)
         }
         
         if self.inputKind.isRequired && value.trimmed().isEmpty {
+            
             return .required(fieldName: self.inputKind.title)
         }
         
         let validator = Validators()
 
         switch self.inputKind {
+            
         case .name:
+            
             return validator.validate(name: value)
+            
         case .email, .newEmail:
+            
             return validator.validate(email: value)
+            
         case .newPassword:
+            
             return validator.validate(password: value)
+            
         case .dateOfBirth:
+            
             return validator.validate(date: DateUtils().dateFromString(value, withFormat: .iso8601UTCBar) ?? Date())
+            
         default:
+            
             return .valid
         }
     }
@@ -281,7 +327,7 @@ extension JujuInputField {
     }
     
     @objc
-    func toolbarAction() {
+    private func toolbarAction() {
         
         if inputKind == .dateOfBirth, let datePicker = self.datePicker {
             
@@ -292,7 +338,7 @@ extension JujuInputField {
     }
     
     @objc
-    func toolbarCancelAction() {
+    private func toolbarCancelAction() {
         
         resignFirstResponder()
     }
@@ -309,6 +355,26 @@ extension JujuInputField {
 }
 
 extension JujuInputField {
+    
+    enum Background {
+        
+        case light
+        case dark
+        
+        var titleColor: UIColor {
+            
+            switch self {
+                
+            case .light:
+                
+                return Styling.Colors.charcoalGrey
+                
+            case .dark:
+                
+                return Styling.Colors.white
+            }
+        }
+    }
     
     struct Constants {
         

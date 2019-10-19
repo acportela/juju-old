@@ -15,22 +15,23 @@ protocol JujuFormProtocol where Self: UIView {
     var fieldsAreValid: Bool { get }
     var inputStack: UIStackView { get }
     var onDoneAction: (() -> Void)? { get set }
-    func setupToolbar()
+    func setupToolbar(nextText: String, doneText: String)
 }
 
 extension JujuFormProtocol {
     
-    func setupToolbar() {
+    func setupToolbar(nextText: String, doneText: String) {
         
         for (index, input) in inputs.enumerated() {
             
             let lastIndex = inputs.count - 1
             let isLastElement = index == lastIndex
             
-            let title = isLastElement ? "Entrar" : "Próximo"
+            let title = isLastElement ? doneText : nextText
             let action: (() -> Void) = { [weak self] in
                 
                 if isLastElement {
+                    
                     self?.onDoneAction?()
                     input.resignFirstResponder()
                     return

@@ -32,8 +32,8 @@ final class TrainingModeView: UIView {
         return view
     }()
     
-    private let slowTrain = JujuButton(title: TrainingMode.slow.title, theme: .secondary)
-    private let fastTrain = JujuButton(title: TrainingMode.fast.title, theme: .secondary)
+    private let slowTrain = JujuButton(title: TrainingMode.slow.title, background: .light)
+    private let fastTrain = JujuButton(title: TrainingMode.fast.title, background: .light)
     
     // MARK: Properties
     weak var delegate: TrainingModeViewDelegate?

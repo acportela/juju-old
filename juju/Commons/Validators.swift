@@ -41,13 +41,13 @@ struct Validators {
             return .tooLong(maximum: 20)
         }
         
-        if password.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
-            return .missingNumeric
-        }
-        
-        if password.rangeOfCharacter(from: CharacterSet.letters) == nil {
-            return .missingLetters
-        }
+        // if password.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
+        //     return .missingNumeric
+        // }
+        //
+        // if password.rangeOfCharacter(from: CharacterSet.letters) == nil {
+        //     return .missingLetters
+        // }
         
         if password.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
             return .containsWhiteSpace

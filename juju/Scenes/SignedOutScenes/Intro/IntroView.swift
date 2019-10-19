@@ -41,8 +41,8 @@ final class IntroView: UIView {
         return stack
     }()
     
-    private let signIn = JujuButton(title: "entrar")
-    private let signUp = JujuButton(title: "cadastrar", theme: .secondary)
+    private let signIn = JujuButton(title: "entrar", background: .dark)
+    private let signUp = JujuButton(title: "cadastrar", background: .light)
     
     let background: UIImageView = {
         let image = UIImageView(image: Resources.Images.bottomBG)

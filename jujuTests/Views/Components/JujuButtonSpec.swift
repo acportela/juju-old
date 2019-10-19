@@ -22,7 +22,7 @@ class JujuButtonSpec: QuickSpec {
             
             context("when presenting on screen") {
                 
-                context("with primary theme") {
+                context("with dark theme") {
                     
                     beforeEach {
                         

@@ -18,10 +18,10 @@ final class SignUpView: UIView, JujuFormProtocol {
         return imageView
     }()
     
-    let nameInput = JujuInputField(inputKind: .name)
-    let dateOfBirth = JujuInputField(inputKind: .dateOfBirth)
-    let emailInput = JujuInputField(inputKind: .newEmail)
-    let passwordInput = JujuInputField(inputKind: .newPassword)
+    let nameInput = JujuInputField(inputKind: .name, background: .dark)
+    let dateOfBirth = JujuInputField(inputKind: .dateOfBirth, background: .dark)
+    let emailInput = JujuInputField(inputKind: .newEmail, background: .dark)
+    let passwordInput = JujuInputField(inputKind: .newPassword, background: .dark)
     
     var inputs: [JujuInputField] = []
     
@@ -31,13 +31,13 @@ final class SignUpView: UIView, JujuFormProtocol {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.spacing = Styling.Spacing.twentyfour
+        stack.spacing = Styling.Spacing.twentyeight
         return stack
     }()
     
     private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
-    private let signUpButton = JujuButton(title: "entrar")
+    private let signUpButton = JujuButton(title: "entrar", background: .dark)
     private let backButton = JujuUnderlinedButton()
     
     var onDoneAction: (() -> Void)? {
@@ -119,7 +119,7 @@ extension SignUpView: ViewCoding {
         
         self.backgroundColor = Styling.Colors.softPink
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
-        setupToolbar()
+        setupToolbar(nextText: "Próximo", doneText: "Finalizar")
         
         let jujuUnderlinedConfig = JujuUnderlinedButtonConfiguration(title: "Voltar",
                                                                      font: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty),

@@ -44,6 +44,8 @@ extension Styling.Spacing {
     
     static let eight: CGFloat =  8
     
+    static let ten: CGFloat =  10
+    
     static let twelve: CGFloat =  12
     
     static let fourteen: CGFloat =  14

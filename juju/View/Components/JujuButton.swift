@@ -26,13 +26,14 @@ final class JujuButton: UIView {
     
     var onTapAction: (() -> Void)?
     
-    private let theme: Theme
+    private let theme: Background
     
-    init(title: String, theme: Theme = .primary, frame: CGRect = .zero) {
-        self.theme = theme
+    init(title: String, background: Background, frame: CGRect = .zero) {
+        
+        self.theme = background
         super.init(frame: frame)
         self.button.setTitle(title.capitalized,
-                             withColor: theme.textColor,
+                             withColor: background.textColor,
                              andFont: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty))
         setupViewConfiguration()
     }
@@ -72,25 +73,35 @@ extension JujuButton {
 
 extension JujuButton {
     
-    enum Theme {
+    enum Background {
         
-        case primary
-        case secondary
+        case dark
+        case light
         
         var textColor: UIColor {
+            
             switch self {
-            case .primary:
+                
+            case .dark:
+                
                 return Styling.Colors.rosyPink
-            case .secondary:
+                
+            case .light:
+                
                 return Styling.Colors.veryLightPink
             }
         }
         
         var backgroundColor: UIColor {
+            
             switch self {
-            case .primary:
+                
+            case .dark:
+                
                 return Styling.Colors.veryLightPink
-            case .secondary:
+                
+            case .light:
+                
                 return Styling.Colors.rosyPink
             }
         }

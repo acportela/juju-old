@@ -55,7 +55,7 @@ final class SignInViewController: UIViewController, Loadable {
             sSelf.proceedWithSignIn(email: credentials.email, pass: credentials.pass)
         }
         
-        signInView.onCreateTap = { [weak self] in
+        signInView.onCreateAccountTap = { [weak self] in
             
             guard let sSelf = self else { return }
             sSelf.delegate?.signInViewControllerWantsToCreateAccount(sSelf)
