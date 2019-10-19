@@ -98,7 +98,7 @@ extension TrainLevelComponent: ViewCoding {
         
         self.levelLabel.setContentHuggingPriority(.required, for: .vertical)
         self.backgroundColor = Styling.Colors.white
-        self.levelLabel.text = self.level.title.uppercasedFirst
+        self.levelLabel.text = self.level.title.capitalized
         
         self.layer.cornerRadius = Constants.cornerRadius
         

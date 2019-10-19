@@ -17,11 +17,6 @@ extension String {
         return String(self.prefix(1))
     }
     
-    public var uppercasedFirst: String {
-        
-        return first.uppercased() + String(self.dropFirst())
-    }
-    
     func trimmed() -> String {
         return trimmingCharacters(in: .whitespacesAndNewlines)
     }

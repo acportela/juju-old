@@ -91,7 +91,7 @@ final class SignUpViewController: UIViewController, Loadable {
             return nil
         }
         
-        let formUser = ClientUser(userId: .empty, email: email, name: name.uppercased(), dob: date)
+        let formUser = ClientUser(userId: .empty, email: email, name: name.capitalized, dob: date)
         return (formUser: formUser, pass: pass)
     }
     

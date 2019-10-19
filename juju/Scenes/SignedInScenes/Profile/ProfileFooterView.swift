@@ -9,6 +9,12 @@
 import UIKit
 import SnapKit
 
+protocol ProfileFooterViewDelegate: AnyObject {
+    
+    func profileFooterViewDidTapChangePassword(_ profileView: ProfileFooterView)
+    func profileFooterViewDidTapLogout(_ profileView: ProfileFooterView)
+}
+
 final class ProfileFooterView: UIView {
     
     // MARK: Views
@@ -24,6 +30,8 @@ final class ProfileFooterView: UIView {
     
     private let changePasswordButton = JujuUnderlinedButton()
     private let logoutButton = JujuUnderlinedButton()
+    
+    weak var delegate: ProfileFooterViewDelegate?
     
     private let lockImage: UIImageView = {
         
@@ -45,9 +53,9 @@ final class ProfileFooterView: UIView {
         
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.alignment = .bottom
+        stack.alignment = .center
         stack.distribution = .fillProportionally
-        stack.spacing = 19
+        stack.spacing = Styling.Spacing.twentyfour
         return stack
     }()
     
@@ -87,8 +95,9 @@ extension ProfileFooterView: ViewCoding {
         self.configLabel.snp.makeConstraints { make in
             
             make.left.equalTo(self.lockImage.snp.left)
-            make.bottom.equalTo(self.lockImage.snp.top).offset(-Styling.Spacing.eighteen)
+            make.bottom.equalTo(self.lockImage.snp.top).offset(-Styling.Spacing.twentyfour)
         }
+        
         self.changePasswordStack.snp.makeConstraints { make in
             
             make.centerY.equalToSuperview()
@@ -98,7 +107,7 @@ extension ProfileFooterView: ViewCoding {
         self.logoutButton.snp.makeConstraints { make in
         
             make.left.equalTo(self.changePasswordButton.snp.left)
-            make.top.equalTo(self.changePasswordButton.snp.bottom).offset(20)
+            make.top.equalTo(self.changePasswordButton.snp.bottom).offset(Styling.Spacing.twelve)
         }
         
         self.exitImage.snp.makeConstraints { make in
@@ -114,19 +123,32 @@ extension ProfileFooterView: ViewCoding {
         
         let changePasswordConfig = JujuUnderlinedButtonConfiguration(title: "Alterar senha",
                                                                      font: Resources.Fonts.Gilroy.regular(ofSize: 14),
-                                                                     color: Styling.Colors.duskyRose)
+                                                                     color: Styling.Colors.duskyRose,
+                                                                     lowercased: false)
         self.changePasswordButton.configure(with: .build(changePasswordConfig))
+        self.changePasswordButton.onTapAction = { self.didTapChangePassword() }
         
         let logoutConfig = JujuUnderlinedButtonConfiguration(title: "Sair da conta",
                                                              font: Resources.Fonts.Gilroy.regular(ofSize: 14),
-                                                             color: Styling.Colors.duskyRose)
+                                                             color: Styling.Colors.duskyRose,
+                                                             lowercased: false)
+        
         self.logoutButton.configure(with: .build(logoutConfig))
+        self.logoutButton.onTapAction = { self.didTapLogout() }
     }
 }
 
 extension ProfileFooterView {
     
-    struct Constants {
+    @objc
+    private func didTapChangePassword() {
         
+        self.delegate?.profileFooterViewDidTapChangePassword(self)
+    }
+    
+    @objc
+    private func didTapLogout() {
+        
+        self.delegate?.profileFooterViewDidTapLogout(self)
     }
 }

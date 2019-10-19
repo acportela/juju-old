@@ -10,7 +10,8 @@ import UIKit
 
 protocol ProfileViewControllerDelegate: AnyObject {
     
-    func profileViewControllerDidLogout(_ controller: ProfileViewController, success: Bool)
+    func profileViewControllerDidLogout(_ controller: ProfileViewController)
+    func profileViewControllerWantsToChangePassword(_ controller: ProfileViewController)
 }
 
 final class ProfileViewController: UIViewController, Loadable {
@@ -40,20 +41,15 @@ final class ProfileViewController: UIViewController, Loadable {
     override func loadView() {
         
         self.view = self.profileView
+        self.profileView.configure(with: .build(name: self.loggerUser.name,
+                                                email: self.loggerUser.email))
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.configureLogoutAction()
-    }
-    
-    private func configureLogoutAction() {
-        
-        self.profileView.logout.onTapAction = { [weak self] in
-            
-            self?.logout()
-        }
+        self.title = "Perfil"
+        self.profileView.delegate = self
     }
 }
 
@@ -64,22 +60,36 @@ extension ProfileViewController {
         self.startLoading()
         
         self.userService.userWantsToSignOut { [weak self] result in
-            
-            self?.stopLoading()
-            
+        
             guard let sSelf = self else { return }
             
+            sSelf.stopLoading()
+
             switch result {
                 
             case .success:
                 
-                sSelf.delegate?.profileViewControllerDidLogout(sSelf, success: true)
+                sSelf.delegate?.profileViewControllerDidLogout(sSelf)
                 sSelf.localStorage.remove(valuesForKeys: StorageKeys.allCases)
                 
             case .error:
-                // TODO: Test for only one possible error: connection
-                sSelf.delegate?.profileViewControllerDidLogout(sSelf, success: false)
+
+                Snackbar.showError(message: "Houve um problema ao sair. Por favor, tente novamente",
+                                   in: sSelf.view)
             }
         }
+    }
+}
+
+extension ProfileViewController: ProfileViewDelegate {
+    
+    func profileViewDidTapChangePassword(_ profileView: ProfileView) {
+        
+        self.delegate?.profileViewControllerWantsToChangePassword(self)
+    }
+    
+    func profileViewDidTapLogout(_ profileView: ProfileView) {
+        
+        self.logout()
     }
 }

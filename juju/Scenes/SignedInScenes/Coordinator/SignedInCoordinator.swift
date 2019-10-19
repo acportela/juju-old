@@ -68,6 +68,26 @@ class SignedInCoordinator: NSObject, Coordinator {
                                              selectedImage: nil)
         return controller
     }()
+    
+    // MARK: Profile
+    private lazy var profileCoordinator: Coordinator = {
+        
+        let coordinator = ProfileCoordinator(rootNavigation: self.profileNavigation,
+                                             userService: self.userService,
+                                             localStorage: self.localStorage,
+                                             user: self.user)
+        return coordinator
+    }()
+    
+    private let profileNavigation: UINavigationController = {
+        
+        let controller = UINavigationController()
+        controller.tabBarItem = UITabBarItem(title: "Perfil",
+                                             image: Resources.Images.tabProfile,
+                                             selectedImage: nil)
+        return controller
+    }()
+    
 
     init(rootController: UINavigationController,
          userService: UserServiceProtocol,
@@ -89,6 +109,7 @@ class SignedInCoordinator: NSObject, Coordinator {
         self.setupNavigationBar()
         self.trainingCoordinator.start()
         self.calendarCoordinator.start()
+        self.profileCoordinator.start()
         self.rootNavigation.pushViewController(self.tabBarController, animated: false)
     }
     
@@ -104,27 +125,19 @@ class SignedInCoordinator: NSObject, Coordinator {
                                         image: Resources.Images.tabVideo,
                                         selectedImage: nil)
         
-        //TODO: Move to a Profile Coordinator later on
-        let profile = ProfileViewController(loggerUser: self.user,
-                                            userService: self.userService,
-                                            localStorage: self.localStorage)
-        profile.delegate = self
-        profile.tabBarItem = UITabBarItem(title: "Perfil",
-                                          image: Resources.Images.tabProfile,
-                                          selectedImage: nil)
-        
-        return [calendarNavigation, trainingNavigation, video, profile]
+        return [calendarNavigation, trainingNavigation, video, profileNavigation]
     }
 }
 
 extension SignedInCoordinator: ProfileViewControllerDelegate {
     
-    func profileViewControllerDidLogout(_ controller: ProfileViewController, success: Bool) {
+    func profileViewControllerDidLogout(_ controller: ProfileViewController) {
         
-        if success {
-            
-            self.rootNavigation.popViewController(animated: false)
-            self.delegate?.signedInCoordinatorDidLogout(self)
-        }
+        self.rootNavigation.popViewController(animated: false)
+        self.delegate?.signedInCoordinatorDidLogout(self)
+    }
+    
+    func profileViewControllerWantsToChangePassword(_ controller: ProfileViewController) {
+        
     }
 }

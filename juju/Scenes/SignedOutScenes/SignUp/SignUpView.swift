@@ -123,7 +123,7 @@ extension SignUpView: ViewCoding {
         
         let jujuUnderlinedConfig = JujuUnderlinedButtonConfiguration(title: "Voltar",
                                                                      font: Resources.Fonts.Gilroy.bold(ofSize: Styling.FontSize.twenty),
-                                                                     color: Styling.Colors.veryLightPink)
+                                                                     color: Styling.Colors.veryLightPink, lowercased: true)
         self.backButton.configure(with: .build(jujuUnderlinedConfig))
     }
     

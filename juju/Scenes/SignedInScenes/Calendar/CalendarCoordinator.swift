@@ -14,8 +14,6 @@ class CalendarCoordinator: Coordinator {
     private let diaryService: TrainingDiaryServiceProtocol
     private let user: ClientUser
     
-    var calendarViewController: CalendarViewController?
-    
     init(rootNavigation: UINavigationController,
          diaryService: TrainingDiaryServiceProtocol,
          user: ClientUser) {
@@ -39,7 +37,6 @@ class CalendarCoordinator: Coordinator {
     private func startCalendar() {
         
         let calendarViewController = CalendarViewController()
-        self.calendarViewController = calendarViewController
         self.navigation.pushViewController(calendarViewController, animated: false)
     }
 }

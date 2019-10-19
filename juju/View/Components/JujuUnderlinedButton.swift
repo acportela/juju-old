@@ -14,6 +14,7 @@ struct JujuUnderlinedButtonConfiguration {
     let title: String
     let font: UIFont
     let color: UIColor
+    let lowercased: Bool
 }
 
 final class JujuUnderlinedButton: UIView {
@@ -73,7 +74,9 @@ extension JujuUnderlinedButton: ViewConfiguration {
             
         case .build(let config):
             
-            button.setTitle(config.title.lowercased(),
+            let title = config.lowercased ? config.title.lowercased() : config.title
+            
+            button.setTitle(title,
                             withColor: config.color,
                             andFont: config.font,
                             underlined: true)

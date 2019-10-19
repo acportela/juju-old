@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
 		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
+		15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */; };
+		15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */; };
+		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
 		15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947A2356B35000FE85D3 /* DateCircleView.swift */; };
 		15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */; };
 		15E0947F2356CC4E00FE85D3 /* MonthLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */; };
@@ -155,6 +158,9 @@
 		141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.debug.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.debug.xcconfig"; sourceTree = "<group>"; };
 		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		15E0947A2356B35000FE85D3 /* DateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCircleView.swift; sourceTree = "<group>"; };
 		15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthLabelView.swift; sourceTree = "<group>"; };
@@ -324,6 +330,15 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		15AA30EA235AADE7007D7173 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */,
+				15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
 		4008D6DB513CD81095C2E1DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +415,8 @@
 				D63BE809234A567F0015FC27 /* ProfileViewController.swift */,
 				D63BE80B234A575B0015FC27 /* ProfileView.swift */,
 				15F786A12359522B00D1C211 /* ProfileFooterView.swift */,
+				15AA30EA235AADE7007D7173 /* ChangePassword */,
+				15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1214,6 +1231,7 @@
 				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
 				D6856AAE2345878700270F14 /* FirebaseDiaryQuery.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
+				15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
 				D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */,
 				D65356E92340241500CEE476 /* FirebaseTrainingModel.swift in Sources */,
@@ -1237,6 +1255,7 @@
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
 				D6B02A4422E0070100818C17 /* Repository.swift in Sources */,
 				D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */,
+				15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */,
 				D612165E234447A1003AB0C3 /* RepetitionsProgress.swift in Sources */,
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
 				D63BE80C234A575B0015FC27 /* ProfileView.swift in Sources */,
@@ -1291,6 +1310,7 @@
 				D6046F3922EF1444002FB78B /* DateFormatters.swift in Sources */,
 				D6EE63ED232587450003F50C /* NumberedCircle.swift in Sources */,
 				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
+				15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */,
 				D63BE80A234A567F0015FC27 /* ProfileViewController.swift in Sources */,

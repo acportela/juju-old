@@ -42,7 +42,6 @@ final class CalendarViewController: UIViewController {
     
     private func configureNavigation() {
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = "Diário"
         
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
