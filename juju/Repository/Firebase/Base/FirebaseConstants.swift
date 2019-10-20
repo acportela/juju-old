@@ -62,7 +62,8 @@ enum FirebaseConstants {
         
         static func fullPathWith(userId: String) -> String {
             
-            return "\(FirebaseConstants.TrainingDiary.pathToRootCollection)/\(userId)/\(FirebaseConstants.TrainingDiary.pathToDiary)"
+            let root = FirebaseConstants.TrainingDiary.pathToRootCollection
+            return "\(root)/\(userId)/\(FirebaseConstants.TrainingDiary.pathToDiary)"
         }
     }
 }

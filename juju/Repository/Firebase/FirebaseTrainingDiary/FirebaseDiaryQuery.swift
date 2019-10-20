@@ -25,7 +25,6 @@ struct FirebaseDiaryQuery: FirebaseQuery {
                                                                          isEqualTo: dateString)
     }
     
-    
     init(userId: String, fromDate lowerDate: Date, toDate upperDate: Date) {
         
         let firestore = Firestore.firestore()

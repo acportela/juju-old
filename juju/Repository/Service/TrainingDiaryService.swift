@@ -91,7 +91,7 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
         
         let newDiary = FirebaseTrainingDiary(diary: diary, user: user)
         
-        self.diaryRepo.save(entity: newDiary) { [weak self] result in
+        self.diaryRepo.save(entity: newDiary) { result in
             
             switch result {
                 

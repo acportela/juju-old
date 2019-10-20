@@ -82,7 +82,6 @@ extension ChangePasswordViewController {
         return (password, confirmPassword)
     }
     
-    
     private func updatePasswordWith(_ newPassword: String) {
         
         self.startLoading()

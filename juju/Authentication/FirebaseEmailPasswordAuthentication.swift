@@ -11,8 +11,14 @@ import FirebaseAuth
 
 protocol UserAuthenticationProtocol {
     
-    func authenticate(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
-    func create(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
+    func authenticate(email: String,
+                      password: String,
+                      callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
+    
+    func create(email: String,
+                password: String,
+                callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void)
+    
     func signOut(callback: @escaping (Result<UserAuthenticationError>) -> Void)
     func changePassword(newPassword: String,
                         callback: @escaping (Result<UserAuthenticationError>) -> Void)
@@ -20,7 +26,9 @@ protocol UserAuthenticationProtocol {
 
 struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
     
-    func authenticate(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void) {
+    func authenticate(email: String,
+                      password: String,
+                      callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void) {
 
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
@@ -42,9 +50,12 @@ struct FirebaseEmailPasswordAuthentication: UserAuthenticationProtocol {
         }
     }
     
-    func create(email: String, password: String, callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void) {
+    func create(email: String,
+                password: String,
+                callback: @escaping (ContentResult<User, UserAuthenticationError>) -> Void) {
         
-        Auth.auth().createUser(withEmail: email, password: password) { ( user, error) in
+        Auth.auth().createUser(withEmail: email,
+                               password: password) { ( user, error) in
             
             if let error = error,
             let authCode = AuthErrorCode(rawValue: (error as NSError).code) {

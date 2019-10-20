@@ -89,7 +89,6 @@ class SignedInCoordinator: NSObject, Coordinator {
         return controller
     }()
     
-
     init(rootController: UINavigationController,
          userService: UserServiceProtocol,
          diaryService: TrainingDiaryServiceProtocol,

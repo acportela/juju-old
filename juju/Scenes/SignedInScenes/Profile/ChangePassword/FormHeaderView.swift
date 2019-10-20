@@ -50,7 +50,6 @@ final class FormHeaderView: UIView {
         return stack
     }()
     
-    
     // MARK: Properties
     
     // MARK: Lifecycle

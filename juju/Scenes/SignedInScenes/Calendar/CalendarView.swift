@@ -149,14 +149,19 @@ extension CalendarView: JTACMonthViewDelegate {
         cell.configure(with: .setText(cellState.text))
     }
     
-    
     func calendar(_ calendar: JTACMonthView,
                   cellForItemAt date: Date,
                   cellState: CellState,
                   indexPath: IndexPath) -> JTACDayCell {
         
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: DateCircleView.Constants.dateCellItendifier,
-                                                       for: indexPath) as! DateCircleView
+        let identifier = DateCircleView.Constants.dateCellItendifier
+        
+        guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: identifier,
+                                                             for: indexPath)
+                                                             as? DateCircleView else {
+            return JTACDayCell()
+        }
+        
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
         return cell
     }
@@ -185,17 +190,19 @@ extension CalendarView: JTACMonthViewDataSource {
                   headerViewForDateRange range: (start: Date, end: Date),
                   at indexPath: IndexPath) -> JTACMonthReusableView {
    
-        guard let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: CalendarHeaderView.Constants.reuseIdentifier,
-                                                                            for: indexPath) as? CalendarHeaderView else {
-            
+        let identifier = CalendarHeaderView.Constants.reuseIdentifier
+        
+        guard let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: identifier,
+                                                                            for: indexPath)
+                                                                            as? CalendarHeaderView else {
             return JTACMonthReusableView()
         }
-        header.delegate = self
         
         let monthIndex = self.calendar.component(.month, from: range.start) - 1
         let month = self.calendar.monthSymbols[monthIndex].capitalized
         
         header.configure(with: .build(title: month))
+        header.delegate = self
         return header
     }
 

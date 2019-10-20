@@ -78,7 +78,6 @@ extension ProfileFooterView: ViewCoding {
     
     func addSubViews() {
         
-        
         self.changePasswordStack.addArrangedSubview(self.lockImage)
         self.changePasswordStack.addArrangedSubview(self.changePasswordButton)
         
