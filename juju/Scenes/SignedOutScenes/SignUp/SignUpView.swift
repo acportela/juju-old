@@ -37,7 +37,7 @@ final class SignUpView: UIView, JujuFormProtocol {
     
     private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
-    private let signUpButton = JujuButton(title: "entrar", background: .dark)
+    private let signUpButton = JujuButton(title: "entrar", backgroundContext: .dark)
     private let backButton = JujuUnderlinedButton()
     
     var onDoneAction: (() -> Void)? {
@@ -119,7 +119,7 @@ extension SignUpView: ViewCoding {
         
         self.backgroundColor = Styling.Colors.softPink
         self.inputs = [nameInput, dateOfBirth, emailInput, passwordInput]
-        setupToolbar(nextText: "Próximo", doneText: "Finalizar")
+        setupToolbar()
         
         let font = Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty)
         let color = Styling.Colors.veryLightPink

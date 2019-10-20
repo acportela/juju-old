@@ -28,7 +28,7 @@ extension DateFormatters {
             formatter.calendar = Calendar(identifier: .iso8601)
             formatter.locale = Locale(identifier: "en_US_POSIX")
         case .iso8601UTCBar:
-            formatter.dateFormat = "yyyy/MM/dd"
+            formatter.dateFormat = "dd/MM/yyyy"
             formatter.calendar = Calendar(identifier: .iso8601)
             formatter.locale = Locale(identifier: "en_US_POSIX")
         }

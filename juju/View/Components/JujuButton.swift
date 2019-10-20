@@ -26,14 +26,14 @@ final class JujuButton: UIView {
     
     var onTapAction: (() -> Void)?
     
-    private let theme: Background
+    private let theme: BackgroundContext
     
-    init(title: String, background: Background, frame: CGRect = .zero) {
+    init(title: String, backgroundContext: BackgroundContext, frame: CGRect = .zero) {
         
-        self.theme = background
+        self.theme = backgroundContext
         super.init(frame: frame)
         self.button.setTitle(title.capitalized,
-                             withColor: background.textColor,
+                             withColor: backgroundContext.textColor,
                              andFont: Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty))
         setupViewConfiguration()
     }
@@ -73,7 +73,7 @@ extension JujuButton {
 
 extension JujuButton {
     
-    enum Background {
+    enum BackgroundContext {
         
         case dark
         case light
@@ -88,7 +88,7 @@ extension JujuButton {
                 
             case .light:
                 
-                return Styling.Colors.veryLightPink
+                return Styling.Colors.white
             }
         }
         
@@ -98,7 +98,7 @@ extension JujuButton {
                 
             case .dark:
                 
-                return Styling.Colors.veryLightPink
+                return Styling.Colors.white
                 
             case .light:
                 

@@ -124,10 +124,12 @@ extension JujuInputField: ViewCoding {
         
         self.setBottomLineColorForState(.unfocused)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapField))
+        self.addGestureRecognizer(tapGesture)
+        
         input.setContentCompressionResistancePriority(.required, for: .vertical)
         
         if self.inputKind == .dateOfBirth {
-            
             self.input.tintColor = .clear
             self.configureDatePicker()
         }
@@ -159,17 +161,11 @@ extension JujuInputField: ViewConfiguration {
 
         switch state {
         
-        case .focused:
+        case .focused: self.feedback.text = ""
             
-            self.feedback.text = ""
+        case .unfocused: self.feedback.text = validateCurrentInput().message
             
-        case .unfocused:
-        
-            self.feedback.text = validateCurrentInput().message
-            
-        case .secure(let secure):
-            
-            self.input.isSecureTextEntry = secure
+        case .secure(let secure): self.input.isSecureTextEntry = secure
         }
     }
     
@@ -235,6 +231,12 @@ extension JujuInputField {
         configure(with: .unfocused)
     }
     
+    @objc
+    private func didTapField() {
+        
+        self.becomeFirstResponder()
+    }
+    
 }
 
 extension JujuInputField {
@@ -244,37 +246,29 @@ extension JujuInputField {
         
         guard let value = self.input.text else {
             
-            return .required(fieldName: inputKind.title)
+            return .required
         }
         
         if self.inputKind.isRequired && value.trimmed().isEmpty {
             
-            return .required(fieldName: self.inputKind.title)
+            return .required
         }
         
         let validator = Validators()
 
         switch self.inputKind {
             
-        case .name:
+        case .name: return validator.validate(name: value)
             
-            return validator.validate(name: value)
+        case .email, .newEmail: return validator.validate(email: value)
             
-        case .email, .newEmail:
+        case .newPassword, .confirmPassword: return validator.validate(password: value)
             
-            return validator.validate(email: value)
-            
-        case .newPassword:
-            
-            return validator.validate(password: value)
-            
-        case .dateOfBirth:
-            
-            return validator.validate(date: DateUtils().dateFromString(value, withFormat: .iso8601UTCBar) ?? Date())
-            
-        default:
-            
-            return .valid
+        case .dateOfBirth: return validator.validate(date: DateUtils().dateFromString(value,
+                                                                                      withFormat: .iso8601UTCBar)
+                                                                                    ?? Date())
+        // Existing password should never be checked for security reasons
+        case .password: return .valid
         }
     }
 }
@@ -314,13 +308,22 @@ extension JujuInputField {
         self.toolbarButtonAction = action
         
         let toolbar = UIToolbar()
+        
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let button = UIBarButtonItem(title: title,
+                                     style: .done,
+                                     target: self,
+                                     action: #selector(toolbarAction))
+        button.tintColor = Styling.Colors.rosyPink
+        
+        toolbar.items = [space, button]
+        
         let cancelButton = UIBarButtonItem(title: "Cancelar",
                                            style: .plain,
                                            target: self,
                                            action: #selector(toolbarCancelAction))
-        let button = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(toolbarAction))
-        toolbar.items = [space, button]
+        cancelButton.tintColor = Styling.Colors.rosyPink
         
         if self.inputKind == .dateOfBirth { toolbar.items?.insert(cancelButton, at: 0) }
         
@@ -366,14 +369,8 @@ extension JujuInputField {
         var titleColor: UIColor {
             
             switch self {
-                
-            case .light:
-                
-                return Styling.Colors.charcoalGrey
-                
-            case .dark:
-                
-                return Styling.Colors.white
+            case .light: return Styling.Colors.charcoalGrey
+            case .dark: return Styling.Colors.white
             }
         }
     }

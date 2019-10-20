@@ -31,7 +31,7 @@ final class TrainLevelComponent: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     

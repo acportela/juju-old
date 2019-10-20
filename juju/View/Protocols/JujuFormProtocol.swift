@@ -14,14 +14,13 @@ protocol JujuFormProtocol where Self: UIView {
     var inputs: [JujuInputField] { get }
     var fieldsAreValid: Bool { get }
     var inputStack: UIStackView { get }
-    var onDoneAction: (() -> Void)? { get set }
     func setupToolbar(nextText: String, doneText: String)
     func clearAllInputs()
 }
 
 extension JujuFormProtocol {
     
-    func setupToolbar(nextText: String, doneText: String) {
+    func setupToolbar(nextText: String = "Próximo", doneText: String = "Pronto") {
         
         for (index, input) in inputs.enumerated() {
             
@@ -32,8 +31,6 @@ extension JujuFormProtocol {
             let action: (() -> Void) = { [weak self] in
                 
                 if isLastElement {
-                    
-                    self?.onDoneAction?()
                     input.resignFirstResponder()
                     return
                 }

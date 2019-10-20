@@ -91,7 +91,7 @@ struct Validators {
 
 enum InputValidationResult: Equatable {
     
-    case required(fieldName: String)
+    case required
     case tooShort(minimum: Int)
     case tooLong(maximum: Int)
     case missingLetters
@@ -105,8 +105,8 @@ enum InputValidationResult: Equatable {
     var message: String {
         
         switch self {
-        case .required(let fieldName):
-            return "\(fieldName) é obrigatório!"
+        case .required:
+            return "Ops, este campo é obrigatório"
         case .tooLong(let lenght):
             return "Ops, são permitidos no máximo \(lenght) caracteres"
         case .tooShort(let lenght):

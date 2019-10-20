@@ -32,7 +32,7 @@ final class SignInView: UIView, JujuFormProtocol {
         return stack
     }()
     
-    private let enterButton = JujuButton(title: "entrar", background: .dark)
+    private let enterButton = JujuButton(title: "entrar", backgroundContext: .dark)
     
     private let bottomBG = UIImageView(image: Resources.Images.bottomBG)
     
@@ -122,7 +122,7 @@ extension SignInView: ViewCoding {
 
         self.backgroundColor = Styling.Colors.softPink
         inputs = [emailInput, passwordInput]
-        setupToolbar(nextText: "Próximo", doneText: "Entrar")
+        setupToolbar()
     }
 }
 

@@ -15,11 +15,11 @@ final class ChangePasswordView: UIView, JujuFormProtocol {
     
     private let headerView = FormHeaderView()
     
-    private let changeButton = JujuButton(title: "Atualizar", background: .light)
+    private let changeButton = JujuButton(title: "Atualizar", backgroundContext: .light)
     
     let newPassword = JujuInputField(inputKind: .newPassword,
                                      background: .light)
-    let newPasswordConfirmation = JujuInputField(inputKind: .newPassword,
+    let newPasswordConfirmation = JujuInputField(inputKind: .confirmPassword,
                                                  background: .light)
     
     let inputStack: UIStackView = {
@@ -94,7 +94,7 @@ extension ChangePasswordView: ViewCoding {
 
         self.backgroundColor = Styling.Colors.white
         inputs = [self.newPassword, self.newPasswordConfirmation]
-        setupToolbar(nextText: "Próximo", doneText: "Confirmar")
+        setupToolbar()
     }
 }
 
