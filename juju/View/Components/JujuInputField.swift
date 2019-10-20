@@ -60,7 +60,7 @@ final class JujuInputField: UIView {
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .leading
-        stack.spacing = Styling.Spacing.four
+        stack.spacing = Styling.Spacing.six
         return stack
     }()
     
@@ -139,6 +139,8 @@ extension JujuInputField: ViewCoding {
     public func setFeedback(_ text: String) {
         self.feedback.text = text
     }
+    
+    func clear() { self.input.text = .empty }
 }
 
 extension JujuInputField: ViewConfiguration {

@@ -18,7 +18,7 @@ final class DateCircleView: JTACDayCell {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = Styling.Colors.white
-        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.sixteen)
+        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen)
         return label
     }()
     
@@ -144,8 +144,8 @@ extension DateCircleView {
     
     struct Constants {
         
-        static let cellWidth = 32
-        static let circleHeight = 32
+        static let cellWidth = 28
+        static let circleHeight = 24
         static let dropWidth = 12
         static let dateCellItendifier = "DateCircleView"
     }

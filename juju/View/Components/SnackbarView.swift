@@ -88,7 +88,7 @@ extension SnackbarView: ViewCoding {
             make.left.equalTo(self.viewContainer.snp.left).offset(Styling.Spacing.fourtyeight)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(Styling.Spacing.sixteen)
             make.right.equalTo(self.viewContainer.snp.right).inset(Styling.Spacing.sixteen)
-            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(30)
         }
         
         self.buttonClose.snp.makeConstraints { make in

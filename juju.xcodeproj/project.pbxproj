@@ -18,7 +18,7 @@
 		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
 		15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947A2356B35000FE85D3 /* DateCircleView.swift */; };
 		15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */; };
-		15E0947F2356CC4E00FE85D3 /* MonthLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */; };
+		15E0947F2356CC4E00FE85D3 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */; };
 		15F786A22359522B00D1C211 /* ProfileFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F786A12359522B00D1C211 /* ProfileFooterView.swift */; };
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
 		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
@@ -167,7 +167,7 @@
 		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		15E0947A2356B35000FE85D3 /* DateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCircleView.swift; sourceTree = "<group>"; };
 		15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
-		15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthLabelView.swift; sourceTree = "<group>"; };
+		15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		15F786A12359522B00D1C211 /* ProfileFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooterView.swift; sourceTree = "<group>"; };
 		1B3AD8AF7EE33C59F99BDC09 /* Pods-jujuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.debug.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.debug.xcconfig"; sourceTree = "<group>"; };
 		520468F01B60305E7F01B021 /* Pods_jujuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jujuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,7 +325,7 @@
 				150E248A2355E2D200F11C8E /* CalendarViewController.swift */,
 				15E0947A2356B35000FE85D3 /* DateCircleView.swift */,
 				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
-				15E0947E2356CC4E00FE85D3 /* MonthLabelView.swift */,
+				15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1284,7 +1284,7 @@
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */,
 				D65356E7234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift in Sources */,
-				15E0947F2356CC4E00FE85D3 /* MonthLabelView.swift in Sources */,
+				15E0947F2356CC4E00FE85D3 /* CalendarHeaderView.swift in Sources */,
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,

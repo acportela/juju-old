@@ -104,6 +104,10 @@ extension Resources.Images {
     
     static let profileFullIcon = image(named: "profile-full-icon")
     
+    static let leftChevron = image(named: "chevron_left")
+    
+    static let rightChevron = image(named: "chevron_right")
+    
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

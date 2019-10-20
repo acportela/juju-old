@@ -12,13 +12,13 @@ extension UITabBarController {
     
     func setSuccessStateWithMessage(_ message: String) {
         
-        guard let hostView = self.selectedViewController?.view else { return }
+        guard let hostView = self.view else { return }
         Snackbar.showSuccess(message: message, in: hostView)
     }
     
     func setErrorStateWithMessage(_ message: String) {
         
-        guard let hostView = self.selectedViewController?.view else { return }
+        guard let hostView = self.view else { return }
         Snackbar.showError(message: message, in: hostView)
     }
 }

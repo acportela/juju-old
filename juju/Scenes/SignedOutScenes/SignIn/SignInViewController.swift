@@ -85,6 +85,7 @@ final class SignInViewController: UIViewController, Loadable {
             case .success(let user):
                 
                 sSelf.delegate?.signInViewController(sSelf, didSignInWithUser: user)
+                sSelf.signInView.clearAllInputs()
                 
             case .error(let error):
                 

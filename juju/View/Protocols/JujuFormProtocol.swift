@@ -16,6 +16,7 @@ protocol JujuFormProtocol where Self: UIView {
     var inputStack: UIStackView { get }
     var onDoneAction: (() -> Void)? { get set }
     func setupToolbar(nextText: String, doneText: String)
+    func clearAllInputs()
 }
 
 extension JujuFormProtocol {
@@ -52,5 +53,10 @@ extension JujuFormProtocol {
         }
         
         return true
+    }
+    
+    func clearAllInputs() {
+        
+        inputs.forEach { $0.clear() }
     }
 }
