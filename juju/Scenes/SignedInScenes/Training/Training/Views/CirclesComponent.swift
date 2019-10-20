@@ -14,7 +14,14 @@ final class CirclesComponent: UIView {
     private let circlesImage = UIImageView(image: Resources.Images.circles)
     
     // MARK: Properties
-    private var time: Int = 0
+    private var inTime: Double = 0
+    private var outTime: Double = 0
+    
+    private var isAnimating = false {
+        didSet {
+            self.isAnimating ? self.transformIn(self.inTime) : self.reset()
+        }
+    }
 
     // MARK: Lifecycle
     override init(frame: CGRect = .zero) {
@@ -50,66 +57,98 @@ extension CirclesComponent: ViewCoding {
     }
 }
 
+// MARK: States
 extension CirclesComponent: ViewConfiguration {
     
     enum States {
-        case updateTime(time: Int)
+        
+        case setTime(inTime: Int, outTime: Int)
         case startAnimation
         case stopAnimation
-        case restart
     }
     
     func configure(with state: CirclesComponent.States) {
         
         switch state {
             
-        case .updateTime(let time):
+        case .setTime(let inTime, let outTime):
             
-            self.time = time
+            self.inTime = Double(inTime)
+            self.outTime = Double(outTime)
             
         case .startAnimation:
             
-            self.animate()
+            self.isAnimating = true
             
         case .stopAnimation:
             
-            self.layer.removeAllAnimations()
-            self.reset()
-            
-        case .restart:
-            
-            self.layer.removeAllAnimations()
-            self.reset()
-            self.animate()
+            self.isAnimating = false
         }
     }
 }
 
+// MARK: Animation functions
 extension CirclesComponent {
     
-    private func animate() {
+    private func transformIn(_ time: Double) {
         
-        UIView.animate(withDuration: Double(self.time),
+        UIView.animate(withDuration: time,
                        delay: 0,
-                       options: [.curveLinear,
-                                 .repeat,
-                                 .autoreverse],
+                       options: [.curveLinear],
                        animations: {
 
             self.transform = CGAffineTransform(scaleX: Constants.scaleFactor, y: Constants.scaleFactor)
 
-        }, completion: { _ in })
+        }, completion: { _ in
+            
+            if self.isAnimating { self.transformOut(self.outTime) }
+        })
+        
+    }
+    
+    private func transformOut(_ time: Double) {
+        
+        UIView.animate(withDuration: time,
+                       delay: 0,
+                       options: [.curveLinear],
+                       animations: {
+
+                        self.transform = .identity
+
+        }, completion: { _ in
+            
+            if self.isAnimating { self.transformIn(self.inTime) }
+        })
     }
     
     private func reset() {
+        
+        self.layer.removeAllAnimations()
         
         UIView.animate(withDuration: Constants.resetDuration) {
             
             self.transform = .identity
         }
     }
+    
+    // Kept as precaution, shouldn't be needed anymore
+    private func animate(inOutEqualTime time: Double) {
+        
+        UIView.animate(withDuration: Double(time),
+                       delay: 0,
+                       options: [.curveLinear,
+                                 .repeat,
+                                 .autoreverse],
+                       animations: {
+
+            self.transform = CGAffineTransform(scaleX: Constants.scaleFactor,
+                                               y: Constants.scaleFactor)
+
+        }, completion: { _ in })
+    }
 }
 
+// MARK: Constants
 extension CirclesComponent {
     
     struct Constants {

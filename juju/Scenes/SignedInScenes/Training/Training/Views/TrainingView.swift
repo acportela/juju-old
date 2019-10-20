@@ -293,7 +293,8 @@ extension TrainingView {
                                                                 accessoryImage: Resources.Images.playIndicator)
         self.initialFooter.configure(with: .initial(footerConfig))
         self.circlesComponent.configure(with: .stopAnimation)
-        self.circlesComponent.configure(with: .updateTime(time: model.contractionDuration))
+        self.circlesComponent.configure(with: .setTime(inTime: model.contractionDuration,
+                                                       outTime: model.relaxationDuration))
         self.innerCircle.configure(with: .build(number: model.contractionDuration,
                                                 color: Styling.Colors.softPinkTwo.withAlphaComponent(0.2)))
         
