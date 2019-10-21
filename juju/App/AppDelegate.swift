@@ -42,15 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let diaryRepo = FirebaseRepository<FirebaseTrainingDiary, FirebaseDiaryQuery>()
         let diaryService = TrainingDiaryService(diaryRepo: diaryRepo)
         
-        let trainingRepo = FirebaseRepository<FirebaseTrainingModel, FirebaseTrainingModelsQuery>()
-        let trainingService = TrainingService(trainingRepo: trainingRepo)
-        
         let defaults = UserDefaultsStorage()
 
         self.appCoordinator = AppCoordinator(rootNavigation: root,
                                              userService: userService,
                                              diaryService: diaryService,
-                                             trainingService: trainingService,
                                              localStorage: defaults)
     }
     

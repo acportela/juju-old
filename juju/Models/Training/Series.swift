@@ -13,10 +13,10 @@ struct Series: Codable {
     var completed: Int
     let model: TrainingModel
     
+    static let fallback = Series(completed: 0, model: .fallbackTrainingModel)
+
     mutating func incrementCompleted() {
-        
+
         self.completed += 1
     }
-    
-    static let fallback = Series(completed: 0, model: .fallbackTrainingModel)
 }

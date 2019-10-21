@@ -12,7 +12,6 @@ class TrainingCoordinator: Coordinator {
     
     private let navigation: UINavigationController
     private let diaryService: TrainingDiaryServiceProtocol
-    private let trainingService: TrainingServiceProtocol
     private let localDefaults: LocalStorageProtocol
     private let user: ClientUser
     
@@ -20,14 +19,12 @@ class TrainingCoordinator: Coordinator {
     
     init(rootNavigation: UINavigationController,
          diaryService: TrainingDiaryServiceProtocol,
-         trainingService: TrainingServiceProtocol,
          localDefaults: LocalStorageProtocol,
          user: ClientUser) {
         
         self.diaryService = diaryService
         self.navigation = rootNavigation
         self.localDefaults = localDefaults
-        self.trainingService = trainingService
         self.user = user
     }
     
@@ -54,7 +51,6 @@ class TrainingCoordinator: Coordinator {
         let training = TrainingViewController(mode: mode,
                                               localDefaults: localDefaults,
                                               diaryService: self.diaryService,
-                                              trainingService: self.trainingService,
                                               user: self.user)
         training.delegate = self
         

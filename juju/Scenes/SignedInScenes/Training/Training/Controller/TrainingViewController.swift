@@ -26,13 +26,11 @@ final class TrainingViewController: UIViewController, Loadable {
     init(mode: TrainingMode,
          localDefaults: LocalStorageProtocol,
          diaryService: TrainingDiaryServiceProtocol,
-         trainingService: TrainingServiceProtocol,
          user: ClientUser) {
         
         self.dataSource = TrainingDataSource(mode: mode,
                                              localStorage: localDefaults,
                                              diaryService: diaryService,
-                                             trainingService: trainingService,
                                              user: user)
         super.init(nibName: nil, bundle: nil)
     }
@@ -70,7 +68,6 @@ final class TrainingViewController: UIViewController, Loadable {
     override func viewWillDisappear(_ animated: Bool) {
         
         self.stopTrain()
-        self.dataSource.unregisterListeners()
         super.viewWillDisappear(animated)
     }
     
@@ -97,7 +94,7 @@ extension TrainingViewController {
         guard let serie = self.dataSource.currentSerie else {
             
             self.startLoading()
-            self.dataSource.fetchTrainingModels()
+            self.dataSource.fetchTodayDiary()
             return
         }
         
@@ -126,29 +123,10 @@ extension TrainingViewController {
         self.trainingView.configure(with: .initial(serie))
     }
     
-    private func showDefaultTrainingAlert() {
+    private func showFetchError() {
         
-        let message = "Ocorreu um erro ao buscar seu treino. Usaremos o treino padrão"
+        let message = "Ocorreu um erro ao buscar seu progresso de hoje"
         Snackbar.showError(message: message, in: self.view)
-    }
-}
-
-// MARK: TrainingView Delegate
-extension TrainingViewController: TrainingViewDelegate {
-
-    func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
-        
-        self.startTrain()
-    }
-    
-    func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
-        
-        self.stopTrain()
-    }
-    
-    func trainingViewFinishedSerie(_ trainingView: TrainingView, serie: Series) {
-        
-        self.dataSource.updateCurrentDiaryWithSerie(serie)
     }
 }
 
@@ -164,27 +142,36 @@ extension TrainingViewController: TrainingDataSourceDelegate {
             if error == .noResults {
                 
                 // New day
-                let models = self.dataSource.availableTrainings
-                ?? TrainingConstants.defaultTrainingModels
-                self.dataSource.setNewDiary(DiaryProgress(date: Date(), models: models))
+                self.dataSource.setNewDiary()
                 
             } else {
                 
                 self.initScreenWithSerie(.fallback)
-                self.showDefaultTrainingAlert()
+                self.showFetchError()
                 return
             }
         }
         
         self.initScreenWithSerie(self.dataSource.currentSerie ?? .fallback)
     }
-    
-    func trainingDataSourceTrainingModelWasUpdated(_ dataSource: TrainingDataSource, error: Bool) {
-        
-        if self.dataSource.currentSerie == nil {
-            
-            self.dataSource.fetchTodayDiary()
-        }
+}
+
+// MARK: TrainingView Delegate
+extension TrainingViewController: TrainingViewDelegate {
+
+    func trainingViewWantsToStartTrain(_ trainingView: TrainingView) {
+
+        self.startTrain()
+    }
+
+    func trainingViewWantsToStopTrain(_ trainingView: TrainingView) {
+
+        self.stopTrain()
+    }
+
+    func trainingViewFinishedSerie(_ trainingView: TrainingView, serie: Series) {
+
+        self.dataSource.saveDiary(serie)
     }
 }
 

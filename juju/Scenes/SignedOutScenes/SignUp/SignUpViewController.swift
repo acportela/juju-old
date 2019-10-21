@@ -58,7 +58,7 @@ final class SignUpViewController: UIViewController, Loadable {
                 return
             }
             
-            //sSelf.proceedWithSignUp(formUser: user.formUser, password: user.pass)
+            sSelf.proceedWithSignUp(formUser: user.formUser, password: user.pass)
         }
     }
     

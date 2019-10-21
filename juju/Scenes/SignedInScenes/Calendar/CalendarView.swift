@@ -98,12 +98,8 @@ extension CalendarView: ViewCoding {
     func configureViews() {
         
         self.backgroundColor = Styling.Colors.veryLightPink
-    }
-    
-    func reload() {
-        
-        self.jtCalendar.reloadData()
         self.jtCalendar.scrollToDate(Date())
+        self.buttonAddUrine.isHidden = true
     }
 }
 
@@ -112,7 +108,6 @@ extension CalendarView: ViewConfiguration {
     enum States {
         
         case build
-        case reload
     }
     
     func configure(with state: CalendarView.States) {
@@ -125,9 +120,14 @@ extension CalendarView: ViewConfiguration {
                                                                     subtitle: .empty,
                                                                     accessoryImage: Resources.Images.urineDropCircle)
             self.buttonAddUrine.configure(with: .initial(buttonConfig))
-            
-        case .reload:
-            break
+        }
+    }
+
+    private func getDiaryWithDate(_ date: Date) -> DiaryProgress? {
+
+        return self.diary.first { diary in
+
+            DateUtils.defaultCalendar.isDate(date, inSameDayAs: diary.date)
         }
     }
 }
@@ -151,7 +151,17 @@ extension CalendarView: JTACMonthViewDelegate {
                   indexPath: IndexPath) {
         
         guard let cell = cell as? DateCircleView  else { return }
-        cell.configure(with: .circleAndDrop)
+
+        if self.getDiaryWithDate(date) != nil {
+
+            //Add urine check
+            cell.configure(with: .circle)
+
+        } else {
+            
+            cell.configure(with: .empty)
+        }
+
         cell.configure(with: .setText(cellState.text))
     }
     
@@ -207,25 +217,11 @@ extension CalendarView: JTACMonthViewDataSource {
         }
         
         header.configure(with: .build(range.start))
-        header.delegate = self
         return header
     }
 
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         
         return MonthSize(defaultSize: Constants.monthHeight)
-    }
-}
-
-extension CalendarView: CalendarHeaderViewDelegate {
-    
-    func calendarHeaderViewDidTapPrevious(_ monthHeader: CalendarHeaderView) {
-        
-        self.jtCalendar.scrollToSegment(.previous)
-    }
-    
-    func calendarHeaderViewDidTapNext(_ monthHeader: CalendarHeaderView) {
-        
-        self.jtCalendar.scrollToSegment(.next)
     }
 }

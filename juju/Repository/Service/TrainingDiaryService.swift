@@ -28,10 +28,6 @@ protocol TrainingDiaryServiceProtocol: AnyObject {
     func trainingWantsToUpdateDiary(_ diary: DiaryProgress,
                                     forUser user: ClientUser,
                                     callback: @escaping (DiaryResult) -> Void)
-    
-    func trainingWantsToCreateNewDiary(_ diary: DiaryProgress,
-                                       forUser user: ClientUser,
-                                       callback: @escaping (DiaryResult) -> Void)
 }
 
 class TrainingDiaryService: TrainingDiaryServiceProtocol {
@@ -105,27 +101,6 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
         guard let id = updatedDiary.unique else { return }
         
         self.diaryRepo.update(entity: updatedDiary, id: id) { result in
-            
-            switch result {
-                
-            case .success:
-                
-                callback(.success)
-                
-            case .error(let error):
-                
-                callback(.error(error))
-            }
-        }
-    }
-    
-    func trainingWantsToCreateNewDiary(_ diary: DiaryProgress,
-                                       forUser user: ClientUser,
-                                       callback: @escaping (DiaryResult) -> Void) {
-        
-        let newDiary = FirebaseTrainingDiary(diary: diary, user: user)
-        
-        self.diaryRepo.save(entity: newDiary) { result in
             
             switch result {
                 

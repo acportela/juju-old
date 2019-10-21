@@ -17,7 +17,6 @@ final class DateCircleView: JTACDayCell {
         
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = Styling.Colors.white
         label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen)
         return label
     }()
@@ -88,19 +87,22 @@ extension DateCircleView: ViewCoding {
     }
     
     private func setEmpty() {
-        
+
+        self.title.textColor = Styling.Colors.charcoalGrey
         self.circle.alpha = 0
         self.drop.alpha = 0
     }
     
     private func setCirlcleOnly() {
-        
+
+        self.title.textColor = Styling.Colors.white
         self.circle.alpha = 1
         self.drop.alpha = 0
     }
     
     private func setCircleAndDrop() {
-        
+
+        self.title.textColor = Styling.Colors.white
         self.circle.alpha = 1
         self.drop.alpha = 1
     }

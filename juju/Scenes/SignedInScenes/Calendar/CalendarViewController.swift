@@ -18,7 +18,6 @@ final class CalendarViewController: UIViewController, Loadable {
     let loadingController = LoadingViewController(animatable: JujuLoader())
     
     init(diaryService: TrainingDiaryServiceProtocol,
-         trainingService: TrainingServiceProtocol,
          user: ClientUser) {
 
         // TODO: Change this for better data saving
@@ -28,8 +27,7 @@ final class CalendarViewController: UIViewController, Loadable {
 
         self.calendarView = CalendarView(initialRange: self.initialCalendarRange)
         self.dataSource = CalendarDataSource(user: user,
-                                             diaryService: diaryService,
-                                             trainingService: trainingService)
+                                             diaryService: diaryService)
         super.init(nibName: nil, bundle: nil)
         self.dataSource.delegate = self
     }
@@ -43,38 +41,32 @@ final class CalendarViewController: UIViewController, Loadable {
         
         self.view = self.calendarView
     }
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.initialSetup()
-    }
-
-    private func initialSetup() {
-
-        self.startLoading()
-        self.dataSource.fetchDiary(withRange: self.initialCalendarRange)
+        self.configureNavigation()
+        self.calendarView.configure(with: .build)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        self.configureNavigation()
-        self.calendarView.configure(with: .build)
+        self.initialSetup()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-
-        super.viewWillDisappear(animated)
-        self.dataSource.unregisterListeners()
-    }
-    
     private func configureNavigation() {
         
         self.title = CalendarViewController.title
         
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
+    }
+
+    private func initialSetup() {
+
+        self.startLoading()
+        self.dataSource.fetchDiary(withRange: self.initialCalendarRange)
     }
 
     private func setErrorState() {
@@ -96,10 +88,5 @@ extension CalendarViewController: CalendarDataSourceDelegate {
 
         self.stopLoading()
         self.setErrorState()
-    }
-
-    func calendarDataSourceDidFetchModels(_ dataSource: CalendarDataSource) {
-
-        self.dataSource.fetchDiary(withRange: self.initialCalendarRange)
     }
 }
