@@ -9,14 +9,41 @@
 import Foundation
 
 struct DateUtils {
-    
-    static let defaultCalendar = Calendar.current
+
+    // TODO: Implement localization first and change this to .autoupdatingCurrent
+    static let defaultCalendar: Calendar = {
+        var cal = Calendar(identifier: .iso8601)
+        cal.locale = Locale(identifier: "pt-br")
+        return cal
+    }()
     
     func calculateDateFrom(_ start: Date, to end: Date) -> DateComponents {
         
         return DateUtils.defaultCalendar.dateComponents([.year, .month, .day], from: start, to: end)
     }
-    
+
+    func getStartOf(_ component: Calendar.Component) -> Date {
+
+        DateUtils.defaultCalendar.dateInterval(of: component, for: Date())!.start
+    }
+
+    func getStartOfNext(_ component: Calendar.Component) -> Date {
+
+        DateUtils.defaultCalendar.dateInterval(of: component, for: Date())!.end
+    }
+
+    func oneYearBehind() -> Date {
+        let components = DateComponents(year: -1)
+        return Calendar.current.date(byAdding: components,
+                                     to: Date())!
+    }
+
+    func oneYearFromNow() -> Date {
+        let components = DateComponents(year: 1)
+        return Calendar.current.date(byAdding: components,
+                                     to: Date())!
+    }
+
     func dateFromString(_ dateString: String,
                         withFormat format: DateFormatters.Format) -> Date? {
         

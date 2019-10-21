@@ -8,15 +8,30 @@
 
 import UIKit
 
-final class CalendarViewController: UIViewController {
+final class CalendarViewController: UIViewController, Loadable {
     
     public static let title = "Diário"
+    private let calendarView: CalendarView
+    private let dataSource: CalendarDataSource
+    private let dateUtils = DateUtils()
+    private let initialCalendarRange: DateRange
+    let loadingController = LoadingViewController(animatable: JujuLoader())
     
-    private let calendarView = CalendarView()
-    
-    init() {
-        
+    init(diaryService: TrainingDiaryServiceProtocol,
+         trainingService: TrainingServiceProtocol,
+         user: ClientUser) {
+
+        // TODO: Change this for better data saving
+        let startDate = self.dateUtils.getStartOf(.year)
+        let endDate = self.dateUtils.getStartOfNext(.year)
+        self.initialCalendarRange = DateRange(from: startDate, to: endDate)
+
+        self.calendarView = CalendarView(initialRange: self.initialCalendarRange)
+        self.dataSource = CalendarDataSource(user: user,
+                                             diaryService: diaryService,
+                                             trainingService: trainingService)
         super.init(nibName: nil, bundle: nil)
+        self.dataSource.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,6 +47,13 @@ final class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.initialSetup()
+    }
+
+    private func initialSetup() {
+
+        self.startLoading()
+        self.dataSource.fetchDiary(withRange: self.initialCalendarRange)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +61,12 @@ final class CalendarViewController: UIViewController {
         super.viewWillAppear(animated)
         self.configureNavigation()
         self.calendarView.configure(with: .build)
-        self.calendarView.reload()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+
+        super.viewWillDisappear(animated)
+        self.dataSource.unregisterListeners()
     }
     
     private func configureNavigation() {
@@ -49,5 +76,30 @@ final class CalendarViewController: UIViewController {
         let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     }
+
+    private func setErrorState() {
+
+        Snackbar.showError(message: "Ocorreu um erro. Por favor, tente novamente", in: self.view)
+    }
     
+}
+
+extension CalendarViewController: CalendarDataSourceDelegate {
+
+    func calendarDataSourceDidFetchDiaries(_ dataSource: CalendarDataSource, diaries: [DiaryProgress]) {
+
+        self.stopLoading()
+        self.calendarView.diary = diaries
+    }
+
+    func calendarDataSourceFailedFetchingDiaries(_ dataSource: CalendarDataSource) {
+
+        self.stopLoading()
+        self.setErrorState()
+    }
+
+    func calendarDataSourceDidFetchModels(_ dataSource: CalendarDataSource) {
+
+        self.dataSource.fetchDiary(withRange: self.initialCalendarRange)
+    }
 }

@@ -56,6 +56,7 @@ class SignedInCoordinator: NSObject, Coordinator {
         
         let coordinator = CalendarCoordinator(rootNavigation: self.calendarNavigation,
                                               diaryService: self.diaryService,
+                                              trainingService: self.trainingService,
                                               user: self.user)
         return coordinator
     }()

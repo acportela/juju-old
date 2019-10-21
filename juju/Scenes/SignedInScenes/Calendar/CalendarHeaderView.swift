@@ -115,6 +115,7 @@ extension CalendarHeaderView: ViewCoding {
         self.backgroundColor = .clear
         self.addWeekLabels()
         
+        // TODO: Tap month tap gesture not working. Investigate
         let previousTap = UITapGestureRecognizer(target: self, action: #selector(self.previousItemTap))
         let nextTap = UITapGestureRecognizer(target: self, action: #selector(self.nextItemTap))
         
@@ -123,11 +124,8 @@ extension CalendarHeaderView: ViewCoding {
     }
     
     private func addWeekLabels() {
-        
-        var calendar = Calendar(identifier: .iso8601)
-        // TODO: Implement localization first and change this to .autoupdatingCurrent
-        calendar.locale = Locale(identifier: "pt-br")
-        let weekDays = calendar.shortWeekdaySymbols
+
+        let weekDays = DateUtils.defaultCalendar.shortWeekdaySymbols
         
         for index in 0...6 {
             
@@ -159,17 +157,26 @@ extension CalendarHeaderView: ViewConfiguration {
     
     enum States {
         
-        case build(title: String)
+        case build(Date)
     }
     
     func configure(with state: CalendarHeaderView.States) {
     
         switch state {
             
-        case .build(let title):
-            
-            self.headerLabel.text = title
+        case .build(let date):
+
+            self.setTitle(forDate: date)
         }
+    }
+
+    private func setTitle(forDate date: Date) {
+
+        let monthIndex = DateUtils.defaultCalendar.component(.month, from: date) - 1
+        let month = DateUtils.defaultCalendar.monthSymbols[monthIndex].capitalized
+        let year = DateUtils.defaultCalendar.component(.year, from: date)
+
+        self.headerLabel.text = "\(month) \(year)"
     }
 }
 

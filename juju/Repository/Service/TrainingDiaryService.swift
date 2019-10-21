@@ -8,7 +8,8 @@
 
 import Foundation
 
-typealias DiaryContentResult = ContentResult<DiaryProgress, RepositoryError>
+typealias DiarySingleContentResult = ContentResult<DiaryProgress, RepositoryError>
+typealias DiaryMultipleContentResult = ContentResult<[DiaryProgress], RepositoryError>
 typealias DiaryResult = Result<RepositoryError>
 
 protocol TrainingDiaryServiceProtocol: AnyObject {
@@ -16,8 +17,13 @@ protocol TrainingDiaryServiceProtocol: AnyObject {
     //Change result type to app model, not firebase
     func trainingWantsToFetchDiary(forUser user: ClientUser,
                                    withDate date: Date,
-                                   trainingModels: [TrainingModel],
-                                   callback: @escaping (DiaryContentResult) -> Void)
+                                   andModels trainingModels: [TrainingModel],
+                                   callback: @escaping (DiarySingleContentResult) -> Void)
+    
+    func trainingWantsToFetchDiary(forUser user: ClientUser,
+                                   withRange dateRange: DateRange,
+                                   andModels trainingModels: [TrainingModel],
+                                   callback: @escaping (DiaryMultipleContentResult) -> Void)
     
     func trainingWantsToUpdateDiary(_ diary: DiaryProgress,
                                     forUser user: ClientUser,
@@ -39,8 +45,8 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
     
     func trainingWantsToFetchDiary(forUser user: ClientUser,
                                    withDate date: Date,
-                                   trainingModels: [TrainingModel],
-                                   callback: @escaping (DiaryContentResult) -> Void) {
+                                   andModels trainingModels: [TrainingModel],
+                                   callback: @escaping (DiarySingleContentResult) -> Void) {
         
         let query = FirebaseDiaryQuery(userId: user.userId, withDate: date)
 
@@ -55,6 +61,34 @@ class TrainingDiaryService: TrainingDiaryServiceProtocol {
                     return
                 }
                 callback(.success(validResult.toDiary(withModels: trainingModels)))
+                
+            case .error(let error):
+                
+                callback(.error(error))
+            }
+        }
+    }
+    
+    func trainingWantsToFetchDiary(forUser user: ClientUser,
+                                   withRange dateRange: DateRange,
+                                   andModels trainingModels: [TrainingModel],
+                                   callback: @escaping (DiaryMultipleContentResult) -> Void) {
+        
+        let query = FirebaseDiaryQuery(userId: user.userId, withRange: dateRange)
+        
+        self.diaryRepo.get(query: query) { contentResult in
+        
+            switch contentResult {
+            
+            case .success(let firebaseTrainingDiary):
+                
+                guard !firebaseTrainingDiary.isEmpty else {
+                    callback(.error(.noResults))
+                    return
+                }
+                
+                let diaries = firebaseTrainingDiary.map { $0.toDiary(withModels: trainingModels) }
+                callback(.success(diaries))
                 
             case .error(let error):
                 

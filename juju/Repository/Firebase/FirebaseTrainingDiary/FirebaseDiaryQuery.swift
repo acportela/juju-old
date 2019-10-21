@@ -25,14 +25,14 @@ struct FirebaseDiaryQuery: FirebaseQuery {
                                                                          isEqualTo: dateString)
     }
     
-    init(userId: String, fromDate lowerDate: Date, toDate upperDate: Date) {
+    init(userId: String, withRange dateRange: DateRange) {
         
         let firestore = Firestore.firestore()
         
         let collection = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
         
-        let lowerDateString = DateUtils().stringFromDate(lowerDate, withFormat: .iso8601UTCDash)
-        let upperDateString = DateUtils().stringFromDate(upperDate, withFormat: .iso8601UTCDash)
+        let lowerDateString = DateUtils().stringFromDate(dateRange.from, withFormat: .iso8601UTCDash)
+        let upperDateString = DateUtils().stringFromDate(dateRange.to, withFormat: .iso8601UTCDash)
         
         self.firebaseQuery = firestore.collection(collection).whereField(FieldPath.documentID(),
                                                                          isGreaterThanOrEqualTo: lowerDateString)

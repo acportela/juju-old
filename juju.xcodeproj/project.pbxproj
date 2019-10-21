@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
 		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
+		15235B77235CE9690098A4BE /* CadendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15235B76235CE9690098A4BE /* CadendarDataSource.swift */; };
 		1550DCAC235B4379000CBC7C /* FormHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAB235B4379000CBC7C /* FormHeaderView.swift */; };
 		1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAE235B8576000CBC7C /* UITabBarController.swift */; };
 		1550DCB3235B89B5000CBC7C /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */; };
@@ -158,6 +159,7 @@
 		141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.debug.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.debug.xcconfig"; sourceTree = "<group>"; };
 		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		15235B76235CE9690098A4BE /* CadendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadendarDataSource.swift; sourceTree = "<group>"; };
 		1550DCAB235B4379000CBC7C /* FormHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHeaderView.swift; sourceTree = "<group>"; };
 		1550DCAE235B8576000CBC7C /* UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
 		1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				15E0947A2356B35000FE85D3 /* DateCircleView.swift */,
 				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
 				15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */,
+				15235B76235CE9690098A4BE /* CadendarDataSource.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 				D65356E7234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift in Sources */,
 				15E0947F2356CC4E00FE85D3 /* CalendarHeaderView.swift in Sources */,
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
+				15235B77235CE9690098A4BE /* CadendarDataSource.swift in Sources */,
 				D6FF00AF22E3550B00D8B2CB /* IntroViewController.swift in Sources */,
 				D6A3FD2222E00DC300CE41FF /* RepositoryError.swift in Sources */,
 				D6182B4F23240DF200932DA3 /* JujuButtonWithAccessoryConfiguration.swift in Sources */,

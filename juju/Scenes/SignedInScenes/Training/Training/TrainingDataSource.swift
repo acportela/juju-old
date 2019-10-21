@@ -69,7 +69,7 @@ extension TrainingDataSource {
         
         self.diaryService.trainingWantsToFetchDiary(forUser: self.user,
                                                     withDate: Date(),
-                                                    trainingModels: models) { [weak self] result in
+                                                    andModels: models) { [weak self] result in
             
             guard let sSelf = self else { return }
                                                         

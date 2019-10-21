@@ -44,13 +44,20 @@ final class CalendarView: UIView {
             buttonAddUrine.wasTappedCallback = addUrineAction
         }
     }
-    
-    private var calendar = Calendar(identifier: .iso8601)
-    private let headerFormatter = DateFormatter()
 
+    let dateUtils = DateUtils()
+    let initialCalendarRange: DateRange
+
+    var diary: [DiaryProgress] = [] {
+        didSet {
+            self.jtCalendar.reloadData()
+        }
+    }
+    
     // MARK: Lifecycle
-    override init(frame: CGRect = .zero) {
-        
+    init(initialRange: DateRange, frame: CGRect = .zero) {
+
+        self.initialCalendarRange = initialRange
         super.init(frame: frame)
         setupViewConfiguration()
     }
@@ -73,7 +80,7 @@ extension CalendarView: ViewCoding {
         
         self.jtCalendar.snp.makeConstraints { make in
             
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.fourtyeight)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.twentyfour)
             make.left.equalToSuperview().offset(Styling.Spacing.sixteen)
             make.right.equalToSuperview().offset(-Styling.Spacing.sixteen)
             make.height.greaterThanOrEqualTo(Constants.calendarHeight)
@@ -81,7 +88,7 @@ extension CalendarView: ViewCoding {
         
         self.buttonAddUrine.snp.makeConstraints { make in
             
-            make.top.equalTo(self.jtCalendar.snp.bottom).offset(Styling.Spacing.fourtyeight)
+            make.top.equalTo(self.jtCalendar.snp.bottom).offset(Styling.Spacing.twentyfour)
             make.left.equalToSuperview().offset(Styling.Spacing.thirtytwo)
             make.right.equalToSuperview().offset(-Styling.Spacing.thirtytwo)
             make.height.equalTo(Constants.buttonHeight)
@@ -91,15 +98,12 @@ extension CalendarView: ViewCoding {
     func configureViews() {
         
         self.backgroundColor = Styling.Colors.veryLightPink
-        headerFormatter.dateFormat = Constants.monthLabelFormat
-        
-        // TODO: Implement localization first and change this to .autoupdatingCurrent
-        calendar.locale = Locale(identifier: "pt-br")
     }
     
     func reload() {
         
         self.jtCalendar.reloadData()
+        self.jtCalendar.scrollToDate(Date())
     }
 }
 
@@ -108,6 +112,7 @@ extension CalendarView: ViewConfiguration {
     enum States {
         
         case build
+        case reload
     }
     
     func configure(with state: CalendarView.States) {
@@ -120,6 +125,9 @@ extension CalendarView: ViewConfiguration {
                                                                     subtitle: .empty,
                                                                     accessoryImage: Resources.Images.urineDropCircle)
             self.buttonAddUrine.configure(with: .initial(buttonConfig))
+            
+        case .reload:
+            break
         }
     }
 }
@@ -131,8 +139,6 @@ extension CalendarView {
         static let buttonHeight: CGFloat = 48
         static let calendarHeight: CGFloat = 390
         static let monthHeight: CGFloat = 102
-        static let monthLabelFormat = "MMMM"
-        static let calendarDateFormat = "yyyy MM dd"
     }
 }
 
@@ -165,21 +171,23 @@ extension CalendarView: JTACMonthViewDelegate {
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
         return cell
     }
+    
+    func calendar(_ calendar: JTACMonthView,
+                  didSelectDate date: Date,
+                  cell: JTACDayCell?,
+                  cellState: CellState,
+                  indexPath: IndexPath) {
+        
+        print(date)
+    }
 }
 
 extension CalendarView: JTACMonthViewDataSource {
     
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
         
-        let dayFormatter = DateFormatter()
-        dayFormatter.dateFormat = Constants.calendarDateFormat
-        
-        // TODO: Change these boundaries
-        let startDate = dayFormatter.date(from: "2018 01 01")!
-        let endDate = Date()
-        
-        return ConfigurationParameters(startDate: startDate,
-                                       endDate: endDate,
+        return ConfigurationParameters(startDate: self.initialCalendarRange.from,
+                                       endDate: self.initialCalendarRange.to,
                                        numberOfRows: 5,
                                        generateInDates: .off,
                                        generateOutDates: .off,
@@ -198,10 +206,7 @@ extension CalendarView: JTACMonthViewDataSource {
             return JTACMonthReusableView()
         }
         
-        let monthIndex = self.calendar.component(.month, from: range.start) - 1
-        let month = self.calendar.monthSymbols[monthIndex].capitalized
-        
-        header.configure(with: .build(title: month))
+        header.configure(with: .build(range.start))
         header.delegate = self
         return header
     }
