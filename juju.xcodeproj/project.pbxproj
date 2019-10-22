@@ -10,12 +10,18 @@
 		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
 		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
 		15235B77235CE9690098A4BE /* CadendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15235B76235CE9690098A4BE /* CadendarDataSource.swift */; };
-		153CBE49235D475E00D0B641 /* DiaryViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153CBE48235D475E00D0B641 /* DiaryViewItem.swift */; };
+		153CBE49235D475E00D0B641 /* DayItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153CBE48235D475E00D0B641 /* DayItemView.swift */; };
+		15426A54235E971500F82330 /* DateSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15426A53235E971500F82330 /* DateSummaryViewController.swift */; };
+		15426A56235EA1B300F82330 /* DaySummaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15426A55235EA1B300F82330 /* DaySummaryHeaderView.swift */; };
+		15426A58235EABD400F82330 /* DaySummaryViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15426A57235EABD400F82330 /* DaySummaryViewConfiguration.swift */; };
 		1550DCAC235B4379000CBC7C /* FormHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAB235B4379000CBC7C /* FormHeaderView.swift */; };
 		1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550DCAE235B8576000CBC7C /* UITabBarController.swift */; };
 		1550DCB3235B89B5000CBC7C /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */; };
 		1550DCB4235B89B5000CBC7C /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */; };
 		155E54E6235DD8B100D2E4D6 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E54E5235DD8B100D2E4D6 /* UILabel.swift */; };
+		1590324B235E9065008079D2 /* DayViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590324A235E9065008079D2 /* DayViewSection.swift */; };
+		1590324D235E9386008079D2 /* DayItemViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590324C235E9386008079D2 /* DayItemViewConfiguration.swift */; };
+		15903251235E9457008079D2 /* DaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15903250235E9457008079D2 /* DaySummaryView.swift */; };
 		15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */; };
 		15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */; };
 		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
@@ -162,12 +168,18 @@
 		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		15235B76235CE9690098A4BE /* CadendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadendarDataSource.swift; sourceTree = "<group>"; };
-		153CBE48235D475E00D0B641 /* DiaryViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewItem.swift; sourceTree = "<group>"; };
+		153CBE48235D475E00D0B641 /* DayItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayItemView.swift; sourceTree = "<group>"; };
+		15426A53235E971500F82330 /* DateSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSummaryViewController.swift; sourceTree = "<group>"; };
+		15426A55235EA1B300F82330 /* DaySummaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryHeaderView.swift; sourceTree = "<group>"; };
+		15426A57235EABD400F82330 /* DaySummaryViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryViewConfiguration.swift; sourceTree = "<group>"; };
 		1550DCAB235B4379000CBC7C /* FormHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHeaderView.swift; sourceTree = "<group>"; };
 		1550DCAE235B8576000CBC7C /* UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
 		1550DCB1235B89B5000CBC7C /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		155E54E5235DD8B100D2E4D6 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		1590324A235E9065008079D2 /* DayViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewSection.swift; sourceTree = "<group>"; };
+		1590324C235E9386008079D2 /* DayItemViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayItemViewConfiguration.swift; sourceTree = "<group>"; };
+		15903250235E9457008079D2 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
 		15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -327,13 +339,13 @@
 		150E24872355E2AE00F11C8E /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				15903252235E945D008079D2 /* DiarySummary */,
 				150E24882355E2C200F11C8E /* CalendarView.swift */,
 				150E248A2355E2D200F11C8E /* CalendarViewController.swift */,
 				15E0947A2356B35000FE85D3 /* DateCircleView.swift */,
 				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
 				15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */,
 				15235B76235CE9690098A4BE /* CadendarDataSource.swift */,
-				153CBE48235D475E00D0B641 /* DiaryViewItem.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -364,6 +376,20 @@
 				1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */,
 			);
 			path = Rubik;
+			sourceTree = "<group>";
+		};
+		15903252235E945D008079D2 /* DiarySummary */ = {
+			isa = PBXGroup;
+			children = (
+				153CBE48235D475E00D0B641 /* DayItemView.swift */,
+				1590324C235E9386008079D2 /* DayItemViewConfiguration.swift */,
+				1590324A235E9065008079D2 /* DayViewSection.swift */,
+				15903250235E9457008079D2 /* DaySummaryView.swift */,
+				15426A53235E971500F82330 /* DateSummaryViewController.swift */,
+				15426A55235EA1B300F82330 /* DaySummaryHeaderView.swift */,
+				15426A57235EABD400F82330 /* DaySummaryViewConfiguration.swift */,
+			);
+			path = DiarySummary;
 			sourceTree = "<group>";
 		};
 		15AA30EA235AADE7007D7173 /* ChangePassword */ = {
@@ -1242,6 +1268,7 @@
 				D6CDADD422E09C520030B753 /* FirebaseUser.swift in Sources */,
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
+				15426A54235E971500F82330 /* DateSummaryViewController.swift in Sources */,
 				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */,
@@ -1251,7 +1278,7 @@
 				D690E0202331B78E008A1DB3 /* TrainingConstants.swift in Sources */,
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
-				153CBE49235D475E00D0B641 /* DiaryViewItem.swift in Sources */,
+				153CBE49235D475E00D0B641 /* DayItemView.swift in Sources */,
 				15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */,
 				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
 				D6856AAE2345878700270F14 /* FirebaseDiaryQuery.swift in Sources */,
@@ -1263,6 +1290,7 @@
 				D665FC812348DF300073F192 /* FirebaseExtensions.swift in Sources */,
 				D61E0C3622E491B1003700EA /* UIButton.swift in Sources */,
 				D6856AA923457FDB00270F14 /* DiaryProgress.swift in Sources */,
+				1590324D235E9386008079D2 /* DayItemViewConfiguration.swift in Sources */,
 				D6856AA723457ED100270F14 /* Series.swift in Sources */,
 				D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */,
 				15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */,
@@ -1285,6 +1313,7 @@
 				D6ABED2B22DF350D0022CF0A /* FirebaseEmailPasswordAuthentication.swift in Sources */,
 				D63BE80C234A575B0015FC27 /* ProfileView.swift in Sources */,
 				D61E0C3A22E4A5B7003700EA /* String.swift in Sources */,
+				15426A56235EA1B300F82330 /* DaySummaryHeaderView.swift in Sources */,
 				D6EE5CC4232F305700F3701A /* SpinnerLoader.swift in Sources */,
 				D66D5ADB2312CF8200F0A944 /* UITextField.swift in Sources */,
 				D68ACB9222C7E329001C94A5 /* UIColor.swift in Sources */,
@@ -1293,6 +1322,7 @@
 				1550DCAC235B4379000CBC7C /* FormHeaderView.swift in Sources */,
 				D6EE5CB8232F222D00F3701A /* TrainingLevel.swift in Sources */,
 				D6182B5323242E3C00932DA3 /* JujuTabBarController.swift in Sources */,
+				1590324B235E9065008079D2 /* DayViewSection.swift in Sources */,
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D6856AB02345A8BB00270F14 /* TrainingDiaryService.swift in Sources */,
@@ -1300,6 +1330,7 @@
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D622755722FA4527004992E5 /* DateUtils.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
+				15903251235E9457008079D2 /* DaySummaryView.swift in Sources */,
 				D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */,
 				D65356E7234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift in Sources */,
 				15E0947F2356CC4E00FE85D3 /* CalendarHeaderView.swift in Sources */,
@@ -1331,6 +1362,7 @@
 				D6466EB0234AB57E006E7F1A /* SplashScreenViewController.swift in Sources */,
 				D6ABED2822DF31A00022CF0A /* FirebaseAuthErrorAdapter.swift in Sources */,
 				D6FC90912353720A006440D6 /* SnackbarView.swift in Sources */,
+				15426A58235EABD400F82330 /* DaySummaryViewConfiguration.swift in Sources */,
 				D6D39752232D91B800EBA4FE /* TrainingCoordinator.swift in Sources */,
 				D6FF00BF22E3CC5600D8B2CB /* Notification.swift in Sources */,
 				D61E0C3E22E4D62D003700EA /* SignInViewController.swift in Sources */,

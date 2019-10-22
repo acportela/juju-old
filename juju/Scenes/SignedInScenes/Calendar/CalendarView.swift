@@ -10,7 +10,11 @@ import UIKit
 import SnapKit
 import JTAppleCalendar
 
-// TODO: Remove force unwraps
+protocol CalendarViewDelegate: AnyObject {
+
+    func calendarViewWantsToShowSummary(_ calendarView: CalendarView,
+                                        forDiary diary: DiaryProgress)
+}
 
 final class CalendarView: UIView {
     
@@ -44,6 +48,8 @@ final class CalendarView: UIView {
             buttonAddUrine.wasTappedCallback = addUrineAction
         }
     }
+
+    weak var delegate: CalendarViewDelegate?
 
     let dateUtils = DateUtils()
     let initialCalendarRange: DateRange
@@ -187,8 +193,11 @@ extension CalendarView: JTACMonthViewDelegate {
                   cell: JTACDayCell?,
                   cellState: CellState,
                   indexPath: IndexPath) {
-        
-        print(date)
+
+        if let diary = self.getDiaryWithDate(date) {
+
+            self.delegate?.calendarViewWantsToShowSummary(self, forDiary: diary)
+        }
     }
 }
 

@@ -36,6 +36,10 @@ extension Styling.Colors {
     static let lightPeriwinkle = UIColor(red: 226, green: 228, blue: 233)
     
     static let charcoalGrey = UIColor(red: 59, green: 65, blue: 75)
+
+    static let paleBlue = UIColor(red: 227, green: 231, blue: 234)
+
+    static let slateGrey = UIColor(red: 108, green: 111, blue: 116)
 }
 
 extension Styling.Spacing {

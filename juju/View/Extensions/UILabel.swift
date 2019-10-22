@@ -14,15 +14,14 @@ extension UILabel {
                                 term: String,
                                 color: UIColor,
                                 regularFont: UIFont,
-                                underlinedFont: UIFont) {
+                                termFont: UIFont) {
 
         let attributedTitle = NSMutableAttributedString(string: title, attributes: [.font: regularFont])
 
         if title.range(of: term) != nil {
 
             let range = NSString(string: title).range(of: term)
-            attributedTitle.addAttribute(.underlineStyle, value: 1, range: range)
-            attributedTitle.addAttribute(.font, value: underlinedFont, range: range)
+            attributedTitle.addAttribute(.font, value: termFont, range: range)
         }
 
         let fullRange = NSRange(location: 0, length: title.count)

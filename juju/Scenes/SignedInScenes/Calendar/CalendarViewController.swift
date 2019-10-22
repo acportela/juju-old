@@ -30,6 +30,7 @@ final class CalendarViewController: UIViewController, Loadable {
                                              diaryService: diaryService)
         super.init(nibName: nil, bundle: nil)
         self.dataSource.delegate = self
+        self.calendarView.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,5 +89,17 @@ extension CalendarViewController: CalendarDataSourceDelegate {
 
         self.stopLoading()
         self.setErrorState()
+    }
+}
+
+extension CalendarViewController: CalendarViewDelegate {
+
+    func calendarViewWantsToShowSummary(_ calendarView: CalendarView,
+                                        forDiary diary: DiaryProgress) {
+
+        let summaryViewController = DateSummaryViewController(diary: diary)
+        summaryViewController.modalPresentationStyle = .formSheet
+
+        self.present(summaryViewController, animated: true, completion: nil)
     }
 }
