@@ -44,20 +44,8 @@ final class TrainLevelViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.configureNavigation()
         self.trainLevelView.configure(with: .selectLevel(self.currentLevel))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    private func configureNavigation() {
-        
-        self.title = TrainLevelViewController.title
-        let item = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = item
+        self.trainLevelView.closeWasTapped = { self.dismiss(animated: true, completion: nil) }
     }
 }
 

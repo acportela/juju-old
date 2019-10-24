@@ -45,10 +45,7 @@ extension DaySummaryHeaderView: ViewCoding {
 
         self.titleLabel.snp.makeConstraints { make in
 
-            make.left.equalToSuperview().offset(Styling.Spacing.twentyeight)
-            make.right.equalToSuperview().offset(-Styling.Spacing.twentyeight)
-            make.top.equalToSuperview().offset(Styling.Spacing.four)
-            make.bottom.equalToSuperview().offset(-Styling.Spacing.four)
+            make.center.equalToSuperview()
         }
     }
 

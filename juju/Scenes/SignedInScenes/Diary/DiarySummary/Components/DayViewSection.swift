@@ -20,7 +20,7 @@ final class DayViewSection: UIView {
 
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.alignment = .center
+        stack.alignment = .leading
         stack.spacing = Styling.Spacing.eight
         stack.distribution = .fillEqually
         return stack
@@ -53,6 +53,8 @@ extension DayViewSection: ViewCoding {
 
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
+            make.height.equalTo(Constants.headerHeight)
+            make.width.equalTo(Constants.headerWidth)
         }
 
         self.containerStack.snp.makeConstraints { make in
@@ -91,5 +93,14 @@ extension DayViewSection: ViewConfiguration {
                 self.containerStack.addArrangedSubview(item)
             }
         }
+    }
+}
+
+extension DayViewSection {
+
+    private enum Constants {
+
+        static let headerWidth = 144
+        static let headerHeight = 20
     }
 }

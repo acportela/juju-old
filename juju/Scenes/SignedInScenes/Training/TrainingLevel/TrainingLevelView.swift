@@ -16,8 +16,8 @@ protocol TrainingLevelViewDelegate: AnyObject {
 final class TrainingLevelView: UIView {
     
     // MARK: Views
-    
-    // TODO: Add button for iOSes < 13
+    private let closeButton = UIButton()
+
     private let titleLabel: UILabel = {
         
         let label = UILabel()
@@ -52,7 +52,9 @@ final class TrainingLevelView: UIView {
     
     // MARK: Properties
     weak var delegate: TrainingLevelViewDelegate?
-    
+
+    public var closeWasTapped: (() -> Void)?
+
     // MARK: Lifecycle
     
     override init(frame: CGRect = .zero) {
@@ -73,6 +75,7 @@ extension TrainingLevelView: ViewCoding {
         
         self.addSubview(self.arrowDown)
         self.addSubview(self.titleLabel)
+        self.addSubview(self.closeButton)
         self.superiorComponentsStack.addArrangedSubview(self.easyLevelComponent)
         self.superiorComponentsStack.addArrangedSubview(self.mediumLevelComponent)
         self.addSubview(self.superiorComponentsStack)
@@ -92,6 +95,14 @@ extension TrainingLevelView: ViewCoding {
             make.centerX.equalToSuperview()
             make.top.equalTo(self.arrowDown.snp.bottom).offset(Styling.Spacing.twentyfour)
             make.left.equalTo(self.superiorComponentsStack.snp.left)
+        }
+
+        self.closeButton.snp.makeConstraints { make in
+
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Styling.Spacing.sixteen)
+            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-Styling.Spacing.sixteen)
+            make.width.equalTo(Constants.closeButtonSides)
+            make.height.equalTo(Constants.closeButtonSides)
         }
         
         self.superiorComponentsStack.snp.makeConstraints { make in
@@ -125,9 +136,44 @@ extension TrainingLevelView: ViewCoding {
     func configureViews() {
         
         self.backgroundColor = Styling.Colors.softPink
+        
         self.easyLevelComponent.delegate = self
         self.mediumLevelComponent.delegate = self
         self.hardLevelComponent.delegate = self
+
+        self.configureCloseButtonVisibility()
+    }
+}
+
+extension TrainingLevelView {
+
+    private func configureCloseButtonVisibility() {
+
+        let closeButtonFont = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twenty)
+        self.closeButton.setTitle("X",
+                                  withColor: Styling.Colors.white,
+                                  andFont: closeButtonFont,
+                                  underlined: false)
+        self.closeButton.addTarget(self,
+                                   action: #selector(self.didTapClose),
+                                   for: .touchUpInside)
+
+        if #available(iOS 13, *) {
+
+            self.arrowDown.isHidden = false
+            self.closeButton.isHidden = true
+
+        } else {
+
+            self.arrowDown.isHidden = true
+            self.closeButton.isHidden = false
+        }
+    }
+
+    @objc
+    private func didTapClose() {
+
+        self.closeWasTapped?()
     }
 }
 
@@ -174,6 +220,7 @@ extension TrainingLevelView {
         
         static let componentWidth = 137
         static let componentHeight = 117
+        static let closeButtonSides = 44
     }
 }
 

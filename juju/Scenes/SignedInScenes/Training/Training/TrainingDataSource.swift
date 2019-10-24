@@ -38,8 +38,8 @@ class TrainingDataSource {
 
     var currentSerie: Series? {
         
-        return self.diaryProgress?.series.first { $0.model.mode == self.chosenMode
-                                                && $0.model.level == self.level }
+        return self.diaryProgress?.getSeriesFor(mode: self.chosenMode,
+                                                andLevel: self.level)
     }
     
     init(mode: TrainingMode,
@@ -56,8 +56,7 @@ class TrainingDataSource {
 
 // MARK: Diary Progress
 extension TrainingDataSource {
-    
-    // TODO: To keep it in scync with multiple devices, change this to a listener
+
     func fetchTodayDiary() {
 
         let model = self.availableTrainings

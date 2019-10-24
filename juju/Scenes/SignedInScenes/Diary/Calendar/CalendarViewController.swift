@@ -98,8 +98,8 @@ extension CalendarViewController: CalendarViewDelegate {
                                         forDiary diary: DiaryProgress) {
 
         let summaryViewController = DateSummaryViewController(diary: diary)
-        summaryViewController.modalPresentationStyle = .formSheet
+        summaryViewController.modalPresentationStyle = .overCurrentContext
 
-        self.present(summaryViewController, animated: true, completion: nil)
+        self.present(summaryViewController, animated: false, completion: nil)
     }
 }

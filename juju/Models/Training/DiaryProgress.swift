@@ -68,4 +68,9 @@ struct DiaryProgress: Codable {
             return serie
         }
     }
+
+    func getSeriesFor(mode: TrainingMode, andLevel level: TrainingLevel) -> Series? {
+
+        return self.series.first { ($0.model.mode == mode) && ($0.model.level) == level }
+    }
 }

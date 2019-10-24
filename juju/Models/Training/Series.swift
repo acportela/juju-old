@@ -19,4 +19,9 @@ struct Series: Codable {
 
         self.completed += 1
     }
+
+    var description: String {
+
+        return completed == 1 ? "\(completed) série" : "\(completed) séries"
+    }
 }

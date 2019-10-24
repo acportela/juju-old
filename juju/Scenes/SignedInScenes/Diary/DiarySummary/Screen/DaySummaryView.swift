@@ -87,6 +87,8 @@ extension DaySummaryView: ViewCoding {
     func configureViews() {
 
         self.containerView.layer.cornerRadius = 4
+
+        self.backgroundColor = Styling.Colors.greyishBrown.withAlphaComponent(Constants.backgroundAlpha)
         self.containerView.backgroundColor = Styling.Colors.white
 
         self.addTapGesture()
@@ -145,5 +147,6 @@ extension DaySummaryView {
 
         static let viewWidth = 268
         static let viewHeight = 335
+        static let backgroundAlpha: CGFloat = 0.32
     }
 }
