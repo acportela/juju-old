@@ -8,17 +8,17 @@
 
 import UIKit
 
-final class DateSummaryViewController: UIViewController {
+final class DaySummaryViewController: UIViewController {
 
     public static let title = ""
-    private let daySummaryView = DaySummaryView()
+    private let trainingSummaryView = TrainingSummaryView()
     private let diary: DiaryProgress
 
     init(diary: DiaryProgress) {
 
         self.diary = diary
         super.init(nibName: nil, bundle: nil)
-        self.daySummaryView.delegate = self
+        self.trainingSummaryView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -28,7 +28,7 @@ final class DateSummaryViewController: UIViewController {
 
     override func loadView() {
 
-        self.view = self.daySummaryView
+        self.view = self.trainingSummaryView
     }
 
     override func viewDidLoad() {
@@ -41,11 +41,11 @@ final class DateSummaryViewController: UIViewController {
         let dateTitle = DateUtils().stringFromDate(self.diary.date,
                                                    withFormat: .iso8601Long)
 
-        let dayConfig = DaySummaryViewConfiguration(title: dateTitle,
+        let dayConfig = TrainingSummaryViewConfiguration(title: dateTitle,
                                                     slowConfiguration: slowConfig,
                                                     fastConfiguration: fastConfig)
         
-        self.daySummaryView.configure(with: .build(dayConfig))
+        self.trainingSummaryView.configure(with: .build(dayConfig))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,23 +53,23 @@ final class DateSummaryViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
 
-    private func buildConfigurationForMode(_ mode: TrainingMode) -> [DayItemViewConfiguration] {
+    private func buildConfigurationForMode(_ mode: TrainingMode) -> [MetricItemViewConfiguration] {
 
         let easy = self.diary.getSeriesFor(mode: mode, andLevel: .easy) ?? .fallback
         let medium = self.diary.getSeriesFor(mode: mode, andLevel: .medium) ?? .fallback
         let hard = self.diary.getSeriesFor(mode: mode, andLevel: .hard) ?? .fallback
 
-        let easyConfig = DayItemViewConfiguration(title: easy.description,
+        let easyConfig = MetricItemViewConfiguration(title: easy.description,
                                                   titleBoldTerm: easy.completed.description,
                                                   description: "Nível Fácil",
                                                   descriptionBoldTerm: "Nível Fácil")
 
-        let mediumConfig = DayItemViewConfiguration(title: medium.description,
+        let mediumConfig = MetricItemViewConfiguration(title: medium.description,
                                                     titleBoldTerm: medium.completed.description,
                                                     description: "Nível Médio",
                                                     descriptionBoldTerm: "Nível Médio")
 
-        let hardConfig = DayItemViewConfiguration(title: hard.description,
+        let hardConfig = MetricItemViewConfiguration(title: hard.description,
                                                     titleBoldTerm: hard.completed.description,
                                                     description: "Nível Difícil",
                                                     descriptionBoldTerm: "Nível Difícil")
@@ -78,9 +78,9 @@ final class DateSummaryViewController: UIViewController {
     }
 }
 
-extension DateSummaryViewController: DaySummaryViewDelegate {
+extension DaySummaryViewController: TrainingSummaryViewDelegate {
 
-    func daySummaryViewWasTappedOutsideContentView(_ view: DaySummaryView) {
+    func trainingSummaryViewWasTappedOutsideContentView(_ view: TrainingSummaryView) {
 
         self.dismiss(animated: false, completion: nil)
     }

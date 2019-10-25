@@ -83,7 +83,9 @@ extension TrainingDataSource {
     
     func setNewDiary() {
 
-        self.diaryProgress = DiaryProgress(date: Date(), models: self.availableTrainings)
+        self.diaryProgress = DiaryProgress(date: Date(),
+                                           urineLosses: [],
+                                           models: self.availableTrainings)
     }
     
     func saveDiary(_ serie: Series) {

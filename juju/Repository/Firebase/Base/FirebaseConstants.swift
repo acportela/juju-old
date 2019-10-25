@@ -59,6 +59,8 @@ enum FirebaseConstants {
         static let seriesFastMedium = "seriesFastMedium"
         
         static let seriesFastHard = "seriesFastHard"
+
+        static let urineLoss = "urineLoss"
         
         static func fullPathWith(userId: String) -> String {
             

@@ -1,5 +1,5 @@
 //
-//  DayViewSection.swift
+//  MetricSectionView.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 21/10/19.
@@ -11,10 +11,10 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class DayViewSection: UIView {
+final class MetricSectionView: UIView {
 
     // MARK: Views
-    private let headerLabel = DaySummaryHeaderView()
+    private let headerLabel = MetricHeaderView()
 
     private let containerStack: UIStackView = {
 
@@ -39,7 +39,7 @@ final class DayViewSection: UIView {
     }
 }
 
-extension DayViewSection: ViewCoding {
+extension MetricSectionView: ViewCoding {
 
     func addSubViews() {
 
@@ -71,14 +71,14 @@ extension DayViewSection: ViewCoding {
     }
 }
 
-extension DayViewSection: ViewConfiguration {
+extension MetricSectionView: ViewConfiguration {
 
     enum States {
 
-        case build(title: String, items: [DayItemViewConfiguration])
+        case build(title: String, items: [MetricItemViewConfiguration])
     }
 
-    func configure(with state: DayViewSection.States) {
+    func configure(with state: MetricSectionView.States) {
 
         switch state {
 
@@ -88,7 +88,7 @@ extension DayViewSection: ViewConfiguration {
 
             configs.items.forEach { config in
 
-                let item = DayItemView()
+                let item = MetricItemView()
                 item.configure(with: .build(config))
                 self.containerStack.addArrangedSubview(item)
             }
@@ -96,7 +96,7 @@ extension DayViewSection: ViewConfiguration {
     }
 }
 
-extension DayViewSection {
+extension MetricSectionView {
 
     private enum Constants {
 

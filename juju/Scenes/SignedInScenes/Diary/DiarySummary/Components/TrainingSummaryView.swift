@@ -1,5 +1,5 @@
 //
-//  DaySummaryView.swift
+//  TrainingSummaryView.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 21/10/19.
@@ -9,12 +9,12 @@
 import UIKit
 import SnapKit
 
-protocol DaySummaryViewDelegate: AnyObject {
+protocol TrainingSummaryViewDelegate: AnyObject {
 
-    func daySummaryViewWasTappedOutsideContentView(_ view: DaySummaryView)
+    func trainingSummaryViewWasTappedOutsideContentView(_ view: TrainingSummaryView)
 }
 
-final class DaySummaryView: UIView {
+final class TrainingSummaryView: UIView {
 
     // MARK: Views
 
@@ -27,12 +27,12 @@ final class DaySummaryView: UIView {
         return label
     }()
 
-    private let slowSection = DayViewSection()
-    private let fastSection = DayViewSection()
+    private let slowSection = MetricSectionView()
+    private let fastSection = MetricSectionView()
 
     private let containerView = UIView()
 
-    weak var delegate: DaySummaryViewDelegate?
+    weak var delegate: TrainingSummaryViewDelegate?
 
     // MARK: Properties
 
@@ -49,7 +49,7 @@ final class DaySummaryView: UIView {
     }
 }
 
-extension DaySummaryView: ViewCoding {
+extension TrainingSummaryView: ViewCoding {
 
     func addSubViews() {
 
@@ -95,14 +95,14 @@ extension DaySummaryView: ViewCoding {
     }
 }
 
-extension DaySummaryView: ViewConfiguration {
+extension TrainingSummaryView: ViewConfiguration {
 
     enum States {
 
-        case build(DaySummaryViewConfiguration)
+        case build(TrainingSummaryViewConfiguration)
     }
 
-    func configure(with state: DaySummaryView.States) {
+    func configure(with state: TrainingSummaryView.States) {
 
         switch state {
 
@@ -118,7 +118,7 @@ extension DaySummaryView: ViewConfiguration {
     }
 }
 
-extension DaySummaryView: UIGestureRecognizerDelegate {
+extension TrainingSummaryView: UIGestureRecognizerDelegate {
 
     private func addTapGesture() {
 
@@ -131,7 +131,7 @@ extension DaySummaryView: UIGestureRecognizerDelegate {
     @objc
     private func wasTapped() {
 
-        self.delegate?.daySummaryViewWasTappedOutsideContentView(self)
+        self.delegate?.trainingSummaryViewWasTappedOutsideContentView(self)
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
@@ -141,7 +141,7 @@ extension DaySummaryView: UIGestureRecognizerDelegate {
     }
 }
 
-extension DaySummaryView {
+extension TrainingSummaryView {
 
     struct Constants {
 

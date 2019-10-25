@@ -99,7 +99,7 @@ extension CalendarViewController: CalendarViewDelegate {
     func calendarViewWantsToShowSummary(_ calendarView: CalendarView,
                                         forDiary diary: DiaryProgress) {
 
-        let summaryViewController = DateSummaryViewController(diary: diary)
+        let summaryViewController = DaySummaryViewController(diary: diary)
         summaryViewController.modalPresentationStyle = .overCurrentContext
 
         self.present(summaryViewController, animated: false, completion: nil)

@@ -1,5 +1,5 @@
 //
-//  DayItemView.swift
+//  MetricItemView.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 20/10/19.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class DayItemView: UIView {
+final class MetricItemView: UIView {
 
     // MARK: Views
     private let titleLabel: UILabel = {
@@ -61,7 +61,7 @@ final class DayItemView: UIView {
     }
 }
 
-extension DayItemView: ViewCoding {
+extension MetricItemView: ViewCoding {
 
     func addSubViews() {
 
@@ -90,14 +90,14 @@ extension DayItemView: ViewCoding {
     }
 }
 
-extension DayItemView: ViewConfiguration {
+extension MetricItemView: ViewConfiguration {
 
     enum States {
 
-        case build(DayItemViewConfiguration)
+        case build(MetricItemViewConfiguration)
     }
 
-    func configure(with state: DayItemView.States) {
+    func configure(with state: MetricItemView.States) {
 
         switch state {
 
@@ -124,7 +124,7 @@ extension DayItemView: ViewConfiguration {
     }
 }
 
-extension DayItemView {
+extension MetricItemView {
 
     struct Constants {
 

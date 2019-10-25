@@ -18,7 +18,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
     
     let userId: String
     let date: Date
-    
+    let urineLosses: [UrineLoss]
     let seriesSlowEasy: Int
     let seriesSlowMedium: Int
     let seriesSlowHard: Int
@@ -31,6 +31,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
     
     init(userId: String,
          date: Date,
+         urineLosses: [UrineLoss],
          seriesSlowEasy: Int,
          seriesSlowMedium: Int,
          seriesSlowHard: Int,
@@ -46,7 +47,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         self.seriesFastEasy = seriesFastEasy
         self.seriesFastMedium = seriesFastMedium
         self.seriesFastHard = seriesFastHard
-        
+        self.urineLosses = urineLosses
         self.path = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
     }
 
@@ -63,7 +64,13 @@ struct FirebaseTrainingDiary: FirebasePersistable {
             
             return nil
         }
-        
+
+        var urineLosses: [UrineLoss] = []
+        if let urineLoss = data[FirebaseConstants.TrainingDiary.urineLoss] as? [Int] {
+            
+            urineLosses = urineLoss.compactMap { UrineLoss(rawValue: $0) }
+        }
+
         self.userId = userId
         self.date = date.dateValue()
         self.seriesSlowEasy = seriesSlowEasy
@@ -72,6 +79,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         self.seriesFastEasy = seriesFastEasy
         self.seriesFastMedium = seriesFastMedium
         self.seriesFastHard = seriesFastHard
+        self.urineLosses = urineLosses
         self.path = FirebaseConstants.TrainingDiary.fullPathWith(userId: userId)
     }
     
@@ -117,6 +125,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         self.seriesFastEasy = seriesFastEasy
         self.seriesFastMedium = seriesFastMedium
         self.seriesFastHard = seriesFastHard
+        self.urineLosses = diary.urineLosses
         self.path = FirebaseConstants.TrainingDiary.fullPathWith(userId: user.userId)
     }
     
@@ -124,6 +133,7 @@ struct FirebaseTrainingDiary: FirebasePersistable {
         
         return [FirebaseConstants.TrainingDiary.userId: self.userId,
                 FirebaseConstants.TrainingDiary.date: self.date,
+                FirebaseConstants.TrainingDiary.urineLoss: self.urineLosses,
                 FirebaseConstants.TrainingDiary.seriesSlowEasy: self.seriesSlowEasy,
                 FirebaseConstants.TrainingDiary.seriesSlowMedium: self.seriesSlowMedium,
                 FirebaseConstants.TrainingDiary.seriesSlowHard: self.seriesSlowHard,
@@ -161,6 +171,6 @@ struct FirebaseTrainingDiary: FirebasePersistable {
             }
         }
         
-        return DiaryProgress(date: self.date, series: series)
+        return DiaryProgress(date: self.date, urineLosses: self.urineLosses, series: series)
     }
 }

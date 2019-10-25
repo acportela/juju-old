@@ -1,5 +1,5 @@
 //
-//  DaySummaryHeaderView.swift
+//  MetricHeaderView.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 21/10/19.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class DaySummaryHeaderView: UIView {
+final class MetricHeaderView: UIView {
 
     // MARK: Views
     private let titleLabel: UILabel = {
@@ -34,7 +34,7 @@ final class DaySummaryHeaderView: UIView {
     }
 }
 
-extension DaySummaryHeaderView: ViewCoding {
+extension MetricHeaderView: ViewCoding {
 
     func addSubViews() {
 
@@ -56,14 +56,14 @@ extension DaySummaryHeaderView: ViewCoding {
     }
 }
 
-extension DaySummaryHeaderView: ViewConfiguration {
+extension MetricHeaderView: ViewConfiguration {
 
     enum States {
 
         case build(title: String)
     }
 
-    func configure(with state: DaySummaryHeaderView.States) {
+    func configure(with state: MetricHeaderView.States) {
 
         switch state {
 

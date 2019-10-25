@@ -11,17 +11,19 @@ import Foundation
 struct DiaryProgress: Codable {
     
     let date: Date
+    let urineLosses: [UrineLoss]
     var series: [Series]
     
     /// Inits a new diary with exixting series
-    init(date: Date, series: [Series]) {
+    init(date: Date, urineLosses: [UrineLoss], series: [Series]) {
         
         self.date = date
+        self.urineLosses = urineLosses
         self.series = series
     }
     
     /// Inits a new diary with 0 series for all training models
-    init(date: Date, models: [TrainingModel]) {
+    init(date: Date, urineLosses: [UrineLoss], models: [TrainingModel]) {
         
         self.date = date
         
@@ -53,6 +55,7 @@ struct DiaryProgress: Codable {
         }
         
         self.series = series
+        self.urineLosses = urineLosses
     }
     
     mutating func updateDiaryWith(_ serie: Series) {

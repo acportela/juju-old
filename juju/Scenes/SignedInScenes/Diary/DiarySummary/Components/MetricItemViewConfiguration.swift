@@ -1,5 +1,5 @@
 //
-//  DayItemViewConfiguration.swift
+//  MetricItemViewConfiguration.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 21/10/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DayItemViewConfiguration {
+struct MetricItemViewConfiguration {
 
     let title: String
     let titleBoldTerm: String
