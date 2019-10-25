@@ -11,12 +11,14 @@ import UIKit
 final class CalendarViewController: UIViewController, Loadable {
     
     public static let title = "Diário"
+
     private let calendarView: CalendarView
     private let dataSource: CalendarDataSource
     private let dateUtils = DateUtils()
     private let initialCalendarRange: DateRange
+
     let loadingController = LoadingViewController(animatable: JujuLoader())
-    
+
     init(diaryService: TrainingDiaryServiceProtocol,
          user: ClientUser) {
 

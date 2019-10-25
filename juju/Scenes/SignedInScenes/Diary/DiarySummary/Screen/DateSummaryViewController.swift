@@ -48,6 +48,11 @@ final class DateSummaryViewController: UIViewController {
         self.daySummaryView.configure(with: .build(dayConfig))
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismiss(animated: false, completion: nil)
+        super.viewWillDisappear(animated)
+    }
+
     private func buildConfigurationForMode(_ mode: TrainingMode) -> [DayItemViewConfiguration] {
 
         let easy = self.diary.getSeriesFor(mode: mode, andLevel: .easy) ?? .fallback

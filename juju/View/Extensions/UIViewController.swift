@@ -11,9 +11,10 @@ import UIKit
 extension UIViewController {
     
     func add(_ child: UIViewController) {
-        addChild(child)
         view.addSubview(child.view)
+        addChild(child)
         child.didMove(toParent: self)
+        child.view.snp.makeConstraints { make in make.edges.equalToSuperview() }
     }
     
     func remove() {
@@ -23,7 +24,7 @@ extension UIViewController {
         }
         
         willMove(toParent: nil)
-        view.removeFromSuperview()
         removeFromParent()
+        view.removeFromSuperview()
     }
 }

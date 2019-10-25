@@ -38,7 +38,6 @@ class CalendarCoordinator: Coordinator {
         
         let calendarViewController = CalendarViewController(diaryService: self.diaryService,
                                                             user: self.user)
-        
         self.navigation.pushViewController(calendarViewController, animated: false)
     }
 }
