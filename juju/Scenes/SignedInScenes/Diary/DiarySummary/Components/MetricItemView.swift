@@ -103,6 +103,8 @@ extension MetricItemView: ViewConfiguration {
 
         case .build(let config):
 
+            self.dot.tintColor = config.dotColor
+            
             self.titleLabel
                 .setPartuallyUnderlined(title: config.title,
                                         term: config.titleBoldTerm,

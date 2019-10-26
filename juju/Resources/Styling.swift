@@ -42,6 +42,8 @@ extension Styling.Colors {
     static let slateGrey = UIColor(red: 108, green: 111, blue: 116)
 
     static let greyishBrown = UIColor(red: 67, green: 67, blue: 67)
+
+    static let wheat = UIColor(red: 255, green: 228, blue: 128)
 }
 
 extension Styling.Spacing {

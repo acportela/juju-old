@@ -6,7 +6,7 @@
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct MetricItemViewConfiguration {
 
@@ -14,4 +14,5 @@ struct MetricItemViewConfiguration {
     let titleBoldTerm: String
     let description: String
     let descriptionBoldTerm: String
+    let dotColor: UIColor
 }

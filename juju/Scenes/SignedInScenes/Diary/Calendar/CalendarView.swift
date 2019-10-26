@@ -158,17 +158,32 @@ extension CalendarView: JTACMonthViewDelegate {
         
         guard let cell = cell as? DateCircleView  else { return }
 
-        if self.getDiaryWithDate(date) != nil {
+        cell.configure(with: .setText(cellState.text))
 
-            //Add urine check
-            cell.configure(with: .circle)
+        if let diary = self.getDiaryWithDate(date) {
+
+            let exerised = diary.exercisedToday
+            let lostUrine = !diary.urineLosses.isEmpty
+
+            if exerised && lostUrine {
+                cell.configure(with: .circleAndDrop)
+                return
+            }
+
+            if exerised {
+                cell.configure(with: .circle)
+                return
+            }
+
+            if lostUrine {
+                cell.configure(with: .drop)
+                return
+            }
 
         } else {
             
             cell.configure(with: .empty)
         }
-
-        cell.configure(with: .setText(cellState.text))
     }
     
     func calendar(_ calendar: JTACMonthView,

@@ -7,32 +7,13 @@
 //
 
 import UIKit
-import SnapKit
-
-protocol TrainingSummaryViewDelegate: AnyObject {
-
-    func trainingSummaryViewWasTappedOutsideContentView(_ view: TrainingSummaryView)
-}
 
 final class TrainingSummaryView: UIView {
 
     // MARK: Views
 
-    private let titleLabel: UILabel = {
-
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = Styling.Colors.charcoalGrey
-        label.font = Resources.Fonts.Rubik.regular(ofSize: Styling.FontSize.fourteen)
-        return label
-    }()
-
     private let slowSection = MetricSectionView()
     private let fastSection = MetricSectionView()
-
-    private let containerView = UIView()
-
-    weak var delegate: TrainingSummaryViewDelegate?
 
     // MARK: Properties
 
@@ -53,45 +34,24 @@ extension TrainingSummaryView: ViewCoding {
 
     func addSubViews() {
 
-        self.addSubview(self.containerView)
-        self.containerView.addSubview(self.titleLabel)
-        self.containerView.addSubview(self.slowSection)
-        self.containerView.addSubview(self.fastSection)
+        self.addSubview(self.slowSection)
+        self.addSubview(self.fastSection)
     }
 
     func setupConstraints() {
 
-        self.containerView.snp.makeConstraints { make in
-            
-            make.width.equalTo(Constants.viewWidth)
-            make.height.equalTo(Constants.viewHeight)
-            make.center.equalToSuperview()
-        }
-
-        self.titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(Styling.Spacing.twentyfour)
-        }
-
         self.slowSection.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(Styling.Spacing.twentyfour)
+            make.left.top.right.equalToSuperview()
         }
 
         self.fastSection.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.left.bottom.right.equalToSuperview()
             make.top.equalTo(self.slowSection.snp.bottom).offset(Styling.Spacing.twentyfour)
         }
     }
 
     func configureViews() {
 
-        self.containerView.layer.cornerRadius = 4
-
-        self.backgroundColor = Styling.Colors.greyishBrown.withAlphaComponent(Constants.backgroundAlpha)
-        self.containerView.backgroundColor = Styling.Colors.white
-
-        self.addTapGesture()
     }
 }
 
@@ -108,36 +68,15 @@ extension TrainingSummaryView: ViewConfiguration {
 
         case .build(let config):
 
-            self.slowSection.configure(with: .build(title: "Treino Lento",
-                                                    items: config.slowConfiguration))
-            self.fastSection.configure(with: .build(title: "Treino Rápido",
-                                                    items: config.fastConfiguration))
-            self.titleLabel.text = config.title
-            
+            let slow = MetricSectionViewConfiguration(title: "Treino Lento",
+                                                      items: config.slowConfiguration)
+
+            let fast = MetricSectionViewConfiguration(title: "Treino Rápido",
+                                                      items: config.fastConfiguration)
+
+            self.slowSection.configure(with: .build(slow))
+            self.fastSection.configure(with: .build(fast))
         }
-    }
-}
-
-extension TrainingSummaryView: UIGestureRecognizerDelegate {
-
-    private func addTapGesture() {
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.wasTapped))
-        tapGesture.cancelsTouchesInView = false
-        tapGesture.delegate = self
-        self.addGestureRecognizer(tapGesture)
-    }
-
-    @objc
-    private func wasTapped() {
-
-        self.delegate?.trainingSummaryViewWasTappedOutsideContentView(self)
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldReceive touch: UITouch) -> Bool {
-
-        return (touch.view === self)
     }
 }
 

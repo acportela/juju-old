@@ -20,6 +20,11 @@
 		1550DCB4235B89B5000CBC7C /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */; };
 		155E54E6235DD8B100D2E4D6 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E54E5235DD8B100D2E4D6 /* UILabel.swift */; };
 		15691D4323627CBA00E11B1A /* UrineLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15691D4223627CBA00E11B1A /* UrineLoss.swift */; };
+		1571C52F236467F5002B1E84 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1571C52E236467F5002B1E84 /* TabView.swift */; };
+		1584A5D92364E91F00A8F125 /* DaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5D82364E91F00A8F125 /* DaySummaryView.swift */; };
+		1584A5DB2364E9A200A8F125 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DA2364E9A200A8F125 /* UIStackView.swift */; };
+		1584A5DD2364ED5500A8F125 /* DaySummaryViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */; };
+		1584A5DF2364FD7800A8F125 /* MetricSectionViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DE2364FD7800A8F125 /* MetricSectionViewConfiguration.swift */; };
 		1590324B235E9065008079D2 /* MetricSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590324A235E9065008079D2 /* MetricSectionView.swift */; };
 		1590324D235E9386008079D2 /* MetricItemViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590324C235E9386008079D2 /* MetricItemViewConfiguration.swift */; };
 		15903251235E9457008079D2 /* TrainingSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15903250235E9457008079D2 /* TrainingSummaryView.swift */; };
@@ -179,6 +184,11 @@
 		1550DCB2235B89B5000CBC7C /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		155E54E5235DD8B100D2E4D6 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		15691D4223627CBA00E11B1A /* UrineLoss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineLoss.swift; sourceTree = "<group>"; };
+		1571C52E236467F5002B1E84 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		1584A5D82364E91F00A8F125 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
+		1584A5DA2364E9A200A8F125 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryViewConfiguration.swift; sourceTree = "<group>"; };
+		1584A5DE2364FD7800A8F125 /* MetricSectionViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricSectionViewConfiguration.swift; sourceTree = "<group>"; };
 		1590324A235E9065008079D2 /* MetricSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricSectionView.swift; sourceTree = "<group>"; };
 		1590324C235E9386008079D2 /* MetricItemViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricItemViewConfiguration.swift; sourceTree = "<group>"; };
 		15903250235E9457008079D2 /* TrainingSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSummaryView.swift; sourceTree = "<group>"; };
@@ -380,6 +390,8 @@
 			isa = PBXGroup;
 			children = (
 				15426A53235E971500F82330 /* DateSummaryViewController.swift */,
+				1584A5D82364E91F00A8F125 /* DaySummaryView.swift */,
+				1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -393,6 +405,7 @@
 				15426A55235EA1B300F82330 /* MetricHeaderView.swift */,
 				15426A57235EABD400F82330 /* TrainingSummaryViewConfiguration.swift */,
 				15903250235E9457008079D2 /* TrainingSummaryView.swift */,
+				1584A5DE2364FD7800A8F125 /* MetricSectionViewConfiguration.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -816,6 +829,7 @@
 				D69586552353877000B55896 /* UIView.swift */,
 				1550DCAE235B8576000CBC7C /* UITabBarController.swift */,
 				155E54E5235DD8B100D2E4D6 /* UILabel.swift */,
+				1584A5DA2364E9A200A8F125 /* UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -965,6 +979,7 @@
 			isa = PBXGroup;
 			children = (
 				D69B923C231DF9D6009207B1 /* LoadingViewController.swift */,
+				1571C52E236467F5002B1E84 /* TabView.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -1296,6 +1311,7 @@
 				D6ABED2622DF30A50022CF0A /* StringErrorConstants.swift in Sources */,
 				D641400823002AB9005BD008 /* FirebaseUserQuery.swift in Sources */,
 				15426A54235E971500F82330 /* DateSummaryViewController.swift in Sources */,
+				1571C52F236467F5002B1E84 /* TabView.swift in Sources */,
 				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
 				1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */,
@@ -1333,6 +1349,7 @@
 				D681E49022F128B3003754F4 /* InputKind.swift in Sources */,
 				D612165A2344303B003AB0C3 /* UserDefaultsStorage.swift in Sources */,
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
+				1584A5DD2364ED5500A8F125 /* DaySummaryViewConfiguration.swift in Sources */,
 				D6B02A4422E0070100818C17 /* Repository.swift in Sources */,
 				D6E3C6AC22EC7ABF00627CE6 /* UserService.swift in Sources */,
 				15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */,
@@ -1354,12 +1371,14 @@
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D6856AB02345A8BB00270F14 /* TrainingDiaryService.swift in Sources */,
 				D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */,
+				1584A5DB2364E9A200A8F125 /* UIStackView.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D622755722FA4527004992E5 /* DateUtils.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
 				15903251235E9457008079D2 /* TrainingSummaryView.swift in Sources */,
 				D6F3202A22F5D35300950325 /* UIAlertController.swift in Sources */,
 				D65356E7234023CC00CEE476 /* FirebaseTrainingModelsQuery.swift in Sources */,
+				1584A5DF2364FD7800A8F125 /* MetricSectionViewConfiguration.swift in Sources */,
 				15E0947F2356CC4E00FE85D3 /* CalendarHeaderView.swift in Sources */,
 				D6FF00A822E34BE800D8B2CB /* IntroView.swift in Sources */,
 				15235B77235CE9690098A4BE /* CadendarDataSource.swift in Sources */,
@@ -1384,6 +1403,7 @@
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
 				D612165C23443154003AB0C3 /* LocalStorageProtocol.swift in Sources */,
 				D6C75AE22329F45000F44EE7 /* ProgressComponent.swift in Sources */,
+				1584A5D92364E91F00A8F125 /* DaySummaryView.swift in Sources */,
 				D66D5AD92312C56700F0A944 /* Styling.swift in Sources */,
 				D60AF49A22E48FB700597BEA /* JujuUnderlinedButton.swift in Sources */,
 				D6466EB0234AB57E006E7F1A /* SplashScreenViewController.swift in Sources */,

@@ -16,4 +16,19 @@ enum UrineLoss: Int, RawRepresentable, Codable {
     case high
 
     static let fallback = UrineLoss.none
+
+    var destription: String {
+
+        switch self {
+
+        case .none: return "nenhuma"
+
+        case .low: return "leve"
+
+        case .moderate: return "moderada"
+
+        case .high: return "grande"
+
+        }
+    }
 }

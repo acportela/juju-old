@@ -85,27 +85,6 @@ extension DateCircleView: ViewCoding {
         self.backgroundColor = .clear
         self.setEmpty()
     }
-    
-    private func setEmpty() {
-
-        self.title.textColor = Styling.Colors.charcoalGrey
-        self.circle.alpha = 0
-        self.drop.alpha = 0
-    }
-    
-    private func setCirlcleOnly() {
-
-        self.title.textColor = Styling.Colors.white
-        self.circle.alpha = 1
-        self.drop.alpha = 0
-    }
-    
-    private func setCircleAndDrop() {
-
-        self.title.textColor = Styling.Colors.white
-        self.circle.alpha = 1
-        self.drop.alpha = 1
-    }
 }
 
 extension DateCircleView: ViewConfiguration {
@@ -114,6 +93,7 @@ extension DateCircleView: ViewConfiguration {
         
         case empty
         case circle
+        case drop
         case circleAndDrop
         case setText(String)
     }
@@ -129,6 +109,10 @@ extension DateCircleView: ViewConfiguration {
         case .circle:
             
             setCirlcleOnly()
+
+        case .drop:
+
+            self.setDropOnly()
             
         case .circleAndDrop:
             
@@ -139,6 +123,37 @@ extension DateCircleView: ViewConfiguration {
             self.title.text = text
             
         }
+    }
+}
+
+extension DateCircleView {
+
+    private func setEmpty() {
+
+        self.title.textColor = Styling.Colors.charcoalGrey
+        self.circle.alpha = 0
+        self.drop.alpha = 0
+    }
+
+    private func setCirlcleOnly() {
+
+        self.title.textColor = Styling.Colors.white
+        self.circle.alpha = 1
+        self.drop.alpha = 0
+    }
+
+    private func setCircleAndDrop() {
+
+        self.title.textColor = Styling.Colors.white
+        self.circle.alpha = 1
+        self.drop.alpha = 1
+    }
+
+    private func setDropOnly() {
+
+        self.title.textColor = Styling.Colors.charcoalGrey
+        self.circle.alpha = 0
+        self.drop.alpha = 1
     }
 }
 

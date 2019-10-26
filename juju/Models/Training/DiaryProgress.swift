@@ -12,8 +12,14 @@ struct DiaryProgress: Codable {
     
     let date: Date
     let urineLosses: [UrineLoss]
-    var series: [Series]
-    
+    private (set) var series: [Series]
+
+    var exercisedToday: Bool {
+        
+        for serie in self.series where serie.completed > 0 { return true }
+        return false
+    }
+
     /// Inits a new diary with exixting series
     init(date: Date, urineLosses: [UrineLoss], series: [Series]) {
         
@@ -24,36 +30,36 @@ struct DiaryProgress: Codable {
     
     /// Inits a new diary with 0 series for all training models
     init(date: Date, urineLosses: [UrineLoss], models: [TrainingModel]) {
-        
+
         self.date = date
-        
+
         var series: [Series] = []
-        
+
         models.forEach { training in
-            
+
             switch (training.mode, training.level) {
-            
+
             case (.slow, .easy):
 
                 series.append(Series(completed: 0, model: training))
             case (.slow, .medium):
-                
+
                 series.append(Series(completed: 0, model: training))
             case (.slow, .hard):
-                
+
                 series.append(Series(completed: 0, model: training))
             case (.fast, .easy):
-                
+
                 series.append(Series(completed: 0, model: training))
             case (.fast, .medium):
-                
+
                 series.append(Series(completed: 0, model: training))
             case (.fast, .hard):
-                
+
                 series.append(Series(completed: 0, model: training))
             }
         }
-        
+
         self.series = series
         self.urineLosses = urineLosses
     }

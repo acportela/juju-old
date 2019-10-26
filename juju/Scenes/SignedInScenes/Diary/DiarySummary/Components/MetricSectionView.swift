@@ -75,21 +75,21 @@ extension MetricSectionView: ViewConfiguration {
 
     enum States {
 
-        case build(title: String, items: [MetricItemViewConfiguration])
+        case build(MetricSectionViewConfiguration)
     }
 
     func configure(with state: MetricSectionView.States) {
 
         switch state {
 
-        case .build(let configs):
+        case .build(let config):
 
-            self.headerLabel.configure(with: .build(title: configs.title))
+            self.headerLabel.configure(with: .build(title: config.title))
 
-            configs.items.forEach { config in
+            config.items.forEach { configItem in
 
                 let item = MetricItemView()
-                item.configure(with: .build(config))
+                item.configure(with: .build(configItem))
                 self.containerStack.addArrangedSubview(item)
             }
         }

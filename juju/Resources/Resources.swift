@@ -108,7 +108,7 @@ extension Resources.Images {
     
     static let rightChevron = image(named: "chevron_right")
 
-    static let dot = image(named: "dot")
+    static let dot = image(named: "dot", template: true)
     
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {

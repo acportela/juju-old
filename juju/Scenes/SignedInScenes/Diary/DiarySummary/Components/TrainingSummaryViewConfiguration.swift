@@ -10,7 +10,6 @@ import Foundation
 
 struct TrainingSummaryViewConfiguration {
 
-    let title: String
     let slowConfiguration: [MetricItemViewConfiguration]
     let fastConfiguration: [MetricItemViewConfiguration]
 }
