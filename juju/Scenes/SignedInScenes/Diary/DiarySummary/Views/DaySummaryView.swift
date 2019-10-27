@@ -9,15 +9,9 @@
 import UIKit
 import SnapKit
 
-protocol DaySummaryViewDelegate: AnyObject {
-
-    func daySummaryViewWasTappedOutsideContentView(_ view: DaySummaryView)
-}
-
-final class DaySummaryView: UIView {
+final class DaySummaryView: PopoverView {
 
     // MARK: Views
-
     private let titleLabel: UILabel = {
 
         let label = UILabel()
@@ -28,15 +22,8 @@ final class DaySummaryView: UIView {
     }()
 
     private let tabView = TabView()
-
-    private let externalView = UIView()
-
     private let trainingSummaryView = TrainingSummaryView()
     private let urineSummaryView = MetricSectionView()
-
-    weak var delegate: DaySummaryViewDelegate?
-
-    // MARK: Properties
 
     // MARK: Lifecycle
     override init(frame: CGRect = .zero) {
@@ -49,26 +36,24 @@ final class DaySummaryView: UIView {
 
         fatalError("Initialize with view code")
     }
-}
 
-extension DaySummaryView: ViewCoding {
+    override func addSubViews() {
 
-    func addSubViews() {
+        super.addSubViews()
 
-        self.addSubview(self.externalView)
-        self.externalView.addSubview(self.tabView)
-        self.externalView.addSubview(self.titleLabel)
-        self.externalView.addSubview(self.trainingSummaryView)
-        self.externalView.addSubview(self.urineSummaryView)
+        self.popoverContentView.addSubview(self.tabView)
+        self.popoverContentView.addSubview(self.titleLabel)
+        self.popoverContentView.addSubview(self.trainingSummaryView)
+        self.popoverContentView.addSubview(self.urineSummaryView)
     }
 
-    func setupConstraints() {
+    override func setupConstraints() {
 
-        self.externalView.snp.makeConstraints { make in
+        self.popoverContentView.snp.makeConstraints { make in
 
-            make.width.equalTo(Constants.viewWidth)
-            make.height.equalTo(Constants.viewHeight)
             make.center.equalToSuperview()
+            make.width.equalTo(Constants.popoverWidth)
+            make.height.equalTo(Constants.popoverHeight)
         }
 
         self.tabView.snp.makeConstraints { make in
@@ -97,15 +82,11 @@ extension DaySummaryView: ViewCoding {
         }
     }
 
-    func configureViews() {
+    override func configureViews() {
 
-        self.externalView.layer.cornerRadius = 4
-        self.externalView.backgroundColor = Styling.Colors.white
-        self.backgroundColor = Styling.Colors.greyishBrown.withAlphaComponent(Constants.backgroundAlpha)
+        super.configureViews()
 
         self.tabView.delegate = self
-        self.addTapGesture()
-
         self.trainingSummaryView.isHidden = true
         self.urineSummaryView.isHidden = true
     }
@@ -140,29 +121,6 @@ extension DaySummaryView: ViewConfiguration {
     }
 }
 
-extension DaySummaryView: UIGestureRecognizerDelegate {
-
-    private func addTapGesture() {
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.wasTapped))
-        tapGesture.cancelsTouchesInView = false
-        tapGesture.delegate = self
-        self.addGestureRecognizer(tapGesture)
-    }
-
-    @objc
-    private func wasTapped() {
-
-        self.delegate?.daySummaryViewWasTappedOutsideContentView(self)
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldReceive touch: UITouch) -> Bool {
-
-        return (touch.view === self)
-    }
-}
-
 extension DaySummaryView: TabViewDelegate {
 
     func tabView(_ view: TabView, didSelectTabAt index: Int) {
@@ -190,11 +148,10 @@ extension DaySummaryView {
 
     struct Constants {
 
-        static let viewWidth = 268
-        static let viewHeight = 343
+        static let popoverWidth = 268
+        static let popoverHeight = 343
         static let tabWidth = 150
         static let tabHeight = 30
         static let trainAndUrineTransitionDuration: TimeInterval = 0.3
-        static let backgroundAlpha: CGFloat = 0.32
     }
 }

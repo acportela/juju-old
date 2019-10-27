@@ -11,7 +11,6 @@ import UIKit
 final class CalendarViewController: UIViewController, Loadable {
     
     public static let title = "Diário"
-
     private let calendarView: CalendarView
     private let dataSource: CalendarDataSource
     private let dateUtils = DateUtils()
@@ -69,6 +68,7 @@ final class CalendarViewController: UIViewController, Loadable {
     private func initialSetup() {
 
         self.startLoading()
+        self.calendarView.addUrineAction = { self.showUrineInsertionScreen() }
         self.dataSource.fetchDiary(withRange: self.initialCalendarRange)
     }
 
@@ -76,7 +76,26 @@ final class CalendarViewController: UIViewController, Loadable {
 
         Snackbar.showError(message: "Ocorreu um erro. Por favor, tente novamente", in: self.view)
     }
-    
+}
+
+extension CalendarViewController {
+
+    private func showUrineInsertionScreen() {
+
+        let urineInsertionViewController = UrineInsertionViewController()
+        urineInsertionViewController.delegate = self
+        urineInsertionViewController.modalPresentationStyle = .overCurrentContext
+
+        self.present(urineInsertionViewController, animated: false, completion: nil)
+    }
+
+    private func showDiarySummaryForProgress(_ diary: DiaryProgress) {
+
+        let summaryViewController = DaySummaryViewController(diary: diary)
+        summaryViewController.modalPresentationStyle = .overCurrentContext
+
+        self.present(summaryViewController, animated: false, completion: nil)
+    }
 }
 
 extension CalendarViewController: CalendarDataSourceDelegate {
@@ -99,9 +118,14 @@ extension CalendarViewController: CalendarViewDelegate {
     func calendarViewWantsToShowSummary(_ calendarView: CalendarView,
                                         forDiary diary: DiaryProgress) {
 
-        let summaryViewController = DaySummaryViewController(diary: diary)
-        summaryViewController.modalPresentationStyle = .overCurrentContext
+        self.showDiarySummaryForProgress(diary)
+    }
+}
 
-        self.present(summaryViewController, animated: false, completion: nil)
+extension CalendarViewController: UrineInsertionViewControllerDelegate {
+
+    func urineInsertionViewControllerDidSelectLoss(_ controller: UrineInsertionViewController,
+                                                   urineLoss: UrineLoss) {
+        
     }
 }

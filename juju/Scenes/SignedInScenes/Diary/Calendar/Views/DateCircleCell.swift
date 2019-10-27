@@ -1,5 +1,5 @@
 //
-//  DateCircleView.swift
+//  DateCircleCell.swift
 //  juju
 //
 //  Created by Antonio Rodrigues on 15/10/19.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import JTAppleCalendar
 
-final class DateCircleView: JTACDayCell {
+final class DateCircleCell: JTACDayCell {
     
     // MARK: Views
     private let title: UILabel = {
@@ -50,7 +50,7 @@ final class DateCircleView: JTACDayCell {
     }
 }
 
-extension DateCircleView: ViewCoding {
+extension DateCircleCell: ViewCoding {
     
     func addSubViews() {
         
@@ -87,7 +87,7 @@ extension DateCircleView: ViewCoding {
     }
 }
 
-extension DateCircleView: ViewConfiguration {
+extension DateCircleCell: ViewConfiguration {
     
     enum States {
         
@@ -98,7 +98,7 @@ extension DateCircleView: ViewConfiguration {
         case setText(String)
     }
     
-    func configure(with state: DateCircleView.States) {
+    func configure(with state: DateCircleCell.States) {
     
         switch state {
             
@@ -126,7 +126,7 @@ extension DateCircleView: ViewConfiguration {
     }
 }
 
-extension DateCircleView {
+extension DateCircleCell {
 
     private func setEmpty() {
 
@@ -157,7 +157,7 @@ extension DateCircleView {
     }
 }
 
-extension DateCircleView {
+extension DateCircleCell {
     
     struct Constants {
         

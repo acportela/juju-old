@@ -18,7 +18,7 @@ final class DaySummaryViewController: UIViewController {
 
         self.diary = diary
         super.init(nibName: nil, bundle: nil)
-        self.daySummaryView.delegate = self
+        self.daySummaryView.popoverDelegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -111,9 +111,9 @@ extension DaySummaryViewController {
     }
 }
 
-extension DaySummaryViewController: DaySummaryViewDelegate {
+extension DaySummaryViewController: PopoverViewDelegate {
 
-    func daySummaryViewWasTappedOutsideContentView(_ view: DaySummaryView) {
+    func popoverViewWasTappedOutsideContentView(_ view: PopoverView) {
 
         self.dismiss(animated: false, completion: nil)
     }

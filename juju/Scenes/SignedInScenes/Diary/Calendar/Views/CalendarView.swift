@@ -22,8 +22,8 @@ final class CalendarView: UIView {
     private lazy var jtCalendar: JTACMonthView = {
         
         let calendar = JTACMonthView()
-        calendar.register(DateCircleView.self,
-                          forCellWithReuseIdentifier: DateCircleView.Constants.dateCellItendifier)
+        calendar.register(DateCircleCell.self,
+                          forCellWithReuseIdentifier: DateCircleCell.Constants.dateCellItendifier)
         calendar.calendarDelegate = self
         calendar.calendarDataSource = self
         calendar.scrollDirection = .horizontal
@@ -105,7 +105,6 @@ extension CalendarView: ViewCoding {
         
         self.backgroundColor = Styling.Colors.veryLightPink
         self.jtCalendar.scrollToDate(Date())
-        self.buttonAddUrine.isHidden = true
     }
 }
 
@@ -156,7 +155,7 @@ extension CalendarView: JTACMonthViewDelegate {
                   cellState: CellState,
                   indexPath: IndexPath) {
         
-        guard let cell = cell as? DateCircleView  else { return }
+        guard let cell = cell as? DateCircleCell  else { return }
 
         cell.configure(with: .setText(cellState.text))
 
@@ -191,11 +190,11 @@ extension CalendarView: JTACMonthViewDelegate {
                   cellState: CellState,
                   indexPath: IndexPath) -> JTACDayCell {
         
-        let identifier = DateCircleView.Constants.dateCellItendifier
+        let identifier = DateCircleCell.Constants.dateCellItendifier
         
         guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: identifier,
                                                              for: indexPath)
-                                                             as? DateCircleView else {
+                                                             as? DateCircleCell else {
             return JTACDayCell()
         }
         

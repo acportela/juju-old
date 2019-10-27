@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150226A22366042F00D46720 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150226A12366042F00D46720 /* PopoverView.swift */; };
 		150E24892355E2C200F11C8E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E24882355E2C200F11C8E /* CalendarView.swift */; };
 		150E248B2355E2D200F11C8E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E248A2355E2D200F11C8E /* CalendarViewController.swift */; };
 		15235B77235CE9690098A4BE /* CadendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15235B76235CE9690098A4BE /* CadendarDataSource.swift */; };
@@ -21,6 +22,10 @@
 		155E54E6235DD8B100D2E4D6 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E54E5235DD8B100D2E4D6 /* UILabel.swift */; };
 		15691D4323627CBA00E11B1A /* UrineLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15691D4223627CBA00E11B1A /* UrineLoss.swift */; };
 		1571C52F236467F5002B1E84 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1571C52E236467F5002B1E84 /* TabView.swift */; };
+		1580E93523660A90008E86FE /* DualActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E93423660A90008E86FE /* DualActionButtons.swift */; };
+		1580E93723660F3B008E86FE /* UrineInsertionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E93623660F3B008E86FE /* UrineInsertionViewController.swift */; };
+		1580E939236610F6008E86FE /* UrineInsertionViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */; };
+		1580E93B23661142008E86FE /* DualActionButtonsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E93A23661142008E86FE /* DualActionButtonsConfiguration.swift */; };
 		1584A5D92364E91F00A8F125 /* DaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5D82364E91F00A8F125 /* DaySummaryView.swift */; };
 		1584A5DB2364E9A200A8F125 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DA2364E9A200A8F125 /* UIStackView.swift */; };
 		1584A5DD2364ED5500A8F125 /* DaySummaryViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */; };
@@ -31,9 +36,13 @@
 		15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */; };
 		15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */; };
 		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
-		15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947A2356B35000FE85D3 /* DateCircleView.swift */; };
+		15E0947B2356B35000FE85D3 /* DateCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947A2356B35000FE85D3 /* DateCircleCell.swift */; };
 		15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */; };
 		15E0947F2356CC4E00FE85D3 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */; };
+		15F2EA3C2365DA4F0013F6A4 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2EA3B2365DA4F0013F6A4 /* RadioButtonView.swift */; };
+		15F2EA3E2365DF780013F6A4 /* RadioButtonGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2EA3D2365DF780013F6A4 /* RadioButtonGroupView.swift */; };
+		15F2EA402365E3F20013F6A4 /* UrineInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2EA3F2365E3F20013F6A4 /* UrineInsertionView.swift */; };
+		15F2EA432365EBA90013F6A4 /* RadioButtonGroupConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2EA422365EBA90013F6A4 /* RadioButtonGroupConfiguration.swift */; };
 		15F786A22359522B00D1C211 /* ProfileFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F786A12359522B00D1C211 /* ProfileFooterView.swift */; };
 		359D3F1B28B462F78214F6A6 /* Pods_juju.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B68D6A1B63E7C14E046D2 /* Pods_juju.framework */; };
 		A6500915E49D0AC64B755E88 /* Pods_jujuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520468F01B60305E7F01B021 /* Pods_jujuTests.framework */; };
@@ -171,6 +180,7 @@
 /* Begin PBXFileReference section */
 		056D944913A4FA78B9ACA0E2 /* Pods-jujuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.release.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.release.xcconfig"; sourceTree = "<group>"; };
 		141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juju.debug.xcconfig"; path = "Target Support Files/Pods-juju/Pods-juju.debug.xcconfig"; sourceTree = "<group>"; };
+		150226A12366042F00D46720 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		150E24882355E2C200F11C8E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		150E248A2355E2D200F11C8E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		15235B76235CE9690098A4BE /* CadendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadendarDataSource.swift; sourceTree = "<group>"; };
@@ -185,6 +195,10 @@
 		155E54E5235DD8B100D2E4D6 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		15691D4223627CBA00E11B1A /* UrineLoss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineLoss.swift; sourceTree = "<group>"; };
 		1571C52E236467F5002B1E84 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		1580E93423660A90008E86FE /* DualActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualActionButtons.swift; sourceTree = "<group>"; };
+		1580E93623660F3B008E86FE /* UrineInsertionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineInsertionViewController.swift; sourceTree = "<group>"; };
+		1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineInsertionViewConfiguration.swift; sourceTree = "<group>"; };
+		1580E93A23661142008E86FE /* DualActionButtonsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualActionButtonsConfiguration.swift; sourceTree = "<group>"; };
 		1584A5D82364E91F00A8F125 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
 		1584A5DA2364E9A200A8F125 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryViewConfiguration.swift; sourceTree = "<group>"; };
@@ -195,9 +209,13 @@
 		15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		15E0947A2356B35000FE85D3 /* DateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCircleView.swift; sourceTree = "<group>"; };
+		15E0947A2356B35000FE85D3 /* DateCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCircleCell.swift; sourceTree = "<group>"; };
 		15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
+		15F2EA3B2365DA4F0013F6A4 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
+		15F2EA3D2365DF780013F6A4 /* RadioButtonGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonGroupView.swift; sourceTree = "<group>"; };
+		15F2EA3F2365E3F20013F6A4 /* UrineInsertionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineInsertionView.swift; sourceTree = "<group>"; };
+		15F2EA422365EBA90013F6A4 /* RadioButtonGroupConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonGroupConfiguration.swift; sourceTree = "<group>"; };
 		15F786A12359522B00D1C211 /* ProfileFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooterView.swift; sourceTree = "<group>"; };
 		1B3AD8AF7EE33C59F99BDC09 /* Pods-jujuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jujuTests.debug.xcconfig"; path = "Target Support Files/Pods-jujuTests/Pods-jujuTests.debug.xcconfig"; sourceTree = "<group>"; };
 		520468F01B60305E7F01B021 /* Pods_jujuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jujuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,12 +366,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150226A02366022800D46720 /* UrineInsertion */ = {
+			isa = PBXGroup;
+			children = (
+				15F2EA3F2365E3F20013F6A4 /* UrineInsertionView.swift */,
+				150226A12366042F00D46720 /* PopoverView.swift */,
+				1580E93423660A90008E86FE /* DualActionButtons.swift */,
+				1580E93623660F3B008E86FE /* UrineInsertionViewController.swift */,
+				1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */,
+				1580E93A23661142008E86FE /* DualActionButtonsConfiguration.swift */,
+			);
+			path = UrineInsertion;
+			sourceTree = "<group>";
+		};
 		150E24872355E2AE00F11C8E /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				150226A02366022800D46720 /* UrineInsertion */,
+				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
 				15903252235E945D008079D2 /* DiarySummary */,
 				155D75922361219200FEE092 /* Calendar */,
-				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -371,8 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				D63BE809234A567F0015FC27 /* ProfileViewController.swift */,
-				D63BE80B234A575B0015FC27 /* ProfileView.swift */,
-				15F786A12359522B00D1C211 /* ProfileFooterView.swift */,
+				15F2EA382365D8590013F6A4 /* Views */,
 			);
 			path = ProfileInfo;
 			sourceTree = "<group>";
@@ -386,37 +417,22 @@
 			path = Rubik;
 			sourceTree = "<group>";
 		};
-		155D75902361211900FEE092 /* Screen */ = {
+		155D75912361212400FEE092 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				15426A53235E971500F82330 /* DateSummaryViewController.swift */,
-				1584A5D82364E91F00A8F125 /* DaySummaryView.swift */,
-				1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */,
-			);
-			path = Screen;
-			sourceTree = "<group>";
-		};
-		155D75912361212400FEE092 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				153CBE48235D475E00D0B641 /* MetricItemView.swift */,
-				1590324C235E9386008079D2 /* MetricItemViewConfiguration.swift */,
-				1590324A235E9065008079D2 /* MetricSectionView.swift */,
-				15426A55235EA1B300F82330 /* MetricHeaderView.swift */,
 				15426A57235EABD400F82330 /* TrainingSummaryViewConfiguration.swift */,
 				15903250235E9457008079D2 /* TrainingSummaryView.swift */,
-				1584A5DE2364FD7800A8F125 /* MetricSectionViewConfiguration.swift */,
+				1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */,
+				1584A5D82364E91F00A8F125 /* DaySummaryView.swift */,
 			);
-			path = Components;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		155D75922361219200FEE092 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				150E24882355E2C200F11C8E /* CalendarView.swift */,
+				15F2EA372365D7870013F6A4 /* Views */,
 				150E248A2355E2D200F11C8E /* CalendarViewController.swift */,
-				15E0947A2356B35000FE85D3 /* DateCircleView.swift */,
-				15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */,
 				15235B76235CE9690098A4BE /* CadendarDataSource.swift */,
 			);
 			path = Calendar;
@@ -425,8 +441,8 @@
 		15903252235E945D008079D2 /* DiarySummary */ = {
 			isa = PBXGroup;
 			children = (
-				155D75912361212400FEE092 /* Components */,
-				155D75902361211900FEE092 /* Screen */,
+				15426A53235E971500F82330 /* DateSummaryViewController.swift */,
+				155D75912361212400FEE092 /* Views */,
 			);
 			path = DiarySummary;
 			sourceTree = "<group>";
@@ -434,11 +450,68 @@
 		15AA30EA235AADE7007D7173 /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
-				15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */,
+				15F2EA392365D8620013F6A4 /* Views */,
 				15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */,
-				1550DCAB235B4379000CBC7C /* FormHeaderView.swift */,
 			);
 			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		15F2EA352365D6D50013F6A4 /* MetricItemComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1584A5DE2364FD7800A8F125 /* MetricSectionViewConfiguration.swift */,
+				153CBE48235D475E00D0B641 /* MetricItemView.swift */,
+				1590324C235E9386008079D2 /* MetricItemViewConfiguration.swift */,
+				1590324A235E9065008079D2 /* MetricSectionView.swift */,
+				15426A55235EA1B300F82330 /* MetricHeaderView.swift */,
+			);
+			path = MetricItemComponents;
+			sourceTree = "<group>";
+		};
+		15F2EA362365D6F90013F6A4 /* RadioComponents */ = {
+			isa = PBXGroup;
+			children = (
+				15F2EA3B2365DA4F0013F6A4 /* RadioButtonView.swift */,
+				15F2EA3D2365DF780013F6A4 /* RadioButtonGroupView.swift */,
+				15F2EA422365EBA90013F6A4 /* RadioButtonGroupConfiguration.swift */,
+			);
+			path = RadioComponents;
+			sourceTree = "<group>";
+		};
+		15F2EA372365D7870013F6A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				150E24882355E2C200F11C8E /* CalendarView.swift */,
+				15E0947A2356B35000FE85D3 /* DateCircleCell.swift */,
+				15E0947E2356CC4E00FE85D3 /* CalendarHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15F2EA382365D8590013F6A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D63BE80B234A575B0015FC27 /* ProfileView.swift */,
+				15F786A12359522B00D1C211 /* ProfileFooterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15F2EA392365D8620013F6A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */,
+				1550DCAB235B4379000CBC7C /* FormHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15F2EA3A2365D9090013F6A4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D69B923C231DF9D6009207B1 /* LoadingViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		4008D6DB513CD81095C2E1DD /* Frameworks */ = {
@@ -474,7 +547,6 @@
 		D61E0C4022E4D706003700EA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				D6EE5CBD232F2FE900F3701A /* Commons */,
 				D635DDCF2320899C00E36431 /* SignedInScenes */,
 				D61E0C3F22E4D6CF003700EA /* SignedOutScenes */,
 			);
@@ -615,16 +687,16 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
-				D681E49122F12DC9003754F4 /* Commons */,
-				D61E0C4022E4D706003700EA /* Scenes */,
-				D6B99CAD22E173EB005996B1 /* Authentication */,
-				D6EA765822DDF44C00E87D00 /* Repository */,
-				D6ABED1C22DF2C020022CF0A /* Models */,
-				D68ACB9022C7E315001C94A5 /* Extensions */,
-				D6B1207A22E4EBF1005180D5 /* Resources */,
-				D695890D22C7AC71009A356C /* View */,
 				D695890922C7AAF5009A356C /* App */,
+				D6B99CAD22E173EB005996B1 /* Authentication */,
+				D681E49122F12DC9003754F4 /* Commons */,
+				D68ACB9022C7E315001C94A5 /* Extensions */,
+				D6ABED1C22DF2C020022CF0A /* Models */,
+				D6EA765822DDF44C00E87D00 /* Repository */,
+				D6B1207A22E4EBF1005180D5 /* Resources */,
+				D61E0C4022E4D706003700EA /* Scenes */,
 				D695890722C7AAD1009A356C /* Supporting Files */,
+				D695890D22C7AC71009A356C /* View */,
 			);
 			path = juju;
 			sourceTree = "<group>";
@@ -740,6 +812,7 @@
 		D695890D22C7AC71009A356C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				15F2EA3A2365D9090013F6A4 /* Controllers */,
 				D6FC909423537C0A006440D6 /* Keyboard */,
 				D63BE805234A38720015FC27 /* Deprecated */,
 				D6EE5CBE232F302700F3701A /* Animations */,
@@ -794,6 +867,9 @@
 		D6B1207822E4EB93005180D5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1571C52E236467F5002B1E84 /* TabView.swift */,
+				15F2EA362365D6F90013F6A4 /* RadioComponents */,
+				15F2EA352365D6D50013F6A4 /* MetricItemComponents */,
 				D60AF49922E48FB700597BEA /* JujuUnderlinedButton.swift */,
 				D695890E22C7AD16009A356C /* JujuInputField.swift */,
 				D682062722CADE9B006D4937 /* JujuButton.swift */,
@@ -973,15 +1049,6 @@
 				D6E42DB42330884D00B42EB1 /* TrainLevelViewController.swift */,
 			);
 			path = TrainingLevel;
-			sourceTree = "<group>";
-		};
-		D6EE5CBD232F2FE900F3701A /* Commons */ = {
-			isa = PBXGroup;
-			children = (
-				D69B923C231DF9D6009207B1 /* LoadingViewController.swift */,
-				1571C52E236467F5002B1E84 /* TabView.swift */,
-			);
-			path = Commons;
 			sourceTree = "<group>";
 		};
 		D6EE5CBE232F302700F3701A /* Animations */ = {
@@ -1314,7 +1381,9 @@
 				1571C52F236467F5002B1E84 /* TabView.swift in Sources */,
 				D635DDD1232089CF00E36431 /* SignedInCoordinator.swift in Sources */,
 				D6EA765A22DDF47200E87D00 /* Results.swift in Sources */,
+				1580E93B23661142008E86FE /* DualActionButtonsConfiguration.swift in Sources */,
 				1550DCAF235B8576000CBC7C /* UITabBarController.swift in Sources */,
+				150226A22366042F00D46720 /* PopoverView.swift in Sources */,
 				D6E42DB52330884D00B42EB1 /* TrainLevelViewController.swift in Sources */,
 				D61E0C3C22E4D41D003700EA /* JujuFormProtocol.swift in Sources */,
 				15F786A22359522B00D1C211 /* ProfileFooterView.swift in Sources */,
@@ -1322,12 +1391,14 @@
 				D6182B4B232406CF00932DA3 /* TrainingView.swift in Sources */,
 				D622755922FA4913004992E5 /* AppPrefs.swift in Sources */,
 				153CBE49235D475E00D0B641 /* MetricItemView.swift in Sources */,
+				1580E93723660F3B008E86FE /* UrineInsertionViewController.swift in Sources */,
 				15E0947D2356BF8500FE85D3 /* CalendarCoordinator.swift in Sources */,
 				D6D39754232D966400EBA4FE /* TrainingMode.swift in Sources */,
 				D6856AAE2345878700270F14 /* FirebaseDiaryQuery.swift in Sources */,
 				D6F2653E22D4DC840062C97A /* SignUpViewController.swift in Sources */,
 				15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */,
 				D68ACB8F22C7DF9C001C94A5 /* Resources.swift in Sources */,
+				1580E939236610F6008E86FE /* UrineInsertionViewConfiguration.swift in Sources */,
 				D6D3974E232D80D600EBA4FE /* TrainingModeViewController.swift in Sources */,
 				D65356E92340241500CEE476 /* FirebaseTrainingModel.swift in Sources */,
 				D665FC812348DF300073F192 /* FirebaseExtensions.swift in Sources */,
@@ -1336,7 +1407,7 @@
 				1590324D235E9386008079D2 /* MetricItemViewConfiguration.swift in Sources */,
 				D6856AA723457ED100270F14 /* Series.swift in Sources */,
 				D6E42DB02330699D00B42EB1 /* TrainingLevelView.swift in Sources */,
-				15E0947B2356B35000FE85D3 /* DateCircleView.swift in Sources */,
+				15E0947B2356B35000FE85D3 /* DateCircleCell.swift in Sources */,
 				D6182B49232406AF00932DA3 /* TrainingViewController.swift in Sources */,
 				D681E49522F1331A003754F4 /* TextFieldValidators.swift in Sources */,
 				D6EE63EF232590600003F50C /* CAShapeLayer.swift in Sources */,
@@ -1347,6 +1418,7 @@
 				150E24892355E2C200F11C8E /* CalendarView.swift in Sources */,
 				D6182B4D23240D3200932DA3 /* JujuButtonWithAccessory.swift in Sources */,
 				D681E49022F128B3003754F4 /* InputKind.swift in Sources */,
+				15F2EA402365E3F20013F6A4 /* UrineInsertionView.swift in Sources */,
 				D612165A2344303B003AB0C3 /* UserDefaultsStorage.swift in Sources */,
 				D6F2653C22D4D9830062C97A /* AppCoordinator.swift in Sources */,
 				1584A5DD2364ED5500A8F125 /* DaySummaryViewConfiguration.swift in Sources */,
@@ -1370,8 +1442,10 @@
 				D6ABED1E22DF2C1C0022CF0A /* ClientUser.swift in Sources */,
 				D695891122C7AD6E009A356C /* ViewCoding.swift in Sources */,
 				D6856AB02345A8BB00270F14 /* TrainingDiaryService.swift in Sources */,
+				1580E93523660A90008E86FE /* DualActionButtons.swift in Sources */,
 				D641400623002A87005BD008 /* FirebaseQuery.swift in Sources */,
 				1584A5DB2364E9A200A8F125 /* UIStackView.swift in Sources */,
+				15F2EA432365EBA90013F6A4 /* RadioButtonGroupConfiguration.swift in Sources */,
 				D645C0F022CCC39800FAB219 /* SignUpView.swift in Sources */,
 				D622755722FA4527004992E5 /* DateUtils.swift in Sources */,
 				D695891322C7AF98009A356C /* ViewConfiguration.swift in Sources */,
@@ -1399,6 +1473,7 @@
 				D6EE5CB6232F1FBF00F3701A /* TrainLevelComponent.swift in Sources */,
 				D6CDADD222E0985C0030B753 /* FirebasePersistable.swift in Sources */,
 				D63BE807234A3EA60015FC27 /* OldJujuFormProtocol.swift in Sources */,
+				15F2EA3C2365DA4F0013F6A4 /* RadioButtonView.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
 				D612165C23443154003AB0C3 /* LocalStorageProtocol.swift in Sources */,
@@ -1419,6 +1494,7 @@
 				D6EE63ED232587450003F50C /* NumberedCircle.swift in Sources */,
 				D69B923F231E048E009207B1 /* UIViewController.swift in Sources */,
 				15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */,
+				15F2EA3E2365DF780013F6A4 /* RadioButtonGroupView.swift in Sources */,
 				D695890F22C7AD16009A356C /* JujuInputField.swift in Sources */,
 				D6182B5D2324540000932DA3 /* TrainingViewInitialConfiguration.swift in Sources */,
 				D63BE80A234A567F0015FC27 /* ProfileViewController.swift in Sources */,

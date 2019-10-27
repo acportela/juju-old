@@ -109,6 +109,10 @@ extension Resources.Images {
     static let rightChevron = image(named: "chevron_right")
 
     static let dot = image(named: "dot", template: true)
+
+    static let radioUnchecked = image(named: "radio-unchecked")
+
+    static let radioChecked = image(named: "radio-checked")
     
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
