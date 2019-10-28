@@ -201,6 +201,7 @@
 		1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineInsertionViewConfiguration.swift; sourceTree = "<group>"; };
 		1580E93A23661142008E86FE /* DualActionButtonsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualActionButtonsConfiguration.swift; sourceTree = "<group>"; };
 		1580E93C23663A68008E86FE /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		1580E93E2366842D008E86FE /* juju.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = juju.entitlements; sourceTree = "<group>"; };
 		1584A5D82364E91F00A8F125 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
 		1584A5DA2364E9A200A8F125 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryViewConfiguration.swift; sourceTree = "<group>"; };
@@ -689,6 +690,7 @@
 		D65FCC4822C79EF400BA16E5 /* juju */ = {
 			isa = PBXGroup;
 			children = (
+				1580E93E2366842D008E86FE /* juju.entitlements */,
 				D695890922C7AAF5009A356C /* App */,
 				D6B99CAD22E173EB005996B1 /* Authentication */,
 				D681E49122F12DC9003754F4 /* Commons */,
@@ -1673,6 +1675,7 @@
 			baseConfigurationReference = 141CB07F668A4F76F65CD92E /* Pods-juju.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = juju/juju.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4KYD88NNTV;
@@ -1694,6 +1697,7 @@
 			baseConfigurationReference = C8B963747690D2B138C0423C /* Pods-juju.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = juju/juju.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4KYD88NNTV;

@@ -6,6 +6,8 @@ def all_pods
     pod 'SwiftLint'
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/Analytics'
     pod 'SnapKit', '~> 5.0.1'
     pod 'Fabric'
     pod 'Crashlytics'
