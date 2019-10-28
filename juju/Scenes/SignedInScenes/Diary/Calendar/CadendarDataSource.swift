@@ -12,8 +12,7 @@ typealias DateRange = (from: Date, to: Date)
 
 protocol CalendarDataSourceDelegate: AnyObject {
 
-    func calendarDataSourceDidFetchDiaries(_ dataSource: CalendarDataSource,
-                                           diaries: [DiaryProgress])
+    func calendarDataSourceDidRefreshDiaries(_ dataSource: CalendarDataSource)
     func calendarDataSourceFailedFetchingDiaries(_ dataSource: CalendarDataSource)
 }
 
@@ -23,6 +22,8 @@ class CalendarDataSource {
     private let user: ClientUser
     
     private var availableTrainings = TrainingConstants.defaultTrainingModels
+
+    private (set) var diaries: [DiaryProgress]?
 
     weak var delegate: CalendarDataSourceDelegate?
     
@@ -50,12 +51,58 @@ extension CalendarDataSource {
 
             case .success(let diaries):
 
-                sSelf.delegate?.calendarDataSourceDidFetchDiaries(sSelf, diaries: diaries)
+                sSelf.diaries = diaries
+                sSelf.delegate?.calendarDataSourceDidRefreshDiaries(sSelf)
 
             case .error:
 
                 sSelf.delegate?.calendarDataSourceFailedFetchingDiaries(sSelf)
             }
         }
+    }
+
+    func addUrineLossEntry(_ loss: UrineLoss, forDate date: Date) {
+
+        if self.diaries == nil || self.diaries?.isEmpty ?? true {
+
+            // No entries at all
+            let diary = DiaryProgress(date: date,
+                                      urineLosses: [loss],
+                                      models: self.availableTrainings)
+            self.diaries = [diary]
+            self.updateRemote(diary)
+            return
+        }
+
+        guard let element = self.diaries?.getElementFromDate(date) else {
+
+            // No training or urine loss for date
+            // Add new one and append/update remote
+            let diary = DiaryProgress(date: date,
+                                      urineLosses: [loss],
+                                      models: self.availableTrainings)
+            self.diaries?.append(diary)
+            self.updateRemote(diary)
+            return
+        }
+
+        // Existing entry
+        var diary = element.diary
+        diary.addUrineLoss(loss)
+
+        self.updateLocal(diary, atIndex: element.index)
+        self.updateRemote(diary)
+    }
+
+    func updateLocal(_ diary: DiaryProgress, atIndex index: Int) {
+
+        self.diaries?.remove(at: index)
+        self.diaries?.insert(diary, at: index)
+    }
+
+    func updateRemote(_ diary: DiaryProgress) {
+
+        self.diaryService.trainingWantsToUpdateDiary(diary, forUser: self.user) { _ in }
+        self.delegate?.calendarDataSourceDidRefreshDiaries(self)
     }
 }

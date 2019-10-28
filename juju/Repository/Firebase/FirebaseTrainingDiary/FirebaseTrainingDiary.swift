@@ -130,10 +130,12 @@ struct FirebaseTrainingDiary: FirebasePersistable {
     }
     
     func toDictionary() -> [String: Any] {
+
+        let urineValues = self.urineLosses.urineRawValues
         
         return [FirebaseConstants.TrainingDiary.userId: self.userId,
                 FirebaseConstants.TrainingDiary.date: self.date,
-                FirebaseConstants.TrainingDiary.urineLoss: self.urineLosses,
+                FirebaseConstants.TrainingDiary.urineLoss: urineValues,
                 FirebaseConstants.TrainingDiary.seriesSlowEasy: self.seriesSlowEasy,
                 FirebaseConstants.TrainingDiary.seriesSlowMedium: self.seriesSlowMedium,
                 FirebaseConstants.TrainingDiary.seriesSlowHard: self.seriesSlowHard,

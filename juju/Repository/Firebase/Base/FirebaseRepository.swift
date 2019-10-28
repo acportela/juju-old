@@ -16,7 +16,8 @@ protocol FirebaseListenable: Repository {
 
 struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseListenable {
     
-    func save(entity: T, callback: @escaping (ContentResult<T, RepositoryError>) -> Void) {
+    func save(entity: T,
+              callback: @escaping (ContentResult<T, RepositoryError>) -> Void) {
         
         let firestore = Firestore.firestore()
         
@@ -33,7 +34,8 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         }
     }
     
-    func delete(query: V, callback: @escaping (Result<RepositoryError>) -> Void) {
+    func delete(query: V,
+                callback: @escaping (Result<RepositoryError>) -> Void) {
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
             
@@ -61,7 +63,8 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         callback(.success)
     }
     
-    func get(query: V, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
+    func get(query: V,
+             callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
 
@@ -83,7 +86,8 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         }
     }
     
-    func listenTo(query: V, callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) -> ListenerRegistration {
+    func listenTo(query: V,
+                  callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) -> ListenerRegistration {
         
         return query.firebaseQuery.addSnapshotListener { maybeSnapshot, maybeError in
                            
@@ -105,7 +109,9 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         }
     }
     
-    func update(entity: T, id: String, callback: @escaping (Result<RepositoryError>) -> Void) {
+    func update(entity: T,
+                id: String,
+                callback: @escaping (Result<RepositoryError>) -> Void) {
         
         let firestore = Firestore.firestore()
         firestore.collection(entity.path).document(id).setData(entity.toDictionary())

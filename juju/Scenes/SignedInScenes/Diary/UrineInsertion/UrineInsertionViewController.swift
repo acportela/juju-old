@@ -10,8 +10,8 @@ import UIKit
 
 protocol UrineInsertionViewControllerDelegate: AnyObject {
 
-    func urineInsertionViewControllerDidSelectLoss(_ controller: UrineInsertionViewController,
-                                                   urineLoss: UrineLoss)
+    func urineInsertionViewControllerWantsToAddUrineLoss(_ controller: UrineInsertionViewController,
+                                                         urineLoss: UrineLoss)
 }
 
 final class UrineInsertionViewController: UIViewController {
@@ -90,7 +90,7 @@ extension UrineInsertionViewController: UrineInsertionViewDelegate {
     func urineInsertionViewDidChoose(_ view: UrineInsertionView, index: Int) {
 
         self.close()
-        self.delegate?.urineInsertionViewControllerDidSelectLoss(self,
+        self.delegate?.urineInsertionViewControllerWantsToAddUrineLoss(self,
                                                                  urineLoss: self.losses[index])
     }
 }

@@ -26,6 +26,7 @@
 		1580E93723660F3B008E86FE /* UrineInsertionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E93623660F3B008E86FE /* UrineInsertionViewController.swift */; };
 		1580E939236610F6008E86FE /* UrineInsertionViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */; };
 		1580E93B23661142008E86FE /* DualActionButtonsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E93A23661142008E86FE /* DualActionButtonsConfiguration.swift */; };
+		1580E93D23663A68008E86FE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580E93C23663A68008E86FE /* Array.swift */; };
 		1584A5D92364E91F00A8F125 /* DaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5D82364E91F00A8F125 /* DaySummaryView.swift */; };
 		1584A5DB2364E9A200A8F125 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DA2364E9A200A8F125 /* UIStackView.swift */; };
 		1584A5DD2364ED5500A8F125 /* DaySummaryViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */; };
@@ -199,6 +200,7 @@
 		1580E93623660F3B008E86FE /* UrineInsertionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineInsertionViewController.swift; sourceTree = "<group>"; };
 		1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineInsertionViewConfiguration.swift; sourceTree = "<group>"; };
 		1580E93A23661142008E86FE /* DualActionButtonsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualActionButtonsConfiguration.swift; sourceTree = "<group>"; };
+		1580E93C23663A68008E86FE /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		1584A5D82364E91F00A8F125 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
 		1584A5DA2364E9A200A8F125 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		1584A5DC2364ED5500A8F125 /* DaySummaryViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryViewConfiguration.swift; sourceTree = "<group>"; };
@@ -382,10 +384,10 @@
 		150E24872355E2AE00F11C8E /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				150226A02366022800D46720 /* UrineInsertion */,
 				15E0947C2356BF8500FE85D3 /* CalendarCoordinator.swift */,
-				15903252235E945D008079D2 /* DiarySummary */,
 				155D75922361219200FEE092 /* Calendar */,
+				15903252235E945D008079D2 /* DiarySummary */,
+				150226A02366022800D46720 /* UrineInsertion */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -431,9 +433,9 @@
 		155D75922361219200FEE092 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				15F2EA372365D7870013F6A4 /* Views */,
-				150E248A2355E2D200F11C8E /* CalendarViewController.swift */,
 				15235B76235CE9690098A4BE /* CadendarDataSource.swift */,
+				150E248A2355E2D200F11C8E /* CalendarViewController.swift */,
+				15F2EA372365D7870013F6A4 /* Views */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -586,9 +588,9 @@
 		D63BE808234A56680015FC27 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				1550DCAD235B5963000CBC7C /* ProfileInfo */,
-				15AA30EA235AADE7007D7173 /* ChangePassword */,
 				15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */,
+				15AA30EA235AADE7007D7173 /* ChangePassword */,
+				1550DCAD235B5963000CBC7C /* ProfileInfo */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -906,6 +908,7 @@
 				1550DCAE235B8576000CBC7C /* UITabBarController.swift */,
 				155E54E5235DD8B100D2E4D6 /* UILabel.swift */,
 				1584A5DA2364E9A200A8F125 /* UIStackView.swift */,
+				1580E93C23663A68008E86FE /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1475,6 +1478,7 @@
 				D63BE807234A3EA60015FC27 /* OldJujuFormProtocol.swift in Sources */,
 				15F2EA3C2365DA4F0013F6A4 /* RadioButtonView.swift in Sources */,
 				D65FCC4A22C79EF400BA16E5 /* AppDelegate.swift in Sources */,
+				1580E93D23663A68008E86FE /* Array.swift in Sources */,
 				D6FF00B222E39ED200D8B2CB /* SignInView.swift in Sources */,
 				D612165C23443154003AB0C3 /* LocalStorageProtocol.swift in Sources */,
 				D6C75AE22329F45000F44EE7 /* ProgressComponent.swift in Sources */,

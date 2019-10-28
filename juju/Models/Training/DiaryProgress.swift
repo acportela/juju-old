@@ -11,13 +11,18 @@ import Foundation
 struct DiaryProgress: Codable {
     
     let date: Date
-    let urineLosses: [UrineLoss]
+    private (set) var urineLosses: [UrineLoss]
     private (set) var series: [Series]
 
     var exercisedToday: Bool {
         
         for serie in self.series where serie.completed > 0 { return true }
         return false
+    }
+
+    var hasAddedUrineLoss: Bool {
+
+        return !urineLosses.isEmpty
     }
 
     /// Inits a new diary with exixting series
@@ -81,5 +86,10 @@ struct DiaryProgress: Codable {
     func getSeriesFor(mode: TrainingMode, andLevel level: TrainingLevel) -> Series? {
 
         return self.series.first { ($0.model.mode == mode) && ($0.model.level) == level }
+    }
+
+    mutating func addUrineLoss(_ urineLoss: UrineLoss) {
+
+        self.urineLosses.append(urineLoss)
     }
 }

@@ -127,14 +127,6 @@ extension CalendarView: ViewConfiguration {
             self.buttonAddUrine.configure(with: .initial(buttonConfig))
         }
     }
-
-    private func getDiaryWithDate(_ date: Date) -> DiaryProgress? {
-
-        return self.diary.first { diary in
-
-            DateUtils.defaultCalendar.isDate(date, inSameDayAs: diary.date)
-        }
-    }
 }
 
 extension CalendarView {
@@ -159,10 +151,10 @@ extension CalendarView: JTACMonthViewDelegate {
 
         cell.configure(with: .setText(cellState.text))
 
-        if let diary = self.getDiaryWithDate(date) {
+        if let element = self.diary.getElementFromDate(date) {
 
-            let exerised = diary.exercisedToday
-            let lostUrine = !diary.urineLosses.isEmpty
+            let exerised = element.diary.exercisedToday
+            let lostUrine = element.diary.hasAddedUrineLoss
 
             if exerised && lostUrine {
                 cell.configure(with: .circleAndDrop)
@@ -208,9 +200,9 @@ extension CalendarView: JTACMonthViewDelegate {
                   cellState: CellState,
                   indexPath: IndexPath) {
 
-        if let diary = self.getDiaryWithDate(date) {
+        if let element = self.diary.getElementFromDate(date) {
 
-            self.delegate?.calendarViewWantsToShowSummary(self, forDiary: diary)
+            self.delegate?.calendarViewWantsToShowSummary(self, forDiary: element.diary)
         }
     }
 }

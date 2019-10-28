@@ -100,10 +100,14 @@ extension CalendarViewController {
 
 extension CalendarViewController: CalendarDataSourceDelegate {
 
-    func calendarDataSourceDidFetchDiaries(_ dataSource: CalendarDataSource, diaries: [DiaryProgress]) {
+    func calendarDataSourceDidRefreshDiaries(_ dataSource: CalendarDataSource) {
 
         self.stopLoading()
-        self.calendarView.diary = diaries
+
+        if let diaries = self.dataSource.diaries {
+
+            self.calendarView.diary = diaries
+        }
     }
 
     func calendarDataSourceFailedFetchingDiaries(_ dataSource: CalendarDataSource) {
@@ -124,8 +128,9 @@ extension CalendarViewController: CalendarViewDelegate {
 
 extension CalendarViewController: UrineInsertionViewControllerDelegate {
 
-    func urineInsertionViewControllerDidSelectLoss(_ controller: UrineInsertionViewController,
-                                                   urineLoss: UrineLoss) {
+    func urineInsertionViewControllerWantsToAddUrineLoss(_ controller: UrineInsertionViewController,
+                                                         urineLoss: UrineLoss) {
         
+        self.dataSource.addUrineLossEntry(urineLoss, forDate: Date())
     }
 }
