@@ -59,7 +59,7 @@ final class UrineInsertionView: PopoverView {
 
         self.titleLabel.snp.makeConstraints { make in
 
-            make.top.equalToSuperview().offset(Styling.Spacing.sixteen)
+            make.top.equalToSuperview().offset(Styling.Spacing.twentyfour)
             make.left.equalToSuperview().offset(Styling.Spacing.twentyeight)
             make.right.equalToSuperview().offset(-Styling.Spacing.twentyeight)
             make.width.equalTo(Constants.titleWidth)
@@ -68,13 +68,13 @@ final class UrineInsertionView: PopoverView {
         self.radioGroupView.snp.makeConstraints { make in
 
             make.left.equalTo(self.titleLabel.snp.left)
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(Styling.Spacing.twentyeight)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(Styling.Spacing.twentyfour)
         }
 
         self.dualButtons.snp.makeConstraints { make in
 
-            make.top.equalTo(self.radioGroupView.snp.bottom).offset(Styling.Spacing.thirtytwo)
-            make.bottom.equalToSuperview().offset(-Styling.Spacing.twentyfour)
+            make.top.equalTo(self.radioGroupView.snp.bottom).offset(Styling.Spacing.twentyfour)
+            make.bottom.equalToSuperview().offset(-Styling.Spacing.sixteen)
             make.right.equalToSuperview().offset(-Styling.Spacing.twentyfour)
         }
     }

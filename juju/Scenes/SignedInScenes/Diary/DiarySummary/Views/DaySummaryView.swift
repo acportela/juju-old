@@ -149,9 +149,9 @@ extension DaySummaryView {
     struct Constants {
 
         static let popoverWidth = 268
-        static let popoverHeight = 343
+        static let popoverHeight = 358
         static let tabWidth = 150
-        static let tabHeight = 30
+        static let tabHeight = 40
         static let trainAndUrineTransitionDuration: TimeInterval = 0.3
     }
 }

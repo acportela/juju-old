@@ -77,8 +77,8 @@ extension RadioButtonView: ViewCoding {
         self.containerStack.snp.makeConstraints { make in
 
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(Styling.Spacing.eight)
-            make.bottom.equalToSuperview().offset(-Styling.Spacing.eight)
+            make.top.equalToSuperview().offset(Styling.Spacing.twelve)
+            make.bottom.equalToSuperview().offset(-Styling.Spacing.twelve)
         }
 
         self.radioImage.snp.makeConstraints { make in

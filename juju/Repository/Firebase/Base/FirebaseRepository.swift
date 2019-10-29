@@ -15,6 +15,8 @@ protocol FirebaseListenable: Repository {
 }
 
 struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseListenable {
+
+    let firestoreErrorAtapter = FirestoreErrorAdapter()
     
     func save(entity: T,
               callback: @escaping (ContentResult<T, RepositoryError>) -> Void) {
@@ -29,8 +31,13 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         }
         
         document.setData(entity.toDictionary()) { error in
-            
-            error == nil ? callback(.success(entity)) : callback(.error(.unknown))
+
+            if let existingError = error {
+
+                callback(.error(self.getResultingErrorFrom(existingError)))
+                return
+            }
+            callback(.success(entity))
         }
     }
     
@@ -39,20 +46,24 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
             
-            if maybeError != nil {
-                callback(.error(.unknown))
+            if let existingError = maybeError {
+
+                callback(.error(self.getResultingErrorFrom(existingError)))
                 return
             }
             
             guard let snapshot = maybeSnapshot,
             snapshot.documents.isEmpty == false else {
+
                 callback(.error(.noResults))
                 return
             }
 
             snapshot.documents.forEach { $0.reference.delete { error in
+
                     if error != nil {
-                        callback(.error(.unknown))
+
+                        callback(.error(.corruptedData))
                         return
                     }
                 }
@@ -68,13 +79,15 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
 
-            if maybeError != nil {
-                callback(.error(.unknown))
+            if let existingError = maybeError {
+
+                callback(.error(self.getResultingErrorFrom(existingError)))
                 return
             }
-            
+
             guard let snapshot = maybeSnapshot,
             snapshot.documents.isEmpty == false else {
+
                 callback(.error(.noResults))
                 return
             }
@@ -91,13 +104,15 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         return query.firebaseQuery.addSnapshotListener { maybeSnapshot, maybeError in
                            
-            if maybeError != nil {
-                callback(.error(.unknown))
+            if let existingError = maybeError {
+
+                callback(.error(self.getResultingErrorFrom(existingError)))
                 return
             }
-           
+
             guard let snapshot = maybeSnapshot,
             snapshot.documents.isEmpty == false else {
+
                 callback(.error(.noResults))
                 return
             }
@@ -115,5 +130,13 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         let firestore = Firestore.firestore()
         firestore.collection(entity.path).document(id).setData(entity.toDictionary())
+    }
+
+    private func getResultingErrorFrom(_ error: Error) -> RepositoryError {
+
+        guard let fireError = FirestoreErrorCode(rawValue: (error as NSError).code) else {
+            return .unknown
+        }
+        return self.firestoreErrorAtapter.getErrorFromCode(fireError)
     }
 }

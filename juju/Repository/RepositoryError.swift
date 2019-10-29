@@ -14,7 +14,8 @@ enum RepositoryError: Error {
     case noResults
     case unauthorized
     case resourceExausted
-    case cancelled
     case malformedQuery
+    case entryAlreadyExists
     case corruptedData
+    case network
 }

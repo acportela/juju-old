@@ -34,6 +34,7 @@
 		1590324B235E9065008079D2 /* MetricSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590324A235E9065008079D2 /* MetricSectionView.swift */; };
 		1590324D235E9386008079D2 /* MetricItemViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590324C235E9386008079D2 /* MetricItemViewConfiguration.swift */; };
 		15903251235E9457008079D2 /* TrainingSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15903250235E9457008079D2 /* TrainingSummaryView.swift */; };
+		15A0F98C2367EFC300BF8240 /* FirestoreErrorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0F98B2367EFC300BF8240 /* FirestoreErrorAdapter.swift */; };
 		15AA30E7235AADCE007D7173 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */; };
 		15AA30E9235AADE1007D7173 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */; };
 		15AA30EC235AB7D7007D7173 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */; };
@@ -209,6 +210,7 @@
 		1590324A235E9065008079D2 /* MetricSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricSectionView.swift; sourceTree = "<group>"; };
 		1590324C235E9386008079D2 /* MetricItemViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricItemViewConfiguration.swift; sourceTree = "<group>"; };
 		15903250235E9457008079D2 /* TrainingSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSummaryView.swift; sourceTree = "<group>"; };
+		15A0F98B2367EFC300BF8240 /* FirestoreErrorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreErrorAdapter.swift; sourceTree = "<group>"; };
 		15AA30E6235AADCE007D7173 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		15AA30E8235AADE1007D7173 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		15AA30EB235AB7D7007D7173 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -845,6 +847,7 @@
 				D6856AAA234586FC00270F14 /* FirebaseTrainingDiary */,
 				D641400923002ACB005BD008 /* User */,
 				D65356EB2340312300CEE476 /* Base */,
+				15A0F98B2367EFC300BF8240 /* FirestoreErrorAdapter.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -1422,6 +1425,7 @@
 				D69B9241231E0503009207B1 /* Loadable.swift in Sources */,
 				150E24892355E2C200F11C8E /* CalendarView.swift in Sources */,
 				D6182B4D23240D3200932DA3 /* JujuButtonWithAccessory.swift in Sources */,
+				15A0F98C2367EFC300BF8240 /* FirestoreErrorAdapter.swift in Sources */,
 				D681E49022F128B3003754F4 /* InputKind.swift in Sources */,
 				15F2EA402365E3F20013F6A4 /* UrineInsertionView.swift in Sources */,
 				D612165A2344303B003AB0C3 /* UserDefaultsStorage.swift in Sources */,

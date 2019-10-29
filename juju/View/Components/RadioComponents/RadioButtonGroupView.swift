@@ -17,7 +17,7 @@ final class RadioButtonGroupView: UIView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .leading
-        stack.spacing = Styling.Spacing.four
+        stack.spacing = Styling.Spacing.eight
         stack.distribution = .equalCentering
         return stack
     }()

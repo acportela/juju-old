@@ -28,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         self.setupFirebase()
         self.configureKeyboardManager()
-        self.configureNotifications()
+        self.registerForRemoteNotification()
+        self.requestNotificationAuthorization()
         self.setupDependencies(withRootController: rootController)
-        
         self.appCoordinator?.start()
         
         return true
@@ -62,33 +62,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureKeyboardManager() {
         
         IQKeyboardManager.shared.enable = true
-        
     }
+}
 
-    private func configureNotifications() {
+// MARK: Notification Handling
+extension AppDelegate {
+
+    // MARK: Permission
+    private func requestNotificationAuthorization() {
 
         UNUserNotificationCenter.current()
-        .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
-
-            print("Permission granted: \(granted)")
-
-            guard granted else { return }
-            self?.getNotificationSettings()
-        }
+        .requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
     }
 
-    func getNotificationSettings() {
+    private func checkUserNotificationAuthorization() {
 
-      UNUserNotificationCenter.current().getNotificationSettings { settings in
-
-        print("Notification settings: \(settings)")
-
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
         guard settings.authorizationStatus == .authorized else { return }
-        DispatchQueue.main.async {
-
-          UIApplication.shared.registerForRemoteNotifications()
-        }
       }
+    }
+
+    // MARK: Registering
+    private func registerForRemoteNotification() {
+
+        UIApplication.shared.registerForRemoteNotifications()
     }
 
     func application(_ application: UIApplication,
@@ -100,8 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication,
-                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
-
-        print("Failed to register: \(error)")
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     }
 }

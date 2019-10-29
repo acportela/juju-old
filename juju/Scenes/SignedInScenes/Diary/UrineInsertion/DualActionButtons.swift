@@ -23,17 +23,17 @@ final class DualActionButtons: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
-        stack.spacing = Styling.Spacing.sixteen
+        stack.spacing = Styling.Spacing.twelve
         stack.distribution = .fillProportionally
         return stack
     }()
 
     private lazy var primaryActionButton: UIButton = {
         let button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.eight,
-                                                left: Styling.Spacing.eight,
-                                                bottom: Styling.Spacing.eight,
-                                                right: Styling.Spacing.eight)
+        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.sixteen,
+                                                left: Styling.Spacing.twelve,
+                                                bottom: Styling.Spacing.sixteen,
+                                                right: Styling.Spacing.twelve)
 
         button.addTarget(self, action: #selector(primaryAction), for: .touchUpInside)
         return button
@@ -41,10 +41,10 @@ final class DualActionButtons: UIView {
 
     private lazy var secondaryActionButton: UIButton = {
         let button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.eight,
-                                                left: Styling.Spacing.eight,
-                                                bottom: Styling.Spacing.eight,
-                                                right: Styling.Spacing.eight)
+        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.sixteen,
+                                                left: Styling.Spacing.twelve,
+                                                bottom: Styling.Spacing.sixteen,
+                                                right: Styling.Spacing.twelve)
 
         button.addTarget(self, action: #selector(secondaryAction), for: .touchUpInside)
         return button

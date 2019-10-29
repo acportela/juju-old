@@ -29,12 +29,9 @@ final class TabView: UIView {
 
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = UIStackView.Distribution.equalCentering
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: Constants.none,
-                                               left: Styling.Spacing.sixteen,
-                                               bottom: Constants.lineHeight,
-                                               right: Styling.Spacing.sixteen)
+        stackView.alignment = .fill
+        stackView.distribution = UIStackView.Distribution.fillEqually
+        stackView.spacing = Styling.Spacing.sixteen
 
         return stackView
     }()
@@ -111,10 +108,9 @@ private extension TabView {
 
         let label = UILabel()
         label.text = title.capitalized
-        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.fourteen)
+        label.font = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.sixteen)
         label.textAlignment = .center
         label.textColor = Styling.Colors.charcoalGrey
-
         let tap = UITapGestureRecognizer(target: self,
                                          action: #selector(handleTap))
         label.addGestureRecognizer(tap)
