@@ -113,7 +113,13 @@ extension Resources.Images {
     static let radioUnchecked = image(named: "radio-unchecked")
 
     static let radioChecked = image(named: "radio-checked")
-    
+
+    static let closeCross = image(named: "close-cross")
+
+    static let snackbarCheck = image(named: "snackbar-check")
+
+    static let snackbarCross = image(named: "snackbar-cross")
+
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")

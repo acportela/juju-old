@@ -54,7 +54,14 @@ extension CalendarDataSource {
                 sSelf.diaries = diaries
                 sSelf.delegate?.calendarDataSourceDidRefreshDiaries(sSelf)
 
-            case .error:
+            case .error(let error):
+
+                if error == .noResults {
+
+                    sSelf.diaries = []
+                    sSelf.delegate?.calendarDataSourceDidRefreshDiaries(sSelf)
+                    return
+                }
 
                 sSelf.delegate?.calendarDataSourceFailedFetchingDiaries(sSelf)
             }
@@ -76,7 +83,7 @@ extension CalendarDataSource {
 
         guard let element = self.diaries?.getElementFromDate(date) else {
 
-            // No training or urine loss for date
+            // No training or urine loss for specified date
             // Add new one and append/update remote
             let diary = DiaryProgress(date: date,
                                       urineLosses: [loss],

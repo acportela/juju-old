@@ -75,13 +75,6 @@ extension AppDelegate {
         .requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
     }
 
-    private func checkUserNotificationAuthorization() {
-
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-        guard settings.authorizationStatus == .authorized else { return }
-      }
-    }
-
     // MARK: Registering
     private func registerForRemoteNotification() {
 

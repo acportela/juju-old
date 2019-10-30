@@ -16,7 +16,15 @@ protocol TrainingLevelViewDelegate: AnyObject {
 final class TrainingLevelView: UIView {
     
     // MARK: Views
-    private let closeButton = UIButton()
+    private lazy var closeButton: UIButton = {
+
+        let button = UIButton()
+        button.setImage(Resources.Images.closeCross, for: .normal)
+        button.addTarget(self,
+                         action: #selector(self.didTapClose),
+                         for: .touchUpInside)
+        return button
+    }()
 
     private let titleLabel: UILabel = {
         
@@ -27,7 +35,7 @@ final class TrainingLevelView: UIView {
         label.font = Resources.Fonts.Gilroy.extraBold(ofSize: Styling.FontSize.twenty)
         return label
     }()
-    
+
     private let arrowDown: UIImageView = {
         
         let imageView = UIImageView()
@@ -148,15 +156,6 @@ extension TrainingLevelView: ViewCoding {
 extension TrainingLevelView {
 
     private func configureCloseButtonVisibility() {
-
-        let closeButtonFont = Resources.Fonts.Rubik.medium(ofSize: Styling.FontSize.twenty)
-        self.closeButton.setTitle("X",
-                                  withColor: Styling.Colors.white,
-                                  andFont: closeButtonFont,
-                                  underlined: false)
-        self.closeButton.addTarget(self,
-                                   action: #selector(self.didTapClose),
-                                   for: .touchUpInside)
 
         if #available(iOS 13, *) {
 

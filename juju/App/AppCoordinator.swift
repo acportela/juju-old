@@ -32,6 +32,8 @@ class AppCoordinator: Coordinator {
         self.userService = userService
         self.localStorage = localStorage
         self.diaryService = diaryService
+
+        LogoutManager.shared.register(self)
     }
     
     func start() {
@@ -69,6 +71,12 @@ class AppCoordinator: Coordinator {
         
         self.splashScreen.setupInitialUser()
     }
+
+    private func resetNavigationState() {
+
+        self.navigation.viewControllers = []
+        self.childCoordinators = []
+    }
 }
 
 extension AppCoordinator: SignedOutCoordinatorDelegate {
@@ -101,5 +109,14 @@ extension AppCoordinator: SplashScreenViewControllerDelegate {
                                     didFetchLocalUser user: ClientUser) {
         
         self.startSignedInFlow(withUser: user)
+    }
+}
+
+extension AppCoordinator: LogoutManagerDelegate {
+    
+    func userWasLoggedOut(_ manager: LogoutManagerProtocol) {
+
+        self.resetNavigationState()
+        self.start()
     }
 }

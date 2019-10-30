@@ -32,11 +32,12 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         document.setData(entity.toDictionary()) { error in
 
-            if let existingError = error {
+            if let existingError = self.handleError(error) {
 
-                callback(.error(self.getResultingErrorFrom(existingError)))
+                callback(.error(existingError))
                 return
             }
+
             callback(.success(entity))
         }
     }
@@ -46,9 +47,9 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
             
-            if let existingError = maybeError {
+            if let existingError = self.handleError(maybeError) {
 
-                callback(.error(self.getResultingErrorFrom(existingError)))
+                callback(.error(existingError))
                 return
             }
             
@@ -76,12 +77,12 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
     
     func get(query: V,
              callback: @escaping (ContentResult<[T], RepositoryError>) -> Void) {
-        
+
         query.firebaseQuery.getDocuments { (maybeSnapshot, maybeError) in
+            
+            if let existingError = self.handleError(maybeError) {
 
-            if let existingError = maybeError {
-
-                callback(.error(self.getResultingErrorFrom(existingError)))
+                callback(.error(existingError))
                 return
             }
 
@@ -104,9 +105,9 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         return query.firebaseQuery.addSnapshotListener { maybeSnapshot, maybeError in
                            
-            if let existingError = maybeError {
+            if let existingError = self.handleError(maybeError) {
 
-                callback(.error(self.getResultingErrorFrom(existingError)))
+                callback(.error(existingError))
                 return
             }
 
@@ -130,6 +131,23 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
         
         let firestore = Firestore.firestore()
         firestore.collection(entity.path).document(id).setData(entity.toDictionary())
+    }
+}
+
+extension FirebaseRepository {
+
+    private func handleError(_ error: Error?) -> RepositoryError? {
+
+        guard let existingError = error else { return nil }
+
+        let repoError = self.getResultingErrorFrom(existingError)
+
+        if LogoutManager.shared.shouldLogout(error: repoError) {
+
+            LogoutManager.shared.logout()
+        }
+
+        return repoError
     }
 
     private func getResultingErrorFrom(_ error: Error) -> RepositoryError {

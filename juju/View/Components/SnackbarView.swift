@@ -55,13 +55,6 @@ class SnackbarView: UIView {
         
         super.layoutSubviews()
         self.roundCorners([.topRight, .topLeft], radius: 10)
-        
-        self.addShadow(color: .black,
-                       opacity: 0.15,
-                       radius: 10.0,
-                       offset: .init(width: 0, height: -2.0),
-                       clipsToBounds: false,
-                       masksToBounds: false)
     }
     
 }
