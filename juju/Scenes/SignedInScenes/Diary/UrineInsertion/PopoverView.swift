@@ -51,6 +51,8 @@ class PopoverView: UIView, ViewCoding {
 
         self.popoverContentView.layer.cornerRadius = 4
         self.popoverContentView.backgroundColor = Styling.Colors.white
+        self.popoverContentView.clipsToBounds = true
+
         self.backgroundColor = Styling.Colors.greyishBrown.withAlphaComponent(Constants.backgroundAlpha)
 
         self.addTapGesture()

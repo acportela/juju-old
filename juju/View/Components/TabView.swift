@@ -21,7 +21,7 @@ final class TabView: UIView {
     private let lineComponent: UIView = {
 
         let view = UIView()
-        view.backgroundColor = Styling.Colors.charcoalGrey
+        view.backgroundColor = Styling.Colors.rosyPink
         return view
     }()
 

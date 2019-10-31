@@ -34,7 +34,7 @@ struct Snackbar {
         
         self.show(message: message,
                   backgroundColor: Styling.Colors.rosyPink,
-                  image: Resources.Images.clear,
+                  image: Resources.Images.snackbarCross,
                   in: view)
     }
     
@@ -42,8 +42,8 @@ struct Snackbar {
                             in view: UIView) {
         
         self.show(message: message,
-                  backgroundColor: Styling.Colors.softPink,
-                  image: Resources.Images.checkSmall,
+                  backgroundColor: Styling.Colors.rosyPink,
+                  image: Resources.Images.snackbarCheck,
                   in: view)
     }
 }

@@ -14,6 +14,7 @@ protocol CalendarDataSourceDelegate: AnyObject {
 
     func calendarDataSourceDidRefreshDiaries(_ dataSource: CalendarDataSource)
     func calendarDataSourceFailedFetchingDiaries(_ dataSource: CalendarDataSource)
+    func calendarDataSourceDidAddUrineLoss(_ dataSource: CalendarDataSource)
 }
 
 class CalendarDataSource {
@@ -77,7 +78,7 @@ extension CalendarDataSource {
                                       urineLosses: [loss],
                                       models: self.availableTrainings)
             self.diaries = [diary]
-            self.updateRemote(diary)
+            self.updateRemoteUrineLoss(diary)
             return
         }
 
@@ -89,7 +90,7 @@ extension CalendarDataSource {
                                       urineLosses: [loss],
                                       models: self.availableTrainings)
             self.diaries?.append(diary)
-            self.updateRemote(diary)
+            self.updateRemoteUrineLoss(diary)
             return
         }
 
@@ -97,19 +98,33 @@ extension CalendarDataSource {
         var diary = element.diary
         diary.addUrineLoss(loss)
 
-        self.updateLocal(diary, atIndex: element.index)
-        self.updateRemote(diary)
+        self.updateLocalUrineLoss(diary, atIndex: element.index)
+        self.updateRemoteUrineLoss(diary)
     }
 
-    func updateLocal(_ diary: DiaryProgress, atIndex index: Int) {
+    func updateLocalUrineLoss(_ diary: DiaryProgress, atIndex index: Int) {
 
         self.diaries?.remove(at: index)
         self.diaries?.insert(diary, at: index)
     }
 
-    func updateRemote(_ diary: DiaryProgress) {
+    func updateRemoteUrineLoss(_ diary: DiaryProgress) {
 
-        self.diaryService.trainingWantsToUpdateDiary(diary, forUser: self.user) { _ in }
-        self.delegate?.calendarDataSourceDidRefreshDiaries(self)
+        self.diaryService.trainingWantsToUpdateDiary(diary,
+                                                     forUser: self.user) { [weak self] result in
+
+            guard let sSelf = self else { return }
+
+            switch result {
+
+            case .success:
+
+                sSelf.delegate?.calendarDataSourceDidAddUrineLoss(sSelf)
+
+            case .error:
+
+                break
+            }
+        }
     }
 }

@@ -100,6 +100,16 @@ extension CalendarViewController {
 
 extension CalendarViewController: CalendarDataSourceDelegate {
 
+    func calendarDataSourceDidAddUrineLoss(_ dataSource: CalendarDataSource) {
+
+        Snackbar.showSuccess(message: "Perda de urina registrada", in: self.view)
+
+        if let diaries = self.dataSource.diaries {
+
+            self.calendarView.diary = diaries
+        }
+    }
+
     func calendarDataSourceDidRefreshDiaries(_ dataSource: CalendarDataSource) {
 
         self.stopLoading()

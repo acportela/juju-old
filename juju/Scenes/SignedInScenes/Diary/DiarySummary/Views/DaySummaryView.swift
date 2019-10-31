@@ -79,6 +79,7 @@ final class DaySummaryView: PopoverView {
 
             make.top.equalTo(self.titleLabel.snp.bottom).offset(Styling.Spacing.sixteen)
             make.centerX.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview().offset(-Styling.Spacing.sixteen)
         }
     }
 
@@ -89,6 +90,8 @@ final class DaySummaryView: PopoverView {
         self.tabView.delegate = self
         self.trainingSummaryView.isHidden = true
         self.urineSummaryView.isHidden = true
+
+        self.titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 }
 

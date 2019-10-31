@@ -130,7 +130,16 @@ struct FirebaseRepository<T: FirebasePersistable, V: FirebaseQuery>: FirebaseLis
                 callback: @escaping (Result<RepositoryError>) -> Void) {
         
         let firestore = Firestore.firestore()
-        firestore.collection(entity.path).document(id).setData(entity.toDictionary())
+        firestore.collection(entity.path).document(id).setData(entity.toDictionary()) { maybeError in
+
+            if let existingError = self.handleError(maybeError) {
+
+                callback(.error(existingError))
+                return
+            }
+
+            callback(.success)
+        }
     }
 }
 

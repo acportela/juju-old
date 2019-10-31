@@ -106,7 +106,7 @@ extension DaySummaryViewController {
                                                dotColor: Styling.Colors.wheat)
         }
 
-        let title = "Perdas Hoje: \(self.diary.urineLosses.count)"
+        let title = "Perda: \(self.diary.urineLosses.count)"
         return MetricSectionViewConfiguration(title: title, items: configs)
     }
 }
