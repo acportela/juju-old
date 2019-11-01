@@ -377,7 +377,6 @@
 			isa = PBXGroup;
 			children = (
 				15F2EA3F2365E3F20013F6A4 /* UrineInsertionView.swift */,
-				150226A12366042F00D46720 /* PopoverView.swift */,
 				1580E93423660A90008E86FE /* DualActionButtons.swift */,
 				1580E93623660F3B008E86FE /* UrineInsertionViewController.swift */,
 				1580E938236610F6008E86FE /* UrineInsertionViewConfiguration.swift */,
@@ -890,6 +889,7 @@
 		D6B1207822E4EB93005180D5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				150226A12366042F00D46720 /* PopoverView.swift */,
 				1571C52E236467F5002B1E84 /* TabView.swift */,
 				15F2EA362365D6F90013F6A4 /* RadioComponents */,
 				15F2EA352365D6D50013F6A4 /* MetricItemComponents */,
@@ -1677,7 +1677,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = juju/juju.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4KYD88NNTV;
 				INFOPLIST_FILE = "$(SRCROOT)/juju/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1685,6 +1685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.jujuhealth.juju;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1699,7 +1700,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = juju/juju.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4KYD88NNTV;
 				INFOPLIST_FILE = "$(SRCROOT)/juju/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1707,6 +1708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.jujuhealth.juju;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

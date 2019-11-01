@@ -9,6 +9,11 @@
 import UIKit
 import SnapKit
 
+protocol DaySummaryViewDelegate: AnyObject {
+
+    func daySummaryViewDidTapClose(_ view: DaySummaryView)
+}
+
 final class DaySummaryView: PopoverView {
 
     // MARK: Views
@@ -21,9 +26,24 @@ final class DaySummaryView: PopoverView {
         return label
     }()
 
+    private lazy var closeButton: UIButton = {
+
+        let button = UIButton()
+        button.setImage(Resources.Images.popoverDismiss, for: .normal)
+        button.addTarget(self, action: #selector(self.closeWasTapped), for: .touchUpInside)
+        button.contentEdgeInsets = UIEdgeInsets(top: Styling.Spacing.twelve,
+                                                left: Styling.Spacing.twelve,
+                                                bottom: Styling.Spacing.twelve,
+                                                right: Styling.Spacing.twelve)
+
+        return button
+    }()
+
     private let tabView = TabView()
     private let trainingSummaryView = TrainingSummaryView()
     private let urineSummaryView = MetricSectionView()
+
+    weak var delegate: DaySummaryViewDelegate?
 
     // MARK: Lifecycle
     override init(frame: CGRect = .zero) {
@@ -42,6 +62,7 @@ final class DaySummaryView: PopoverView {
         super.addSubViews()
 
         self.popoverContentView.addSubview(self.tabView)
+        self.popoverContentView.addSubview(self.closeButton)
         self.popoverContentView.addSubview(self.titleLabel)
         self.popoverContentView.addSubview(self.trainingSummaryView)
         self.popoverContentView.addSubview(self.urineSummaryView)
@@ -62,6 +83,11 @@ final class DaySummaryView: PopoverView {
             make.height.equalTo(Constants.tabHeight)
             make.width.equalTo(Constants.tabWidth)
             make.top.equalToSuperview().offset(Styling.Spacing.sixteen)
+        }
+
+        self.closeButton.snp.makeConstraints { make in
+
+            make.top.right.equalToSuperview()
         }
 
         self.titleLabel.snp.makeConstraints { make in
@@ -121,6 +147,15 @@ extension DaySummaryView: ViewConfiguration {
             self.trainingSummaryView.configure(with: .build(config.trainingSummaryConfiguration))
             self.urineSummaryView.configure(with: .build(config.urineConfiguration))
         }
+    }
+}
+
+extension DaySummaryView {
+
+    @objc
+    private func closeWasTapped() {
+
+        self.delegate?.daySummaryViewDidTapClose(self)
     }
 }
 

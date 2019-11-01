@@ -120,6 +120,8 @@ extension Resources.Images {
 
     static let snackbarCross = image(named: "snackbar-cross")
 
+    static let popoverDismiss = image(named: "popover-dismiss")
+
     private static func image(named name: String, template: Bool = false) -> UIImage {
         guard let image = UIImage(named: name) else {
             fatalError("There is no '\(name)' image on assets")
