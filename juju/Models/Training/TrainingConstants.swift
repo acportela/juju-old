@@ -11,14 +11,14 @@ struct TrainingConstants {
     static let slowEasy = TrainingModel(mode: .slow,
                                         level: .easy,
                                         repetitions: 10,
-                                        contractionDuration: 4,
-                                        relaxationDuration: 4)
+                                        contractionDuration: 6,
+                                        relaxationDuration: 6)
     
     static let slowMedium = TrainingModel(mode: .slow,
                                           level: .medium,
                                           repetitions: 10,
-                                          contractionDuration: 6,
-                                          relaxationDuration: 6)
+                                          contractionDuration: 8,
+                                          relaxationDuration: 8)
     
     static let slowHard = TrainingModel(mode: .slow,
                                         level: .hard,
@@ -35,14 +35,14 @@ struct TrainingConstants {
     static let fastMedium = TrainingModel(mode: .fast,
                                           level: .medium,
                                           repetitions: 10,
-                                          contractionDuration: 2,
+                                          contractionDuration: 1,
                                           relaxationDuration: 2)
     
     static let fastHard = TrainingModel(mode: .fast,
                                         level: .hard,
                                         repetitions: 10,
-                                        contractionDuration: 3,
-                                        relaxationDuration: 6)
+                                        contractionDuration: 1,
+                                        relaxationDuration: 1)
     
     static let defaultTrainingModels: [TrainingModel] = [TrainingConstants.slowEasy,
                                                          TrainingConstants.slowMedium,
