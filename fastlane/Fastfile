@@ -16,26 +16,10 @@
 default_platform(:ios)
 
 platform :ios do
-
-  desc "Run tests"
-  lane :tests do
-    run_tests(workspace: "juju.xcworkspace",
-            devices: ["iPhone X"],
-            scheme: "jujuTests")
-  end
-
-  desc "Upload do Fabric"
+  desc "Push a new beta build to TestFlight"
   lane :beta do
-
-    build_app(
-      # scheme: "juju",
-      export_method: "ad-hoc"
-    )
-
-    crashlytics(
-      api_token: "3301cd4e6350684335a4aaf1e91a9e64967585e1",
-      build_secret: "f41c01ec57690e1b0db0a39310c20f6521cdcb6d5a17abab0d97986d8eacd1bf"
-    )
+    increment_build_number(xcodeproj: "juju.xcodeproj")
+    build_app(workspace: "juju.xcworkspace", scheme: "juju")
+    upload_to_testflight
   end
-
 end
